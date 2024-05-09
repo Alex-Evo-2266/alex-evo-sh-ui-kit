@@ -1,0 +1,38 @@
+.radio-button-container{
+    display: block;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    input{
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+    }
+    span{
+        display: block;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 0;
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid var(--On-surface-variant-color);
+        &::before{
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--Primary-color);
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            display: none;
+        }
+    }
+    input:checked ~ span{
+        border: 2px solid var(--Primary-color);
+        &::before{
+            display: block;
+        }
+    }
+}

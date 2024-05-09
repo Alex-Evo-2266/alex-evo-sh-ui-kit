@@ -1,0 +1,50 @@
+.text-area{
+    overflow: hidden;
+    position: relative;
+    background-color: var(--Surface-container-high-color);
+	color: var(--On-surface-variant-color);
+    border-bottom: 1px solid var(--On-surface-variant-color);
+    &.error{
+        border-bottom: 1px solid var(--Error-color);
+    }
+    &.transparent{
+        background-color:transparent;
+        textarea{
+            background-color:transparent
+        } 
+    }
+    .textarea-container{
+		z-index: 3;
+		flex: 100%;
+		margin: 0 10px 0 16px;
+		padding-top: 8px;
+    }
+    textarea{
+        resize: vertical;
+        background-color: var(--Surface-container-high-color);
+        width: 100%;
+        outline: none;
+        border: none;
+        &.error::placeholder{
+            color: var(--Error-color);
+        }
+    }
+    &.border{
+        border: none;
+        border-radius: 10px;
+        border: 1px solid var(--On-surface-variant-color);
+        &.error{
+            border: 1px solid var(--Error-color);
+        }
+        textarea{
+            resize: vertical;
+            background-color: var(--Surface-container-high-color);
+            width: 100%;
+            outline: none;
+            &.error::placeholder{
+                color: var(--Error-color);
+            }
+        }
+    }
+}
+
