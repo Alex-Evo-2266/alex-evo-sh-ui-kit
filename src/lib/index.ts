@@ -43,6 +43,7 @@ import {Table} from './ui/Table/Table'
 import {NavigationBar} from './ui/NavigationBar/NavigationBar'
 import {NavigationDrawer} from './ui/NavigationDrawer/NavigationDrawer'
 import {NavigationRail} from './ui/NavigationRail/NavigationRail'
+export type {NavigationBtn, NavigationButton, NavigationLink} from './model/navigation'
 
 import './ui/index.scss'
 
