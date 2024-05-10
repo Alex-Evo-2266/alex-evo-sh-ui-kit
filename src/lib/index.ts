@@ -22,6 +22,8 @@ import {ScrollContainer} from './ui/ScrollContainer/ScrollContainer'
 import {Search} from './ui/Search/Search'
 import {Snackbar} from './ui/Snackbar/Snackbar'
 import {Switch} from './ui/Switch/Switch'
+import {SigmentedButton} from './ui/SigmentedButton/SigmentedButton'
+import {Slider} from './ui/Slider/Slider'
 
 import {BasicTemplateDialog} from './ui/Dialog/TemplateDialog/BasicTemplateDialog'
 import {FullScrinTemplateDialog} from './ui/Dialog/TemplateDialog/FullScreenTemplateDialog'
@@ -83,15 +85,19 @@ export {
     Snackbar,
     Switch,
     TimePicker,
-    Table
+    Table,
+    SigmentedButton,
+    Slider
 }
 
 // helpers
 
 import {getContainerData, getModalWindowCord, IContainerData, IOptionModalWindowCord} from './helpers/getModalCord'
+import {map} from './helpers/map'
 
 export {getContainerData, getModalWindowCord}
 export type {IContainerData, IOptionModalWindowCord}
+export {map}
 
 
 //models
