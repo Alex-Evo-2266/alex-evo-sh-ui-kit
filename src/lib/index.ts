@@ -40,6 +40,10 @@ import {Menu} from './ui/Menu/Menu'
 import {SmallWindowMenu} from './ui/Menu/SmallWindowMenu'
 import {Table} from './ui/Table/Table'
 
+import {NavigationBar} from './ui/NavigationBar/NavigationBar'
+import {NavigationDrawer} from './ui/NavigationDrawer/NavigationDrawer'
+import {NavigationRail} from './ui/NavigationRail/NavigationRail'
+
 import './ui/index.scss'
 
 export type {IOptionSnackbar, SnackbarProps} from './ui/Snackbar/Snackbar'
@@ -87,7 +91,10 @@ export {
     TimePicker,
     Table,
     SigmentedButton,
-    Slider
+    Slider,
+    NavigationBar,
+    NavigationDrawer,
+    NavigationRail
 }
 
 // helpers
