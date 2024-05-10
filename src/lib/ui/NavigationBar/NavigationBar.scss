@@ -30,10 +30,16 @@
 		justify-content: center;
 		flex-direction: column;
 		padding: 0 24px 0 16px;
+		outline: none;
+  		text-decoration: none;
 		border-radius: 25px;
 		transition: .3s;
+		.navigation-item-text{
+			color: var(--On-surface-variant-color);
+		}
 		.navigation-item-icon{
 			width: 44px;
+			color: var(--On-surface-variant-color);
 			height: 32px;
 			border-radius: 16px;
 			display: flex;

@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom"
 
 interface NavigationRailItemProps{
 	title: string
@@ -9,9 +8,10 @@ interface NavigationRailItemProps{
 export const NavigationRailItem = ({icon, title, to}:NavigationRailItemProps) => {
 
 	return(
-		<NavLink to={to} className='navigation-item'>
+		<a href={to} className={`navigation-item ${(window.location.pathname === to)?"active":""}`}>
+
 			<div className='navigation-item-icon'>{icon}</div>
 			<div className='navigation-item-text'>{title}</div>
-		</NavLink>
+		</a>
 	)
 }

@@ -21,9 +21,9 @@ const meta = {
        },
        {
         icon: <Home/>,
-        onClick: ()=>{},
+        to: "/home",
         text: "home",
-        type: "button"
+        type: "link"
        },
        {
         icon: <Box/>,
@@ -36,9 +36,9 @@ const meta = {
     otherBtn:[
         {
          icon: <Home/>,
-         onClick: ()=>{},
+         to: "/",
          text: "home",
-         type: "button"
+         type: "link"
         },
         {
          icon: <Box/>,
