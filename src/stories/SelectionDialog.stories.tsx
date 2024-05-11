@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SelectionDialog} from '../lib/index';
 
 const meta = {
-  title: 'Dialogs/SelectionDialog',
+  title: 'Components/Dialogs/SelectionDialog',
   component: SelectionDialog,
   parameters: {
     layout: 'centered',

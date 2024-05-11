@@ -4,7 +4,7 @@ import { fn } from '@storybook/test';
 
 
 const meta = {
-  title: 'Pages/EmptyPage',
+  title: 'Components/Pages/EmptyPage',
   component: EmptyPage,
   parameters: {
     layout: 'fullscreen',

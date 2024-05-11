@@ -5,7 +5,7 @@ import { Home } from 'lucide-react';
 
 
 const meta = {
-  title: 'HideComponents/SmallWindowMenu',
+  title: 'Components/HideComponents/SmallWindowMenu',
   component: SmallWindowMenu,
   parameters: {
     layout: 'centered',

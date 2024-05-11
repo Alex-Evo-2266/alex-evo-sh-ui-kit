@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { BaseActionCard, Button } from '../lib/index';
 
 const meta = {
-  title: 'BaseComponents/BaseActionCard',
+  title: 'Components/BaseComponents/BaseActionCard',
   component: BaseActionCard,
   parameters: {
     layout: 'centered',

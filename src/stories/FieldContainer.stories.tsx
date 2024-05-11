@@ -3,7 +3,7 @@ import { FieldContainer, TextField } from '../lib/index';
 // import React from 'react';
 
 const meta = {
-  title: 'HideComponents/FieldContainer',
+  title: 'Components/HideComponents/FieldContainer',
   component: FieldContainer,
   parameters: {
     layout: 'centered',

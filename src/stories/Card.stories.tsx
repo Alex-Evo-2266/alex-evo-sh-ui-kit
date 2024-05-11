@@ -5,7 +5,7 @@ import { BaseActionCard, Button, Card, IconButton, ListContainer, ListItem } fro
 import img from './img/fon-base.jpg'
 
 const meta = {
-  title: 'BaseComponents/Card',
+  title: 'Components/BaseComponents/Card',
   component: Card,
   parameters: {
     // layout: 'centered',

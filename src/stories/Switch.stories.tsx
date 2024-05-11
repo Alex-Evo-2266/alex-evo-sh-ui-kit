@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import { Switch } from '../lib/index';
 
 const meta = {
-  title: 'BaseComponents/Switch',
+  title: 'Components/BaseComponents/Switch',
   component: Switch,
   parameters: {
     layout: 'centered',

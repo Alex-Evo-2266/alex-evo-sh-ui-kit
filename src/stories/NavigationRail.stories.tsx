@@ -3,7 +3,7 @@ import { NavigationRail } from '../lib/index';
 import { Box, Home } from 'lucide-react';
 
 const meta = {
-  title: 'Navigation/NavigationRail',
+  title: 'Components/Navigation/NavigationRail',
   component: NavigationRail,
   parameters: {
     layout: 'fullscreen',

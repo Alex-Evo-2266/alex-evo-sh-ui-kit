@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TextDialog} from '../lib/index';
 
 const meta = {
-  title: 'Dialogs/TextDialog',
+  title: 'Components/Dialogs/TextDialog',
   component: TextDialog,
   parameters: {
     layout: 'centered',

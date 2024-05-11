@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Snackbar} from '../lib/index';
 
 const meta = {
-  title: 'BaseComponents/Snackbar',
+  title: 'Components/BaseComponents/Snackbar',
   component: Snackbar,
   parameters: {
     layout: 'centered',

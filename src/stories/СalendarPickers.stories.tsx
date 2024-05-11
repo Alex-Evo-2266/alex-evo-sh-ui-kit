@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { СalendarPickers } from '../lib/index';
 
 const meta = {
-  title: 'HideComponents/СalendarPickers',
+  title: 'Components/HideComponents/СalendarPickers',
   component: СalendarPickers,
   parameters: {
     layout: 'centered',

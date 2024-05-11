@@ -3,7 +3,7 @@ import { BasicTemplateDialog, Button, BaseActionCard } from '../lib/index';
 // import React from 'react';
 
 const meta = {
-  title: 'Dialogs/BasicTemplateDialog',
+  title: 'Components/Dialogs/BasicTemplateDialog',
   component: BasicTemplateDialog,
   parameters: {
     layout: 'centered',

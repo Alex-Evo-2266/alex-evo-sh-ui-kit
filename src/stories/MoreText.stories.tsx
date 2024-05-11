@@ -3,7 +3,7 @@ import { MoreText } from '../lib/index';
 
 
 const meta = {
-  title: 'BaseComponents/MoreText',
+  title: 'Components/BaseComponents/MoreText',
   component: MoreText,
   parameters: {
     layout: 'centered',

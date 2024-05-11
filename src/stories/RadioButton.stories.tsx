@@ -6,7 +6,7 @@ import { RadioButton } from '../lib/index';
 
 
 const meta = {
-  title: 'BaseComponents/RadioButton',
+  title: 'Components/BaseComponents/RadioButton',
   component: RadioButton,
   parameters: {
     layout: 'centered',

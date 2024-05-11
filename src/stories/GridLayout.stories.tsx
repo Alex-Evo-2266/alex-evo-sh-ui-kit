@@ -3,7 +3,7 @@ import { GridLayout, GridLayoutItem, Card } from '../lib/index';
 // import React from 'react';
 
 const meta = {
-  title: 'HideComponents/GridLayout',
+  title: 'Components/Layout/GridLayout',
   component: GridLayout,
   parameters: {
     layout: 'centered',

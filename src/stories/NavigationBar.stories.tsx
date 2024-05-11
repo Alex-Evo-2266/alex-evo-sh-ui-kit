@@ -3,7 +3,7 @@ import { NavigationBar } from '../lib/index';
 import { Box, Home, Menu } from 'lucide-react';
 
 const meta = {
-  title: 'Navigation/NavigationBar',
+  title: 'Components/Navigation/NavigationBar',
   component: NavigationBar,
   parameters: {
     layout: 'fullscreen',

@@ -5,7 +5,7 @@ import { Plus } from 'lucide-react';
 
 
 const meta = {
-  title: 'BaseComponents/FAB',
+  title: 'Components/BaseComponents/FAB',
   component: FAB,
   parameters: {
     layout: 'centered',

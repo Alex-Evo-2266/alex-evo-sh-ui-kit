@@ -3,7 +3,7 @@ import { TextArea } from '../lib/index';
 
 
 const meta = {
-  title: 'BaseComponents/TextArea',
+  title: 'Components/BaseComponents/TextArea',
   component: TextArea,
   parameters: {
     layout: 'centered',

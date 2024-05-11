@@ -5,7 +5,7 @@ import { Home } from 'lucide-react';
 
 
 const meta = {
-  title: 'HideComponents/Menu',
+  title: 'Components/HideComponents/Menu',
   component: Menu,
   parameters: {
     layout: 'centered',

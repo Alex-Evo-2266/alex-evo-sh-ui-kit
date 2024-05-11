@@ -26,7 +26,7 @@ export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, 
 					<div className='navigation-block'>
 						<div className='block-header'></div>
 						<div className='block-content'>
-							<NavButton onClick={firstBtn.onClick} title={firstBtn.text} icon={firstBtn.icon ?? <MoreHorizontal/>}/>
+							<NavButton active={firstBtn.active} onClick={firstBtn.onClick} title={firstBtn.text} icon={firstBtn.icon ?? <MoreHorizontal/>}/>
 						</div>
 					</div>
 					<div className='divider-container'>
@@ -41,7 +41,7 @@ export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, 
 				{
 					mainBtn && mainBtn.map((item, index)=>(
 						(item.type === "button")?
-						<NavButton onClick={item.onClick} key={index} title={item.text} icon={item.icon}/>:
+						<NavButton active={item.active} onClick={item.onClick} key={index} title={item.text} icon={item.icon}/>:
 						(item.type === "link")?
 						<NavigationDrawerItem onClick={()=>onHide()} key={index} title={item.text} icon={item.icon} to={item.to}/>:
 						null
@@ -58,7 +58,7 @@ export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, 
 				{
 					otherBtn && otherBtn.map((item, index)=>(
 						(item.type === "button")?
-						<NavButton onClick={item.onClick} key={index} title={item.text} icon={item.icon}/>:
+						<NavButton active={item.active} onClick={item.onClick} key={index} title={item.text} icon={item.icon}/>:
 						(item.type === "link")?
 						<NavigationDrawerItem onClick={()=>onHide()} key={index} title={item.text} icon={item.icon} to={item.to}/>:
 						null
@@ -72,7 +72,7 @@ export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, 
 			{
 				(backBtn)?
 				<div className='navigation-block'>
-					<NavButton onClick={backBtn.onClick} title={backBtn.text} icon={backBtn.icon}/>
+					<NavButton active={backBtn.active} onClick={backBtn.onClick} title={backBtn.text} icon={backBtn.icon}/>
 				</div>:null
 			}
 		</div>

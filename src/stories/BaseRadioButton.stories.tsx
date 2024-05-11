@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { BaseRadioButton } from '../lib/index';
 
 const meta = {
-  title: 'BaseComponents/BaseRadioButton',
+  title: 'Components/BaseComponents/BaseRadioButton',
   component: BaseRadioButton,
   parameters: {
     layout: 'centered',

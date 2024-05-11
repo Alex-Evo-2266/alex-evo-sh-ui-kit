@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import { Search } from '../lib/index';
 
 const meta = {
-  title: 'BaseComponents/Search',
+  title: 'Components/BaseComponents/Search',
   component: Search,
   parameters: {
     layout: 'centered',

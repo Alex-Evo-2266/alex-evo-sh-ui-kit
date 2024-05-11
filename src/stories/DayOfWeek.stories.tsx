@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DayOfWeekField } from '../lib/index';
 
 const meta = {
-  title: 'HideComponents/DayOfWeekField',
+  title: 'Components/HideComponents/DayOfWeekField',
   component: DayOfWeekField,
   parameters: {
     layout: 'centered',

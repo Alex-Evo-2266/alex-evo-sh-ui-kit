@@ -3,7 +3,7 @@ import { FullScrinTemplateDialog } from '../lib/index';
 // import React from 'react';
 
 const meta = {
-  title: 'Dialogs/FullScrinTemplateDialog',
+  title: 'Components/Dialogs/FullScrinTemplateDialog',
   component: FullScrinTemplateDialog,
   parameters: {
     layout: 'centered',

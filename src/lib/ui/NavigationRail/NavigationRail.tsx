@@ -27,7 +27,7 @@ export const NavigationRail = ({onToggleMenu, firstBtn, mainBtn, backBtn}:Naviga
                         (firstBtn)?
                         <>
                             <Divider/>
-                            <NavButton title={firstBtn.text} icon={firstBtn.icon ?? <MoreHorizontal/>} onClick={(e)=>{firstBtn.onClick && firstBtn.onClick(e)}}/>
+                            <NavButton active={firstBtn.active} title={firstBtn.text} icon={firstBtn.icon ?? <MoreHorizontal/>} onClick={(e)=>{firstBtn.onClick && firstBtn.onClick(e)}}/>
                             <Divider/>
                         </>:
                         null
@@ -35,7 +35,7 @@ export const NavigationRail = ({onToggleMenu, firstBtn, mainBtn, backBtn}:Naviga
                     {
                         mainBtn && mainBtn.map((item, index)=>(
                             (item.type === "button")?
-                            <NavButton onClick={item.onClick} key={index} title={item.text} icon={item.icon}/>:
+                            <NavButton active={item.active} onClick={item.onClick} key={index} title={item.text} icon={item.icon}/>:
                             (item.type === "link")?
                             <NavigationRailItem key={index} title={item.text} icon={item.icon} to={item.to}/>:
                             null
@@ -45,7 +45,7 @@ export const NavigationRail = ({onToggleMenu, firstBtn, mainBtn, backBtn}:Naviga
                         (backBtn)?
                         <>
                             <Divider/>
-                            <NavButton title={backBtn.text} icon={backBtn.icon ?? <MoreHorizontal/>} onClick={(e)=>{backBtn.onClick && backBtn.onClick(e)}}/>
+                            <NavButton active={backBtn.active} title={backBtn.text} icon={backBtn.icon ?? <MoreHorizontal/>} onClick={(e)=>{backBtn.onClick && backBtn.onClick(e)}}/>
                             <Divider/>
                         </>:
                         null

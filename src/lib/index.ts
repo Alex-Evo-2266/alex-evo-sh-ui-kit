@@ -34,8 +34,9 @@ import {TextDialog} from './ui/Dialog/BaseDialog/TextDialog'
 import {СalendarPickers} from './ui/DatePicker/DatePickers'
 import {TimePicker} from './ui/TimePickers/TimePickers'
 import {DayOfWeekField} from './ui/DayOfWeek/DayOfWeek'
-import {GridLayoutItem} from './ui/GridLayout/GridLayout'
-import GridLayout from './ui/GridLayout/GridLayout'
+import {GridLayoutItem} from './ui/Layout/GridLayout/GridLayout'
+import GridLayout from './ui/Layout/GridLayout/GridLayout'
+import {ColumnLayout} from './ui/Layout/ColumnLayout/ColumnLayout'
 import {Menu} from './ui/Menu/Menu'
 import {SmallWindowMenu} from './ui/Menu/SmallWindowMenu'
 import {Table} from './ui/Table/Table'
@@ -51,6 +52,8 @@ import './ui/index.scss'
 export type {IOptionSnackbar, SnackbarProps} from './ui/Snackbar/Snackbar'
 
 export type {styleType} from './ui/Button/Button'
+
+export type {IColumnElement} from './ui/Layout/ColumnLayout/ColumnLayout'
 
 export {
     Button, 
@@ -99,7 +102,8 @@ export {
     NavigationBar,
     NavigationDrawer,
     NavigationRail,
-    EmptyPage
+    EmptyPage,
+    ColumnLayout
 }
 
 // helpers

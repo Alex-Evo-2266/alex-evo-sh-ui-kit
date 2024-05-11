@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import { SigmentedButton } from '../lib/index';
 
 const meta = {
-  title: 'BaseComponents/SigmentedButton',
+  title: 'Components/BaseComponents/SigmentedButton',
   component: SigmentedButton,
   parameters: {
     layout: 'centered',

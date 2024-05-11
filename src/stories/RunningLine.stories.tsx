@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { RunningLine } from '../lib/index';
 
 const meta = {
-  title: 'BaseComponents/RunningLine',
+  title: 'Components/BaseComponents/RunningLine',
   component: RunningLine,
   parameters: {
     layout: 'centered',

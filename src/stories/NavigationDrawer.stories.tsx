@@ -4,7 +4,7 @@ import { Box, Home } from 'lucide-react';
 import { fn } from '@storybook/test';
 
 const meta = {
-  title: 'Navigation/NavigationDrawer',
+  title: 'Components/Navigation/NavigationDrawer',
   component: NavigationDrawer,
   parameters: {
     layout: 'fullscreen',
@@ -16,8 +16,9 @@ const meta = {
     mainBtn:[{
         icon: <Box/>,
         onClick: ()=>{},
-        text: "",
-        type: "button"
+        text: "serdth",
+        type: "button",
+        active: true
        },
        {
         icon: <Home/>,

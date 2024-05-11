@@ -3,7 +3,7 @@ import { BaseDialog} from '../lib/index';
 
 
 const meta = {
-  title: 'Dialogs/BaseDialog',
+  title: 'Components/Dialogs/BaseDialog',
   component: BaseDialog,
   parameters: {
     layout: 'centered',

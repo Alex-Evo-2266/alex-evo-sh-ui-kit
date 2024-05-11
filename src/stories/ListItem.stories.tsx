@@ -5,7 +5,7 @@ import {ListItem, IconButton } from '../lib/index';
 
 
 const meta = {
-  title: 'BaseComponents/ListItem',
+  title: 'Components/BaseComponents/ListItem',
   component: ListItem,
   parameters: {
     layout: 'centered',

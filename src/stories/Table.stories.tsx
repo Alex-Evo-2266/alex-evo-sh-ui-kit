@@ -6,7 +6,7 @@ import { Home } from 'lucide-react';
 
 
 const meta = {
-  title: 'HideComponents/Table',
+  title: 'Components/HideComponents/Table',
   component: Table,
   parameters: {
     layout: 'centered',

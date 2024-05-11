@@ -3,7 +3,7 @@ import { BigContainer, Button } from '../lib/index';
 // import React from 'react';
 
 const meta = {
-  title: 'BaseComponents/BigContainer',
+  title: 'Components/Layout/BigContainer',
   component: BigContainer,
   parameters: {
     layout: 'centered',

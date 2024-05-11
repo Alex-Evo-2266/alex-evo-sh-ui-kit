@@ -4,7 +4,7 @@ import { BottomSheetsUi, ListContainer, ListItem } from '../lib/index';
 
 
 const meta = {
-  title: 'BaseComponents/BottomSheetsUi',
+  title: 'Components/BaseComponents/BottomSheetsUi',
   component: BottomSheetsUi,
   parameters: {
     layout: 'centered',

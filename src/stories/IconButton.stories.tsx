@@ -4,7 +4,7 @@ import { IconButton } from '../lib/index';
 // import React from 'react';
 
 const meta = {
-  title: 'BaseComponents/IconButton',
+  title: 'Components/BaseComponents/IconButton',
   component: IconButton,
   parameters: {
     layout: 'centered',

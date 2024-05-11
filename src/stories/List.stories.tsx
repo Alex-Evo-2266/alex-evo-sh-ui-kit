@@ -3,7 +3,7 @@ import { ListContainer, ListItem } from '../lib/index';
 // import React from 'react';
 
 const meta = {
-  title: 'BaseComponents/ListContainer',
+  title: 'Components/BaseComponents/ListContainer',
   component: ListContainer,
   parameters: {
     layout: 'centered',

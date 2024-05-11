@@ -4,7 +4,7 @@ import { Card, ScrollContainer } from '../lib/index';
 
 
 const meta = {
-  title: 'BaseComponents/ScrollContainer',
+  title: 'Components/BaseComponents/ScrollContainer',
   component: ScrollContainer,
   parameters: {
     layout: 'centered',
