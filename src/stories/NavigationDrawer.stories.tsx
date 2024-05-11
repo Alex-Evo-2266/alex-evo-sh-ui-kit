@@ -21,9 +21,9 @@ const meta = {
        },
        {
         icon: <Home/>,
-        to: "/home",
+        onClick: ()=>{},
         text: "home",
-        type: "link"
+        type: "button"
        },
        {
         icon: <Box/>,
@@ -35,10 +35,10 @@ const meta = {
     openAlways: true,
     otherBtn:[
         {
-         icon: <Home/>,
-         to: "/",
-         text: "home",
-         type: "link"
+          icon: <Home/>,
+          onClick: ()=>{},
+          text: "home",
+          type: "button"
         },
         {
          icon: <Box/>,

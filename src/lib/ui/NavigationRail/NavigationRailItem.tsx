@@ -1,4 +1,5 @@
-
+import {NavLink} from 'react-router-dom'
+ 
 interface NavigationRailItemProps{
 	title: string
 	icon: React.ReactNode
@@ -6,12 +7,11 @@ interface NavigationRailItemProps{
 }
 
 export const NavigationRailItem = ({icon, title, to}:NavigationRailItemProps) => {
-
+	// ${(window.location.pathname === to)?"active":""}
 	return(
-		<a href={to} className={`navigation-item ${(window.location.pathname === to)?"active":""}`}>
-
+		<NavLink to={to} className={`navigation-item`}>
 			<div className='navigation-item-icon'>{icon}</div>
 			<div className='navigation-item-text'>{title}</div>
-		</a>
+		</NavLink>
 	)
 }

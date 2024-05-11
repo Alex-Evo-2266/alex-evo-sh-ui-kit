@@ -1,3 +1,4 @@
+import {NavLink} from 'react-router-dom'
 
 interface NavigationDrawerItemProps{
 	title: string
@@ -9,9 +10,9 @@ interface NavigationDrawerItemProps{
 export const NavigationDrawerItem = ({onClick, icon, title, to}:NavigationDrawerItemProps) => {
 
 	return(
-		<a onClick={onClick} href={to} className={`navigation-item ${(window.location.pathname === to)?"active":""}`}>
+		<NavLink onClick={onClick} to={to} className={`navigation-item`}>
 			<div className='navigation-item-icon'>{icon}</div>
 			<div className='navigation-item-text'>{title}</div>
-		</a>
+		</NavLink>
 	)
 }

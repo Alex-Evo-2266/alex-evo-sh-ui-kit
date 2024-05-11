@@ -22,11 +22,12 @@ export default defineConfig({
       fileName: (format)=> `alex-evo-sh-ui-kit.${format}.js`,
     },
     rollupOptions:{
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "react-router-dom"],
       output:{
         globals:{
           react: "React",
-          "react-dom": "ReactDOM"
+          "react-dom": "ReactDOM",
+          
         }
       }
     }
