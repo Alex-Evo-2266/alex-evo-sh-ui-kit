@@ -1,0 +1,3 @@
+import{F as n,j as e,T as t}from"./index-ca9c4b25.js";import"./index-a383d3d5.js";const p={title:"HideComponents/FieldContainer",component:n,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{},args:{header:"test H",children:e.jsxs(e.Fragment,{children:[e.jsx(t,{placeholder:"test",border:!0,styleContainer:{minWidth:"300px"}}),e.jsx(t,{placeholder:"test",border:!0,styleContainer:{minWidth:"300px"}}),e.jsx(t,{placeholder:"test",border:!0,styleContainer:{minWidth:"300px"}})]})}},r={args:{}};var s,a,o;r.parameters={...r.parameters,docs:{...(s=r.parameters)==null?void 0:s.docs,source:{originalSource:`{
+  args: {}
+}`,...(o=(a=r.parameters)==null?void 0:a.docs)==null?void 0:o.source}}};const l=["Base"];export{r as Base,l as __namedExportsOrder,p as default};

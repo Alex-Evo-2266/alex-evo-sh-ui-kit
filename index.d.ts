@@ -20,6 +20,8 @@ import { ScrollContainer } from './ui/ScrollContainer/ScrollContainer';
 import { Search } from './ui/Search/Search';
 import { Snackbar } from './ui/Snackbar/Snackbar';
 import { Switch } from './ui/Switch/Switch';
+import { SigmentedButton } from './ui/SigmentedButton/SigmentedButton';
+import { Slider } from './ui/Slider/Slider';
 import { BasicTemplateDialog } from './ui/Dialog/TemplateDialog/BasicTemplateDialog';
 import { FullScrinTemplateDialog } from './ui/Dialog/TemplateDialog/FullScreenTemplateDialog';
 import { BaseDialog } from './ui/Dialog/BaseDialog/BaseDialog';
@@ -32,12 +34,18 @@ import { GridLayoutItem, default as GridLayout } from './ui/GridLayout/GridLayou
 import { Menu } from './ui/Menu/Menu';
 import { SmallWindowMenu } from './ui/Menu/SmallWindowMenu';
 import { Table } from './ui/Table/Table';
+import { NavigationBar } from './ui/NavigationBar/NavigationBar';
+import { NavigationDrawer } from './ui/NavigationDrawer/NavigationDrawer';
+import { NavigationRail } from './ui/NavigationRail/NavigationRail';
 import { getContainerData, getModalWindowCord, IContainerData, IOptionModalWindowCord } from './helpers/getModalCord';
+import { map } from './helpers/map';
 
+export type { NavigationBtn, NavigationButton, NavigationLink } from './model/navigation';
 export type { IOptionSnackbar, SnackbarProps } from './ui/Snackbar/Snackbar';
-export { Button, FAB, FilledButton, TextButton, OutlineButton, FilledTotalButton, BaseButton, ListContainer, ListItem, IconButton, Card, BaseActionCard, BigContainer, BottomSheetsUi, Checkbox, Chips, BasicTemplateDialog, FullScrinTemplateDialog, BaseDialog, SelectionDialog, TextDialog, TextField, TextArea, RadioButton, BaseRadioButton, Divider, СalendarPickers, DayOfWeekField, FieldContainer, GridLayoutItem, GridLayout, Menu, SmallWindowMenu, MoreText, RunningLine, ScrollContainer, Search, Snackbar, Switch, TimePicker, Table };
+export { Button, FAB, FilledButton, TextButton, OutlineButton, FilledTotalButton, BaseButton, ListContainer, ListItem, IconButton, Card, BaseActionCard, BigContainer, BottomSheetsUi, Checkbox, Chips, BasicTemplateDialog, FullScrinTemplateDialog, BaseDialog, SelectionDialog, TextDialog, TextField, TextArea, RadioButton, BaseRadioButton, Divider, СalendarPickers, DayOfWeekField, FieldContainer, GridLayoutItem, GridLayout, Menu, SmallWindowMenu, MoreText, RunningLine, ScrollContainer, Search, Snackbar, Switch, TimePicker, Table, SigmentedButton, Slider, NavigationBar, NavigationDrawer, NavigationRail };
 export { getContainerData, getModalWindowCord };
 export type { IContainerData, IOptionModalWindowCord };
+export { map };
 export type { IBlock, IMenuItem, IMenuOption, IMenuSubItem } from './model/menu';
 export type { IPoint } from './model/point';
 export type { ICell, IColumn, IDataItem, ITable, ITableAction, celData } from './model/table';
