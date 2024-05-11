@@ -43,11 +43,14 @@ import {Table} from './ui/Table/Table'
 import {NavigationBar} from './ui/NavigationBar/NavigationBar'
 import {NavigationDrawer} from './ui/NavigationDrawer/NavigationDrawer'
 import {NavigationRail} from './ui/NavigationRail/NavigationRail'
+import {EmptyPage} from './ui/EmptyPage/EmptyPage'
 export type {NavigationBtn, NavigationButton, NavigationLink} from './model/navigation'
 
 import './ui/index.scss'
 
 export type {IOptionSnackbar, SnackbarProps} from './ui/Snackbar/Snackbar'
+
+export type {styleType} from './ui/Button/Button'
 
 export {
     Button, 
@@ -95,7 +98,8 @@ export {
     Slider,
     NavigationBar,
     NavigationDrawer,
-    NavigationRail
+    NavigationRail,
+    EmptyPage
 }
 
 // helpers
@@ -107,6 +111,7 @@ export {getContainerData, getModalWindowCord}
 export type {IContainerData, IOptionModalWindowCord}
 export {map}
 
+export {hexToRgb} from './helpers/colorConvert'
 
 //models
 

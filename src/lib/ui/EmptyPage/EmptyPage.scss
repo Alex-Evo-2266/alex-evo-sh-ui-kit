@@ -1,0 +1,15 @@
+.alex-evo-sh-ui-kit-empty-page{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    height: 100%;
+    width: calc(100% - 100px);
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    justify-content: center;
+    align-items: center;
+    h2, p{
+        opacity: 0.5;
+    }
+}

@@ -2,8 +2,11 @@ import "./button.scss"
 import React from 'react'
 
 type BaseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+
+export type styleType = "outline" | "text" | "filledTotal" | "filled" | "base"
+
 export interface IButtonProps extends BaseButtonProps {
-    styleType?: "outline" | "text" | "filledTotal" | "filled" | "base"
+    styleType?: styleType
 }
 
 export const OutlineButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " outline-button"})
