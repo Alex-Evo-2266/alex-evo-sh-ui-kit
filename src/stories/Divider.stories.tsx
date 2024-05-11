@@ -5,7 +5,7 @@ const meta = {
   title: 'BaseComponents/Divider',
   component: Divider,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   tags: ['autodocs'],
   argTypes: {

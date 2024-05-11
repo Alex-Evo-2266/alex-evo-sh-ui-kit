@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import "./DatePickers.scss"
 import { Check, ChevronDown } from "lucide-react";
 import { BasicTemplateDialog, TextButton } from "../../index";
+import React from 'react';
 
 const MAX_YEAR = 2050
 const MIN_YEAR = 1900
@@ -47,7 +48,7 @@ export interface IСalendarPickersProps{
     onHide?: ()=>void
 }
 
-export const СalendarPickers = ({onChange, onHide}:IСalendarPickersProps) => {
+export const СalendarPickers:React.FC<IСalendarPickersProps> = ({onChange, onHide}) => {
 
     const [nowMonth] = useState<string>(months[new Date().getMonth()])
     const [nowYear] = useState<number>(new Date().getFullYear())

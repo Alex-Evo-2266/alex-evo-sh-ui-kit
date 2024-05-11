@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BaseActionCard, Button } from '../lib/index';
-// import React from 'react';
 
 const meta = {
   title: 'BaseComponents/BaseActionCard',

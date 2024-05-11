@@ -1,7 +1,6 @@
-
-
 import type { Meta, StoryObj } from '@storybook/react';
 import { BaseDialog} from '../lib/index';
+
 
 const meta = {
   title: 'Dialogs/BaseDialog',
