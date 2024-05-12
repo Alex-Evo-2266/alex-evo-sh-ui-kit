@@ -1,0 +1,56 @@
+.json-object-content{
+    padding-left: 15px;
+}
+.json-object-name{
+    color: var(--Primary-color)
+}
+.json-base-data{
+    border-radius: 5px;
+    padding: 5px;
+    &.border{
+        border: 1px solid var(--On-surface-variant-color);
+    }
+    &:hover{
+        background-color: var(--Surface-container-high-color);
+    }
+    .json-base-data-input{
+        border: none;
+        outline: none;
+        background-color: transparent;
+        input{
+            min-width: 30px;
+            width: auto;
+        }
+    }
+}
+.json-line{
+    margin: 5px 0;
+}
+
+.json-card-container{
+    font-size: 18px;
+    input{
+        font-size: 18px;
+    }
+    .json-btn{
+        line-height: 30px;
+        position: relative;
+        cursor: pointer;
+    }
+}
+.json-element{
+    padding: 5px 0;
+}
+.json-base-data-btn{
+    background-color: var(--Surface-container-high-color);
+    color: var(--On-surface-container-color);
+    border: 1px solid var(--Primary-color);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;
+    margin-left: 10px;
+    &.json-base-data-btn-save{
+        color: var(--On-primary-color);
+        background-color: var(--Primary-color);
+    }
+}

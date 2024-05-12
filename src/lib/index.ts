@@ -45,6 +45,8 @@ import {NavigationBar} from './ui/NavigationBar/NavigationBar'
 import {NavigationDrawer} from './ui/NavigationDrawer/NavigationDrawer'
 import {NavigationRail} from './ui/NavigationRail/NavigationRail'
 import {EmptyPage} from './ui/EmptyPage/EmptyPage'
+
+import {JsonContainer} from './ui/JSON/Json'
 export type {NavigationBtn, NavigationButton, NavigationLink} from './model/navigation'
 
 import './ui/index.scss'
@@ -103,7 +105,8 @@ export {
     NavigationDrawer,
     NavigationRail,
     EmptyPage,
-    ColumnLayout
+    ColumnLayout,
+    JsonContainer
 }
 
 // helpers
@@ -122,3 +125,4 @@ export {hexToRgb} from './helpers/colorConvert'
 export type {IBlock, IMenuItem, IMenuOption, IMenuSubItem} from './model/menu'
 export type {IPoint} from './model/point'
 export type {ICell, IColumn, IDataItem, ITable, ITableAction, celData} from './model/table'
+export type {JsonData, JsonDataArray, JsonDataBaseTypes ,JsonDataObject, JsonFormat, JsonFormatArray, JsonFormatBaseTypes, JsonFormatObject} from './model/jsonComponentModel'
