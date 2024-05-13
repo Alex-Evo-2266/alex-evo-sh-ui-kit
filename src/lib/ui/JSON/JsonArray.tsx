@@ -79,12 +79,11 @@ export const JsonArrayContainer:React.FC<JsonArrayContainerProps> = ({readonly, 
                     </div>:
                     null
                 }
+                <div className='json-line'>{"]"}
                 {
-                    (!readonly)?
-                    <div className='json-line'>
-                        {"}"}<span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>
-                    </div>:null
+                    (!readonly)?<span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>:null
                 }
+                </div>
             </div>
         </div>
     )
