@@ -8,9 +8,10 @@ export interface JsonBaseContainerProps{
     data?: JsonDataBaseTypes
     onChange:(data:JsonDataBaseTypes)=>void
     onDelete: ()=>void
+    readonly?: boolean
 }
 
-export const JsonBaseContainer:React.FC<JsonBaseContainerProps> = ({name, data, onChange, onDelete}) => {
+export const JsonBaseContainer:React.FC<JsonBaseContainerProps> = ({readonly, name, data, onChange, onDelete}) => {
 
     const change = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
         onChange(e.target.value)
@@ -22,9 +23,19 @@ export const JsonBaseContainer:React.FC<JsonBaseContainerProps> = ({name, data, 
                 <div className='json-line'>
                     <span className={"json-object-name"}>
                         {name}
-                    </span>: <span className="json-base-data">
-                        <input onChange={change} className="json-base-data-input" type="text" value={(data !== undefined)?String(data):""}/>
-                    </span><span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>
+                    </span>: 
+                    {
+                        (readonly)?
+                        <span className="json-base-data">
+                            {data}
+                        </span>:
+                        <>
+                        <span className="json-base-data">
+                            <input size={data?.toString().length || 10} onChange={change} className="json-base-data-input" type="text" value={(data !== undefined)?String(data):""}/>
+                        </span>
+                        <span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>
+                        </>
+                    }
                 </div>
             </div>
         </div>

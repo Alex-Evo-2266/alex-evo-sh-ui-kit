@@ -9,9 +9,10 @@ export interface JsonObjectContainerProps{
     data: JsonDataObject
     onChange:(data:JsonDataObject)=>void
     onDelete:()=>void
+    readonly?: boolean
 }
 
-export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({name, data, onChange, onDelete}) => {
+export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly, name, data, onChange, onDelete}) => {
 
     const [newKay, setNewKey] = useState<string>("")
     const [newValue, setNewValue] = useState<string>("")
@@ -47,27 +48,28 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({name, da
         <div className='json-card-container'>
             <div>
                 <div className='json-line'>
-                    <span className="json-element json-object-name">{name}:{"{"}</span><span className="json-element json-btn" onClick={()=>setVisible(true)}><PlusCircle size={18}/></span>
+                    <span className="json-element json-object-name">{name}:{"{"}</span>
+                    {(!readonly)?<span className="json-element json-btn" onClick={()=>setVisible(true)}><PlusCircle size={18}/></span>:null}
                 </div>
                 <div className="json-object-content">
                 {   
                     (data)?
                     Object.keys(data).map((item, index)=>(
                         <div key={index} className='json-line'>
-                            <JsonComponent onDelete={()=>deleteElement(item)} onChange={(data)=>change(data, item)} name={item} data={data[item]}/>
+                            <JsonComponent readonly={readonly} onDelete={()=>deleteElement(item)} onChange={(data)=>change(data, item)} name={item} data={data[item]}/>
                         </div>
                     )
                     ):null
                 }
                 </div>
                 {
-                    (visible)?
+                    (visible && !readonly)?
                     <div className="json-object-content">
                         <span className="json-base-data border">
-                            <input placeholder="key" onChange={(e)=>setNewKey(e.target.value)} className="json-base-data-input" type="text" value={newKay}/>
+                            <input size={newKay.length || 10} placeholder="key" onChange={(e)=>setNewKey(e.target.value)} className="json-base-data-input" type="text" value={newKay}/>
                         </span>:
                         <span className="json-base-data border">
-                            <input placeholder="value" onChange={(e)=>setNewValue(e.target.value)} className="json-base-data-input" type="text" value={newValue}/>
+                            <input size={newValue.length || 10} placeholder="value" onChange={(e)=>setNewValue(e.target.value)} className="json-base-data-input" type="text" value={newValue}/>
                         </span>
                         <span className="json-base-data-btn-save json-base-data-btn" onClick={addElement}>
                             save
@@ -78,10 +80,12 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({name, da
                     </div>:
                     null
                 }
-                
-                <div className='json-line'>
-                   {"}"}<span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>
-                </div>
+                {
+                    (!readonly)?
+                    <div className='json-line'>
+                        {"}"}<span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>
+                    </div>:null
+                }
             </div>
         </div>
     )

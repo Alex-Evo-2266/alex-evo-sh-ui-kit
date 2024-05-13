@@ -8,26 +8,33 @@ export interface JsonContainerProps{
     data?: JsonData
     onChange:(data:JsonData)=>void
     onDelete?: ()=>void
+    readonly?: boolean
 }
 
 
-export const JsonContainer:React.FC<JsonContainerProps> = ({name, data, onChange, onDelete}) => {
+export const JsonContainer:React.FC<JsonContainerProps> = ({readonly, name, data, onChange, onDelete}) => {
 
 
     const [value, setValue] = useState<JsonData | undefined>(data || undefined)
     const [newValue, setNewValue] = useState<string>("")
 
     const change = useCallback((data1: JsonData)=>{
+        if(readonly)
+            return
         setValue(data1)
         onChange(data1)
     },[onChange])
 
     const del = useCallback(()=>{
+        if(readonly)
+            return
         setValue(undefined)
         onDelete && onDelete()
     },[onDelete])
 
     const addElement = useCallback(() => {
+        if(readonly)
+            return
         let newVal = newValue
         try{
             newVal = JSON.parse(newVal)
@@ -41,7 +48,7 @@ export const JsonContainer:React.FC<JsonContainerProps> = ({name, data, onChange
         return(
                 <div className="json-object-content">
                     <span className="json-base-data border">
-                        <input placeholder="value" onChange={(e)=>setNewValue(e.target.value)} className="json-base-data-input" type="text" value={newValue}/>
+                        <input size={newValue.length || 10} placeholder="value" onChange={(e)=>setNewValue(e.target.value)} className="alex-evo-sh-ui-kit-json json-base-data-input" type="text" value={newValue}/>
                     </span>
                     <span className="json-base-data-btn-save json-base-data-btn" onClick={addElement}>
                         save
@@ -50,6 +57,6 @@ export const JsonContainer:React.FC<JsonContainerProps> = ({name, data, onChange
         )
 
     return(
-        <JsonComponent onDelete={del} onChange={change} data={value} name={name}/>
+        <JsonComponent readonly={readonly} onDelete={del} onChange={change} data={value} name={name}/>
     )
 }

@@ -16,7 +16,10 @@ const meta = {
     onChange: fn,
     name:"test",
     data: {
-      tesr: "df"
+      tesr: "df",
+      sdfb: [{
+        sdfg: "fsd"
+      }]
     }
    },
 } satisfies Meta<typeof JsonContainer>;
@@ -27,5 +30,12 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
    
+  },
+};
+
+
+export const Json: Story = {
+  args: {
+    readonly: true
   },
 };

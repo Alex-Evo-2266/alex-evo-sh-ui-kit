@@ -9,15 +9,16 @@ export interface JsonComponentProps{
     data: JsonData
     onChange:(data:JsonData)=>void
     onDelete:()=>void
+    readonly?: boolean
 }
 
-export const JsonComponent:React.FC<JsonComponentProps> = ({name, data, onChange, onDelete}) => {
+export const JsonComponent:React.FC<JsonComponentProps> = ({readonly, name, data, onChange, onDelete}) => {
 
     if(typeof data === "boolean" || typeof data === "number" || typeof data === "string")
-        return(<JsonBaseContainer onDelete={onDelete} onChange={onChange} data={data} name={name}/>)
+        return(<JsonBaseContainer readonly={readonly} onDelete={onDelete} onChange={onChange} data={data} name={name}/>)
     if(!data)
         return null
     if(Array.isArray(data))
-        return(<JsonArrayContainer onDelete={onDelete} onChange={onChange} data={data} name={name}/>)
-    return(<JsonObjectContainer onDelete={onDelete} onChange={onChange} data={data} name={name}/>)
+        return(<JsonArrayContainer readonly={readonly} onDelete={onDelete} onChange={onChange} data={data} name={name}/>)
+    return(<JsonObjectContainer readonly={readonly} onDelete={onDelete} onChange={onChange} data={data} name={name}/>)
 }
