@@ -25,6 +25,8 @@
 }
 .json-line{
     margin: 5px 0;
+    padding: 0 5px;
+
 }
 
 .json-card-container{
@@ -56,4 +58,11 @@
 }
 
 .alex-evo-sh-ui-kit-json{
+}
+
+.json-object-header{
+        &:hover{
+        background-color: var(--Surface-container-high-color);
+        border-radius: 10px;
+    }
 }

@@ -16,7 +16,8 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly
 
     const [newKay, setNewKey] = useState<string>("")
     const [newValue, setNewValue] = useState<string>("")
-    const [visible, setVisible] = useState<boolean>(false)
+    const [visibleAdd, setVisibleAdd] = useState<boolean>(false)
+    const [visible, setVisible] = useState<boolean>(true)
 
     const change = useCallback((data1: JsonData, key:string) =>{
         onChange({...data, [key]:data1})
@@ -25,7 +26,7 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly
     const cancel = useCallback(() => {
         setNewValue("")
         setNewKey("")
-        setVisible(false)
+        setVisibleAdd(false)
     },[])
 
     const addElement = useCallback(() => {
@@ -47,23 +48,26 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly
     return(
         <div className='json-card-container'>
             <div>
-                <div className='json-line'>
-                    <span className="json-element json-object-name">{name}:{"{"}</span>
-                    {(!readonly)?<span className="json-element json-btn" onClick={()=>setVisible(true)}><PlusCircle size={18}/></span>:null}
-                </div>
-                <div className="json-object-content">
-                {   
-                    (data)?
-                    Object.keys(data).map((item, index)=>(
-                        <div key={index} className='json-line'>
-                            <JsonComponent readonly={readonly} onDelete={()=>deleteElement(item)} onChange={(data)=>change(data, item)} name={item} data={data[item]}/>
-                        </div>
-                    )
-                    ):null
-                }
+                <div className='json-line json-object-header' >
+                <span onClick={()=>setVisible(prev=>!prev)} className="json-element json-object-name json-object-header">{name}:{"{"}{(!visible)?<span>...</span>:null}</span>
+                    {(!readonly)?<span className="json-element json-btn" onClick={()=>setVisibleAdd(true)}><PlusCircle size={18}/></span>:null}
                 </div>
                 {
-                    (visible && !readonly)?
+                    (visible)?
+                    <div className="json-object-content">
+                    {   
+                        (data)?
+                        Object.keys(data).map((item, index)=>(
+                            <div key={index} className='json-line'>
+                                <JsonComponent readonly={readonly} onDelete={()=>deleteElement(item)} onChange={(data)=>change(data, item)} name={item} data={data[item]}/>
+                            </div>
+                        )
+                        ):null
+                    }
+                    </div>:null
+                }
+                {
+                    (visibleAdd && !readonly)?
                     <div className="json-object-content">
                         <span className="json-base-data border">
                             <input size={newKay.length || 10} placeholder="key" onChange={(e)=>setNewKey(e.target.value)} className="json-base-data-input" type="text" value={newKay}/>
