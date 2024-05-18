@@ -1,4 +1,5 @@
 import "./Dialog.scss"
+import { ModalTemplate } from "./ModalTemplate"
 
 export interface DialogProps{
     children: React.ReactNode
@@ -16,25 +17,23 @@ export const BasicTemplateDialog = ({className, children, header, action, onHide
     }
 
     return(
-        <>
-        <div onClick={hide} style={{zIndex: "999"}} className="backplate"></div>
-        <div style={style} className={`dialog-container ${className}`}>
-            {
-                (header)?
-                <div className="dialog-header"><h2 className="text-3xl">{header}</h2></div>
-                :null
-            }
-            <div className="dialog-content">
-            {children}
+        <ModalTemplate onHide={hide}>
+            <div style={style} className={`dialog-container ${className}`}>
+                {
+                    (header)?
+                    <div className="dialog-header"><h2 className="text-3xl">{header}</h2></div>
+                    :null
+                }
+                <div className="dialog-content">
+                {children}
+                </div>
+                {
+                    (action)?
+                    <div className="dialog-action">
+                        {action}
+                    </div>:null
+                }
             </div>
-            {
-                (action)?
-                <div className="dialog-action">
-                    {action}
-                </div>:null
-            }
-        </div>
-        </>
-        
-    )
+        </ModalTemplate>
+        )
 }

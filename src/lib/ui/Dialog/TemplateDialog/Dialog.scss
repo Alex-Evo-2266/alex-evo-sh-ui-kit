@@ -1,3 +1,15 @@
+.modal-container{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    .backplate{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+    }
+}
 .dialog-container{
     padding: 24px 0;
     background-color: var(--Surface-container-high-color);
@@ -6,13 +18,15 @@
     max-width: 560px;
     width: calc(100% - 40px);
     border-radius: 28px;
-    position: fixed;
+    position: absolute;
     display: flex;
     flex-direction: column;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1000;
+    z-index: 900;
+
+
     
     .dialog-header{
         flex: 100%;
@@ -60,7 +74,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 80px);
+    height: 100vh;
     background-color: var(--Surface-container-high-color);
     .full-screen-dialog-header{
         display: flex;

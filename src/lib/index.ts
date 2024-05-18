@@ -27,6 +27,7 @@ import {Slider} from './ui/Slider/Slider'
 
 import {BasicTemplateDialog} from './ui/Dialog/TemplateDialog/BasicTemplateDialog'
 import {FullScrinTemplateDialog} from './ui/Dialog/TemplateDialog/FullScreenTemplateDialog'
+import {ModalTemplate} from './ui/Dialog/TemplateDialog/ModalTemplate'
 import {BaseDialog} from './ui/Dialog/BaseDialog/BaseDialog'
 import {SelectionDialog} from './ui/Dialog/BaseDialog/SelectionDialog'
 import {TextDialog} from './ui/Dialog/BaseDialog/TextDialog'
@@ -76,6 +77,7 @@ export {
     Chips,
     BasicTemplateDialog,
     FullScrinTemplateDialog,
+    ModalTemplate,
     BaseDialog,
     SelectionDialog,
     TextDialog,
@@ -126,3 +128,5 @@ export type {IBlock, IMenuItem, IMenuOption, IMenuSubItem} from './model/menu'
 export type {IPoint} from './model/point'
 export type {ICell, IColumn, IDataItem, ITable, ITableAction, celData} from './model/table'
 export type {JsonData, JsonDataArray, JsonDataBaseTypes ,JsonDataObject, JsonFormat, JsonFormatArray, JsonFormatBaseTypes, JsonFormatObject} from './model/jsonComponentModel'
+
+export {DialogModal} from './portal/dialog'

@@ -12,6 +12,7 @@ export interface DialogProps{
     onHide?: ()=>void
     className?: string
 	style?: React.CSSProperties
+	marginBottom?: number
 }
 
 interface ButtonDialogProps{
@@ -26,7 +27,7 @@ const ButtonDialog = ({onHide, onSave}:ButtonDialogProps) => (
 	</div>
 )
 
-export const FullScrinTemplateDialog = ({style, className, header, children, onSave, onHide}:DialogProps) => {
+export const FullScrinTemplateDialog = ({style, className, header, children, onSave, onHide, marginBottom}:DialogProps) => {
 
 	const [fullScreenDisplay, setFullScreenDisplay] = useState<boolean>(false)
 
@@ -62,7 +63,7 @@ export const FullScrinTemplateDialog = ({style, className, header, children, onS
 		)
 
 	return(
-		<div style={style} className={`full-screen-dialog-container ${className}`}>
+		<div style={{...style, height:`calc(100vh - ${marginBottom}px`}} className={`full-screen-dialog-container ${className}`}>
 			<div className="full-screen-dialog-header">
 				<div className="dialog-icon-container">
 					<IconButton transparent onClick={hide} icon={<X/>}/>
