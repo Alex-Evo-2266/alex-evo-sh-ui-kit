@@ -31,6 +31,8 @@ import {ModalTemplate} from './ui/Dialog/TemplateDialog/ModalTemplate'
 import {BaseDialog} from './ui/Dialog/BaseDialog/BaseDialog'
 import {SelectionDialog} from './ui/Dialog/BaseDialog/SelectionDialog'
 import {TextDialog} from './ui/Dialog/BaseDialog/TextDialog'
+import {TimeField} from './ui/TimePickers/TimeField'
+import {DateField} from './ui/DatePicker/DateField'
 
 import {СalendarPickers} from './ui/DatePicker/DatePickers'
 import {TimePicker} from './ui/TimePickers/TimePickers'
@@ -108,7 +110,9 @@ export {
     NavigationRail,
     EmptyPage,
     ColumnLayout,
-    JsonContainer
+    JsonContainer,
+    TimeField,
+    DateField
 }
 
 // helpers

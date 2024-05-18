@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { TimePicker } from '../lib/index';
+import { TimePicker } from '../../lib/index';
 
 const meta = {
   title: 'Components/HideComponents/TimePicker',

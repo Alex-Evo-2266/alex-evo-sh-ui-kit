@@ -1,18 +1,20 @@
+
+
 import type { Meta, StoryObj } from '@storybook/react';
-import { СalendarPickers } from '../lib/index';
+import { TestTimePage } from './TestTimeFieldPage';
 
 const meta = {
-  title: 'Components/HideComponents/СalendarPickers',
-  component: СalendarPickers,
+  title: 'Pages/TimePage',
+  component: TestTimePage,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
   argTypes: {
-    
   },
-  args: {},
-} satisfies Meta<typeof СalendarPickers>;
+  args: {
+  },
+} satisfies Meta<typeof TestTimePage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -22,3 +24,4 @@ export const Base: Story = {
    
   },
 };
+
