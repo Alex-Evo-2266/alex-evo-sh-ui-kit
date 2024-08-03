@@ -74,7 +74,7 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
         document.removeEventListener("mouseup", mouseUp)
     },[])
 
-    const mouseDown = useCallback((event: React.MouseEvent<HTMLDivElement>, type: "p" | "m")=>{
+    const mouseDown = useCallback((type: "p" | "m")=>{
         if(type === "p")
             pluseClick()
         else if(type === "m")
@@ -136,8 +136,8 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
                 null
             }
             <div className="button-block">
-                <div className="minus number-field-btn" onMouseDown={e=>mouseDown(e, "m")}><Minus/></div>
-                <div className="plus number-field-btn" onMouseDown={e=>mouseDown(e, "p")}><Plus/></div>
+                <div className="minus number-field-btn" onMouseDown={()=>mouseDown("m")}><Minus/></div>
+                <div className="plus number-field-btn" onMouseDown={()=>mouseDown("p")}><Plus/></div>
             </div>
 		</div>
     )
