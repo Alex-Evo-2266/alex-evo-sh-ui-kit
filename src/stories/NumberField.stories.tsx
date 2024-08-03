@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { TextArea } from '../lib/index';
-
+import { NumberField } from '../lib/index';
 
 const meta = {
-  title: 'Components/BaseComponents/Fields/TextArea',
-  component: TextArea,
+  title: 'Components/BaseComponents/Fields/NumberField',
+  component: NumberField,
   parameters: {
     layout: 'centered',
   },
@@ -14,8 +13,12 @@ const meta = {
   },
   args: { styleContainer:{
     minWidth: "300px"
-  }  },
-} satisfies Meta<typeof TextArea>;
+  },
+  onChange:(event)=>{
+    console.log(event)
+  },
+  },
+} satisfies Meta<typeof NumberField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -61,3 +64,12 @@ export const Placeholder: Story = {
         placeholder: "test",
     },
   };
+
+  export const BtnClean: Story = {
+    args: {
+        placeholder: "test",
+        onClear: ()=>{}
+    },
+  };
+  
+  

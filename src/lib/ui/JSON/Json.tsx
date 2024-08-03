@@ -6,7 +6,7 @@ import { JsonComponent } from './JsonComponent'
 export interface JsonContainerProps{
     name: string
     data?: JsonData
-    onChange:(data:JsonData)=>void
+    onChange?:(data:JsonData)=>void
     onDelete?: ()=>void
     readonly?: boolean
 }
@@ -22,7 +22,7 @@ export const JsonContainer:React.FC<JsonContainerProps> = ({readonly, name, data
         if(readonly)
             return
         setValue(data1)
-        onChange(data1)
+        onChange && onChange(data1)
     },[onChange])
 
     const del = useCallback(()=>{
@@ -41,7 +41,7 @@ export const JsonContainer:React.FC<JsonContainerProps> = ({readonly, name, data
         }
         catch{}
         setValue(newVal)
-        onChange(newVal)
+        onChange && onChange(newVal)
     },[onChange, newValue])
 
     if(!value)

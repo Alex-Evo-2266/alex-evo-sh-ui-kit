@@ -23,7 +23,6 @@ export const TestPage = () => {
                             <DialogModal container={document.getElementById("portal-root")}>
                                 <FullScrinTemplateDialog onHide={()=>setVisible2(false)}>
                                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit natus aliquid, minus illo iste necessitatibus officiis minima temporibus? Dolorum tenetur nihil voluptatibus vel asperiores harum voluptate, incidunt doloremque minima facere.</p>
-                                    <Button styleType="text" onClick={()=>setVisible2(false)}>close</Button>
                                 </FullScrinTemplateDialog>
                             </DialogModal>:null
                         }

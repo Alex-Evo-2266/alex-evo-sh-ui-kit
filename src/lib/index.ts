@@ -11,6 +11,7 @@ import {BottomSheetsUi} from './ui/BottomSheets/BottomSheetsUi'
 import {Checkbox} from './ui/Checkbox/Checkbox'
 import {Chips} from './ui/Chips/Chips'
 import {TextField} from './ui/TextField/TextField'
+import {NumberField} from './ui/TextField/NumberField'
 import {TextArea} from './ui/TextField/TextArea'
 import {Divider} from './ui/Divider/Divider'
 import {RadioButton, BaseRadioButton} from './ui/RadioButton/RadioButton'
@@ -84,6 +85,7 @@ export {
     SelectionDialog,
     TextDialog,
     TextField,
+    NumberField,
     TextArea,
     RadioButton,
     BaseRadioButton,

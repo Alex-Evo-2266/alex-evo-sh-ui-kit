@@ -65,6 +65,8 @@ body{
 
 
 	--Shadow-base: 0 0 5px -3px var(--Shadow-color);
+	--Shadow-hover: 0 0 5px -3px var(--Shadow-color);
+	--Shadow-click: inset 0 0 5px -3px var(--Shadow-color);
 
 	// --color-disabled: #e6e1e555;
 	// --color-disabled-text: #e6e1e533;
