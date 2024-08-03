@@ -84,7 +84,6 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
         if(timeIntervalID.current)
             clearInterval(timeIntervalID.current)
         document.addEventListener("mouseup", mouseUp)
-        setTimeout(()=>onChange && onChange(val, name), 10)
         timeOutID.current = setTimeout(()=>{
             timeIntervalID.current = setInterval(()=>{
                 if(type === "p")
