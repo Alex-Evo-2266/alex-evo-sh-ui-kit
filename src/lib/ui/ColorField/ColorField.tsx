@@ -1,4 +1,4 @@
-import { CalendarDays, Palette } from "lucide-react"
+import { Palette } from "lucide-react"
 import { useCallback, useState } from "react"
 import "./ColorField.scss"
 import { DialogModal } from "../../portal/dialog"
