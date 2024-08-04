@@ -11,9 +11,11 @@ interface IColorFieldProps{
     border?: boolean
     container: HTMLElement | null
     transparent?: boolean
+    userColor?: string[]
+    onAddColor?: (colors: string[])=>void
 }
 
-export const ColorField = ({border, onChange, container, value, className, transparent}:IColorFieldProps) => {
+export const ColorField = ({border, onChange, container, value, className, transparent, userColor, onAddColor}:IColorFieldProps) => {
 
     const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
     const [color, setColor] = useState<string>(value ?? "#f00")
@@ -41,7 +43,7 @@ export const ColorField = ({border, onChange, container, value, className, trans
         {
             (datePickerVisible)?
             <DialogModal container={container}>
-                <ColorPicker onChange={change} beginColor={color} onHide={()=>setDatePickerVisible(false)}/>
+                <ColorPicker userColor={userColor} onAddColor={onAddColor} onChange={change} beginColor={color} onHide={()=>setDatePickerVisible(false)}/>
             </DialogModal>
             :null
         }
