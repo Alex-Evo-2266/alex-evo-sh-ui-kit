@@ -8,9 +8,10 @@ export interface DialogProps{
     onHide?: ()=>void
     className?: string
     style?: React.CSSProperties
+    clearStyle?: boolean
 }
 
-export const BasicTemplateDialog = ({className, children, header, action, onHide, style}:DialogProps) => {
+export const BasicTemplateDialog = ({className, children, header, action, onHide, style, clearStyle = false}:DialogProps) => {
 
     function hide() {
         onHide && onHide()
@@ -18,7 +19,7 @@ export const BasicTemplateDialog = ({className, children, header, action, onHide
 
     return(
         <ModalTemplate onHide={hide}>
-            <div style={style} className={`dialog-container ${className}`}>
+            <div style={style} className={`${clearStyle?"":"dialog-container"} dialog-container-base ${className}`}>
                 {
                     (header)?
                     <div className="dialog-header"><h2 className="text-3xl">{header}</h2></div>

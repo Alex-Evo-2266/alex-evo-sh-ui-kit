@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TestDatePage } from './TestDateFieldPage';
 
 const meta = {
-  title: 'Pages/TestDatePage',
+  title: 'Components/Fields/TestDatePage',
   component: TestDatePage,
   parameters: {
     layout: 'fullscreen',

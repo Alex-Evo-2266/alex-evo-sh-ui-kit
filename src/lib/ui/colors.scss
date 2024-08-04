@@ -63,7 +63,7 @@ body{
 	--Surface-tint-color: #6750A4;
 	--Scrim-color: #000000;
 
-
+	--Shadow-base-v2: 0 4px 12px var(--Shadow-color);
 	--Shadow-base: 0 0 5px -3px var(--Shadow-color);
 	--Shadow-hover: 0 0 5px -3px var(--Shadow-color);
 	--Shadow-click: inset 0 0 5px -3px var(--Shadow-color);
@@ -74,6 +74,8 @@ body{
 	// --color-disabled-text: #1C1B1F33;
 
 	--card-border-radius: 4px;
+
+	--base-border-radius: 4px;
 
 	background-size: cover;
 	background-attachment: fixed;

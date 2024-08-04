@@ -1,24 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { СalendarPickers } from '../../lib/index';
+import { ColorPicker } from '../../lib/ui/ColorField/ColorPicker';
 
 const meta = {
-  title: 'Components/Fields/Pickers/СalendarPickers',
-  component: СalendarPickers,
+  title: 'Components/Fields/Pickers/ColorPicker',
+  component: ColorPicker,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
   argTypes: {
     
   },
-  args: {},
-} satisfies Meta<typeof СalendarPickers>;
+  args: {
+    beginColor:"#ff0"
+  },
+} satisfies Meta<typeof ColorPicker>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
-   
   },
 };

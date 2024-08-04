@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TestNumberPage } from './TestPages/NumberFieldPage';
 
 const meta = {
-  title: 'Components/BaseComponents/Fields/NumberFieldTest',
+  title: 'Components/Fields/Test/NumberFieldTest',
   component: TestNumberPage,
   parameters: {
     layout: 'fullscreen',

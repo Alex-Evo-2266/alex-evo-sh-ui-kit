@@ -102,6 +102,9 @@
 				border: 1px solid var(--Error-color);
 				background-color: transparent;
 			}
+			&.error ~ label{
+				color: var(--Error-color);
+			}
 			&:focus ~ label,
 			&:valid ~ label
 			{
