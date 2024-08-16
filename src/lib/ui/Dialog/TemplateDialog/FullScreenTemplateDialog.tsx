@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react"
 import { X } from "lucide-react"
-import { IconButton } from "../../IconButton/IconButton"
+import { IconButton } from "../../Base/IconButton/IconButton"
 import "./Dialog.scss"
 import { BasicTemplateDialog } from "./BasicTemplateDialog"
-import { TextButton } from "../../Button/Button"
+import { TextButton } from "../../Base/Button/Button"
 
 export interface DialogProps{
 	children: React.ReactNode

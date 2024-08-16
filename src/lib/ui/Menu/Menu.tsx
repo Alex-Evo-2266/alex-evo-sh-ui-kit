@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Divider } from "../Divider/Divider"
+import { Divider } from "../Other/Divider/Divider"
 import "./Menu.scss"
 import { MenuBlock } from "./MenuBlock"
 import { getModalWindowCord } from "../../helpers/getModalCord"

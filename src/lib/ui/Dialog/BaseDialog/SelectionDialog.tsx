@@ -2,8 +2,8 @@ import { useCallback, useState } from "react"
 import { BasicTemplateDialog, TextButton } from "../../.."
 import { ListContainer } from "../../List/List"
 import { ListItem } from "../../List/ListItem"
-import { BaseRadioButton } from "../../RadioButton/RadioButton"
-import { Divider } from "../../Divider/Divider"
+import { BaseRadioButton } from "../../Base/RadioButton/RadioButton"
+import { Divider } from "../../Other/Divider/Divider"
 
 interface IItem<T>{
     title: string

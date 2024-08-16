@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
 import { BasicTemplateDialog } from "../TemplateDialog/BasicTemplateDialog"
-import { TextField } from "../../TextField/TextField"
-import { TextButton } from "../../Button/Button"
+import { TextField } from "../../input/TextField/TextField"
+import { TextButton } from "../../Base/Button/Button"
 
 export interface TextDialogProps{
     text?: string

@@ -1,6 +1,6 @@
 import React from "react"
 import { MenuBlock } from "./MenuBlock"
-import { Divider } from "../Divider/Divider"
+import { Divider } from "../Other/Divider/Divider"
 import { MenuButtomStateProps } from "../../model/menu"
 import { BottomSheetsUi } from "../.."
 
