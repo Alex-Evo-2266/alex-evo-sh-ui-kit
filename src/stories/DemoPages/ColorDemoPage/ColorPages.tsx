@@ -1,17 +1,23 @@
-import { useContext} from "react"
-import { ColorField, FieldContainer, getTextColor } from "../../lib"
+import { useState} from "react"
+import { Button, ColorField, FieldContainer, getTextColor, Switch, useColor } from "../../../lib"
 import { ColorBlock } from "./ColorBlock"
-import { DefaultColor } from "../../lib/consts/color"
-import { BaseDemoPage, contextDemoPage } from "./BaseDemoPage"
+import { DefaultColor } from "../../../lib/consts/color"
 
 export const ColorPage = () => {
 
-    const {setColor, lightColor, nightColor} = useContext(contextDemoPage)    
+    const {setColor, lightColor, nightColor, nightMode, setNightMode} = useColor()    
 
     const defaultColorArray: string[] = Object.values(DefaultColor)
 
+    const [visible, setVisible] = useState<boolean>(false)
+
     return(
-        <BaseDemoPage>
+        <div style={{zIndex: 5, background:"var(--Background-color)", color:"var(--On-background-color)"}}>
+        <div id="portal-root" style={{zIndex: 1000}}></div>
+        <Switch checked={nightMode} onChange={(e)=>setNightMode(e.target.checked)}/>
+        {
+        (visible)?
+        <>
         <div>
             <FieldContainer header="Primary colors" style={{padding:"10px"}}>
                 <ColorField userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={lightColor.Primary_color} onChange={c=>setColor({Primary_color:c})}/>
@@ -69,6 +75,9 @@ export const ColorPage = () => {
             <ColorBlock baseColorTitle="Outline-variant-color" baseColor={'var(--Outline-variant-color)'} textColor={getTextColor(lightColor.Outline_color)}/>
             <ColorBlock baseColorTitle="Shadow-color" baseColor={'var(--Shadow-color)'} textColor={getTextColor(lightColor.Shadow_color)}/>
         </div>
-        </BaseDemoPage>
+        </>
+        :<Button onClick={()=>setVisible(true)}>open page</Button>
+        }
+        </div>
     )
 }

@@ -19,14 +19,11 @@ export const BaseDemoPage:React.FC<IBaseDemoPage> = ({children}) => {
     const {nightMode, setNightMode, lightColor, nightColor, setColor} = useColor()
 
     return(
-        <contextDemoPage.Provider value={{lightColor, nightColor, setColor}}>
-        <div id="portal-root" style={{zIndex: 1000}}></div>
-        <div style={{zIndex: 5}}>
+        <contextDemoPage.Provider value={{lightColor, nightColor, setColor: setColor}}>
+        <div style={{zIndex: 5, background:"var(--Background-color)", color:"var(--On-background-color)"}}>
             <Switch checked={nightMode} onChange={(e)=>setNightMode(e.target.checked)}/>
-            <div>
-            {children}
-            </div>
-        </div>    
+            <div>{children}</div>
+        </div>
         </contextDemoPage.Provider>
     )
 }

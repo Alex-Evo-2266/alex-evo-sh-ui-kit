@@ -51,16 +51,17 @@ export const useColor = () => {
             if(night)
             {
                 dependColor.low?.forEach((depColor)=>_setColor(depColor, pSBC(-0.1, newColor)??newColor, night))
-                dependColor.high?.forEach((depColor)=>_setColor(depColor, pSBC(0.1, newColor)??newColor, night))
+                dependColor.high?.forEach((depColor)=>_setColor(depColor, pSBC(0.01, newColor)??newColor, night))
             }
             else{
                 dependColor.low?.forEach((depColor)=>_setColor(depColor, pSBC(0.1, newColor)??newColor, night))
-                dependColor.high?.forEach((depColor)=>_setColor(depColor, pSBC(-0.1, newColor)??newColor, night))
+                dependColor.high?.forEach((depColor)=>_setColor(depColor, pSBC(-0.01, newColor)??newColor, night))
             }
         }
     }
 
     const setColor = useCallback(async(newColors:ChangeColor)=>{
+        console.log(newColors)
         for(let key in newColors)
         {
             const newColor = newColors[key as keyof ChangeColor]
