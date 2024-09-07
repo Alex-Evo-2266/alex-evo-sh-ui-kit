@@ -19,6 +19,25 @@ export function HSLtoHSV(h:any, s?:any, l?:any):{h:number, s:number, v:number} {
   };
 }
 
+export function HSVtoHSL(h:any, s?: any, v?: any) {
+  if (arguments.length === 1) {
+    s = h.s, v = h.v, h = h.h;
+  }
+  var l = (2 - s) * v / 2;
+
+  if (l != 0) {
+      if (l == 1) {
+          s = 0;
+      } else if (l < 0.5) {
+          s = s * v / (l * 2);
+      } else {
+          s = s * v / (2 - l * 2);
+      }
+  }
+
+  return {h, s, l};
+}
+
 export function HSVtoRGB(h:any, s?:any, v?:any) {
 var r, g, b, i, f, p, q, t;
 if (arguments.length === 1) {

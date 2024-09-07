@@ -1,0 +1,25 @@
+
+.alex-evo-ui-kit-color-block{
+    width: 250px;
+    height: 200px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    .alex-evo-ui-kit-color-block-base{
+        margin: 0;
+        flex: 100%;
+    }
+    .alex-evo-ui-kit-color-block-text{
+        height: 60px;
+        margin: 0;
+    }
+    h5{
+        margin: 0;
+        font-size: 20px;
+        padding: 10px;
+    }
+}
+
+.demo-page-color-row{
+    display: flex;
+}

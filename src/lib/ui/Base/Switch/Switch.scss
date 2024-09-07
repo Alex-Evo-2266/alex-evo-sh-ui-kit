@@ -1,14 +1,15 @@
 
 .swich-container{
-    height: 32px;
-    width: 52px;
+    height: 36px;
+    width: 56px;
     display: flex;
     justify-content: center;
     align-items: center;
     input[type="checkbox"]{
         position: relative;
-        width: 52px;
-        height: 32px;
+        width: 56px;
+        height: 36px;
+        margin: 0;
         -webkit-appearance: none;
         &::before{
             content: '';

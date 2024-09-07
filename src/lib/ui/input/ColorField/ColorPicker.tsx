@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './ColorPicker.scss'
 import { IColor, IColorRGB, initGradientHueSpectrum, initGradientShadeSpectrum, moveHueSpectrum, moveShadeSpectrum, updateHueCursor, updateSpectrumCursor } from './helpers/canvasColorPickerHelpers'
-import { HEXtoRGB, HSVtoRGB, RGBtoHEX, RGBtoHSV } from '../../../helpers/colorConvert'
+import { HEXtoRGB, HSVtoRGB, RGBtoHEX, RGBtoHSV } from '../../../helpers/color/colorConvert'
 import { BasicTemplateDialog } from '../../Dialog/TemplateDialog/BasicTemplateDialog'
 
 const DEFAULT_COLORS = [

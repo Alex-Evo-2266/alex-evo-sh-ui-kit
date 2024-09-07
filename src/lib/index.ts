@@ -131,7 +131,7 @@ export {getContainerData, getModalWindowCord}
 export type {IContainerData, IOptionModalWindowCord}
 export {map}
 
-export {hexToRgb} from './helpers/colorConvert'
+export {hexToRgb, HSVtoHSL, HEXtoRGB, HSLtoHSV, HSVtoRGB, RGBtoHSV} from './helpers/color/colorConvert'
 
 //models
 
@@ -141,3 +141,11 @@ export type {ICell, IColumn, IDataItem, ITable, ITableAction, celData} from './m
 export type {JsonData, JsonDataArray, JsonDataBaseTypes ,JsonDataObject, JsonFormat, JsonFormatArray, JsonFormatBaseTypes, JsonFormatObject} from './model/jsonComponentModel'
 
 export {DialogModal} from './portal/dialog'
+
+
+//function
+
+export {getTextColor, getContainerColor} from './helpers/color/colorGenerator'
+
+export {useColor} from './hooks/color.hook'
+export type {ChangeColor, ColorState, BaseColor, NightColor} from './model/color'

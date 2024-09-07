@@ -1,5 +1,5 @@
 
-import { getGlassColor } from '../../../helpers/colorConvert'
+import { getGlassColor } from '../../../helpers/color/colorConvert'
 import { Button, styleType } from '../../Base/Button/Button'
 import './EmptyPage.scss'
 

@@ -11,7 +11,7 @@ export interface InputProps{
     max?: number
     step?: number
     value?: number
-    onChange: (event: React.ChangeEvent<HTMLInputElement>)=>void
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>)=>void
     maxMinDisplay?: boolean
     onFocus?: (e:React.FocusEvent<HTMLInputElement>)=>void
     onBlur?: (e:React.FocusEvent<HTMLInputElement>)=>void
@@ -33,7 +33,7 @@ export const Slider = (props:InputProps) => {
 
     const change = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(Number(event.target.value))
-        props.onChange(event)
+        props.onChange && props.onChange(event)
     }
 
     const getWidth = (value: number, min: number, max: number) => {

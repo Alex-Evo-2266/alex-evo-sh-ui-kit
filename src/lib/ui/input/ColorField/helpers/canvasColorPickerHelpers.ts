@@ -67,10 +67,10 @@ function getShadeColor(e:MouseEvent, canvas:HTMLCanvasElement | null, cursor:HTM
 	e.preventDefault();
 	if (!canvas) return;
 	const Rect = canvas.getBoundingClientRect()
-	let y = e.pageY - Rect.top;
+	let y = e.clientY - Rect.top;
 	if (y > Rect.height){ y = Rect.height};
 	if (y < 0) { y = 0};
-	let x = e.pageX - Rect.left;
+	let x = e.clientX - Rect.left;
 	if (x > Rect.width){ x = Rect.width };
 	if ( x < 0) { x = 0 };
 	const percentY = y / Rect.height;
@@ -127,7 +127,7 @@ function getHueColor(e:MouseEvent, canvas:HTMLCanvasElement | null, hueCursor:HT
 	e.preventDefault();
 	if (!canvas) return;
 	const hueRect = canvas.getBoundingClientRect()
-	let y = e.pageY - hueRect.top;
+	let y = e.clientY - hueRect.top;
 	if (y > hueRect.height){ y = hueRect.height};
 	if (y < 0) { y = 0};
 	const percent = y / hueRect.height;
