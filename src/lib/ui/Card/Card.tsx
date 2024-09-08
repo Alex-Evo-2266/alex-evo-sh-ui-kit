@@ -1,3 +1,6 @@
+import { ScreenSize } from "../../model/sizeScreen"
+import { BaseText } from "../Text/Text/BaseText"
+import { H2, H3 } from "../Text/Text/Heading"
 import "./Card.scss"
 
 export interface CardProps{
@@ -11,9 +14,10 @@ export interface CardProps{
 	children?: React.ReactNode
 	iconButtonCell?: React.ReactNode
 	onClick?: (e:React.MouseEvent<HTMLDivElement>)=>void
+	screenSize?: ScreenSize
 }
 
-export const Card = ({className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick}:CardProps) => {
+export const Card = ({className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick, screenSize}:CardProps) => {
 	
 	const isCard = (e:React.MouseEvent<HTMLDivElement>):boolean=>{
 		if((e.target as Element).className === "action-container" || (e.target as Element).closest(".action-container"))
@@ -56,7 +60,7 @@ export const Card = ({className, action, imgSrc, alt, header, subhead, text, chi
 			<div className="card-content-container">
 				<div className="card-Headline-container mb-1 font-bold">
 					<div className="headline">
-						<h2 className="text-3xl">{header}</h2>
+						<H2 screenSize={screenSize} className="card-heading">{header}</H2>
 					</div>
 					{
 						(iconButtonCell)?
@@ -69,7 +73,7 @@ export const Card = ({className, action, imgSrc, alt, header, subhead, text, chi
 					(subhead)?
 					<div className="card-subhead-container mb-1">
 						<div className="subhead">
-							<h3 className="text-xl">{subhead}</h3>
+							<H3 screenSize={screenSize} className="card-subhead">{subhead}</H3>
 						</div>
 					</div>:null
 				}
@@ -77,7 +81,7 @@ export const Card = ({className, action, imgSrc, alt, header, subhead, text, chi
 					(text)?
 					<div className="card-text-container mb-1">
 						<div className="text">
-							<p className="text-sm">{text}</p>
+							<BaseText screenSize={screenSize} className="">{text}</BaseText>
 						</div>
 					</div>:null
 				}

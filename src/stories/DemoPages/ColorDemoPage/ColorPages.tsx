@@ -2,10 +2,11 @@ import { useState} from "react"
 import { Button, ColorField, FieldContainer, getTextColor, Switch, useColor } from "../../../lib"
 import { ColorBlock } from "./ColorBlock"
 import { DefaultColor } from "../../../lib/consts/color"
+import { pSBC } from "../../../lib/helpers/color/colorContrast"
 
 export const ColorPage = () => {
 
-    const {setColor, lightColor, nightColor, nightMode, setNightMode} = useColor()    
+    const {setColor, lightColor, nightColor, nightMode, setNightMode, colors} = useColor()    
 
     const defaultColorArray: string[] = Object.values(DefaultColor)
 
@@ -75,6 +76,9 @@ export const ColorPage = () => {
             <ColorBlock baseColorTitle="Outline-color" baseColor={'var(--Outline-color)'} textColor={getTextColor(lightColor.Outline_color)}/>
             <ColorBlock baseColorTitle="Outline-variant-color" baseColor={'var(--Outline-variant-color)'} textColor={getTextColor(lightColor.Outline_color)}/>
             <ColorBlock baseColorTitle="Shadow-color" baseColor={'var(--Shadow-color)'} textColor={getTextColor(lightColor.Shadow_color)}/>
+        </div>
+        <div className="demo-page-color-row">
+            <ColorBlock baseColorTitle="Outline-color" baseColor={pSBC(0.9, colors.On_surface_color, colors.Primary_color, false)??"red"} textColor={getTextColor(lightColor.Outline_color)}/>
         </div>
         </>
         :<Button onClick={()=>setVisible(true)}>open page</Button>

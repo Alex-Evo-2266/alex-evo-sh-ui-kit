@@ -60,15 +60,11 @@ export const useColor = () => {
         for(let key in newColors)
         {
             const newColor = newColors[key as keyof ChangeColor]
-            console.log("set color", key, newColor)
             const convertedKey = getKeyByColorVar(key)
-            console.log("set color p7", key, convertedKey)
             if(convertedKey in DefaultColor || convertedKey in DefaultNightColor)
                 key = convertedKey
-            console.log("set color", key, newColor)
             if(!((key in DefaultColor) || (key in DefaultNightColor)) || !newColor)
                 continue
-            console.log("set color", key, newColor)
             if(key in DefaultColor)
             {
                 if(nightColor[(key + "_night") as keyof NightColor] === lightColor[key as keyof BaseColor])
@@ -82,7 +78,6 @@ export const useColor = () => {
 
     const reCalculateColor = useCallback((mode?:boolean) => {
         const baseColors:BaseColor = mode?mapNightColorToBaseColor(nightColor):lightColor
-        console.log(baseColors)
         for(let key in baseColors)
         {
             _setColor(key, baseColors[key as keyof BaseColor], mode)

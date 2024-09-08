@@ -1,3 +1,5 @@
+import { H4 } from "../Text/Text/Heading"
+import { SmallText } from "../Text/Text/SmallText"
 import "./List.scss"
 
 export interface ListItemContainerProps{
@@ -33,11 +35,11 @@ export const ListItem = ({icon, control, text, header, value, onClick, hovered, 
             {
                 (text)?
                 <div className="text-container">
-                    <div className="header">{header}</div>
-                    <div className="text">{text}</div>
+                    <div className="header"><H4>{header}</H4></div>
+                    <div className="text"><SmallText>{text}</SmallText></div>
                 </div>:
                 <div className="text-container">
-                    <div className="header">{header}</div>
+                    <div className="header"><H4>{header}</H4></div>
                 </div>
             }
             {

@@ -10,9 +10,13 @@
     min-height: 150px;
     background-color: var(--Surface-container-low-color);
     box-shadow: 1px 1px 6px -2px var(--Shadow-color);
-    color: var(--Primary-color);
+    color: var(--On-Surface-color);
     border-radius: 12px;
     position: relative;
+    .card-subhead,
+    .card-heading{
+        color: var(--Primary-color);
+    }
     &:disabled,
     &.disabled{
         opacity: 50%;

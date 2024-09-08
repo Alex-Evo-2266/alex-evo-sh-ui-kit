@@ -7,6 +7,7 @@ export interface RadioButtonProps{
     onChange?: (e:React.ChangeEvent<HTMLInputElement>)=>void
     readOnly?: boolean
     checked?: boolean
+    defaultChecked?: boolean
 }
 
 export interface BaseRadioButtonProps{
@@ -24,11 +25,11 @@ export const BaseRadioButton = ({name, checked}:BaseRadioButtonProps) => {
     )
 }
 
-export const RadioButton = ({name, currentValue, value, onChange, readOnly, checked}:RadioButtonProps) => {
+export const RadioButton = ({defaultChecked, name, currentValue, value, onChange, readOnly, checked}:RadioButtonProps) => {
 
     return(
         <label className="radio-button-container">
-            <input className="radio-button" name={name} type="radio" checked={currentValue === value || checked} value={value} onChange={onChange} readOnly={readOnly}/>
+            <input defaultChecked={defaultChecked} className="radio-button" name={name} type="radio" checked={(currentValue && value && currentValue === value) || checked} value={value} onChange={onChange} readOnly={readOnly}/>
             <span></span>
         </label>
     )

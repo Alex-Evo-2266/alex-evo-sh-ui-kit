@@ -6,18 +6,30 @@
     align-items: center;
     height: 32px;
     margin: 5px;
+    position: relative;
+    max-width: 400px;
     p{
+        position: relative;
         margin-right: 5px;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }   
     &.hovered{
         cursor: pointer;
     }
     .chips-btn{
         margin-left: 3px;
+        margin-top: 6px;
         font-size: 18px;
         cursor: pointer;
     }
     &.big-chips{
+        p{
+            white-space: wrap;
+        }
+        max-width: none;
         height: auto;
         line-height: 32px;
     }

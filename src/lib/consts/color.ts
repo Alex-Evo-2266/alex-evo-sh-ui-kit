@@ -1,3 +1,5 @@
+import { pSBC } from "../helpers/color/colorContrast"
+import { getTextColor } from "../helpers/color/colorGenerator"
 import { BaseColor, IColorDepends, NightColor } from "../model/color"
 
 export const colorDepends:IColorDepends = {
@@ -56,14 +58,14 @@ export const DefaultColor:BaseColor = {
     Secondary_color:"#625B71",
     Tertiary_color:"#7D5260",
     Surface_container_color: "#F3EDF7",
-    Background_color: "#FEF7FF",
+    Background_color: "#FFFFFF",
     Error_color: "#B3261E",
     Outline_color: "#79747E",
     Shadow_color: "#000000"
 }
 
 export const DefaultNightColor:NightColor = {
-    Primary_color_night:"#6750A4",
+    Primary_color_night:pSBC(0.9, getTextColor("#121212"), DefaultColor.Primary_color)??DefaultColor.Primary_color,
     Secondary_color_night:"#625B71",
     Tertiary_color_night:"#7D5260",
     Surface_container_color_night: "#121212",
