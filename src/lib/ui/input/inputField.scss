@@ -48,8 +48,7 @@
 			background-color: var(--Surface-container-high-color);
 			left: 35px;
 		}
-		input:focus ~ label,
-		input:valid ~ label{
+		input:focus ~ label{
 			color: var(--Primary-color);
 		}
 	}
