@@ -51,6 +51,7 @@ export const ColorPage = () => {
             <ColorBlock baseColorTitle="Surface-container-color" baseColor={'var(--Surface-container-color)'} textColorTitle="On-surface-color" textColor={'var(--On-surface-color)'}/>
             <ColorBlock baseColorTitle="Surface-container-high-color" baseColor={'var(--Surface-container-high-color)'} textColor={'var(--On-surface-color)'}/>
             <ColorBlock baseColorTitle="Surface-container-highest-color" baseColor={'var(--Surface-container-highest-color)'} textColor={'var(--On-surface-color)'}/>
+            <ColorBlock baseColorTitle="On-surface-variant-color" baseColor={'var(--On-surface-variant-color)'} textColor={'var(--Surface-container-color)'}/>
         </div>
         <div>
             <FieldContainer header="Other colors" style={{padding:"10px"}}>

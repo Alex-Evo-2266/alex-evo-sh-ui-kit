@@ -45,6 +45,9 @@ export const colorDepends:IColorDepends = {
     },
     Outline_color:{
         low:["Outline_variant_color"]
+    },
+    On_surface_color:{
+        variant:["On_surface_variant_color"]
     }
 }
 

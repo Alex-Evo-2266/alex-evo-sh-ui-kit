@@ -19,7 +19,7 @@ import {Divider} from './ui/Other/Divider/Divider'
 import {RadioButton, BaseRadioButton} from './ui/Base/RadioButton/RadioButton'
 import {FAB} from './ui/Base/FAB/FAB'
 import {FieldContainer} from './ui/Layout/FieldContainer/FieldContainer'
-import {MoreText} from './ui/Text/MoreText/MoreText'
+import {MoreText} from './ui/input/MoreText/MoreText'
 import {RunningLine} from './ui/Text/RunningLine/RunningLine'
 import {ScrollContainer} from './ui/Layout/ScrollContainer/ScrollContainer'
 import {Search} from './ui/Other/Search/Search'
@@ -149,3 +149,10 @@ export {getTextColor, getContainerColor} from './helpers/color/colorGenerator'
 
 export {useColor} from './hooks/color.hook'
 export type {ChangeColor, ColorState, BaseColor, NightColor} from './model/color'
+
+
+//text
+
+export {H1, H2, H3, H4} from './ui/Text/Text/Heading'
+export {SmallText} from './ui/Text/Text/SmallText'
+export {BaseText} from './ui/Text/Text/BaseText'

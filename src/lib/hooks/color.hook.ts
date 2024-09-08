@@ -25,6 +25,7 @@ const initColor:ColorState = {
     On_error_color: getTextColor(DefaultColor.Error_color),
     Error_container_color: getContainerColor(DefaultColor.Error_color),
     On_error_container_color: getTextColor(getContainerColor(DefaultColor.Error_color)),
+    On_surface_variant_color: pSBC(-0.1, getTextColor(DefaultColor.Surface_container_color))??getTextColor(DefaultColor.Surface_container_color),
 }
 
 export const useColor = () => {
@@ -48,15 +49,9 @@ export const useColor = () => {
             const dependColor = colorDepends[key]
             dependColor.container?.forEach((depColor)=>_setColor(depColor, getContainerColor(newColor, night), night))
             dependColor.text?.forEach((depColor)=>_setColor(depColor, getTextColor(newColor), night))
-            if(night)
-            {
-                dependColor.low?.forEach((depColor)=>_setColor(depColor, pSBC(-0.1, newColor)??newColor, night))
-                dependColor.high?.forEach((depColor)=>_setColor(depColor, pSBC(0.01, newColor)??newColor, night))
-            }
-            else{
-                dependColor.low?.forEach((depColor)=>_setColor(depColor, pSBC(0.1, newColor)??newColor, night))
-                dependColor.high?.forEach((depColor)=>_setColor(depColor, pSBC(-0.01, newColor)??newColor, night))
-            }
+            dependColor.low?.forEach((depColor)=>_setColor(depColor, pSBC(night?-0.1:0.1, newColor)??newColor, night))
+            dependColor.high?.forEach((depColor)=>_setColor(depColor, pSBC(night?0.01:-0.01, newColor)??newColor, night))
+            dependColor.variant?.forEach((depColor)=>_setColor(depColor, pSBC(night?-0.3:0.3, newColor)??newColor, night))
         }
     }
 
