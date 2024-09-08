@@ -60,7 +60,7 @@ export const Card = ({className, action, imgSrc, alt, header, subhead, text, chi
 			<div className="card-content-container">
 				<div className="card-Headline-container mb-1 font-bold">
 					<div className="headline">
-						<H2 screenSize={screenSize} className="card-heading">{header}</H2>
+						<H2 screensize={screenSize} className="card-heading">{header}</H2>
 					</div>
 					{
 						(iconButtonCell)?
@@ -73,7 +73,7 @@ export const Card = ({className, action, imgSrc, alt, header, subhead, text, chi
 					(subhead)?
 					<div className="card-subhead-container mb-1">
 						<div className="subhead">
-							<H3 screenSize={screenSize} className="card-subhead">{subhead}</H3>
+							<H3 screensize={screenSize} className="card-subhead">{subhead}</H3>
 						</div>
 					</div>:null
 				}
@@ -81,7 +81,7 @@ export const Card = ({className, action, imgSrc, alt, header, subhead, text, chi
 					(text)?
 					<div className="card-text-container mb-1">
 						<div className="text">
-							<BaseText screenSize={screenSize} className="">{text}</BaseText>
+							<BaseText screensize={screenSize} className="">{text}</BaseText>
 						</div>
 					</div>:null
 				}

@@ -46,7 +46,7 @@ export const TimeField = ({border, onChange, name, value, className, validEmptyV
 
     return(
         <>
-        <div className={`time-field ${border?"border":""}`}>
+        <div className={`input-field time-field ${border?"border":""}`}>
             <div className="icon-container" onClick={click}><Clock3/></div>
             <div className="input-container" onClick={click}>
                 <input

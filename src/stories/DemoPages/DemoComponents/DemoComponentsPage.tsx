@@ -1,5 +1,5 @@
 import { Pen } from "lucide-react"
-import { BaseActionCard, Button, Card, Checkbox, Chips, ColorField, FAB, FilledButton, FilledTotalButton, IconButton, OutlineButton, RadioButton, SigmentedButton, Switch, TextButton, useColor } from "../../../lib"
+import { BaseActionCard, Button, Card, Checkbox, Chips, ColorField, DateField, DayOfWeekField, FAB, FilledButton, FilledTotalButton, H1, IconButton, MoreText, NumberField, OutlineButton, RadioButton, SigmentedButton, Slider, Switch, TextArea, TextButton, TextField, TimeField, useColor } from "../../../lib"
 import { useState } from "react"
 import img from '../../img/fon-base.jpg'
 
@@ -95,6 +95,27 @@ export const ComponentsDemoPage = () => {
                         >
                         
                         </Card>
+                    </div>
+                    <div>
+                        <H1>Input</H1>
+                        <TextField border placeholder="test"/>
+                        <TextField border styleContainer={{height:"54px"}} placeholder="test" onClear={()=>{}} />
+                        <TextField icon={<Pen/>} styleContainer={{height:"54px"}} placeholder="test" onClear={()=>{}} />
+                        <TextField border placeholder="test" onClear={()=>{}} />
+                        <TextField border placeholder="test" icon={<Pen/>}/>
+                        <TextField border placeholder="test" readOnly value={"sdfdgh"}/>
+
+                        <TextArea border/>
+
+                        <NumberField border/>
+                        <ColorField container={null} border/>
+                        <TimeField container={null} border/>
+                        <DateField container={null} border/>
+                        <Slider/>
+                    </div>
+                    <div>
+                        <MoreText border value=""/>
+                        <DayOfWeekField/>
                     </div>
                 </div>
             </div>

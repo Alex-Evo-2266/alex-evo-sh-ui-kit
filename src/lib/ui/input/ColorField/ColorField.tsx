@@ -33,7 +33,7 @@ export const ColorField = ({border, onChange, container, value, className, trans
 
     return(
         <>
-        <div className={`date-field color-field ${border?"border":""} ${transparent?"transparent":""} ${className ?? ""}`}>
+        <div className={`input-field color-field ${border?"border":""} ${transparent?"transparent":""} ${className ?? ""}`}>
             <div className="color-field-label" onClick={click}>
                 <span className="data color-field-data">{color}</span>
             </div>

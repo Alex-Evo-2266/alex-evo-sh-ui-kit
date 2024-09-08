@@ -27,7 +27,7 @@ export const Chips = ({text, onDelete, big, onClick, screenSize}:ChipsProps) => 
 
     return(
         <div className={`alex-evo-ui-kit-chips chips ${big?"big-chips":""} ${onClick?"hovered":""}`} onClick={click}>
-            <BaseText screenSize={screenSize}>{text}</BaseText>
+            <BaseText screensize={screenSize}>{text}</BaseText>
             {
                 (onDelete)?
                 <div className='alex-evo-ui-kit-chips-btn chips-btn' onClick={onDelete}><X size={18}/></div>:

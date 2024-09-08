@@ -53,7 +53,7 @@ export const DateField = ({border, onChange, name, value, className, validEmptyV
 
     return(
         <>
-        <div className={`date-field ${border?"border":""}`}>
+        <div className={`input-field date-field ${border?"border":""}`}>
             <div className="icon-container" onClick={click}><CalendarDays/></div>
             <div className="input-container" onClick={click}>
                 <input
@@ -64,7 +64,6 @@ export const DateField = ({border, onChange, name, value, className, validEmptyV
                 value={dateValue}
                 readOnly
                 />
-                <span className="text-field-line"></span>
             </div>
 		</div>
         {

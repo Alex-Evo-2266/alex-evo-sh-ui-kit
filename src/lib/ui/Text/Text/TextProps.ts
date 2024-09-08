@@ -4,11 +4,11 @@ type PProps = React.HTMLAttributes<HTMLParagraphElement>
 type HProps = React.HTMLAttributes<HTMLHeadingElement>
 
 export interface TextProps extends PProps{
-    screenSize?: ScreenSize
+    screensize?: ScreenSize
 }
 
 export interface HeadingProps extends HProps{
-    screenSize?: ScreenSize
+    screensize?: ScreenSize
 }
 
 export interface TextOption{

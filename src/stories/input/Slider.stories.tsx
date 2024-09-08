@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import { Slider } from '../../lib/index';
 
 const meta = {
-  title: 'Components/Base/Slider',
+  title: 'Components/Input/Slider',
   component: Slider,
   parameters: {
     layout: 'centered',

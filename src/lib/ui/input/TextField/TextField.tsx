@@ -28,6 +28,7 @@ export const TextField = ({styleContainer, type = "text", transparent, readOnly,
 
     const inputElement = useRef<HTMLInputElement>(null)
     const [isError, setError] = useState<boolean>(false)
+    const [isFocus, setFocus] = useState<boolean>(false)
 
     const emptyValueClass = useCallback((validEmptyValue?:boolean, value?: string | number) => {
         if(error)
@@ -47,8 +48,18 @@ export const TextField = ({styleContainer, type = "text", transparent, readOnly,
         inputElement.current.focus()
     }
 
+    const changeFocus = (e:React.FocusEvent<HTMLInputElement>) => {
+        onFocus && onFocus(e)
+        setFocus(true)
+    }
+
+    const blur = (event:React.FocusEvent<HTMLInputElement>) => {
+        onBlur && onBlur(event)
+        setFocus(false)
+    }
+
     return(
-        <div style={styleContainer} className={`text-field ${border?"border":""} ${transparent?"transparent":""} ${className}`}>
+        <div style={styleContainer} className={`input-field text-field ${border?"border":""} ${isFocus?"active":""} ${transparent?"transparent":""} ${className}`}>
             {
                 (icon)?
                 <div className="icon-container" onClick={focus}>{icon}</div>:
@@ -66,14 +77,13 @@ export const TextField = ({styleContainer, type = "text", transparent, readOnly,
                 name={name} 
                 value={value} 
                 onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}/>
+                onFocus={changeFocus}
+                onBlur={blur}/>
                 <label>{(placeholder)?<span>{placeholder}</span>:null}</label>
-                <span className="text-field-line"></span>
             </div>
             {
                 (onClear)?
-                <div className="clear-container"><XCircle onClick={onClear}/></div>:
+                <div className="icon-container clear-btn"><XCircle onClick={onClear}/></div>:
                 null
             }
 		</div>

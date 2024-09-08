@@ -106,7 +106,7 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
     },[value])
 
     return(
-        <div style={styleContainer} className={`text-field number-field ${border?"border":""} ${transparent?"transparent":""} ${className}`}>
+        <div style={styleContainer} className={`input-field number-field ${border?"border":""} ${transparent?"transparent":""} ${className}`}>
             {
                 (icon)?
                 <div className="icon-container" onClick={focus}>{icon}</div>:

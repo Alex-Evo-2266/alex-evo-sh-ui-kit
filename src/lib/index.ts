@@ -18,7 +18,7 @@ import {TextArea} from './ui/input/TextArea/TextArea'
 import {Divider} from './ui/Other/Divider/Divider'
 import {RadioButton, BaseRadioButton} from './ui/Base/RadioButton/RadioButton'
 import {FAB} from './ui/Base/FAB/FAB'
-import {FieldContainer} from './ui/Layout/FieldContainer/FieldContainer'
+import {ContentBox} from './ui/Layout/ContentBox/ContentBox'
 import {MoreText} from './ui/input/MoreText/MoreText'
 import {RunningLine} from './ui/Text/RunningLine/RunningLine'
 import {ScrollContainer} from './ui/Layout/ScrollContainer/ScrollContainer'
@@ -97,7 +97,7 @@ export {
     Divider,
     СalendarPickers,
     DayOfWeekField,
-    FieldContainer,
+    ContentBox,
     GridLayoutItem,
     GridLayout,
     Menu,

@@ -42,13 +42,13 @@ export const TextArea = ({styleContainer, transparent, readOnly, border, icon, o
     }
 
     return(
-        <div style={styleContainer} className={`text-area ${isError?"error":""} ${border?"border":""} ${transparent?"transparent":""} ${className}`}>
+        <div style={styleContainer} className={`input-field text-area ${isError?"error":""} ${border?"border":""} ${transparent?"transparent":""} ${className}`}>
             {
                 (icon)?
                 <div className="icon-container" onClick={focus}>{icon}</div>:
                 null
             }
-            <div className="textarea-container" onClick={focus}>
+            <div className="input-container textarea-container" onClick={focus}>
                 <textarea
                 ref={inputElement}
                 readOnly={readOnly}

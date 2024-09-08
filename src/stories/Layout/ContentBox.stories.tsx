@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FieldContainer, TextField } from '../../lib/index';
+import { ContentBox, TextField } from '../../lib/index';
 // import React from 'react';
 
 const meta = {
-  title: 'Components/Layout/FieldContainer',
-  component: FieldContainer,
+  title: 'Components/Layout/ContentBox',
+  component: ContentBox,
   parameters: {
     layout: 'centered',
   },
@@ -20,7 +20,7 @@ const meta = {
     <TextField placeholder='test'  border styleContainer={{minWidth: "300px"}}/>
     </>
   },
-} satisfies Meta<typeof FieldContainer>;
+} satisfies Meta<typeof ContentBox>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,3 +1,27 @@
+
+body{
+    --text-base-small-screen: 18px;
+    --text-base-standart-screen: 18px;
+    --text-base-big-screen: 20px;
+    --text-small-small-screen: 12px;
+    --text-small-standart-screen: 12px;
+    --text-small-big-screen: 12px;
+    --heading-1-small-screen: 32px;
+    --heading-1-standart-screen: 32px;
+    --heading-1-big-screen: 38px;
+    --heading-2-small-screen: 24px;
+    --heading-2-standart-screen: 28px;
+    --heading-2-big-screen: 32px;
+    --heading-3-small-screen: 20px;
+    --heading-3-standart-screen: 22px;
+    --heading-3-big-screen: 28px;
+    --heading-4-small-screen: 18px;
+    --heading-4-standart-screen: 20px;
+    --heading-4-big-screen: 24px;
+}
+
+
+
 .alex-evo-ui-kit-heading, 
 .alex-evo-ui-kit-text,
 .alex-evo-ui-kit-heading > *,
