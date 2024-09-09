@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import "./BottomSheets.scss"
+import { ModalTemplate } from "../../Dialog/TemplateDialog/ModalTemplate"
 
 export interface BottomSheetsUiProps{
     onHide: ()=>void
@@ -10,32 +11,38 @@ export interface BottomSheetsUiProps{
 export const BottomSheetsUi = (props:BottomSheetsUiProps) => {
 
     const [hided, setHided] = useState<boolean>(false)
+    const [isСlosed, setIsСlosed] = useState<boolean>(true)
 
     const hide = useCallback(() => {
         setHided(true)
         setTimeout(()=>{
             props.onHide()
             setHided(false)
+            setIsСlosed(true)
         },200)
     },[props.onHide])
 
     useEffect(()=>{
-        if(!props.visible)
-            hide()
-    },[props.visible, hide])
+        if(props.visible)
+            setIsСlosed(false)
+    },[props.visible])
 
-    if(!props.visible && !hided || !props.children)
+    useEffect(()=>{
+        if(!props.visible && !isСlosed)
+            hide()
+    },[props.visible, hide, isСlosed])
+
+    if(isСlosed && !hided || !props.children)
         return null
 
     return(
-        <>
-        <div className={`bottom-sheets ${hided?"hide":""}`}>
-            <div className="bottom-sheets-handle"><span></span></div>
-            <div className="bottom-sheets-content">
-                {props.children}
+        <ModalTemplate onHide={hide}>
+            <div className={`bottom-sheets ${hided?"hide":""}`}>
+                <div className="bottom-sheets-handle"><span></span></div>
+                <div className="bottom-sheets-content">
+                    {props.children}
+                </div>
             </div>
-        </div>
-        <div className="backplate bottom-sheets-backplate" style={{zIndex:1101}} onClick={hide}></div>
-        </>
+        </ModalTemplate>
     )
 }

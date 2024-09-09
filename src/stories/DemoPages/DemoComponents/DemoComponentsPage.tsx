@@ -117,6 +117,9 @@ export const ComponentsDemoPage = () => {
                         <MoreText border value=""/>
                         <DayOfWeekField/>
                     </div>
+                    <div>
+                        {/* <SelectField/> */}
+                    </div>
                 </div>
             </div>
         </>

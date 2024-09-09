@@ -44,6 +44,7 @@ import {DayOfWeekField} from './ui/input/DayOfWeek/DayOfWeek'
 import {GridLayoutItem} from './ui/Layout/GridLayout/GridLayout'
 import GridLayout from './ui/Layout/GridLayout/GridLayout'
 import {ColumnLayout} from './ui/Layout/ColumnLayout/ColumnLayout'
+import {BaseMenu} from './ui/Menu/BaseMenu'
 import {Menu} from './ui/Menu/Menu'
 import {SmallWindowMenu} from './ui/Menu/SmallWindowMenu'
 import {Table} from './ui/Table/Table'
@@ -59,6 +60,8 @@ export type {NavigationBtn, NavigationButton, NavigationLink} from './model/navi
 
 import './ui/index.scss'
 
+export type {MenuStateProps} from './model/menu'
+
 export type {IOptionSnackbar, SnackbarProps} from './ui/Other/Snackbar/Snackbar'
 
 export type {styleType} from './ui/Base/Button/Button'
@@ -66,6 +69,7 @@ export type {styleType} from './ui/Base/Button/Button'
 export type {IColumnElement} from './ui/Layout/ColumnLayout/ColumnLayout'
 
 export {
+    BaseMenu,
     Button, 
     FAB,
     FilledButton, 
