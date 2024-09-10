@@ -10,15 +10,12 @@
     &.border{
         border: 1px solid var(--On-surface-variant-color);
     }
-    &:hover{
-        background-color: var(--Surface-container-high-color);
-    }
     .json-base-data-input{
         border: none;
         outline: none;
         background-color: transparent;
         input{
-            min-width: 30px;
+            // min-width: 30px;
             width: auto;
         }
     }
@@ -26,7 +23,6 @@
 .json-line{
     margin: 5px 0;
     padding: 0 5px;
-
 }
 
 .json-card-container{
@@ -35,6 +31,7 @@
         font-size: 18px;
     }
     .json-btn{
+        // height: 100%;
         line-height: 30px;
         position: relative;
         cursor: pointer;
@@ -60,9 +57,15 @@
 .alex-evo-sh-ui-kit-json{
 }
 
-.json-object-header{
+.changeable .json-object-header{
         &:hover{
         background-color: var(--Surface-container-high-color);
         border-radius: 10px;
+    }
+}
+
+.changeable{
+    .json-base-data:hover{
+        background-color: var(--Surface-container-high-color);
     }
 }

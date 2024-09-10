@@ -1,4 +1,4 @@
-import { JsonData } from '../../model/jsonComponentModel'
+import { JsonData } from '../../../model/jsonComponentModel'
 import { JsonObjectContainer } from './JsonObject'
 import './Json.scss'
 import { JsonArrayContainer } from './JsonArray'

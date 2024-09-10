@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { JsonDataBaseTypes } from "../../model/jsonComponentModel"
+import { JsonDataBaseTypes } from "../../../model/jsonComponentModel"
 import { CircleMinus } from "lucide-react"
 
 
@@ -18,7 +18,7 @@ export const JsonBaseContainer:React.FC<JsonBaseContainerProps> = ({readonly, na
     },[onChange])
 
     return(
-        <div className='json-card-container'>
+        <div className={`json-card-container ${(!readonly)?"changeable":""}`}>
             <div>
                 <div className='json-line'>
                     <span className={"json-object-name"}>

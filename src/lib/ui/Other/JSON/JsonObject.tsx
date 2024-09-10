@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react"
-import { JsonData, JsonDataObject } from "../../model/jsonComponentModel"
+import { JsonData, JsonDataObject } from "../../../model/jsonComponentModel"
 import { JsonComponent } from "./JsonComponent"
 import { CircleMinus, PlusCircle } from "lucide-react"
 
@@ -46,7 +46,7 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly
     },[data, onChange])
 
     return(
-        <div className='json-card-container'>
+        <div className={`json-card-container ${(!readonly)?"changeable":""}`}>
             <div>
                 <div className='json-line json-object-header' >
                 <span onClick={()=>setVisible(prev=>!prev)} className="json-element json-object-name json-object-header">{name}:{"{"}{(!visible)?<span>...</span>:null}</span>
