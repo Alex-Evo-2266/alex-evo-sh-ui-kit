@@ -8,7 +8,6 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    overflow-y: auto;
     max-height: 80vh;
     left: 50%;
     transform: translate(-50%, 0);
@@ -16,6 +15,11 @@
     border-top-left-radius: 28px;
     animation: .2s linear showBottomSheets;
     box-shadow: 0 0 10 10 var(--Outline-color);
+    .bottom-sheets-content{
+        position: relative;
+        height: calc(100% - 50px);
+        overflow-y: scroll;
+    }
     &.hide{
         animation: .2s linear hideBottomSheets;
         transform: translate(-50%, 100%);
