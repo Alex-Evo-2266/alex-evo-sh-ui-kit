@@ -12,6 +12,8 @@ input.alex-evo-number-field[type="number"]{
 .number-field{
     .button-block{
         display: flex;
+        height: 100%;
+        align-items: center;
         .number-field-btn{
             z-index: 3;
             min-width: 40px;
@@ -20,8 +22,8 @@ input.alex-evo-number-field[type="number"]{
             align-items: center;
             cursor: pointer;
             border-radius: 10px;
-            margin: 5px;
-            height: 54px;
+            margin: 0 5px;
+            height: 90%;
             &:hover{
                 box-shadow: var(--Shadow-hover);
             }

@@ -2,7 +2,7 @@ import React from "react"
 import { MenuBlock } from "./MenuBlock"
 import { Divider } from "../Other/Divider/Divider"
 import { MenuButtomStateProps } from "../../model/menu"
-import { BottomSheetsUi, ModalTemplate } from "../.."
+import { BottomSheetsUi } from "../.."
 
 export const SmallWindowMenu = (menu:MenuButtomStateProps) => {
 	const foo = () => {}

@@ -1,6 +1,6 @@
 
 .input-field{
-	
+	height: 54px;
 	display: flex;
 	align-items: center;
 	background-color: var(--Surface-container-high-color);
@@ -18,7 +18,7 @@
 		line-height: 100%;
 		height: 100%;
 		flex: 100%;
-        position: relative;
+        // position: relative;
 		input{
 		    line-height: 100%;
             height: 100%;

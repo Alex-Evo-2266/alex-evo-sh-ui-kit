@@ -1,7 +1,5 @@
 .days-week-field-container{
     display: flex;
-    // grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    // grid-gap: 10px;
     padding: 15px 10px 10px;
     width: 100%;
     flex-wrap: wrap;
@@ -26,8 +24,8 @@
             width: 100%;
             height: 100%;
             line-height: 32px;
-            background-color: var(--Secondary-container-color);
-            color: var(--On-secondary-container-color);
+            background-color: var(--Primary-container-color);
+            color: var(--On-primary-container-color);
         }
         input{
             display: none;
@@ -38,9 +36,3 @@
         }
     }
 }
-
-// @media (max-width: 400px) {
-//     .days-week-field-container{
-//         grid-template-columns: 1fr 1fr 1fr 1fr;
-//     }
-// }

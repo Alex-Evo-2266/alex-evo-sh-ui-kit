@@ -3,7 +3,7 @@
     z-index: 2000;
     min-width: 112px;
     max-width: 280px;
-    background-color: var(--Surface-container-color);
+    background-color: var(--Surface-container-high-color);
     box-shadow: 1px 1px 6px -2px var(--Shadow-color);
     color: var(--On-surface-color);
     border-radius: 4px;
@@ -44,7 +44,7 @@
                 left: 100%;
                 z-index: 5;
                 top: 0;
-                background-color: var(--Surface-container-color);
+                background-color: var(--Surface-container-highest-color);
                 box-shadow: 1px 1px 6px -2px var(--Shadow-color);
                 border-radius: 4px;
             }
@@ -118,7 +118,7 @@
                 left: 100%;
                 z-index: 5;
                 top: 0;
-                background-color: var(--Surface-container-high-color);
+                background-color: var(--Surface-container-highest-color);
                 border-radius: 4px;
             }
         }
