@@ -164,3 +164,4 @@ export {BaseText} from './ui/Text/Text/BaseText'
 export {SelectField, type IOption} from './ui/input/SelectField/Select'
 
 export {useScreenSize} from './hooks/screenSize.hook'
+export { ScreenSize } from "./model/sizeScreen"
