@@ -3,7 +3,7 @@ import { Menu } from "../../Menu/Menu"
 import { IPoint } from "../../../model/point"
 import { ScreenSize } from "../../../model/sizeScreen"
 import { IMenuItem } from "../../../model/menu"
-import { getContainerData } from "../../../helpers/getModalCord"
+import { getContainerData } from "../../../helpers/getContainerPozAndSize"
 
 export interface IOption{
     title: string

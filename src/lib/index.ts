@@ -128,7 +128,7 @@ export {
 
 // helpers
 
-import {getContainerData, getModalWindowCord, IContainerData, IOptionModalWindowCord} from './helpers/getModalCord'
+import {getContainerData, getModalWindowCord, IContainerData, IOptionModalWindowCord} from './helpers/getContainerPozAndSize'
 import {map} from './helpers/map'
 
 export {getContainerData, getModalWindowCord}
@@ -160,3 +160,5 @@ export type {ChangeColor, ColorState, BaseColor, NightColor} from './model/color
 export {H1, H2, H3, H4} from './ui/Text/Text/Heading'
 export {SmallText} from './ui/Text/Text/SmallText'
 export {BaseText} from './ui/Text/Text/BaseText'
+
+export {SelectField, type IOption} from './ui/input/SelectField/Select'

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { IMenuSubItem } from "../../model/menu"
 import { SubMenuItem } from "./SubMenuItem"
-import { getContainerData, getModalWindowCord } from "../../helpers/getModalCord"
+import { getContainerData, getModalWindowCord } from "../../helpers/getContainerPozAndSize"
 
 interface MenuItemProps{
     items: IMenuSubItem[]

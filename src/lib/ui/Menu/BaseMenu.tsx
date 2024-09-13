@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { Divider } from "../Other/Divider/Divider"
 import "./Menu.scss"
 import { MenuBlock } from "./MenuBlock"
-import { getModalWindowCord } from "../../helpers/getModalCord"
+import { getModalWindowCord } from "../../helpers/getContainerPozAndSize"
 import { MenuStateProps } from "../../model/menu"
 import { ModalTemplate } from "../Dialog/TemplateDialog/ModalTemplate"
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import "./Slider.scss"
-import { getContainerData } from "../../../helpers/getModalCord"
+import { getContainerData } from "../../../helpers/getContainerPozAndSize"
 import { map } from "../../../helpers/map"
 
 const DEFAULT_MIN = 0
