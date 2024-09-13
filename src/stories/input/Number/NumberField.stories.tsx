@@ -73,3 +73,20 @@ export const Placeholder: Story = {
   };
   
   
+
+  export const Min: Story = {
+    args: {
+        placeholder: "test",
+        min: 0
+    },
+  };
+  
+
+
+  export const Max: Story = {
+    args: {
+        placeholder: "test",
+        max: 10
+    },
+  };
+  

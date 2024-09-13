@@ -47,24 +47,33 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
 
     const pluseClick = useCallback(()=>{
         setVal(prev=>{
-            const newData = prev?prev + 1:1
+            let newData = prev?prev + 1:1
+            if(typeof(max) === 'number' && newData > max)
+                newData = max
             setTimeout(()=>onChange && onChange(newData, name),100)
             return newData
         })
-    },[onChange, name])
+    },[onChange, name, max])
 
     const minusClick = useCallback(()=>{
         setVal(prev=>{
-            const newData = prev?prev - 1:-1
+            let newData = prev?prev - 1:-1
+            if(typeof(min) === 'number' && newData < min)
+                newData = min
             setTimeout(()=>onChange && onChange(newData, name),100)
             return newData
         })
-    },[onChange, name])
+    },[onChange, name, min])
 
     const changeNumber = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        let newData = Number(event.target.value)
+        if(typeof(min) === 'number' && newData < min)
+            newData = min
+        if(typeof(max) === 'number' && newData > max)
+            newData = max
         setVal(Number(event.target.value))
         setTimeout(()=>onChange && onChange(Number(event.target.value), name),0)
-    },[name, onChange, val])
+    },[name, onChange, val, max, min])
 
     const mouseUp = useCallback(()=>{
         if(timeOutID.current)
