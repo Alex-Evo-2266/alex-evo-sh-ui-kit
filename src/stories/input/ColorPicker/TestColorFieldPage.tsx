@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, ColorField, FieldContainer } from "../../../lib"
+import { Button, ColorField, ContentBox } from "../../../lib"
 
 export const TestColorPage = () => {
 
@@ -12,13 +12,13 @@ export const TestColorPage = () => {
             <Button onClick={()=>setV(true)}>c</Button>
             {
                 (v)?
-                <FieldContainer header="test" style={{padding:"10px", backgroundColor: "#ccc"}}>
+                <ContentBox label="test" style={{padding:"10px", backgroundColor: "#ccc"}}>
                     <ColorField container={document.getElementById('portal-root')}/>
                     <br/>
                     <ColorField transparent container={document.getElementById('portal-root')}/>
                     <br/>
                     <ColorField border container={document.getElementById('portal-root')}/>
-                </FieldContainer>:null
+                </ContentBox>:null
             }
         </div>
         </>

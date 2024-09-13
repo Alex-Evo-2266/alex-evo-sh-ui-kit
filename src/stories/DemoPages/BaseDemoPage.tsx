@@ -9,7 +9,7 @@ interface IBaseDemoPage{
 }
 
 export const contextDemoPage = createContext<{setColor:(c:ChangeColor)=>(void|Promise<void>), lightColor:BaseColor, nightColor:NightColor}>({
-    setColor:(c:ChangeColor)=>{},
+    setColor:(_:ChangeColor)=>{},
     lightColor:DefaultColor,
     nightColor:DefaultNightColor
 });

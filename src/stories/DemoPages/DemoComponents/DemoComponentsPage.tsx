@@ -6,7 +6,7 @@ import img from '../../img/fon-base.jpg'
 
 export const ComponentsDemoPage = () => {
 
-    const {lightColor, nightColor, nightMode, setNightMode, setColor} = useColor()
+    const {lightColor, nightMode, setNightMode, setColor} = useColor()
     const [visibleColorField, setVisibleColorField] = useState<boolean>(false)
 
     return(
