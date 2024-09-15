@@ -14,7 +14,7 @@
     border-top-right-radius: 28px;
     border-top-left-radius: 28px;
     animation: .2s linear showBottomSheets;
-    box-shadow: 0 0 10 10 var(--Outline-color);
+    box-shadow: var(--Shadow-base-v3);
     .bottom-sheets-content{
         position: relative;
         height: calc(100% - 50px);

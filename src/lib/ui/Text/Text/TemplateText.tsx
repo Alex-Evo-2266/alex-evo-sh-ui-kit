@@ -8,7 +8,7 @@ interface TemplateTextProps extends TextProps{
 
 export const TemplateText = (props:TemplateTextProps) => {
     return(<p {...{...props}} 
-        style={{...props.style, fontSize:props.option[props.screensize ?? ScreenSize.STANDART]}} 
+        style={{...props.style, fontSize:props.style?.fontSize ?? props.option[props.screensize ?? ScreenSize.STANDART]}} 
         className={`alex-evo-ui-kit alex-evo-ui-kit-text ${props.className}`}
         />
     )

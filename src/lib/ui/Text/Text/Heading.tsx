@@ -28,7 +28,7 @@ const FountSizeHeading4:TextOption = {
 export const H1 = (props:HeadingProps) => {
 
     return(<h1 {...{...props}} 
-        style={{...props.style, fontSize:FountSizeHeading1[props.screensize ?? ScreenSize.STANDART]}} 
+        style={{...props.style, fontSize:props.style?.fontSize ?? FountSizeHeading1[props.screensize ?? ScreenSize.STANDART]}} 
         className={`alex-evo-ui-kit alex-evo-ui-kit-heading ${props.className}`}
         />
     )
@@ -37,7 +37,7 @@ export const H1 = (props:HeadingProps) => {
 export const H2 = (props:HeadingProps) => {
 
     return(<h2 {...{...props}} 
-        style={{...props.style, fontSize:FountSizeHeading2[props.screensize ?? ScreenSize.STANDART]}} 
+        style={{...props.style, fontSize:props.style?.fontSize ?? FountSizeHeading2[props.screensize ?? ScreenSize.STANDART]}} 
         className={`alex-evo-ui-kit alex-evo-ui-kit-heading ${props.className}`}
         />
     )
@@ -46,7 +46,7 @@ export const H2 = (props:HeadingProps) => {
 export const H3 = (props:HeadingProps) => {
 
     return(<h3 {...{...props}} 
-        style={{...props.style, fontSize:FountSizeHeading3[props.screensize ?? ScreenSize.STANDART]}} 
+        style={{...props.style, fontSize:props.style?.fontSize ?? FountSizeHeading3[props.screensize ?? ScreenSize.STANDART]}} 
         className={`alex-evo-ui-kit alex-evo-ui-kit-heading ${props.className}`}
         />
     )
@@ -55,7 +55,7 @@ export const H3 = (props:HeadingProps) => {
 export const H4 = (props:HeadingProps) => {
 
     return(<h4 {...{...props}} 
-        style={{...props.style, fontSize:FountSizeHeading4[props.screensize ?? ScreenSize.STANDART]}} 
+        style={{...props.style, fontSize:props.style?.fontSize ?? FountSizeHeading4[props.screensize ?? ScreenSize.STANDART]}} 
         className={`alex-evo-ui-kit alex-evo-ui-kit-heading ${props.className}`}
         />
     )

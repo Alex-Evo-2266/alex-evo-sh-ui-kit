@@ -40,6 +40,23 @@ export const BottomSheetsUi = (props:BottomSheetsUiProps) => {
             bottomSheets.current.style.height = `${window.screen.height - e.changedTouches[0].clientY}px`
     },[hide])
 
+    const mouseMove = (e:MouseEvent) => {
+        if(window.screen.height - e.clientY - 120 <= 150)
+            hide()
+        if(bottomSheets.current)
+            bottomSheets.current.style.height = `${window.screen.height - e.clientY - 120}px`
+    }
+
+    const mouseUp = () => {
+        document.body.removeEventListener('mousemove', mouseMove)
+        document.body.removeEventListener('mouseup', mouseUp)
+    }
+
+    const mouseDown = () => {
+        document.body.addEventListener('mousemove', mouseMove)
+        document.body.addEventListener('mouseup', mouseUp)
+    }
+
 
     if(isСlosed && !hided || !props.children)
         return null
@@ -47,7 +64,7 @@ export const BottomSheetsUi = (props:BottomSheetsUiProps) => {
     return(
         <ModalTemplate onHide={hide}>
             <div ref={bottomSheets} className={`bottom-sheets ${hided?"hide":""}`}>
-                <div className="bottom-sheets-handle" onTouchMove={touchMove}><span></span></div>
+                <div className="bottom-sheets-handle" onMouseDown={mouseDown} onTouchMove={touchMove}><span></span></div>
                 <div className="bottom-sheets-content">
                     {props.children}
                 </div>
