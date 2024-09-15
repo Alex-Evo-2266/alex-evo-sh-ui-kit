@@ -14,7 +14,7 @@ const meta = {
   argTypes: {
     
   },
-  args: { onClick: fn() },
+  args: { },
 } satisfies Meta<typeof Card>;
 
 export default meta;
@@ -101,5 +101,19 @@ export const Icon: Story = {
       subhead: "test",
       imgSrc: img,
       iconButtonCell:<IconButton icon={<i>+</i>}/>
+  },
+  };
+
+  export const Click: Story = {
+    args: {
+      header: "Test header",
+      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
+      subhead: "test",
+      imgSrc: img,
+      alt: "img",
+      onClick: (e)=>{console.log("p0")},
+      children: <ListContainer transparent>
+      <ListItem hovered header='test' text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?"/>
+    </ListContainer>
   },
   };

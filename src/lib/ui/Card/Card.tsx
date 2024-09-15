@@ -15,22 +15,25 @@ export interface CardProps{
 	iconButtonCell?: React.ReactNode
 	onClick?: (e:React.MouseEvent<HTMLDivElement>)=>void
 	screenSize?: ScreenSize
+	style?: React.CSSProperties
 }
 
-export const Card = ({className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick, screenSize}:CardProps) => {
+export const Card = ({style, className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick, screenSize}:CardProps) => {
 	
 	const isCard = (e:React.MouseEvent<HTMLDivElement>):boolean=>{
 		if((e.target as Element).className === "action-container" || (e.target as Element).closest(".action-container"))
 			return false
 		if((e.target as Element).className === "icon-button-container" || (e.target as Element).closest(".icon-button-container"))
 			return false
+		if((e.target as Element).className === "card-child-container" || (e.target as Element).closest(".card-child-container"))
+			return false
 		return true
 	}
-
+	
 	const click = (e:React.MouseEvent<HTMLDivElement>) => {
-        onClick && onClick(e)
 		if(!isCard(e))
 			return
+        onClick && onClick(e)
 		let rootContainer = e.currentTarget.closest(".card-container")
 		let clickContainer = rootContainer?.querySelector(".blick-container")
 		if(!clickContainer)
@@ -49,7 +52,7 @@ export const Card = ({className, action, imgSrc, alt, header, subhead, text, chi
     }
 
 	return(
-		<div className={`card-container ${className}`} onClick={click}>
+		<div style={style} className={`card-container ${className}`} onClick={click}>
 			<div className="blick-container"></div>
 			{
 				(imgSrc)?
