@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useMemo, useRef } from "react"
 import { Column, ITable } from "../../model/table"
 import "./Table.scss"
 import { getColumnsName } from "../../helpers/table"
