@@ -12,9 +12,10 @@ interface RowProps{
     onEdit?: (data:IDataItem, index: number)=>void
     onContextMenu?: (event: React.MouseEvent<HTMLElement>, data:IDataItem, index: number)=>void
 	onClickRow?: (data:IDataItem, index: number)=>void
+	maxH?: number[] | undefined
 }
 
-export const TableRow = ({actions, item, columns, onContextMenu, onDelete, onEdit, onClickRow, index}:RowProps) => {
+export const TableRow = ({actions, item, columns, onContextMenu, onDelete, onEdit, onClickRow, index, maxH}:RowProps) => {
 
 	const isRow = (e:React.MouseEvent<HTMLTableRowElement>):boolean=>{
 		if((e.target as Element).closest(".no-click"))
@@ -30,7 +31,7 @@ export const TableRow = ({actions, item, columns, onContextMenu, onDelete, onEdi
 	return(
 		<tr className="table-row" onClick={click}>
 			{columns.map((col, index2)=>(
-				<TableCell color={col.color} backgroundColor={col.backgroundColor} column={col} data={item} key={index2}/>
+				<TableCell H={maxH?.[index2]} color={col.color} backgroundColor={col.backgroundColor} column={col} data={item} key={index2}/>
 			))}
 			{
 				(actions)?

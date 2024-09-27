@@ -1,9 +1,9 @@
 import { ScreenSize } from "../../../model/sizeScreen"
 
-type PProps = React.HTMLAttributes<HTMLParagraphElement>
+type spanProps = React.HTMLAttributes<HTMLSpanElement>
 type HProps = React.HTMLAttributes<HTMLHeadingElement>
 
-export interface TextProps extends PProps{
+export interface TextProps extends spanProps{
     screensize?: ScreenSize
 }
 

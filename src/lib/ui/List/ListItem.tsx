@@ -1,5 +1,4 @@
-import { H4 } from "../Text/Text/Heading"
-import { SmallText } from "../Text/Text/SmallText"
+import { Typography } from "../Text/Text/Typography"
 import "./List.scss"
 
 export interface ListItemContainerProps{
@@ -35,11 +34,11 @@ export const ListItem = ({icon, control, text, header, value, onClick, hovered, 
             {
                 (text)?
                 <div className="text-container">
-                    <div className="header"><H4>{header}</H4></div>
-                    <div className="text"><SmallText>{text}</SmallText></div>
+                    <div className="header"><Typography type='body'>{header}</Typography></div>
+                    <div className="text"><Typography type='small'>{text}</Typography></div>
                 </div>:
                 <div className="text-container">
-                    <div className="header"><H4>{header}</H4></div>
+                    <div className="header"><Typography type='body'>{header}</Typography></div>
                 </div>
             }
             {

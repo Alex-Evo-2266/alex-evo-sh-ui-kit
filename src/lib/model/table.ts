@@ -31,7 +31,6 @@ export interface ITable{
     columns?: Column[]
     data: IDataItem[]
     actions?: ITableAction[]
-    adaptive?: boolean
     onDelete?: (data:IDataItem, index: number)=>void
     onEdit?: (data:IDataItem, index: number)=>void
     onContextMenu?: (event: React.MouseEvent<HTMLElement>, data:IDataItem, index: number)=>void

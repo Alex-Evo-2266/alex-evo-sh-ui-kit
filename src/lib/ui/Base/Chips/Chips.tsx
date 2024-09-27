@@ -1,7 +1,7 @@
 import { X } from 'lucide-react'
 import './Chips.scss'
-import { BaseText } from '../../Text/Text/BaseText'
 import { ScreenSize } from '../../../model/sizeScreen'
+import { Typography } from '../../Text/Text/Typography'
 
 export interface ChipsProps{
     text: string
@@ -27,7 +27,7 @@ export const Chips = ({text, onDelete, big, onClick, screenSize}:ChipsProps) => 
 
     return(
         <div className={`alex-evo-ui-kit-chips chips ${big?"big-chips":""} ${onClick?"hovered":""}`} onClick={click}>
-            <BaseText screensize={screenSize}>{text}</BaseText>
+            <Typography type='body' screensize={screenSize}>{text}</Typography>
             {
                 (onDelete)?
                 <div className='alex-evo-ui-kit-chips-btn chips-btn' onClick={onDelete}><X size={18}/></div>:

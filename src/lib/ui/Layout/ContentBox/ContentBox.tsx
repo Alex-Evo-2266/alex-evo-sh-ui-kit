@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { H4 } from '../../Text/Text/Heading'
 import './ContentBox.scss'
 import { getContainerData } from '../../../helpers/getContainerPozAndSize'
+import { Typography } from '../../Text/Text/Typography'
 
 export interface ContentBoxProps{
     children: React.ReactNode
@@ -55,7 +55,7 @@ console.log(transition)
     return(
         <div style={style} className={`content-box ${border?"border":""} ${contentVisible?"active":""} ${className ?? ""}`}>
             <div className='content-box-label' onClick={togle}>
-                <H4>{label}</H4>
+                <Typography type='title'>{label}</Typography>
                 {
                     (hiding)?
                     <div className='content-box-status-container'>

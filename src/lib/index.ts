@@ -157,9 +157,7 @@ export type {ChangeColor, ColorState, BaseColor, NightColor} from './model/color
 
 //text
 
-export {H1, H2, H3, H4} from './ui/Text/Text/Heading'
-export {SmallText} from './ui/Text/Text/SmallText'
-export {BaseText} from './ui/Text/Text/BaseText'
+export {Typography} from './ui/Text/Text/Typography'
 
 export {SelectField, type IOption} from './ui/input/SelectField/Select'
 

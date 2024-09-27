@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { Table } from '../../lib/index';
+import { ScreenSize, Table } from '../../lib/index';
 import { Home } from 'lucide-react';
 // import React from 'react';
 
@@ -44,7 +44,10 @@ const meta = {
             test2: "tere",
             test3: ["tere", "dsvfg"]
         }
-    ]
+    ],
+    onClickRow(data, index) {
+      console.log("row", data, index)
+    },
    },
 } satisfies Meta<typeof Table>;
 
@@ -53,15 +56,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
+    screenSize: ScreenSize.STANDART
   },
 };
 
 export const Action: Story = {
     args: {
+        screenSize: ScreenSize.STANDART,
         actions:[
             {
                 icon: <Home/>,
-                onClick: fn,
+                onClick: (e, data, index)=>console.log(e, data, index),
             }
         ]
     },
@@ -69,20 +74,67 @@ export const Action: Story = {
 
   export const Delete: Story = {
     args: {
+        screenSize: ScreenSize.STANDART,
         onDelete:fn
     },
   };
 
   export const Menu: Story = {
     args: {
+        screenSize: ScreenSize.STANDART,
         onContextMenu:fn
     },
   };
 
   export const Combo: Story = {
     args: {
-        onContextMenu:fn,
-        onDelete: fn,
-        onEdit: fn
+        screenSize: ScreenSize.STANDART,
+        onContextMenu:(e, data, index)=>console.log(e, data, index),
+        onDelete: (data, index)=>console.log(data, index),
+        onEdit: (data, index)=>console.log(data, index)
+    },
+  };
+
+
+
+export const BaseSmall: Story = {
+  args: {
+    screenSize: ScreenSize.MOBILE
+  },
+};
+
+export const ActionSmall: Story = {
+    args: {
+        screenSize: ScreenSize.MOBILE,
+        actions:[
+            {
+                icon: <Home/>,
+                onClick: (e, data, index)=>console.log(e, data, index),
+            }
+        ]
+    },
+  };
+
+  export const DeleteSmall: Story = {
+    args: {
+        screenSize: ScreenSize.MOBILE,
+        onDelete:fn
+    },
+  };
+
+  export const MenuSmall: Story = {
+    args: {
+        screenSize: ScreenSize.MOBILE,
+        onContextMenu:fn
+    },
+  };
+
+  export const ComboSmall: Story = {
+    args: {
+        screenSize: ScreenSize.MOBILE,
+        onContextMenu:(e, data, index)=>console.log(e, data, index),
+        onDelete: (data, index)=>console.log(data, index),
+        onEdit: (data, index)=>console.log(data, index),
+        adaptive: true
     },
   };

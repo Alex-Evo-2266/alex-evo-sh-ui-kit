@@ -5,9 +5,10 @@ interface CellProps{
     data: IDataItem
     color?: string
     backgroundColor?: string
+    H?: number
 }
 
-export const TableCell = ({data, column, color, backgroundColor}:CellProps) => {
+export const TableCell = ({data, column, color, backgroundColor, H}:CellProps) => {
     
     function getValue(colummnName: string, data: IDataItem){
         for(let key in data)
@@ -37,7 +38,7 @@ export const TableCell = ({data, column, color, backgroundColor}:CellProps) => {
         return [getCell(data)]
     }
 
-    return(<td style={{backgroundColor: backgroundColor}}>
+    return(<td style={{backgroundColor: backgroundColor, height: H}}>
     {
         getCellArr(getValue(column.field, data)).map((item, index)=>(
             <p key={index} style={{color: item.color ?? color}} className={(item.onClick)?"no-click":""} onClick={item.onClick}>

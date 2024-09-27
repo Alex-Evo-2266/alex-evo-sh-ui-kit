@@ -1,6 +1,5 @@
 import { ScreenSize } from "../../model/sizeScreen"
-import { BaseText } from "../Text/Text/BaseText"
-import { H2, H3 } from "../Text/Text/Heading"
+import { Typography } from "../Text/Text/Typography"
 import "./Card.scss"
 
 export interface CardProps{
@@ -63,7 +62,7 @@ export const Card = ({style, className, action, imgSrc, alt, header, subhead, te
 			<div className="card-content-container">
 				<div className="card-Headline-container mb-1 font-bold">
 					<div className="headline">
-						<H2 screensize={screenSize} className="card-heading">{header}</H2>
+						<Typography type='title' weight='bold' screensize={screenSize} className="card-heading">{header}</Typography>
 					</div>
 					{
 						(iconButtonCell)?
@@ -76,7 +75,7 @@ export const Card = ({style, className, action, imgSrc, alt, header, subhead, te
 					(subhead)?
 					<div className="card-subhead-container mb-1">
 						<div className="subhead">
-							<H3 screensize={screenSize} className="card-subhead">{subhead}</H3>
+							<Typography style={{display: "block"}} type='title-2' weight='bold' screensize={screenSize} className="card-subhead">{subhead}</Typography>
 						</div>
 					</div>:null
 				}
@@ -84,7 +83,7 @@ export const Card = ({style, className, action, imgSrc, alt, header, subhead, te
 					(text)?
 					<div className="card-text-container mb-1">
 						<div className="text">
-							<BaseText screensize={screenSize} className="">{text}</BaseText>
+							<Typography type='body' screensize={screenSize} className="">{text}</Typography>
 						</div>
 					</div>:null
 				}
