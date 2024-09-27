@@ -24,7 +24,7 @@ interface ISelectFieldProps{
     onBlur?: (e:React.FocusEvent<HTMLInputElement>)=>void
     container: HTMLElement | null
     screensize?: ScreenSize
-    style: React.CSSProperties
+    style?: React.CSSProperties
 }
 
 const getTitleByValue = (items:(IOption | string)[], value: string) => {
