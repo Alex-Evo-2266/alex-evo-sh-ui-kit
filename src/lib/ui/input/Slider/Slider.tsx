@@ -16,6 +16,7 @@ export interface InputProps{
     onFocus?: (e:React.FocusEvent<HTMLInputElement>)=>void
     onBlur?: (e:React.FocusEvent<HTMLInputElement>)=>void
     onMouseUp?: (e:React.MouseEvent<HTMLInputElement>)=>void
+    style?: React.CSSProperties
 }
 
 export const Slider = (props:InputProps) => {
@@ -58,7 +59,7 @@ export const Slider = (props:InputProps) => {
 
     return (
         <div className="range">
-            <div className="field">
+            <div className="field" style={props.style}>
                 {
                     props.maxMinDisplay?
                     <div className="value left">{props.min ?? DEFAULT_MIN}</div>:
