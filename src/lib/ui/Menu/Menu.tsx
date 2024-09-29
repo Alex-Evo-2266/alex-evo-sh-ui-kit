@@ -20,7 +20,7 @@ export const Menu = (props:IMenu) => {
 
     return(
         <DialogModal container={props.container}>
-                <BaseMenu {...props}/>
+            <BaseMenu {...props}/>
         </DialogModal>
     )
 }
