@@ -30,18 +30,6 @@ export const TextField = ({styleContainer, type = "text", transparent, readOnly,
     const [isError, setError] = useState<boolean>(false)
     const [isFocus, setFocus] = useState<boolean>(false)
 
-    const emptyValueClass = useCallback((validEmptyValue?:boolean, value?: string | number) => {
-        if(error)
-            return setError(true)
-        if(validEmptyValue && (!value || value === ""))
-            return setError(true)
-        return setError(false)
-    },[])
-
-    useEffect(()=>{
-        emptyValueClass(validEmptyValue, value)
-    },[value, validEmptyValue, emptyValueClass])
-
     const focus = () => {
         if(!inputElement.current)
             return
@@ -57,6 +45,18 @@ export const TextField = ({styleContainer, type = "text", transparent, readOnly,
         onBlur && onBlur(event)
         setFocus(false)
     }
+
+    const emptyValueClass = useCallback((validEmptyValue?:boolean, value?: string | number) => {
+        if(error)
+            return setError(true)
+        if(validEmptyValue && (!value || value === ""))
+            return setError(true)
+        return setError(false)
+    },[])
+
+    useEffect(()=>{
+        emptyValueClass(validEmptyValue, value)
+    },[value, validEmptyValue, emptyValueClass])
 
     return(
         <div style={styleContainer} className={`input-field text-field ${border?"border":""} ${isFocus?"active":""} ${transparent?"transparent":""} ${className}`}>
