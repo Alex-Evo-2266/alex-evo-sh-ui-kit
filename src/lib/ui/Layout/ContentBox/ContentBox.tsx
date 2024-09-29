@@ -49,7 +49,7 @@ export const ContentBox = ({children, label, className, style, border, hiding, d
             setVisible(true)
     },[hiding, contentVisible])
 
-    const maxHeight = useMemo(()=>getMaxHeight(container.current),[container.current])
+    // const maxHeight = useMemo(()=>getMaxHeight(container.current),[container.current])
     const transition = useMemo(()=>getTransition(container.current), [container.current])
 console.log(transition)
     return(
