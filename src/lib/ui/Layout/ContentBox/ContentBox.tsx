@@ -68,7 +68,8 @@ console.log(transition)
             className='content-box-container-curtain' 
             style={{
                 transition:transition + "s", 
-                height:(contentVisible)?(maxHeight)?maxHeight + "px":"auto":"0px"
+                height: "auto"
+                // height:(contentVisible)?(maxHeight)?maxHeight + "px":"auto":"0px"
             }}
             >
                 <div className='content-box-container' ref={container}>

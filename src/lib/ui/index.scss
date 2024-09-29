@@ -2,6 +2,8 @@
 @import "./animate.scss";
 @import "./variable.scss";
 
+@import "./input//inputField.scss";
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
