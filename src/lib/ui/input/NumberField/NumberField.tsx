@@ -25,10 +25,12 @@ export interface ITextFieldProps{
 
 export const NumberField = ({styleContainer, transparent, readOnly, border, onClear, icon, onChange, name, value, placeholder, className, validEmptyValue, onFocus, onBlur, error, max, min}:ITextFieldProps) => {
 
-    const inputElement = useRef<HTMLInputElement>(null)
-    const [isError, setError] = useState<boolean>(false)
     const timeOutID = useRef<NodeJS.Timeout | null>(null)
     const timeIntervalID = useRef<NodeJS.Timeout | null>(null)
+    const timeOutSendID = useRef<NodeJS.Timeout | null>(null)
+    
+    const inputElement = useRef<HTMLInputElement>(null)
+    const [isError, setError] = useState<boolean>(false)
     const [val, setVal] = useState<number>(value ?? 0)
 
     const emptyValueClass = useCallback((validEmptyValue?:boolean, value?: string | number) => {
@@ -45,25 +47,37 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
         inputElement.current.focus()
     }
 
+    const changeHandler = useCallback((val: number, name?: string)=>{
+        if(!onChange) return;
+        if(timeOutSendID.current)
+            clearTimeout(timeOutSendID.current)
+        timeOutSendID.current = setTimeout(()=>{
+            if(timeOutSendID.current)
+                clearTimeout(timeOutSendID.current)
+            onChange(val, name)
+        },100)
+
+    },[onChange])
+
     const pluseClick = useCallback(()=>{
         setVal(prev=>{
             let newData = prev?prev + 1:1
             if(typeof(max) === 'number' && newData > max)
                 newData = max
-            setTimeout(()=>onChange && onChange(newData, name),100)
+            changeHandler(newData, name)
             return newData
         })
-    },[onChange, name, max])
+    },[changeHandler, name, max])
 
     const minusClick = useCallback(()=>{
         setVal(prev=>{
             let newData = prev?prev - 1:-1
             if(typeof(min) === 'number' && newData < min)
                 newData = min
-            setTimeout(()=>onChange && onChange(newData, name),100)
+            changeHandler(newData, name)
             return newData
         })
-    },[onChange, name, min])
+    },[changeHandler, name, min])
 
     const changeNumber = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         let newData = Number(event.target.value)
@@ -72,8 +86,8 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
         if(typeof(max) === 'number' && newData > max)
             newData = max
         setVal(Number(event.target.value))
-        setTimeout(()=>onChange && onChange(Number(event.target.value), name),0)
-    },[name, onChange, val, max, min])
+        changeHandler(newData, name)
+    },[name, changeHandler, val, max, min])
 
     const mouseUp = useCallback(()=>{
         if(timeOutID.current)
@@ -110,7 +124,7 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
     },[value, validEmptyValue, emptyValueClass])
 
     useEffect(()=>{
-        if(value)
+        if(value && !timeOutSendID.current)
             setVal(value)
     },[value])
 
