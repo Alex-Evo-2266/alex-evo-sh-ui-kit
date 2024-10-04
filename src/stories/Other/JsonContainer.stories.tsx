@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { JsonContainer } from '../../lib/index';
 import { fn } from '@storybook/test';
+import { BaseType } from '../../lib/ui/Other/JSON/JsonComponent';
 
 const meta = {
   title: 'Components/Other/JsonContainer',
@@ -37,5 +38,30 @@ export const Base: Story = {
 export const Json: Story = {
   args: {
     readonly: true
+  },
+};
+
+export const Array: Story = {
+  args: {
+    baseType: BaseType.ARRAY
+  },
+};
+
+export const Object: Story = {
+  args: {
+    baseType: BaseType.OBJECT
+  },
+};
+
+export const ObjectString: Story = {
+  args: {
+    baseType: BaseType.OBJECT,
+    onlyStringValue: true
+  },
+};
+export const ArrayString: Story = {
+  args: {
+    baseType: BaseType.ARRAY,
+    onlyStringValue: true
   },
 };

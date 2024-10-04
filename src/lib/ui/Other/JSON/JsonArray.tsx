@@ -10,9 +10,11 @@ export interface JsonArrayContainerProps{
     onChange: (data:JsonDataArray)=>void
     onDelete: ()=>void
     readonly?: boolean
+    initComponent?: boolean
+    onlyStringValue?: boolean
 }
 
-export const JsonArrayContainer:React.FC<JsonArrayContainerProps> = ({readonly, name, data, onChange, onDelete}) => {
+export const JsonArrayContainer:React.FC<JsonArrayContainerProps> = ({readonly, name, data, onChange, onDelete, initComponent, onlyStringValue}) => {
 
     const [newValue, setNewValue] = useState<string>("")
     const [visibleAdd, setVisibleAdd] = useState<boolean>(false)
@@ -32,7 +34,8 @@ export const JsonArrayContainer:React.FC<JsonArrayContainerProps> = ({readonly, 
     const addElement = useCallback(() => {
         let newVal = newValue
         try{
-            newVal = JSON.parse(newVal)
+            if(!onlyStringValue)
+                newVal = JSON.parse(newVal)
         }
         catch{}
         cancel()
@@ -83,7 +86,7 @@ export const JsonArrayContainer:React.FC<JsonArrayContainerProps> = ({readonly, 
                 }
                 <div className='json-line'>{"]"}
                 {
-                    (!readonly)?<span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>:null
+                    (!readonly && !initComponent)?<span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>:null
                 }
                 </div>
             </div>

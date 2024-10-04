@@ -23,12 +23,12 @@ export const BaseDialog = ({styleContainer, text, header, actionText, onSuccess,
     const Success = useCallback(() => {
         onSuccess && onSuccess()
         onHide && onHide()
-    },[])
+    },[onSuccess, onHide])
 
     const hide = useCallback(()=>{
         onCancel && onCancel()
         onHide && onHide()
-    },[])
+    },[onHide, onCancel])
 
     return(
         <BasicTemplateDialog style={styleContainer} header={header} action={<BaseDialogButton onHide={hide} actionText={actionText} onSuccess={Success}/>}>

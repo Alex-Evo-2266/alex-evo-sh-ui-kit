@@ -10,9 +10,11 @@ export interface JsonObjectContainerProps{
     onChange:(data:JsonDataObject)=>void
     onDelete:()=>void
     readonly?: boolean
+    initComponent?: boolean
+    onlyStringValue?: boolean
 }
 
-export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly, name, data, onChange, onDelete}) => {
+export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly, name, data, onChange, onDelete, initComponent, onlyStringValue}) => {
 
     const [newKay, setNewKey] = useState<string>("")
     const [newValue, setNewValue] = useState<string>("")
@@ -32,7 +34,8 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly
     const addElement = useCallback(() => {
         let newVal = newValue
         try{
-            newVal = JSON.parse(newVal)
+            if(!onlyStringValue)
+                newVal = JSON.parse(newVal)
         }
         catch{}
         cancel()
@@ -87,7 +90,7 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly
                 <div className='json-line'>
                 {"}"}
                 {
-                    (!readonly)?
+                    (!readonly && !initComponent)?
                         <span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>:null
                 }
                 </div>

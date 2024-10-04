@@ -1,18 +1,23 @@
 import { useCallback, useState } from 'react'
 import { JsonData } from '../../../model/jsonComponentModel'
 import './Json.scss'
-import { JsonComponent } from './JsonComponent'
+import { BaseType, JsonComponent } from './JsonComponent'
 
-export interface JsonContainerProps{
+export interface JsonContainerBaseProps{
     name: string
-    data?: JsonData
-    onChange?:(data:JsonData)=>void
+    data?: JsonData | string[] | {[key:string]:string}
+    onChange?:(data:JsonData | string[] | {[key:string]:string})=>void
     onDelete?: ()=>void
     readonly?: boolean
+    baseType?: BaseType
+    onlyStringValue?: boolean
 }
 
 
-export const JsonContainer:React.FC<JsonContainerProps> = ({readonly, name, data, onChange, onDelete}) => {
+export type JsonContainerProps = JsonContainerBaseProps
+
+
+export const JsonContainer:React.FC<JsonContainerProps> = ({readonly, name, data, onChange, onDelete, baseType = BaseType.NONE, onlyStringValue}) => {
 
 
     const [value, setValue] = useState<JsonData | undefined>(data || undefined)
@@ -57,6 +62,6 @@ export const JsonContainer:React.FC<JsonContainerProps> = ({readonly, name, data
         )
 
     return(
-        <JsonComponent readonly={readonly} onDelete={del} onChange={change} data={value} name={name}/>
+        <JsonComponent readonly={readonly} onDelete={del} onChange={change} data={value} baseType={baseType} name={name} onlyStringValue={onlyStringValue}/>
     )
 }
