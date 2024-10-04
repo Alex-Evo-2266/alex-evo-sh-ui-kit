@@ -126,6 +126,8 @@ export {
     DateField
 }
 
+export {BaseType} from './ui/Other/JSON/JsonComponent'
+
 // helpers
 
 import {getContainerData, getModalWindowCord, IContainerData, IOptionModalWindowCord} from './helpers/getContainerPozAndSize'
