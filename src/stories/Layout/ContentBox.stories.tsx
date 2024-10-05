@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Card, ContentBox, TextField } from '../../lib/index';
+import { Card, ContentBox, IconButton, TextField } from '../../lib/index';
+import { Trash } from 'lucide-react';
 // import React from 'react';
 
 const meta = {
@@ -29,5 +30,23 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
    
+  },
+};
+
+export const Border: Story = {
+  args: {
+   border: true,
+   hiding: true
+  },
+};
+
+export const BorderIcon: Story = {
+  args: {
+   border: true,
+   hiding: true,
+   action:{
+    onClick: ()=>{},
+    icon: <IconButton onClick={()=>{}} icon={<Trash/>}/>
+   }
   },
 };

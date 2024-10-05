@@ -3,6 +3,11 @@ import './ContentBox.scss'
 import { getContainerData } from '../../../helpers/getContainerPozAndSize'
 import { Typography } from '../../Text/Text/Typography'
 
+export interface ActionContentBox{
+    icon: React.ReactNode,
+    onClick:()=>void
+}
+
 export interface ContentBoxProps{
     children: React.ReactNode
     label: string
@@ -11,12 +16,13 @@ export interface ContentBoxProps{
     border?:boolean
     hiding?: boolean
     defaultVisible?: boolean
+    action?: ActionContentBox
 }
 
 const PADDING_BOTTOM = 10
 const SPEED_K = 0.002
 
-export const ContentBox = ({children, label, className, style, border, hiding, defaultVisible = false}:ContentBoxProps) => {
+export const ContentBox = ({children, label, className, style, border, hiding, defaultVisible = false, action}:ContentBoxProps) => {
 
     const [contentVisible, setVisible] = useState<boolean>(hiding?defaultVisible:true)
     const container = useRef<HTMLDivElement>(null)
@@ -39,7 +45,11 @@ export const ContentBox = ({children, label, className, style, border, hiding, d
         return height * SPEED_K
     }
 
-    const togle = () => {
+    const togle = (e:React.MouseEvent<HTMLDivElement>) => {
+        const element = e.target as Element
+        const root = element.closest('.action-btn')
+        if(root || element.classList.contains('action-btn'))
+            return
         if(hiding)
             setVisible(prev=>!prev)
     }
@@ -56,6 +66,7 @@ console.log(transition)
         <div style={style} className={`content-box ${border?"border":""} ${contentVisible?"active":""} ${className ?? ""}`}>
             <div className='content-box-label' onClick={togle}>
                 <Typography type='title'>{label}</Typography>
+                <div className='content-box-action-container'>
                 {
                     (hiding)?
                     <div className='content-box-status-container'>
@@ -63,6 +74,13 @@ console.log(transition)
                     </div>:
                     null
                 }
+                {
+                    (action) && 
+                    <div className='content-box-status-container action-btn' onClick={action.onClick}>
+                        {action.icon}
+                    </div>
+                }
+                </div>
             </div>
             <div 
             className='content-box-container-curtain' 
