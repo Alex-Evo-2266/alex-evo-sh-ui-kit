@@ -7,7 +7,7 @@ import { ScreenSize } from "../../model/sizeScreen"
 
 interface ITableProps extends ITable{
     adaptive?: boolean
-    screenSize: ScreenSize
+    screenSize?: ScreenSize
 }
 
 export const Table = ({data, columns, onDelete, onContextMenu, onEdit, actions, onClickRow, adaptive}:ITableProps) => {
