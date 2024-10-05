@@ -26,7 +26,14 @@ const meta = {
     },
     {
         field: "test3",
-        title: "test3"
+        title: "test3",
+        template(cell) {
+          return(<div className='sdgd' style={{backgroundColor: 'orange'}}>
+            {cell.map((item, index)=>(
+              <p key={index}>{String(item.content)}</p>
+            ))}
+          </div>)
+        },
     }],
     data:[
         {

@@ -10,7 +10,7 @@ interface CellProps{
 
 export const TableCell = ({data, column, color, backgroundColor, H}:CellProps) => {
     
-    function getValue(colummnName: string, data: IDataItem){
+    function getValue(colummnName: string, data: IDataItem): celData | celData[] | undefined{
         for(let key in data)
         {
             if(colummnName === key)
@@ -40,11 +40,17 @@ export const TableCell = ({data, column, color, backgroundColor, H}:CellProps) =
 
     return(<td style={{backgroundColor: backgroundColor, height: H}}>
     {
-        getCellArr(getValue(column.field, data)).map((item, index)=>(
-            <p key={index} style={{color: item.color ?? color}} className={(item.onClick)?"no-click":""} onClick={item.onClick}>
-                {(typeof(item.content) === "string" || typeof(item.content) === "number")?item.content:<item.content/>}
-            </p>
-        ))
+        function(){
+            const dataCell = getCellArr(getValue(column.field, data))
+            if(column.template)
+                return column.template(dataCell, data)
+
+            return(dataCell.map((item, index)=>(
+                <p key={index} style={{color: item.color ?? color}} className={(item.onClick)?"no-click":""} onClick={item.onClick}>
+                    {(typeof(item.content) === "string" || typeof(item.content) === "number")?item.content:<item.content/>}
+                </p>
+            )))
+        }()
     }
     </td>)
 }

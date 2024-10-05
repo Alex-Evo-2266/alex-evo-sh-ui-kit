@@ -5,6 +5,7 @@ export interface IColumn{
     title: string
 	color?: string
     backgroundColor?: string
+    template?: (cell:ICell[], data: IDataItem)=>React.ReactNode
 }
 
 export type Column = IColumn
