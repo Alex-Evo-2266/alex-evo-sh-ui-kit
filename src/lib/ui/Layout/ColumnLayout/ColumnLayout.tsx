@@ -12,12 +12,13 @@ export interface ColumnLayoutProps{
     style?: React.CSSProperties
     items: IColumnElement[]
     countColumn: number,
+    gap?: number,
     onClickColl?: (index: number, e:React.MouseEvent<HTMLDivElement>)=>void
     onContextMenu?: (event:React.MouseEvent<HTMLDivElement>)=>void
     onClick?: (event:React.MouseEvent<HTMLDivElement>)=>void
 }
 
-export const ColumnLayout:React.FC<ColumnLayoutProps> = ({onClick, onContextMenu, className, style, countColumn, items, onClickColl, classNameColumn}) => {
+export const ColumnLayout:React.FC<ColumnLayoutProps> = ({onClick, onContextMenu, gap, className, style, countColumn, items, onClickColl, classNameColumn}) => {
 
     const getColumns = (count: number, items: IColumnElement[]) => {
         let arr = new Array<React.ReactNode[]>(count).fill([]).map(_=>new Array<React.ReactNode>())
@@ -36,7 +37,7 @@ export const ColumnLayout:React.FC<ColumnLayoutProps> = ({onClick, onContextMenu
     const click = (onClickColl)?onClickColl:()=>{}
 
     return (
-        <div onClick={onClick} onContextMenu={onContextMenu} style={{...style, gridTemplateColumns:`repeat(${countColumn}, 1fr)`}} className={`alex-evo-sh-ui-kit-column-layout ${className}`}>
+        <div onClick={onClick} onContextMenu={onContextMenu} style={{...style, gap: gap?`${gap}px`:"5px", gridTemplateColumns:`repeat(${countColumn}, 1fr)`}} className={`alex-evo-sh-ui-kit-column-layout ${className}`}>
             {
                 getColumns(countColumn, items).map((item, index)=>(
                     <div onClick={(e)=>click(index, e)} key={index} className={`alex-evo-sh-ui-kit-column-layout-coll ${classNameColumn}`}>

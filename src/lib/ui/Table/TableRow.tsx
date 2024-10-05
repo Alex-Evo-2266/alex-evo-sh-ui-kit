@@ -2,6 +2,7 @@ import { Edit2, MoreVertical, Trash2 } from "lucide-react"
 import { IconButton } from "../.."
 import { Column, IDataItem, ITableAction } from "../../model/table"
 import { TableCell } from "./TableCell"
+import { useCallback } from "react"
 
 interface RowProps{
 	item: IDataItem
@@ -23,10 +24,10 @@ export const TableRow = ({actions, item, columns, onContextMenu, onDelete, onEdi
 		return true
 	}
 
-	const click = (event:React.MouseEvent<HTMLTableRowElement>)=>{
+	const click = useCallback((event:React.MouseEvent<HTMLTableRowElement>)=>{
 		if(isRow(event))
 			onClickRow && onClickRow(item, index)
-	}
+	},[index, onClickRow])
 	
 	return(
 		<tr className="table-row" onClick={click}>
