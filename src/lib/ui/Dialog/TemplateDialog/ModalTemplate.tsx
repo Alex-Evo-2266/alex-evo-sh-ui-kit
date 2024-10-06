@@ -2,9 +2,10 @@
 export interface ModalTemplateProps{
     children: React.ReactNode
     onHide?: ()=>void
+    disableBackplate?: boolean
 }
 
-export const ModalTemplate:React.FC<ModalTemplateProps> = ({children, onHide}) => {
+export const ModalTemplate:React.FC<ModalTemplateProps> = ({children, onHide, disableBackplate}) => {
 
     function hide() {
         onHide && onHide()
@@ -12,7 +13,7 @@ export const ModalTemplate:React.FC<ModalTemplateProps> = ({children, onHide}) =
 
     return(
         <div className="modal-container">
-            <div onClick={hide} className="backplate"></div>
+            <div onClick={hide} style={{display:disableBackplate?"none":undefined}} className="backplate"></div>
             {children}
         </div>
     )

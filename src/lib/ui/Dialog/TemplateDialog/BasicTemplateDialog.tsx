@@ -9,16 +9,17 @@ export interface DialogProps{
     className?: string
     style?: React.CSSProperties
     clearStyle?: boolean
+    disableBackplate?: boolean
 }
 
-export const BasicTemplateDialog = ({className, children, header, action, onHide, style, clearStyle = false}:DialogProps) => {
+export const BasicTemplateDialog = ({className, children, header, action, onHide, style, clearStyle = false, disableBackplate}:DialogProps) => {
 
     function hide() {
         onHide && onHide()
     }
 
     return(
-        <ModalTemplate onHide={hide}>
+        <ModalTemplate onHide={hide} disableBackplate={disableBackplate}>
             <div style={style} className={`${clearStyle?"":"dialog-container"} dialog-container-base ${className}`}>
                 {
                     (header)?

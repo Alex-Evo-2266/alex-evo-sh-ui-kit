@@ -13,6 +13,7 @@ export interface DialogProps{
     className?: string
 	style?: React.CSSProperties
 	marginBottom?: number
+    disableBackplate?: boolean
 }
 
 interface ButtonDialogProps{
@@ -27,7 +28,7 @@ const ButtonDialog = ({onHide, onSave}:ButtonDialogProps) => (
 	</div>
 )
 
-export const FullScrinTemplateDialog = ({style, className, header, children, onSave, onHide, marginBottom}:DialogProps) => {
+export const FullScrinTemplateDialog = ({style, className, header, children, onSave, onHide, marginBottom, disableBackplate}:DialogProps) => {
 
 	const [fullScreenDisplay, setFullScreenDisplay] = useState<boolean>(false)
 
@@ -59,7 +60,7 @@ export const FullScrinTemplateDialog = ({style, className, header, children, onS
 	
 	if(!fullScreenDisplay)
 		return(
-			<BasicTemplateDialog style={style} header={header} className={`full-screen-dialog-base-format ${className}`} onHide={hide} children={children} action={<ButtonDialog onHide={hide} onSave={onSave?save:undefined}/>}/>
+			<BasicTemplateDialog disableBackplate={disableBackplate} style={style} header={header} className={`full-screen-dialog-base-format ${className}`} onHide={hide} children={children} action={<ButtonDialog onHide={hide} onSave={onSave?save:undefined}/>}/>
 		)
 
 	return(
