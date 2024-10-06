@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Card, ContentBox, IconButton, TextField } from '../../lib/index';
+import { Card, ContentBox, TextField } from '../../lib/index';
 import { Trash } from 'lucide-react';
 // import React from 'react';
 
