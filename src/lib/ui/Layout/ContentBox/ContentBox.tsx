@@ -68,17 +68,15 @@ console.log(transition)
                 <Typography type='title'>{label}</Typography>
                 <div className='content-box-action-container'>
                 {
+                    (action)? 
+                    <div className='content-box-status-container action-btn' onClick={action.onClick}>
+                        {action.icon}
+                    </div>:
                     (hiding)?
                     <div className='content-box-status-container'>
                         <span className={`content-box-status ${contentVisible?"active":""}`}></span>
                     </div>:
                     null
-                }
-                {
-                    (action) && 
-                    <div className='content-box-status-container action-btn' onClick={action.onClick}>
-                        {action.icon}
-                    </div>
                 }
                 </div>
             </div>

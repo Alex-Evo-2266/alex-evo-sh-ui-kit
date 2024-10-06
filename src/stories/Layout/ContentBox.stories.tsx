@@ -46,7 +46,7 @@ export const BorderIcon: Story = {
    hiding: true,
    action:{
     onClick: ()=>{},
-    icon: <IconButton onClick={()=>{}} icon={<Trash/>}/>
+    icon: <Trash/>
    }
   },
 };

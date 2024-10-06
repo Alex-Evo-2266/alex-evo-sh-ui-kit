@@ -32,6 +32,9 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                &.action-btn{
+                    cursor: pointer;
+                }
                 .content-box-status{
                     width: 10px;
                     height: 10px;
