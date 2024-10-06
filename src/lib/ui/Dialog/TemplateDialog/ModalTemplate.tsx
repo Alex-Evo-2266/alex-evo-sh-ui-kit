@@ -12,7 +12,7 @@ export const ModalTemplate:React.FC<ModalTemplateProps> = ({children, onHide, di
     }
 
     return(
-        <div className="modal-container" style={{zIndex:disableBackplate?0:undefined}}>
+        <div className="modal-container" style={{zIndex:disableBackplate?"0":undefined}}>
             <div onClick={hide} style={{display:disableBackplate?"none":undefined}} className="backplate"></div>
             {children}
         </div>
