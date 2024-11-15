@@ -59,7 +59,7 @@ export const TextField = ({styleContainer, type = "text", transparent, readOnly,
     },[value, validEmptyValue, emptyValueClass])
 
     return(
-        <div style={styleContainer} className={`input-field text-field ${border?"border":""} ${isFocus?"active":""} ${transparent?"transparent":""} ${className}`}>
+        <div style={styleContainer} className={`input-field text-field ${border?"border":""} ${isFocus?"active":""} ${transparent?"transparent":""} ${isError?"error":""} ${className}`}>
             {
                 (icon)?
                 <div className="icon-container" onClick={focus}>{icon}</div>:
