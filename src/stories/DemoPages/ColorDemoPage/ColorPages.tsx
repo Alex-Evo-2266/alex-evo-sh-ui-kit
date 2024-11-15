@@ -21,9 +21,9 @@ export const ColorPage = () => {
         <>
         <div>
             <ContentBox label="Primary colors" style={{padding:"10px"}}>
-                <ColorField userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={lightColor.Primary_color} onChange={c=>setColor({Primary_color:c})}/>
-                <ColorField border container={document.getElementById('portal-root')} value={lightColor.Secondary_color} onChange={c=>setColor({Secondary_color:c})}/>
-                <ColorField border container={document.getElementById('portal-root')} value={lightColor.Tertiary_color} onChange={c=>setColor({Tertiary_color:c})}/>
+                <ColorField placeholder="test" def="#0000" userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={lightColor.Primary_color} onChange={c=>setColor({Primary_color:c})}/>
+                <ColorField def="red" border container={document.getElementById('portal-root')} value={lightColor.Secondary_color} onChange={c=>setColor({Secondary_color:c})}/>
+                <ColorField def="#346632" border container={document.getElementById('portal-root')} value={lightColor.Tertiary_color} onChange={c=>setColor({Tertiary_color:c})}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">

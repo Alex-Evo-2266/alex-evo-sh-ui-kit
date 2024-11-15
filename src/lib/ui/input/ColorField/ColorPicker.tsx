@@ -19,15 +19,27 @@ const DEFAULT_COLORS = [
     '#E64AA9'
   ]
 
+const DEF_COLOR = {h:0, s:1, v:0.5}
+
+const defBeginColog = (beginColor: string) => {
+    try{
+        return RGBtoHSV(HEXtoRGB(beginColor))
+    }
+    catch{
+        return DEF_COLOR
+    }
+}
+
 interface ColorPickerProps{
     onHide?: ()=>void
     onChange?: (hexColor: string)=>void
     beginColor?: string
     userColor?: string[]
     onAddColor?: (colors: string[])=>void
+    def?: string
 }
 
-export const ColorPicker:React.FC<ColorPickerProps> = ({onHide, beginColor, onChange, onAddColor, userColor = []}) => {
+export const ColorPicker:React.FC<ColorPickerProps> = ({onHide, beginColor, onChange, onAddColor, def, userColor = []}) => {
 
     const hueCanvas = useRef<HTMLCanvasElement>(null)
     const hueCursor = useRef<HTMLButtonElement>(null)
@@ -35,7 +47,7 @@ export const ColorPicker:React.FC<ColorPickerProps> = ({onHide, beginColor, onCh
     const spectrumCanvas = useRef<HTMLCanvasElement>(null)
     const spectrumCursor = useRef<HTMLButtonElement>(null)
 
-    const [color, setColor] = useState<IColor>(beginColor?RGBtoHSV(HEXtoRGB(beginColor)):{h:0, s:1, v:0.5})
+    const [color, setColor] = useState<IColor>(beginColor?defBeginColog(beginColor):DEF_COLOR)
     const RGBColor:IColorRGB = useMemo(()=>HSVtoRGB(color), [color])
     const HEXColor:string = useMemo(()=>"#"+RGBtoHEX(RGBColor), [RGBColor])
     const [hexMode, setHexMode] = useState<boolean>(false)
@@ -83,6 +95,11 @@ export const ColorPicker:React.FC<ColorPickerProps> = ({onHide, beginColor, onCh
     const hexHandler = useCallback((value: string) =>{
         setHEXColorBuff(value)
     },[])
+
+    const setDefault = useCallback(() =>{
+        if (def)
+            onChange && onChange(def)
+    },[def])
 
     useEffect(()=>{
         if(HEXColorBuff.length === 4 || HEXColorBuff.length === 7)
@@ -183,6 +200,13 @@ export const ColorPicker:React.FC<ColorPickerProps> = ({onHide, beginColor, onCh
                     <span style={{backgroundColor: `#${RGBtoHEX(HSVtoRGB(color))}`}} className='color-indicator'></span>
                     <span>Add to Swatches</span>
                 </button>
+                {
+                    def && 
+                    <button onClick={()=>setDefault()} className='button-color-picker add-swatch'>
+                        <span style={{backgroundColor: def}} className='color-indicator'></span>
+                        <span>set default</span>
+                    </button>
+                }
             </div>
         </BasicTemplateDialog>
     )
