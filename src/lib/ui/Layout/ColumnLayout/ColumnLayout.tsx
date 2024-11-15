@@ -37,10 +37,10 @@ export const ColumnLayout:React.FC<ColumnLayoutProps> = ({onClick, onContextMenu
     const click = (onClickColl)?onClickColl:()=>{}
 
     return (
-        <div onClick={onClick} onContextMenu={onContextMenu} style={{...style, gap: gap?`${gap}px`:"5px", gridTemplateColumns:`repeat(${countColumn}, 1fr)`}} className={`alex-evo-sh-ui-kit-column-layout ${className}`}>
+        <div onClick={onClick} onContextMenu={onContextMenu} style={{...style, gap: gap != undefined?`${gap}px`:"5px", gridTemplateColumns:`repeat(${countColumn}, 1fr)`}} className={`${className} alex-evo-sh-ui-kit-column-layout`}>
             {
                 getColumns(countColumn, items).map((item, index)=>(
-                    <div onClick={(e)=>click(index, e)} key={index} className={`alex-evo-sh-ui-kit-column-layout-coll ${classNameColumn}`}>
+                    <div onClick={(e)=>click(index, e)} key={index} className={`${classNameColumn} alex-evo-sh-ui-kit-column-layout-coll`}>
                         {
                             item.map((item2, index2)=>(
                                 <div key={index2} className="alex-evo-sh-ui-kit-column-layout-item">
