@@ -11,7 +11,7 @@
     background-color: var(--Surface-container-color);
     box-shadow: 1px 1px 6px -2px var(--Shadow-color);
     color: var(--On-Surface-color);
-    border-radius: 12px;
+    border-radius: var(--card-border-radius);
     position: relative;
     .card-subhead,
     .card-heading{
@@ -28,7 +28,7 @@
         color: var(--Primary-color);
     }
     .card-img-container{
-        border-radius: 12px;
+        border-radius: var(--card-border-radius);
         max-height: 200px;
         z-index: 1;
         overflow: hidden;

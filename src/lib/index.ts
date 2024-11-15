@@ -68,6 +68,8 @@ export type {styleType} from './ui/Base/Button/Button'
 
 export type {IColumnElement} from './ui/Layout/ColumnLayout/ColumnLayout'
 
+export {Panel} from './ui/Layout/Panel/Panel'
+
 export {
     BaseMenu,
     Button, 
