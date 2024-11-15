@@ -1,13 +1,15 @@
 import './Panel.scss'
 
 interface PanelProps{
-    children: React.ReactNode
+    children?: React.ReactNode
+    className?: string
+    style?: React.CSSProperties
 }
 
-export const Panel:React.FC<PanelProps> = ({children}) => {
+export const Panel:React.FC<PanelProps> = ({children, className, style}) => {
 
     return(
-        <div className='alex-evo-sh-ui-kit alex-evo-sh-ui-kit-panel'>
+        <div style={style} className={`alex-evo-sh-ui-kit alex-evo-sh-ui-kit-panel ${className}`}>
             {children}
         </div>
     )
