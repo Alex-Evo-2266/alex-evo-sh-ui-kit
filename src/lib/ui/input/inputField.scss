@@ -5,8 +5,9 @@
 	align-items: center;
 	min-height: calc(32px - var(--border-size));
 	position: relative;
-	padding: 0;
-	margin: 5px 0;
+	padding-inline: 0;
+	padding-block: 0;
+    margin-block: 14px;
 	border: none;
 	border-bottom: var(--border-base);
 	&.active{
@@ -26,7 +27,7 @@
 			font-size: var(--body-standart-screen);
 			color: var(--On-surface-color);
 			background-color: transparent;
-			padding-left: 15px;
+			padding-inline-start: 15px;
 		}
 		label{
 			font-size: var(--body-standart-screen);
@@ -54,7 +55,7 @@
 	{
 		flex: 24px;
 		position: relative;
-		padding: 0 12px;
+		padding-inline: 12px;
 		display: flex;
 		align-items: center;
 	}
