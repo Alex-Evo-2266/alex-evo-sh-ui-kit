@@ -2,9 +2,10 @@
 
 .btn{
 	box-sizing: border-box;
-	margin: 5px;
+	margin-block: 5px;
 	font-weight: 600;
 	cursor: pointer;
+	outline: none;
 	border: none;
 	line-height: 40px;
 	border-radius: 20px;
