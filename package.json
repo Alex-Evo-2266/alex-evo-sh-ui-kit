@@ -1,6 +1,6 @@
 {
   "name": "alex-evo-sh-ui-kit",
-  "version": "1.0.45",
+  "version": "1.0.46",
   "type": "module",
   "scripts": {
     "dev": "vite",
