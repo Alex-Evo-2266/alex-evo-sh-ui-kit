@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import {ListItem, IconButton } from '../../lib/index';
 // import React from 'react';
+import img from '../img/fon-base.jpg'
 
 
 const meta = {
@@ -42,6 +43,15 @@ export const Value: Story = {
     args: {
       hovered: true,
       icon: <i>+</i>,
+      header: "test header",
+      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias et, neque quia reiciendis sapiente nam! Ratione at harum tempora aut amet enim consequuntur voluptatum libero, perspiciatis sed recusandae? Minus, dolorem?"
+    },
+  };
+
+  export const IMG: Story = {
+    args: {
+      hovered: true,
+      icon: <img src={img}/>,
       header: "test header",
       text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias et, neque quia reiciendis sapiente nam! Ratione at harum tempora aut amet enim consequuntur voluptatum libero, perspiciatis sed recusandae? Minus, dolorem?"
     },

@@ -23,7 +23,7 @@ interface ButtonDialogProps{
 
 const ButtonDialog = ({onHide, onSave}:ButtonDialogProps) => (
 	<div className="dialog-button-container">
-		<TextButton onClick={onHide}>cancel</TextButton>
+		{(onHide)?<TextButton onClick={onHide}>cancel</TextButton>:null}
 		{(onSave)?<TextButton onClick={onSave}>save</TextButton>:null}
 	</div>
 )
@@ -60,14 +60,14 @@ export const FullScrinTemplateDialog = ({style, className, header, children, onS
 	
 	if(!fullScreenDisplay)
 		return(
-			<BasicTemplateDialog disableBackplate={disableBackplate} style={style} header={header} className={`full-screen-dialog-base-format ${className}`} onHide={hide} children={children} action={<ButtonDialog onHide={hide} onSave={onSave?save:undefined}/>}/>
+			<BasicTemplateDialog disableBackplate={disableBackplate} style={style} header={header} className={`full-screen-dialog-base-format ${className}`} onHide={hide} children={children} action={<ButtonDialog onHide={onHide? hide: undefined} onSave={onSave?save:undefined}/>}/>
 		)
 
 	return(
 		<div style={{...style, height:`calc(100vh - ${marginBottom}px`}} className={`full-screen-dialog-container ${className}`}>
 			<div className="full-screen-dialog-header">
 				<div className="dialog-icon-container">
-					<IconButton transparent onClick={hide} icon={<X/>}/>
+					{onHide && <IconButton transparent onClick={hide} icon={<X/>}/>}
 				</div>
 				<div className="header">{header}</div>
 				<div className="save-container">{onSave?<TextButton onClick={save}>save</TextButton>:null}</div>
