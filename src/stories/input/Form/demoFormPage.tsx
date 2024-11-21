@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Divider, Form } from "../../../lib"
+import { Button, Divider, Form } from "../../../lib"
 
 type ValueType = {
     name: string
@@ -8,6 +8,8 @@ type ValueType = {
 }
 
 export const TestFormPage = () => {
+
+    const [visible, setVisible] = useState(false)
 
     const def:ValueType = {
         name: "erg",
@@ -35,16 +37,27 @@ export const TestFormPage = () => {
     },[value2])
 
     return (
-        <Form value={value} changeValue={change}>
-            <Form.TextInput name="name" border placeholder="name"/>
-            <Form.TextInput name="data" border clear/>
-            <Form.NumberInput name="n" border clear/>
-            <Divider/>
-            <Form value={value2} changeValue={change2}>
+        <>
+        <div id="test-select"></div>
+        <Button onClick={()=>setVisible(true)}>open</Button>
+        {
+            visible && 
+            <Form value={value} changeValue={change}>
                 <Form.TextInput name="name" border placeholder="name"/>
                 <Form.TextInput name="data" border clear/>
                 <Form.NumberInput name="n" border clear/>
+                <Form.NumberInput name="n" border clear/>
+                <Form.SelectInput container_id="test-select" items={["test1", "test2", "test3"]} name="n" border/>
+                <Form.SelectInput container_id="test-select" items={["test1", "test2", "test3"]} name="n" border/>
+                <Divider/>
+                <Form value={value2} changeValue={change2}>
+                    <Form.TextInput name="name" border placeholder="name"/>
+                    <Form.TextInput name="data" border clear/>
+                    <Form.NumberInput name="n" border clear/>
+                </Form>
             </Form>
-        </Form>
+        }
+        </>
+        
     )
 }

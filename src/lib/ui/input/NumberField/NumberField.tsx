@@ -53,11 +53,15 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
 
     const changeHandler = useCallback((val: number, name?: string)=>{
         if(!onChange) return;
-        if(timeOutSendID.current)
+        if(timeOutSendID.current){
             clearTimeout(timeOutSendID.current)
+            timeOutSendID.current = null
+        }
         timeOutSendID.current = setTimeout(()=>{
-            if(timeOutSendID.current)
+            if(timeOutSendID.current){
                 clearTimeout(timeOutSendID.current)
+                timeOutSendID.current = null
+            }
             onChange(val, name)
         },100)
 
@@ -128,7 +132,8 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
     },[value, validEmptyValue, emptyValueClass])
 
     useEffect(()=>{
-        if(value && !timeOutSendID.current)
+        console.log('d',timeOutSendID.current)
+        if(value !== undefined && !timeOutSendID.current)
             setVal(value)
     },[value])
 

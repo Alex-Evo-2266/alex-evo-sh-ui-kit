@@ -25,6 +25,7 @@ interface ISelectFieldProps{
     container: HTMLElement | null
     screensize?: ScreenSize
     style?: React.CSSProperties
+    ref?: React.RefObject<HTMLInputElement>
 }
 
 const getTitleByValue = (items:(IOption | string)[], value: string) => {
@@ -42,7 +43,7 @@ interface IMenuSize extends IPoint{
     width: number
 }
 
-export const SelectField = ({style, screensize = ScreenSize.STANDART, items, onChange, value, placeholder, className, border, name, error, onBlur, onFocus, container}:ISelectFieldProps) => {
+export const SelectField = ({ref, style, screensize = ScreenSize.STANDART, items, onChange, value, placeholder, className, border, name, error, onBlur, onFocus, container}:ISelectFieldProps) => {
 
     const [selectTitle, setSelectTitle] = useState<string>("")
     const [pozition, setPozition] = useState<IMenuSize>({x:0, y:0, width: 100})
@@ -78,6 +79,7 @@ export const SelectField = ({style, screensize = ScreenSize.STANDART, items, onC
             <div style={style} className={`input-field select-field ${className} ${border?"border":""}`}>
                 <div className="input-container" onClick={show}>
                     <input
+                    ref={ref}
                     required 
                     type="text"
                     className={`${error?"error":""}`} 
