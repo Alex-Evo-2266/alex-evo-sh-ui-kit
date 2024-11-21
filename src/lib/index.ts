@@ -168,3 +168,6 @@ export {SelectField, type IOption} from './ui/input/SelectField/Select'
 
 export {useScreenSize} from './hooks/screenSize.hook'
 export { ScreenSize } from "./model/sizeScreen"
+
+
+export {Form} from './ui/input/Form/Form'

@@ -21,15 +21,16 @@ export interface ITextFieldProps{
     min?: number
     max?: number
     styleContainer?: React.CSSProperties
+    ref?: React.RefObject<HTMLInputElement>
 }
 
-export const NumberField = ({styleContainer, transparent, readOnly, border, onClear, icon, onChange, name, value, placeholder, className, validEmptyValue, onFocus, onBlur, error, max, min}:ITextFieldProps) => {
+export const NumberField = ({ref, styleContainer, transparent, readOnly, border, onClear, icon, onChange, name, value, placeholder, className, validEmptyValue, onFocus, onBlur, error, max, min}:ITextFieldProps) => {
 
     const timeOutID = useRef<NodeJS.Timeout | null>(null)
     const timeIntervalID = useRef<NodeJS.Timeout | null>(null)
     const timeOutSendID = useRef<NodeJS.Timeout | null>(null)
     
-    const inputElement = useRef<HTMLInputElement>(null)
+    const inputContainerElement = useRef<HTMLDivElement>(null)
     const [isError, setError] = useState<boolean>(false)
     const [val, setVal] = useState<number>(value ?? 0)
 
@@ -42,9 +43,12 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
     },[])
 
     const focus = () => {
-        if(!inputElement.current)
+        if(!inputContainerElement.current)
             return
-        inputElement.current.focus()
+        const input = inputContainerElement.current.querySelector('input')
+        if(!input)
+            return
+        input.focus()
     }
 
     const changeHandler = useCallback((val: number, name?: string)=>{
@@ -129,7 +133,7 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
     },[value])
 
     return(
-        <div style={styleContainer} className={`input-field number-field ${border?"border":""} ${transparent?"transparent":""} ${className}`}>
+        <div ref={inputContainerElement} style={styleContainer} className={`input-field number-field ${border?"border":""} ${transparent?"transparent":""} ${className}`}>
             {
                 (icon)?
                 <div className="icon-container" onClick={focus}>{icon}</div>:
@@ -137,7 +141,7 @@ export const NumberField = ({styleContainer, transparent, readOnly, border, onCl
             }
             <div className="input-container" onClick={focus}>
                 <input
-                ref={inputElement}
+                ref={ref}
                 max={max}
                 min={min}
                 readOnly={readOnly}

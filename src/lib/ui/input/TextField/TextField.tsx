@@ -22,18 +22,22 @@ export interface ITextFieldProps{
     min?: number
     max?: number
     styleContainer?: React.CSSProperties
+    ref?: React.LegacyRef<HTMLInputElement> | undefined
 }
 
-export const TextField = ({styleContainer, type = "text", transparent, readOnly, password, border, onClear, icon, onChange, name, value, placeholder, className, validEmptyValue, onFocus, onBlur, error, max, min}:ITextFieldProps) => {
+export const TextField = ({ref, styleContainer, type = "text", transparent, readOnly, password, border, onClear, icon, onChange, name, value, placeholder, className, validEmptyValue, onFocus, onBlur, error, max, min}:ITextFieldProps) => {
 
-    const inputElement = useRef<HTMLInputElement>(null)
+    const inputContainerElement = useRef<HTMLDivElement>(null)
     const [isError, setError] = useState<boolean>(false)
     const [isFocus, setFocus] = useState<boolean>(false)
 
     const focus = () => {
-        if(!inputElement.current)
+        if(!inputContainerElement.current)
             return
-        inputElement.current.focus()
+        const input = inputContainerElement.current.querySelector('input')
+        if(!input)
+            return
+        input.focus()
     }
 
     const changeFocus = (e:React.FocusEvent<HTMLInputElement>) => {
@@ -59,7 +63,7 @@ export const TextField = ({styleContainer, type = "text", transparent, readOnly,
     },[value, validEmptyValue, emptyValueClass])
 
     return(
-        <div style={styleContainer} className={`input-field text-field ${border?"border":""} ${isFocus?"active":""} ${transparent?"transparent":""} ${isError?"error":""} ${className}`}>
+        <div ref={inputContainerElement} style={styleContainer} className={`input-field text-field ${border?"border":""} ${isFocus?"active":""} ${transparent?"transparent":""} ${isError?"error":""} ${className}`}>
             {
                 (icon)?
                 <div className="icon-container" onClick={focus}>{icon}</div>:
@@ -67,7 +71,7 @@ export const TextField = ({styleContainer, type = "text", transparent, readOnly,
             }
             <div className="input-container" onClick={focus}>
                 <input
-                ref={inputElement}
+                ref={ref}
                 max={max}
                 min={min}
                 readOnly={readOnly}
