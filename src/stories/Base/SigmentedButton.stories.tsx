@@ -42,3 +42,12 @@ export const Multiple: Story = {
     },
   };
   
+
+  export const ReadOnly: Story = {
+    args: {
+        multiple:true,
+        value: ["btn1", "btn3"],
+        readOnly: true
+    },
+  };
+  

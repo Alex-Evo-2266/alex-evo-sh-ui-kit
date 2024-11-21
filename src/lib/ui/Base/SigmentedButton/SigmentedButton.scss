@@ -15,13 +15,16 @@
             border: 1px solid var(--Outline-color);
             color: var(--On-surface-color);
             height: 40px;
-            padding: 0 12px;
+            padding-inline: 20px;
             align-items: center;
             justify-content: center;
             .icon-container{
                 margin-right: 12px;
+                width: 24px;
+                height: 24px;
             }
             &.active{
+                padding-inline: 12px;
                 background: var(--Secondary-container-color);
                 color: var(--On-secondary-container-color);
             }

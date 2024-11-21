@@ -1,16 +1,19 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "./SigmentedButton.scss"
 import { Check } from "lucide-react"
 
 export interface SigmentedButtonProps{
     className?: string
-    onClick?: (event:React.MouseEvent<HTMLButtonElement>)=>void
-    onContextMenu?: (event:React.MouseEvent<HTMLButtonElement>)=>void
-    onChange?: (value: string[], event?:React.MouseEvent<HTMLButtonElement>)=>void
+    onClick?: (event:React.MouseEvent<HTMLInputElement>)=>void
+    onContextMenu?: (event:React.MouseEvent<HTMLInputElement>)=>void
+    onChange?: (value: string[], event?:React.MouseEvent<HTMLInputElement>)=>void
     items: string[]
     value?: string[] | string
     multiple?: boolean
     style?: React.CSSProperties
+    name?: string
+    readOnly?: boolean
+    ref?: React.RefObject<HTMLInputElement>
   }
 
 const getValue = (value?: string[] | string) => {
@@ -21,13 +24,16 @@ const getValue = (value?: string[] | string) => {
     return [value]
 }
 
-export const SigmentedButton = ({style, multiple, value, items, className, onClick, onContextMenu, onChange}: SigmentedButtonProps) => {
+export const SigmentedButton = ({readOnly, ref, style, multiple, value, items, className, name, onClick, onContextMenu, onChange}: SigmentedButtonProps) => {
 
     const [values, setValues] = useState<string[]>(getValue(value))
 
-    const click = (e:React.MouseEvent<HTMLButtonElement>) => {
+    const click = (e:React.MouseEvent<HTMLInputElement>) => {
+        if(readOnly){
+            return
+        }
         onClick && onClick(e)
-        const button: HTMLButtonElement = e.currentTarget
+        const button: HTMLInputElement = e.currentTarget
         if(!multiple)
         {
             if(!button.dataset["el"])
@@ -46,15 +52,21 @@ export const SigmentedButton = ({style, multiple, value, items, className, onCli
         onChange && onChange(newValues, e)
     }
 
+    useEffect(()=>{
+        if(value !== undefined)
+            setValues(getValue(value))
+    },[value])
+
     return(
     <div style={style} className={`sigmentedbutton-container ${className ?? ""}`}>
     {
         items.map((item, index)=>(
             <div className="sigmentedbutton-item-container" key={index}>
-                <button data-el={item} onContextMenu={onContextMenu} onClick={click} key={index} className={`sigmentedbutton-item-button ${(values.includes(item))?"active":""}`}>
+                <div data-el={item} onContextMenu={onContextMenu} onClick={click} key={index} className={`sigmentedbutton-item-button ${(values.includes(item))?"active":""}`}>
                     {(values.includes(item))?<div className="icon-container"><Check/></div>:null}
                     <div className="text-container">{item}</div>
-                </button>
+                </div>
+                <input ref={ref} multiple type='radio' style={{display: 'none'}} name={name} checked={values.includes(item)} value={item}/>
             </div>
         ))
     }
