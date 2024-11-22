@@ -1,8 +1,11 @@
 import { useState} from "react"
 import { Button, Switch, useColor } from "../../../lib"
 import { SelectField } from "../../../lib/ui/input/SelectField/Select"
+export type SelectDemoPageProps = {
+    placeholder?: string
+}
 
-export const SelectDemoPage = () => {
+export const SelectDemoPage = ({placeholder}:SelectDemoPageProps) => {
 
     const {nightMode, setNightMode} = useColor()    
 
@@ -17,7 +20,7 @@ export const SelectDemoPage = () => {
         (visible)?
         <>
         <div>
-            <SelectField border items={["test1", "test2", "test3"]} container={document.getElementById('portal-root')}/>
+            <SelectField placeholder={placeholder} border items={["test1", "test2", "test3"]} container={document.getElementById('portal-root')}/>
         </div>
         </>
         :<Button onClick={()=>setVisible(true)}>open page</Button>

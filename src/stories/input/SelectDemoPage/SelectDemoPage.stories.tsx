@@ -2,6 +2,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { SelectDemoPage } from './SelectDemoPage';
+import { SelectField } from '../../../lib';
 
 const meta = {
   title: 'DemoPages/SelectDemoPage',
@@ -14,7 +15,7 @@ const meta = {
   },
   args: {
   },
-} satisfies Meta<typeof SelectDemoPage>;
+} satisfies Meta<typeof SelectField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -25,3 +26,8 @@ export const Base: Story = {
   },
 };
 
+export const Placeholder: Story = {
+  args: {
+   placeholder: "test"
+  },
+};

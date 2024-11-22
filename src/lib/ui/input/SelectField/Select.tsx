@@ -85,12 +85,11 @@ export const SelectField = ({ref, style, screensize = ScreenSize.STANDART, items
                     className={`${error?"error":""}`} 
                     name={name} 
                     value={selectTitle}
-                    placeholder={placeholder}
                     onFocus={onFocus}
                     onBlur={onBlur}
                     readOnly
                     />
-                    <span className="text-field-line"></span>
+                    <label>{(placeholder)?<span>{placeholder}</span>:null}</label>
                 </div>
             </div>
             <Menu width={pozition.width} screensize={screensize} x={pozition.x} y={pozition.y} onHide={()=>setVisible(false)} container={container} blocks={[{items:items.map(selectMap)}]} visible={visible}/>
