@@ -1,11 +1,12 @@
 .chips{
-    padding: 0 8px 0 16px;
+    padding-inline: 16px 8px;
     border: 1px solid var(--Outline-color);
     display: inline-flex;
     border-radius: 6px;
     align-items: center;
     height: 32px;
-    margin: 5px;
+    margin-block: 5px;
+    margin-inline: 5px;
     position: relative;
     max-width: 400px;
     overflow-y: hidden;
@@ -21,8 +22,8 @@
         cursor: pointer;
     }
     .chips-btn{
-        margin-left: 3px;
-        margin-top: 6px;
+        margin-inline-start: 3px;
+        margin-block-start: 5px;
         font-size: 18px;
         cursor: pointer;
     }

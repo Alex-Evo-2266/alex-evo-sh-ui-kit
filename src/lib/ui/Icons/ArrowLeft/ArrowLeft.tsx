@@ -1,8 +1,12 @@
 import { IconProps } from "../Base/iconProps";
-import { SVG } from "../Base/Svg";
+import { getColor, SVG } from "../Base/Svg";
 
-export const ArrowLeft = (props:IconProps) => (
-    <SVG {...{...props}} dpi="1024">
-        <path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z" fill="var(--On-surface-color)" />
-    </SVG>
-)
+export const ArrowLeft = (props:IconProps) => {
+    const color = getColor(props)
+
+    return(
+        <SVG {...{...props}} dpi="24">
+            <path fill="none" stroke={color.primaryColor} d="M14.9991 19L9.83911 14C9.56672 13.7429 9.34974 13.433 9.20142 13.0891C9.0531 12.7452 8.97656 12.3745 8.97656 12C8.97656 11.6255 9.0531 11.2548 9.20142 10.9109C9.34974 10.567 9.56672 10.2571 9.83911 10L14.9991 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </SVG>
+    )
+}

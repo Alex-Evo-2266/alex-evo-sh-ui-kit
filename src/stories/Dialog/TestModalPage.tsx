@@ -16,8 +16,10 @@ export const TestPage = () => {
                 <DialogModal container={document.getElementById("portal-root")}>
                     <BasicTemplateDialog onHide={()=>setVisible(false)}>
                         <p>asefg dfkugr aserdtjf wrdj  reshjse djzer jk jdtr</p>
-                        <Button onClick={()=>setVisible2(true)}>test2</Button>
-                        <Button styleType="text" onClick={()=>setVisible(false)}>close</Button>
+                        <div>
+                            <Button onClick={()=>setVisible2(true)}>test2</Button>
+                            <Button styleType="text" onClick={()=>setVisible(false)}>close</Button>
+                        </div>
                         {
                             (visible2)?
                             <DialogModal container={document.getElementById("portal-root")}>

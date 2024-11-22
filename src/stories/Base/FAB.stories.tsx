@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FAB } from '../../lib/index';
-import { Plus } from 'lucide-react';
+import { FAB, Plus } from '../../lib/index';
 // import React from 'react';
 
 

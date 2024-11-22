@@ -2,7 +2,7 @@
 import "./NumberField.scss"
 import '../TextField/TextField.scss'
 import { useCallback, useEffect, useRef, useState } from "react"
-import { X } from "../../Icons"
+import { Minus, Plus, X } from "../../Icons"
 
 export interface ITextFieldProps{
     onChange?:(value: number, name?: string)=>void
@@ -168,8 +168,8 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
                 null
             }
             <div className="button-block">
-                <div className="minus number-field-btn" onMouseDown={()=>mouseDown("m")}><i>+</i></div>
-                <div className="plus number-field-btn" onMouseDown={()=>mouseDown("p")}><i>-</i></div>
+                <div className="minus number-field-btn" onMouseDown={()=>mouseDown("m")}><Plus/></div>
+                <div className="plus number-field-btn" onMouseDown={()=>mouseDown("p")}><Minus/></div>
             </div>
 		</div>
     )

@@ -11,3 +11,11 @@ export const SVG = ({className, onClick, children, dpi = "24", size}:SVGProps) =
         {children}
     </svg>
   );
+
+export function getColor(props:IconProps) {
+    return {
+        primaryColor: props.primaryColor ?? props.baseColor ?? "var(--On-surface-color)",
+        secondaryColor: props.secondaryColor ?? props.baseColor ?? "var(--On-surface-color)",
+        tertiaryColor: props.tertiaryColor ?? props.baseColor ?? "var(--On-surface-color)"
+    }
+}

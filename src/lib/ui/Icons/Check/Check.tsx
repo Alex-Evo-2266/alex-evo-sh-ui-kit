@@ -1,8 +1,13 @@
 import { IconProps } from "../Base/iconProps";
-import { SVG } from "../Base/Svg";
+import { getColor, SVG } from "../Base/Svg";
 
-export const Check = (props:IconProps) => (
+export const Check = (props:IconProps) => {
+
+  const color = getColor(props)
+
+  return(
     <SVG {...{...props}}>
-		<path fill-rule="evenodd" clip-rule="evenodd" d="M17.0303 8.78039L8.99993 16.8107L5.4696 13.2804L6.53026 12.2197L8.99993 14.6894L15.9696 7.71973L17.0303 8.78039Z" fill="var(--On-surface-color)"/>
-	</SVG>
+      <path fill="none" d="M4 12.6111L8.92308 17.5L20 6.5" stroke={color.primaryColor} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </SVG>
   );
+} 
