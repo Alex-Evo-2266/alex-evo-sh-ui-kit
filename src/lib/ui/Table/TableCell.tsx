@@ -47,7 +47,7 @@ export const TableCell = ({data, column, color, backgroundColor, H}:CellProps) =
 
             return(dataCell.map((item, index)=>(
                 <p key={index} style={{color: item.color ?? color}} className={(item.onClick)?"no-click":""} onClick={item.onClick}>
-                    {(typeof(item.content) === "string" || typeof(item.content) === "number")?item.content:<item.content/>}
+                    {item.content}
                 </p>
             )))
         }()
