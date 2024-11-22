@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { NavigationRail } from '../../lib/index';
-import { Box, Home } from 'lucide-react';
+import { Home, NavigationRail, Plug } from '../../lib/index';
 
 const meta = {
   title: 'Components/Navigation/NavigationRail',
@@ -13,7 +12,7 @@ const meta = {
   },
   args: {
     mainBtn:[{
-        icon: <Box/>,
+        icon: <Plug/>,
         onClick: ()=>{},
         text: "",
         type: "button"
@@ -25,7 +24,7 @@ const meta = {
         type: "button"
        },
        {
-        icon: <Box/>,
+        icon: <Plug/>,
         onClick: ()=>{},
         text: "room",
         type: "button"

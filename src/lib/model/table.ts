@@ -1,4 +1,3 @@
-import { LucideIcon } from "lucide-react"
 
 export interface IColumn{
     field: string
@@ -11,7 +10,7 @@ export interface IColumn{
 export type Column = IColumn
 
 export interface ICell{
-    content: string | number | LucideIcon
+    content: string | number | React.ReactNode
     color?: string
     onDelete?: ()=>void
     onClick?: ()=>void

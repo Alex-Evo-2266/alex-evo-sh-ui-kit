@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { ScreenSize, Table } from '../../lib/index';
-import { Home } from 'lucide-react';
+import { Home, ScreenSize, Table } from '../../lib/index';
 // import React from 'react';
 
 

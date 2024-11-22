@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Menu } from '../../lib/index';
-import { Home } from 'lucide-react';
-// import React from 'react';
+import { Home, Menu } from '../../lib/index';
 
 
 const meta = {

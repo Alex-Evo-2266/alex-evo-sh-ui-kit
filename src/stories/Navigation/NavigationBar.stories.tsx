@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { NavigationBar } from '../../lib/index';
-import { Box, Home, Menu } from 'lucide-react';
+import { Home, MenuIcon, NavigationBar, Plus } from '../../lib/index';
 
 const meta = {
   title: 'Components/Navigation/NavigationBar',
@@ -13,7 +12,7 @@ const meta = {
   },
   args: {
     btns:[{
-        icon: <Menu/>,
+        icon: <MenuIcon/>,
         onClick: ()=>{},
         text: "menu",
         type: "button"
@@ -25,9 +24,9 @@ const meta = {
         type: "button"
        },
        {
-        icon: <Box/>,
+        icon: <Plus/>,
         onClick: ()=>{},
-        text: "room",
+        text: "plus",
         type: "button"
        }]
   },
@@ -45,7 +44,7 @@ export const Base: Story = {
 export const Btns4: Story = {
     args: {
         btns:[{
-            icon: <Menu/>,
+            icon: <MenuIcon/>,
             onClick: ()=>{},
             text: "menu",
             type: "button"
@@ -57,13 +56,13 @@ export const Btns4: Story = {
             type: "button"
            },
            {
-            icon: <Box/>,
+            icon: <Plus/>,
             onClick: ()=>{},
             text: "room",
             type: "button"
            },
            {
-            icon: <Box/>,
+            icon: <Plus/>,
             onClick: ()=>{},
             text: "room",
             type: "button"

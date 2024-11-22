@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { NavigationDrawer } from '../../lib/index';
-import { Box, Home } from 'lucide-react';
+import { Home, NavigationDrawer, Plug } from '../../lib/index';
 import { fn } from '@storybook/test';
 
 const meta = {
@@ -14,7 +13,7 @@ const meta = {
   },
   args: {
     mainBtn:[{
-        icon: <Box/>,
+        icon: <Plug/>,
         onClick: ()=>{},
         text: "serdth",
         type: "button",
@@ -27,7 +26,7 @@ const meta = {
         type: "button"
        },
        {
-        icon: <Box/>,
+        icon: <Plug/>,
         onClick: ()=>{},
         text: "room",
         type: "button"
@@ -42,7 +41,7 @@ const meta = {
           type: "button"
         },
         {
-         icon: <Box/>,
+         icon: <Plug/>,
          onClick: ()=>{},
          text: "room",
          type: "button"
