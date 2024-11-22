@@ -76,7 +76,7 @@ export const SelectField = ({ref, style, screensize = ScreenSize.STANDART, items
 
     return(
         <>
-            <div style={style} className={`input-field select-field ${className} ${border?"border":""}`}>
+            <div style={style} className={`input-field select-field ${className} ${visible?"active":""} ${border?"border":""}`}>
                 <div className="input-container" onClick={show}>
                     <input
                     ref={ref}
