@@ -1,9 +1,9 @@
-import { AlignJustify, MoreHorizontal } from 'lucide-react'
 import './NavigationRail.scss'
 import { NavigationRailItem } from './NavigationRailItem'
 import { NavButton } from './NavButton'
 import { Divider } from "../../Other/Divider/Divider"
 import { NavigationBtn, NavigationButton } from '../../../model/navigation'
+import { MenuIcon, MoreHorizontal } from '../../Icons'
 
 export interface NavigationRailProps{
 	firstBtn?: NavigationBtn
@@ -20,7 +20,7 @@ export const NavigationRail = ({onToggleMenu, firstBtn, mainBtn, backBtn}:Naviga
                 <div className='block-content'>
                     {
                         (onToggleMenu)?
-                        <NavButton icon={<AlignJustify/>} onClick={onToggleMenu}/>:
+                        <NavButton icon={<MenuIcon/>} onClick={onToggleMenu}/>:
                         null
                     }
                     {

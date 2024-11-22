@@ -1,5 +1,4 @@
-import { Pen } from "lucide-react"
-import { BaseActionCard, Button, Card, Checkbox, Chips, ColorField, DateField, DayOfWeekField, FAB, FilledButton, FilledTotalButton, IconButton, MoreText, NumberField, OutlineButton, RadioButton, SigmentedButton, Slider, Switch, TextArea, TextButton, TextField, TimeField, Typography, useColor } from "../../../lib"
+import { BaseActionCard, Button, Card, Checkbox, Chips, ColorField, DateField, DayOfWeekField, FAB, FilledButton, FilledTotalButton, IconButton, MoreText, NumberField, OutlineButton, Pen, RadioButton, SigmentedButton, Slider, Switch, TextArea, TextButton, TextField, TimeField, Typography, useColor } from "../../../lib"
 import { useState } from "react"
 import img from '../../img/fon-base.jpg'
 

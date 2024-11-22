@@ -1,7 +1,7 @@
-import { X } from 'lucide-react'
 import './Chips.scss'
 import { ScreenSize } from '../../../model/sizeScreen'
 import { Typography } from '../../Text/Text/Typography'
+import { X } from '../../Icons'
 
 export interface ChipsProps{
     text: string
@@ -30,7 +30,7 @@ export const Chips = ({text, onDelete, big, onClick, screenSize}:ChipsProps) => 
             <Typography type='body' screensize={screenSize}>{text}</Typography>
             {
                 (onDelete)?
-                <div className='alex-evo-ui-kit-chips-btn chips-btn' onClick={onDelete}><X size={18}/></div>:
+                <div className='alex-evo-ui-kit-chips-btn chips-btn' onClick={onDelete}><X/></div>:
                 null
             }
         </div>

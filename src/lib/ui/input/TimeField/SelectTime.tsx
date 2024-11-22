@@ -1,7 +1,7 @@
-import { Keyboard } from "lucide-react"
 import { useCallback, useState } from "react"
 import "./TimePickers.scss"
 import { TextButton } from "../../Base/Button/Button"
+import { Keyboard } from "../../Icons"
 
 interface HoursProps{
 	setHours: (number:number)=>void

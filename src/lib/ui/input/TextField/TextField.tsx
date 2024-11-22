@@ -1,4 +1,4 @@
-import { XCircle } from "lucide-react"
+import { X } from "../../Icons"
 import "./TextField.scss"
 import { useCallback, useEffect, useRef, useState } from "react"
 
@@ -87,7 +87,7 @@ export const TextField = ({ref, styleContainer, type = "text", transparent, read
             </div>
             {
                 (onClear)?
-                <div className="icon-container clear-btn"><XCircle onClick={onClear}/></div>:
+                <div className="icon-container clear-btn"><X onClick={onClear}/></div>:
                 null
             }
 		</div>

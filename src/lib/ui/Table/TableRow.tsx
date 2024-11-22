@@ -1,5 +1,4 @@
-import { Edit2, MoreVertical, Trash2 } from "lucide-react"
-import { IconButton } from "../.."
+import { IconButton, MoreVertical, Pen, Trash } from "../.."
 import { Column, IDataItem, ITableAction } from "../../model/table"
 import { TableCell } from "./TableCell"
 import { useCallback } from "react"
@@ -49,8 +48,8 @@ export const TableRow = ({actions, item, columns, onContextMenu, onDelete, onEdi
 				(onContextMenu || onDelete || onEdit)?
 				<td className="w-[180px] table-edit-button no-click">
 					<div className="table-edit-button">
-						{onEdit?<IconButton transparent icon={<Edit2/>} onClick={()=>onEdit(item, index)}/>:null}
-						{onDelete?<IconButton transparent icon={<Trash2 className="text-red-500"/>} onClick={()=>onDelete(item, index)}/>:null}
+						{onEdit?<IconButton transparent icon={<Pen/>} onClick={()=>onEdit(item, index)}/>:null}
+						{onDelete?<IconButton transparent icon={<Trash className="text-red-500"/>} onClick={()=>onDelete(item, index)}/>:null}
 						{onContextMenu?<IconButton transparent icon={<MoreVertical/>} onClick={(e)=>onContextMenu(e, item, index)}/>:null}
 					</div>
 				</td>:

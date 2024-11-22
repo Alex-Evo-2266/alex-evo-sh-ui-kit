@@ -1,5 +1,4 @@
-import { X } from "lucide-react"
-import { TextButton } from "../../.."
+import { TextButton, X } from "../../.."
 import "./Snackbar.scss"
 
 export interface IOptionSnackbar{

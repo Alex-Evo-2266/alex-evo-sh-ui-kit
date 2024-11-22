@@ -1,8 +1,8 @@
-import { Clock3 } from "lucide-react"
 import { useCallback, useState } from "react"
 import "./TimeField.scss"
 import { DialogModal } from "../../../portal/dialog"
 import { TimePicker } from "./TimePickers"
+import { Clock } from "../../Icons"
 
 interface ITimeFieldProps{
     onChange?:(value: string)=>void
@@ -47,7 +47,7 @@ export const TimeField = ({border, onChange, name, value, className, validEmptyV
     return(
         <>
         <div className={`input-field time-field ${border?"border":""}`}>
-            <div className="icon-container" onClick={click}><Clock3/></div>
+            <div className="icon-container" onClick={click}><Clock/></div>
             <div className="input-container" onClick={click}>
                 <input
                 required 

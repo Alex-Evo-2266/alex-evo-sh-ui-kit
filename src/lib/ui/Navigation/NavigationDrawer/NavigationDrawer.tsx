@@ -1,9 +1,9 @@
 import './NavigationDrawer.scss'
 import { Divider } from "../../Other/Divider/Divider"
-import { MoreHorizontal } from 'lucide-react'
 import { NavigationDrawerItem } from './NavigationDrawerItem'
 import { NavButton } from './NavButton'
 import { NavigationBtn, NavigationButton } from '../../../model/navigation'
+import { MoreHorizontal } from '../../Icons'
 
 export interface NavigationDrawerProps{
 	visible?: boolean

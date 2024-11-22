@@ -1,8 +1,8 @@
 import { useState} from "react"
-import { DotSquare, Home } from "lucide-react"
 import { IconButtonMenu } from "../../lib/ui/Base/IconButtonMenu/IconButtonMenu"
 import { Button } from "../../lib/ui/Base/Button/Button"
 import { ScreenSize } from "../../lib/model/sizeScreen"
+import { Home, MenuIcon } from "../../lib"
 
 export const MenuDemoPage = () => {
 
@@ -12,7 +12,7 @@ export const MenuDemoPage = () => {
         <div style={{zIndex: 5, background:"var(--Background-color)", color:"var(--On-background-color)"}}>
         <div id="portal-root" style={{zIndex: 1000}}></div>
         <>
-            <IconButtonMenu icon={<DotSquare/>} screensize={smallScreen?ScreenSize.MOBILE:ScreenSize.STANDART} blocks={[{items:[
+            <IconButtonMenu icon={<MenuIcon/>} screensize={smallScreen?ScreenSize.MOBILE:ScreenSize.STANDART} blocks={[{items:[
                 {
                     title: "test1"
                 },

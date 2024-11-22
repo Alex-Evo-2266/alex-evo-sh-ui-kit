@@ -1,6 +1,5 @@
 import { useState} from "react"
-import { Button, Menu } from "../../lib"
-import { Home } from "lucide-react"
+import { Button, Home, Menu } from "../../lib"
 import { ScreenSize } from "../../lib/model/sizeScreen"
 import '../../lib/ui/index.scss'
 

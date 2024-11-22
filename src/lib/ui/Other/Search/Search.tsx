@@ -1,4 +1,5 @@
-import { AlignJustify, ArrowLeft, SearchIcon, X } from "lucide-react"
+// import { AlignJustify, ArrowLeft, SearchIcon, X } from "lucide-react"
+import { ArrowLeft, MenuIcon, X, Search as SearchIcon } from "../../Icons"
 import "./Search.scss"
 import { useRef, useState } from "react"
 
@@ -60,16 +61,16 @@ export const Search = ({onMenu, onSearch, placeholder, autoChenge}:SearchProps) 
             <div className="search-field">
                 {
                     (focus)? 
-                    <span onClick={onBlur}><ArrowLeft size={24}/></span>:
+                    <span onClick={onBlur}><ArrowLeft/></span>:
                     (onMenu)?
-                    <span onClick={onMenu}><AlignJustify size={24}/></span>:
+                    <span onClick={onMenu}><MenuIcon/></span>:
                     null
                 }
                 <input placeholder={placeholder} type="text" ref={inputSearch} onChange={change} onKeyDown={enter} value={value} onFocus={()=>setFocus(true)}/>
                 {
                     (focus)?
-                    <span onClick={clear}><X size={24}/></span>:
-                    <span onClick={onFocus}><SearchIcon size={24}/></span>
+                    <span onClick={clear}><X/></span>:
+                    <span onClick={onFocus}><SearchIcon/></span>
                 }
             </div>
         </div>

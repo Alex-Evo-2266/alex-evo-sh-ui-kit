@@ -1,6 +1,6 @@
-import { Clock3 } from "lucide-react"
 import "./TimePickers.scss"
 import { TextButton } from "../../Base/Button/Button"
+import { Clock } from "../../Icons"
 
 interface SelectTimeProps{
 	setMinutes: (number:number)=>void
@@ -41,7 +41,7 @@ export const EnterTime = ({setHours, setMinutes, switchMode, minutes, hours, onC
                 <div className="time-input minutes"><div className="input-container"><input type="number" value={minutes} min={0} max={59} onChange={changeMinuts}/></div><span className="text-sm">Minute</span></div>
             </div>
             <div className="enter-time-action">
-                <div className="enter-time-icon" onClick={()=>switchMode()}><Clock3/></div>
+                <div className="enter-time-icon" onClick={()=>switchMode()}><Clock/></div>
                 <TextButton className="little" onClick={onCancel}>Cancel</TextButton>
                 <TextButton className="little" onClick={onOK}>OK</TextButton>
             </div>

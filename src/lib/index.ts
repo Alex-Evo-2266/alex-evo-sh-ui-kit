@@ -171,3 +171,5 @@ export { ScreenSize } from "./model/sizeScreen"
 
 
 export {Form} from './ui/input/Form/Form'
+
+export * from './ui/Icons'

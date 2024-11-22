@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import "./SigmentedButton.scss"
-import { Check } from "lucide-react"
+import { Check } from "../../Icons"
 
 export interface SigmentedButtonProps{
     className?: string

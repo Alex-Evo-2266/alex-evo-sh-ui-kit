@@ -1,9 +1,9 @@
-import { Palette } from "lucide-react"
 import { useCallback, useState } from "react"
 import "./ColorField.scss"
 import { DialogModal } from "../../../portal/dialog"
 import { ColorPicker } from "./ColorPicker"
 import { getTextColor } from "../../../helpers/color/colorGenerator"
+import { Palette } from "../../Icons/Palette/Palette"
 
 interface IColorFieldProps{
     placeholder?: string

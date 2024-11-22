@@ -1,7 +1,7 @@
-import { Check } from "lucide-react"
 import { IMenuItem } from "../../model/menu"
 import { useCallback, useState } from "react"
 import { SubMenuItemBlock } from "./SubMenuItemBlock"
+import { Check } from "../Icons"
 
 interface MenuItemProps{
     item: IMenuItem

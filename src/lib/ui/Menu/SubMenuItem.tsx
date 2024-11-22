@@ -1,5 +1,5 @@
-import { Check } from "lucide-react"
 import { IMenuSubItem } from "../../model/menu"
+import { Check } from "../Icons"
 
 interface MenuItemProps{
     item: IMenuSubItem

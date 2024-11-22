@@ -1,6 +1,6 @@
 import { useCallback } from "react"
 import { JsonDataBaseTypes } from "../../../model/jsonComponentModel"
-import { CircleMinus } from "lucide-react"
+import { CircleMinus } from "../../Icons/CircleMinus/CircleMinus"
 
 
 export interface JsonBaseContainerProps{
@@ -33,7 +33,7 @@ export const JsonBaseContainer:React.FC<JsonBaseContainerProps> = ({readonly, na
                         <span className="json-base-data">
                             <input size={data?.toString().length || 10} onChange={change} className="json-base-data-input" type="text" value={(data !== undefined)?String(data):""}/>
                         </span>
-                        <span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>
+                        <span className="json-element json-btn" onClick={onDelete}><CircleMinus/></span>
                         </>
                     }
                 </div>

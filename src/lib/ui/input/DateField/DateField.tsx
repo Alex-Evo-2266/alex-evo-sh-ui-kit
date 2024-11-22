@@ -1,8 +1,8 @@
-import { CalendarDays } from "lucide-react"
 import { useCallback, useState } from "react"
 import "./DateField.scss"
 import { DialogModal } from "../../../portal/dialog"
 import {СalendarPickers} from './DatePickers'
+import { Calendar } from "../../Icons"
 
 interface ITimeFieldProps{
     onChange?:(value: string)=>void
@@ -54,7 +54,7 @@ export const DateField = ({border, onChange, name, value, className, validEmptyV
     return(
         <>
         <div className={`input-field date-field ${border?"border":""}`}>
-            <div className="icon-container" onClick={click}><CalendarDays/></div>
+            <div className="icon-container" onClick={click}><Calendar/></div>
             <div className="input-container" onClick={click}>
                 <input
                 required 

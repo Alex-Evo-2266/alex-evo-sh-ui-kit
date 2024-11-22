@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
 import { JsonData, JsonDataObject } from "../../../model/jsonComponentModel"
 import { JsonComponent } from "./JsonComponent"
-import { CircleMinus, PlusCircle } from "lucide-react"
+import { CircleMinus, CirclePlus } from "../../Icons"
 
 
 export interface JsonObjectContainerProps{
@@ -53,7 +53,7 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly
             <div>
                 <div className='json-line json-object-header' >
                 <span onClick={()=>setVisible(prev=>!prev)} className="json-element json-object-name json-object-header">{name}:{"{"}{(!visible)?<span>...</span>:null}</span>
-                    {(!readonly)?<span className="json-element json-btn" onClick={()=>setVisibleAdd(true)}><PlusCircle size={18}/></span>:null}
+                    {(!readonly)?<span className="json-element json-btn" onClick={()=>setVisibleAdd(true)}><CirclePlus/></span>:null}
                 </div>
                 {
                     (visible)?
@@ -91,7 +91,7 @@ export const JsonObjectContainer:React.FC<JsonObjectContainerProps> = ({readonly
                 {"}"}
                 {
                     (!readonly && !initComponent)?
-                        <span className="json-element json-btn" onClick={onDelete}><CircleMinus size={18}/></span>:null
+                        <span className="json-element json-btn" onClick={onDelete}><CircleMinus/></span>:null
                 }
                 </div>
             </div>
