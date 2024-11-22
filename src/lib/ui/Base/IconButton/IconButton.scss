@@ -21,6 +21,26 @@
     &.active{
         color: var(--Primary-color);
     }
+    .icon-container{
+        padding-right: 16px;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        color: var(--On-surface-variant-color);
+        font-size: 24px;
+        justify-content: center;
+        align-items: center;
+        min-width: 32px;
+        svg{
+            color: var(--On-surface-variant-color);
+            width: 24px;
+        }
+        img{
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+        }
+    }
     .iconbutton-container{
         margin: auto;
         width: 40px;
@@ -44,6 +64,11 @@
             margin: auto;
             height: 24px;
             font-size: 24px;
+        }
+        img{
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
         }
         &.filled{
             box-shadow: 1px 1px 6px -2px #000;

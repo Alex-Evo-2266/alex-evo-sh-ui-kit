@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { IconButton } from '../../lib/index';
+import trash from '../../icons/trash-blank-alt-svgrepo-com.svg'
 // import React from 'react';
 
 const meta = {
@@ -30,5 +31,11 @@ export const BaseTransparent: Story = {
     args: {
       icon: <i>+</i>,
       transparent: true
+    },
+  };
+
+  export const SWG: Story = {
+    args: {
+      icon: <img src={trash}/>,
     },
   };
