@@ -9,12 +9,13 @@ export interface FormProps<T extends {[x:string]: any}>{
     changeValue: (name:string, data: any)=>void
     value: T
     name?: string
+    errors?: {[key:string]:string}
 }
 
-const BaseForm = <T extends {[x:string]: any},>({children, value, name, changeValue}:FormProps<T>) => {
+const BaseForm = <T extends {[x:string]: any},>({children, value, name, changeValue, errors}:FormProps<T>) => {
 
     return(
-        <formContext.Provider value={{value, changeField: changeValue}}>
+        <formContext.Provider value={{value, changeField: changeValue, errors}}>
             <form name={name}>
             {children}
             </form>

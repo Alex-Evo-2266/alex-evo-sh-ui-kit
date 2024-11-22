@@ -25,3 +25,11 @@ export const Base: Story = {
   },
 };
 
+export const Errors: Story = {
+  args: {
+   errors:{
+    name: "test"
+   }
+  },
+};
+

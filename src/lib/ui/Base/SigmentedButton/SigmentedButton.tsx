@@ -66,7 +66,7 @@ export const SigmentedButton = ({readOnly, ref, style, multiple, value, items, c
                     {(values.includes(item))?<div className="icon-container"><Check/></div>:null}
                     <div className="text-container">{item}</div>
                 </div>
-                <input ref={ref} multiple type='radio' style={{display: 'none'}} name={name} checked={values.includes(item)} value={item}/>
+                <input ref={ref} multiple readOnly type='radio' style={{display: 'none'}} name={name} checked={values.includes(item)} value={item}/>
             </div>
         ))
     }

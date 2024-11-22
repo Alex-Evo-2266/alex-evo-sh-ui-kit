@@ -7,7 +7,11 @@ type ValueType = {
     n: string
 }
 
-export const TestFormPage = () => {
+export type TestFormPageProps = {
+    errors?:{[key:string]:string}
+}
+
+export const TestFormPage = ({errors}:TestFormPageProps) => {
 
     const [visible, setVisible] = useState(false)
 
@@ -33,7 +37,7 @@ export const TestFormPage = () => {
         <Button onClick={()=>setVisible(true)}>open</Button>
         {
             visible && 
-            <Form value={value} changeValue={change}>
+            <Form value={value} changeValue={change} errors={errors}>
                 <Form.TextInput name="name" border placeholder="name"/>
                 <Form.TextInput name="data" border clear/>
                 <Form.NumberInput name="n" border clear/>

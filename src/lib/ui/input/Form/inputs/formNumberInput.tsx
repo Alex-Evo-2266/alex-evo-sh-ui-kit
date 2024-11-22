@@ -8,7 +8,6 @@ export interface TextFieldProps {
     readOnly?: boolean
     transparent?: boolean
     styleContainer?: React.CSSProperties
-    error?: boolean
     icon?:React.ReactNode
     clear?: boolean
     className?: string
@@ -18,9 +17,9 @@ export interface TextFieldProps {
     max?: number
 }
 
-export const NumberField = ({ref, border, readOnly, transparent, styleContainer, error, icon, clear, className, placeholder, name, min, max}:TextFieldProps) => {
+export const NumberField = ({ref, border, readOnly, transparent, styleContainer, icon, clear, className, placeholder, name, min, max}:TextFieldProps) => {
 
-    const {value, changeField} = useContext(formContext)
+    const {value, changeField, errors} = useContext(formContext)
 
     const change = (value: any) => {
         changeField && changeField(name, value)
@@ -34,6 +33,13 @@ export const NumberField = ({ref, border, readOnly, transparent, styleContainer,
         changeField && changeField(name, '')
     }
 
+    const getError = useCallback(() => {
+        if (errors && Object.keys(errors).includes(name))
+        {
+            return errors[name]
+        }
+    },[errors, name])
+
     return(
         <NF 
         ref={ref} 
@@ -41,7 +47,7 @@ export const NumberField = ({ref, border, readOnly, transparent, styleContainer,
         readOnly={readOnly} 
         transparent={transparent} 
         styleContainer={styleContainer} 
-        error={error} 
+        error={Boolean(getError())} 
         icon={icon} 
         onClear={clear? clearHandler: undefined}
         className={className}

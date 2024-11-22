@@ -17,9 +17,9 @@ export interface TextFieldProps {
     name: string
 }
 
-export const TextField = ({password, ref, border, readOnly, transparent, styleContainer, error, icon, clear, className, placeholder, name}:TextFieldProps) => {
+export const TextField = ({password, ref, border, readOnly, transparent, styleContainer, icon, clear, className, placeholder, name}:TextFieldProps) => {
 
-    const {value, changeField} = useContext(formContext)
+    const {value, changeField, errors} = useContext(formContext)
 
     const change = (event: React.ChangeEvent<HTMLInputElement>) => {
         changeField && changeField(name, event.target.value)
@@ -33,6 +33,13 @@ export const TextField = ({password, ref, border, readOnly, transparent, styleCo
         changeField && changeField(name, '')
     }
 
+    const getError = useCallback(() => {
+        if (errors && Object.keys(errors).includes(name))
+        {
+            return errors[name]
+        }
+    },[errors, name])
+
     return(
         <TF 
         ref={ref} 
@@ -41,7 +48,7 @@ export const TextField = ({password, ref, border, readOnly, transparent, styleCo
         readOnly={readOnly} 
         transparent={transparent} 
         styleContainer={styleContainer} 
-        error={error} 
+        error={Boolean(getError())} 
         icon={icon} 
         onClear={clear? clearHandler: undefined}
         className={className}
