@@ -168,8 +168,8 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
                 null
             }
             <div className="button-block">
-                <div className="minus number-field-btn" onMouseDown={()=>mouseDown("m")}><Plus/></div>
-                <div className="plus number-field-btn" onMouseDown={()=>mouseDown("p")}><Minus/></div>
+                <div className="minus number-field-btn" onMouseDown={()=>mouseDown("m")}><Minus/></div>
+                <div className="plus number-field-btn" onMouseDown={()=>mouseDown("p")}><Plus/></div>
             </div>
 		</div>
     )

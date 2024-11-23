@@ -6,13 +6,15 @@ export interface ISwitchProps{
     checked?: boolean,
     className?: string,
     style?: React.CSSProperties
+    ref?: React.RefObject<HTMLInputElement>
+    readOnly?: boolean
 }
 
-export const Switch = ({style, name, onChange, checked, className}:ISwitchProps) => {
+export const Switch = ({ref, style, name, onChange, checked, className, readOnly}:ISwitchProps) => {
 
     return(
         <div className={`swich-container ${className}`} style={style}>
-            <input type="checkbox" name={name} onChange={onChange} checked={checked}/>
+            <input readOnly={readOnly} ref={ref} type="checkbox" name={name} onChange={onChange} checked={checked}/>
         </div>
     )
 }

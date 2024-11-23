@@ -20,6 +20,10 @@ input[type="number"]::-webkit-inner-spin-button {
 //     height: 100vh;
 // }
 
+input{
+    outline: none;
+}
+
 .btn-container{
     display: flex;
     justify-content: end;

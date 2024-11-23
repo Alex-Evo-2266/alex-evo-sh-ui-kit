@@ -1,0 +1,15 @@
+.form-switch{
+    display: flex;
+    border: none;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+    .form-switch-placeholder{
+        font-size: var(--body-standart-screen);
+        color: var(--On-surface-variant-color);
+        padding-inline: 2px;
+		background-color: var(--Surface-container-high-color);
+		border-radius: 4px;
+		border: var(--border-base);
+    }
+}

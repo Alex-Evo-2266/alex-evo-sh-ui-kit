@@ -40,11 +40,12 @@ export const TestFormPage = ({errors}:TestFormPageProps) => {
             <Form value={value} changeValue={change} errors={errors}>
                 <Form.TextInput name="name" border placeholder="name"/>
                 <Form.TextInput name="data" border clear/>
-                <Form.NumberInput name="n" border clear/>
+                <Form.NumberInput placeholder="test" name="n" border clear/>
                 <Form.NumberInput name="n" border clear/>
                 <Form.SelectInput container_id="test-select" items={["test1", "test2", "test3"]} name="n" border/>
-                <Form.SelectInput container_id="test-select" items={["test1", "test2", "test3"]} name="n" border/>
-                <Form.SwitchField items={["test1", "test2", "test3"]} name="n"/>
+                <Form.SelectInput placeholder="test" container_id="test-select" items={["test1", "test2", "test3"]} name="n" border/>
+                <Form.SwitchField placeholder="test" name="n"/>
+                <Form.SwitchButtonField placeholder="test" name="n"/>
             </Form>
         }
         </>

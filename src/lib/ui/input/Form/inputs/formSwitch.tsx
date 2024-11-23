@@ -1,39 +1,34 @@
 import { useCallback, useContext } from "react"
 import { formContext } from "../FormContext"
-import { SigmentedButton } from "../../../Base/SigmentedButton/SigmentedButton"
+import { Switch } from "../../../Base/Switch/Switch"
+import { Typography } from "../../../Text/Text/Typography"
 
 export interface SwitchFieldProps {
     password?: boolean
+    placeholder?: string
     ref?: React.RefObject<HTMLInputElement>
     readOnly?: boolean
     className?: string
     style?: React.CSSProperties
     name: string
-    items: string[]
 }
 
-export const SwitchField = ({items, ref, style, readOnly, className, name}:SwitchFieldProps) => {
+export const SwitchField = ({placeholder, ref, style, readOnly, className, name}:SwitchFieldProps) => {
 
     const {value, changeField} = useContext(formContext)
 
-    const change = (value: string[]) => {
-        changeField && changeField(name, value[0] ?? '')
+    const change = (e:React.ChangeEvent<HTMLInputElement>) => {
+        changeField && changeField(name, e.target.checked)
     }
 
     const getValue = useCallback(()=>{
-        return value[name]
+        return Boolean(value[name])
     },[value, name])
 
     return(
-        <SigmentedButton 
-        items={items}
-        style={style}
-        ref={ref} 
-        readOnly={readOnly} 
-        className={className}
-        name={name}
-        onChange={change}
-        value={getValue()}
-        />
+        <div className={`input-field form-switch ${className}`} style={style}>
+            <Switch readOnly={readOnly} ref={ref} name={name} checked={getValue()} onChange={change}/>
+            <Typography className="form-switch-placeholder" type='body'>{placeholder}</Typography>
+        </div>
     )
 }
