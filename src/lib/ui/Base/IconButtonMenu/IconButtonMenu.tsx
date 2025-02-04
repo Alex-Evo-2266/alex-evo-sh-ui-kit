@@ -15,7 +15,7 @@ export interface IconButtonProps{
     container?:HTMLElement | null
     blocks: IBlock[]
     screensize?: ScreenSize
-    autoHide: boolean
+    autoHide?: boolean
   }
 
 export const IconButtonMenu:React.FC<IconButtonProps> = ({icon, className, classNameContainer, disabled, style, transparent, container, blocks, screensize, autoHide}) => {
