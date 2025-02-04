@@ -15,9 +15,10 @@ export interface IconButtonProps{
     container?:HTMLElement | null
     blocks: IBlock[]
     screensize?: ScreenSize
+    autoHide: boolean
   }
 
-export const IconButtonMenu:React.FC<IconButtonProps> = ({icon, className, classNameContainer, disabled, style, transparent, container, blocks, screensize}) => {
+export const IconButtonMenu:React.FC<IconButtonProps> = ({icon, className, classNameContainer, disabled, style, transparent, container, blocks, screensize, autoHide}) => {
 
     const [visible, setVisible] = useState<boolean>(false)
     const [poz, setPoz] = useState<IPoint|undefined>(undefined)
@@ -35,7 +36,7 @@ export const IconButtonMenu:React.FC<IconButtonProps> = ({icon, className, class
     return(
         <>
             <IconButton onClick={show} icon={icon} className={className} classNameContainer={classNameContainer} disabled={disabled} style={style} transparent={transparent}/>
-            <Menu onHide={hide} screensize={screensize} visible={visible} x={poz?.x ?? 0} y={poz?.y ?? 0} blocks={blocks} container={container}/>
+            <Menu onHide={hide} autoHide={autoHide} screensize={screensize} visible={visible} x={poz?.x ?? 0} y={poz?.y ?? 0} blocks={blocks} container={container}/>
         </>
     )
 }
