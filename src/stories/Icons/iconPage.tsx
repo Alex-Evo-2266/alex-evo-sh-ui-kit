@@ -3,12 +3,20 @@ import {
     Palette, Home, MoreHorizontal, 
     MenuIcon, MoreVertical, CircleMinus, 
     Calendar, Check, ChevronDown, CirclePlus,
-    Clock, ArrowLeft, Keyboard, Search, 
-    Plus, Minus, Plug, UnLinkIcon, LinkIcon, ProfileIcon
+    Clock, ArrowLeft, Keyboard, Search, LogoutIcon,
+    Plus, Minus, Plug, UnLinkIcon, LinkIcon, UserIcon, AddUserIcon,
+    MinusUserIcon, XUserIcon, OkUserIcon, Group, Room
 } from "../../lib/ui/Icons"
 
 const icons = [
-    ProfileIcon,
+    LogoutIcon,
+    Room,
+    Group,
+    OkUserIcon,
+    XUserIcon,
+    MinusUserIcon,
+    AddUserIcon,
+    UserIcon,
     LinkIcon,
     UnLinkIcon,
     GearIcon, 

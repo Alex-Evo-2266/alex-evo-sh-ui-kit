@@ -21,4 +21,6 @@ export {Plug} from './Plug/Plug'
 export {GearIcon} from "./Gear/Gear"
 export {UnLinkIcon} from './UnLink/UnLink'
 export {LinkIcon} from './Link/link'
-export {ProfileIcon} from './Profile/Profile'
+export * from './User'
+export {LogoutIcon} from './Logout/Logout'
+export {Room} from './Room/Room'
