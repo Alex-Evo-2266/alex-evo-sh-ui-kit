@@ -18,3 +18,7 @@ export {Keyboard} from './Keyboard/Keyboard'
 export {Plus} from './Plus/Plus'
 export {Minus} from './Minus/Minus'
 export {Plug} from './Plug/Plug'
+export {GearIcon} from "./Gear/Gear"
+export {UnLinkIcon} from './UnLink/UnLink'
+export {LinkIcon} from './Link/link'
+export {ProfileIcon} from './Profile/Profile'
