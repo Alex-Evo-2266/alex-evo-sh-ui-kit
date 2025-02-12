@@ -12,6 +12,7 @@ type TabsProps = {
   tabs: Tab[];
   scrollAmount?: number; // Количество пикселей для прокрутки
   tabClassName?: string; // Дополнительные классы для вкладок
+  tabContainerClassName?: string; // Дополнительные классы для контейнера вкладок
   activeTabClassName?: string; // Класс для активной вкладки
   onTabClick?: (index: number) => void; // Событие нажатия на вкладку
   activeTabIndex?: number; // Управление активной вкладкой извне
@@ -24,6 +25,7 @@ export const Tabs: React.FC<TabsProps> = ({
   activeTabClassName = 'active',
   onTabClick,
   activeTabIndex,
+  tabContainerClassName = ''
 }) => {
   const [internalActiveTab, setInternalActiveTab] = useState(0);
   const activeTab = activeTabIndex !== undefined ? activeTabIndex : internalActiveTab;
@@ -88,7 +90,7 @@ export const Tabs: React.FC<TabsProps> = ({
           <button onClick={() => scroll('left')} className="scroll-button">◀</button>
         )}
         <div
-          className="tabs-header"
+          className={`tabs-header ${tabContainerClassName}`}
           ref={tabsHeaderRef}
           onKeyDown={handleKeyDown}
           tabIndex={0}
