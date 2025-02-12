@@ -1,17 +1,17 @@
 /* Основной контейнер */
-.tabs-container {
+.alex-evo-ui-kit-tabs-container {
     width: 100%;
     font-family: 'Roboto', sans-serif;
   }
 
-  .tabs-scroll-buttons {
+  .alex-evo-ui-kit-tabs-scroll-buttons {
     display: flex;
     align-items: center;
     width: 100%; /* Растягивание на всю ширину */
     border-bottom: 1px solid var(--Outline-color);
   }
   
-  .scroll-button {
+  .alex-evo-ui-kit-scroll-button {
     background: transparent;
     border: none;
     font-size: 18px;
@@ -21,7 +21,7 @@
   }
 
   /* Контейнер для заголовков вкладок */
-  .tabs-header {
+  .alex-evo-ui-kit-tabs-header {
     display: flex;
     overflow-x: auto;
     position: relative;
@@ -33,7 +33,7 @@
   }
   
   /* Стили для каждой вкладки */
-  .tab {
+  .alex-evo-ui-kit-tab {
     padding: 16px 24px;
     cursor: pointer;
     font-size: 14px;
@@ -46,12 +46,12 @@
   }
   
   /* Стили для активной вкладки */
-  .tab.active {
+  .alex-evo-ui-kit-tab.active {
     color: var(--Primary-color);
   }
   
   /* Индикатор активной вкладки */
-  .indicator {
+  .alex-evo-ui-kit-indicator {
     height: 2px;
     background-color: var(--Primary-color);
     position: absolute;

@@ -84,13 +84,13 @@ export const Tabs: React.FC<TabsProps> = ({
   };
 
   return (
-    <div className="tabs-container">
-      <div className="tabs-scroll-buttons">
+    <div className="alex-evo-ui-kit-tabs-container">
+      <div className="alex-evo-ui-kit-tabs-scroll-buttons">
         {showScrollButtons && (
-          <button onClick={() => scroll('left')} className="scroll-button">◀</button>
+          <button onClick={() => scroll('left')} className="alex-evo-ui-kit-scroll-button">◀</button>
         )}
         <div
-          className={`tabs-header ${tabContainerClassName}`}
+          className={`alex-evo-ui-kit-tabs-header ${tabContainerClassName}`}
           ref={tabsHeaderRef}
           onKeyDown={handleKeyDown}
           tabIndex={0}
@@ -98,20 +98,20 @@ export const Tabs: React.FC<TabsProps> = ({
           {tabs.map((tab, index) => (
             <div
               key={tab.label}
-              className={`tab ${tabClassName} ${activeTab === index ? activeTabClassName : ''}`}
+              className={`alex-evo-ui-kit-tab ${tabClassName} ${activeTab === index ? activeTabClassName : ''}`}
               onClick={() => handleTabClick(index)}
             >
               {tab.label}
             </div>
           ))}
-          <div className="indicator" ref={indicatorRef} />
+          <div className="alex-evo-ui-kit-indicator" ref={indicatorRef} />
         </div>
         {showScrollButtons && (
-          <button onClick={() => scroll('right')} className="scroll-button">▶</button>
+          <button onClick={() => scroll('right')} className="alex-evo-ui-kit-scroll-button">▶</button>
         )}
       </div>
 
-      <div className="tab-content">
+      <div className="alex-evo-ui-kit-tab-content">
         {tabs[activeTab].content}
       </div>
     </div>
