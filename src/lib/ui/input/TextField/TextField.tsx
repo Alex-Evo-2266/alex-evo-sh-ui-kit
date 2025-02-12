@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 
 export interface ITextFieldProps{
     onChange?:(event: React.ChangeEvent<HTMLInputElement>)=>void
+    onClick?: (event: React.MouseEvent<HTMLInputElement>)=>void
     name?: string
     value?: number | string
     placeholder?: string
@@ -25,7 +26,7 @@ export interface ITextFieldProps{
     ref?: React.LegacyRef<HTMLInputElement> | undefined
 }
 
-export const TextField = ({ref, styleContainer, type = "text", transparent, readOnly, password, border, onClear, icon, onChange, name, value, placeholder, className, validEmptyValue, onFocus, onBlur, error, max, min}:ITextFieldProps) => {
+export const TextField = ({onClick, ref, styleContainer, type = "text", transparent, readOnly, password, border, onClear, icon, onChange, name, value, placeholder, className, validEmptyValue, onFocus, onBlur, error, max, min}:ITextFieldProps) => {
 
     const inputContainerElement = useRef<HTMLDivElement>(null)
     const [isError, setError] = useState<boolean>(false)
@@ -80,6 +81,7 @@ export const TextField = ({ref, styleContainer, type = "text", transparent, read
                 className={`${isError?"error":""}`} 
                 name={name} 
                 value={value} 
+                onClick={onClick}
                 onChange={onChange}
                 onFocus={changeFocus}
                 onBlur={blur}/>
