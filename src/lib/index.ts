@@ -53,6 +53,7 @@ import {NavigationBar} from './ui/Navigation/NavigationBar/NavigationBar'
 import {NavigationDrawer} from './ui/Navigation/NavigationDrawer/NavigationDrawer'
 import {NavigationRail} from './ui/Navigation/NavigationRail/NavigationRail'
 import {EmptyPage} from './ui/Other/EmptyPage/EmptyPage'
+import {Tabs} from './ui/Layout/Tabs/Tabs'
 
 
 import {JsonContainer} from './ui/Other/JSON/Json'
@@ -87,6 +88,7 @@ export {
     BaseActionCard,
     BigContainer,
     BottomSheetsUi,
+    Tabs,
     Checkbox,
     Chips,
     BasicTemplateDialog,
