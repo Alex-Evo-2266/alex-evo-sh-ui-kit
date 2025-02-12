@@ -85,12 +85,12 @@ export const Tabs: React.FC<TabsProps> = ({
 
   return (
     <div className="alex-evo-ui-kit-tabs-container">
-      <div className="alex-evo-ui-kit-tabs-scroll-buttons">
+      <div className={`alex-evo-ui-kit-tabs-scroll-buttons ${tabContainerClassName}`}>
         {showScrollButtons && (
           <button onClick={() => scroll('left')} className="alex-evo-ui-kit-scroll-button">◀</button>
         )}
         <div
-          className={`alex-evo-ui-kit-tabs-header ${tabContainerClassName}`}
+          className={`alex-evo-ui-kit-tabs-header`}
           ref={tabsHeaderRef}
           onKeyDown={handleKeyDown}
           tabIndex={0}
