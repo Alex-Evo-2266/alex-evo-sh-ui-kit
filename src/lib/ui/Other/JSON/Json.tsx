@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import { JsonData } from '../../../model/jsonComponentModel'
 import './Json.scss'
 import { BaseType, JsonComponent } from './JsonComponent'
+import { CopyButton } from '../../Base/CopyButton/CopyButton'
 
 export interface JsonContainerBaseProps{
     name: string
@@ -62,6 +63,9 @@ export const JsonContainer:React.FC<JsonContainerProps> = ({readonly, name, data
         )
 
     return(
+        <>
+        <CopyButton transparent text={JSON.stringify(data)}/>
         <JsonComponent readonly={readonly} onDelete={del} onChange={change} data={value} baseType={baseType} name={name} onlyStringValue={onlyStringValue}/>
+        </>
     )
 }

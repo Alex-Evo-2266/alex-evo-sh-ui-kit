@@ -27,6 +27,7 @@ import {Snackbar} from './ui/Other/Snackbar/Snackbar'
 import {Switch} from './ui/Base/Switch/Switch'
 import {SigmentedButton} from './ui/Base/SigmentedButton/SigmentedButton'
 import {Slider} from './ui/input/Slider/Slider'
+import {CopyButton} from './ui/Base/CopyButton/CopyButton'
 
 
 import {BasicTemplateDialog} from './ui/Dialog/TemplateDialog/BasicTemplateDialog'
@@ -76,6 +77,7 @@ export {
     BaseMenu,
     Button, 
     FAB,
+    CopyButton,
     FilledButton, 
     TextButton, 
     OutlineButton, 

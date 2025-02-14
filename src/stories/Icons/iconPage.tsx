@@ -5,10 +5,11 @@ import {
     Calendar, Check, ChevronDown, CirclePlus,
     Clock, ArrowLeft, Keyboard, Search, LogoutIcon,
     Plus, Minus, Plug, UnLinkIcon, LinkIcon, UserIcon, AddUserIcon,
-    MinusUserIcon, XUserIcon, OkUserIcon, Group, Room
+    MinusUserIcon, XUserIcon, OkUserIcon, Group, Room, Copy
 } from "../../lib/ui/Icons"
 
 const icons = [
+    Copy,
     LogoutIcon,
     Room,
     Group,
