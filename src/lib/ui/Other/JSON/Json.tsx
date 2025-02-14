@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { JsonData } from '../../../model/jsonComponentModel'
 import './Json.scss'
 import { BaseType, JsonComponent } from './JsonComponent'
@@ -50,9 +50,23 @@ export const JsonContainer:React.FC<JsonContainerProps> = ({readonly, name, data
         onChange && onChange(newVal)
     },[onChange, newValue])
 
+    useEffect(() => {
+        setValue(data);
+    }, [data]);
+
+    if(!value && readonly)
+        return(
+            <div className={`json-object-content ${(!readonly)?"changeable":""}`}>
+                    <span className="json-base-data border">
+                        value
+                    </span>
+            </div>
+        )
+
     if(!value)
         return(
                 <div className={`json-object-content ${(!readonly)?"changeable":""}`}>
+                    <CopyButton transparent text={JSON.stringify(data)}/>
                     <span className="json-base-data border">
                         <input size={newValue.length || 10} placeholder="value" onChange={(e)=>setNewValue(e.target.value)} className="alex-evo-sh-ui-kit-json json-base-data-input" type="text" value={newValue}/>
                     </span>

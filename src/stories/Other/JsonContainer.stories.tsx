@@ -65,3 +65,10 @@ export const ArrayString: Story = {
     onlyStringValue: true
   },
 };
+
+export const ReadonlyEmpty: Story = {
+  args: {
+    data: "",
+    readonly: true
+  },
+};
