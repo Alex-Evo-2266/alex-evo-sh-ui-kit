@@ -27,7 +27,7 @@ export const JsonBaseContainer:React.FC<JsonBaseContainerProps> = ({readonly, na
                     {
                         (readonly)?
                         <span className="json-base-data">
-                            {data}
+                            {String(data)}
                         </span>:
                         <>
                         <span className="json-base-data">
