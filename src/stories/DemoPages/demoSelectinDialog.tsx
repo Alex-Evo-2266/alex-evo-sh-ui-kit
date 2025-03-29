@@ -1,5 +1,5 @@
 import { useState} from "react"
-import { BasicTemplateDialog, Button, DialogModal, FullScrinTemplateDialog, SelectField, Switch, useColor } from "../../lib"
+import { Button, DialogModal, FullScrinTemplateDialog, SelectField, Switch, useColor } from "../../lib"
 export type SelectDemoPageProps = {
     placeholder?: string
 }
