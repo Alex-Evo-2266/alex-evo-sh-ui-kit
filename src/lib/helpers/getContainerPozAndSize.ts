@@ -29,7 +29,8 @@ export const getModalWindowCord = (x:number, y:number, container:HTMLElement | n
         return data
     let height = Number(window.getComputedStyle(container).getPropertyValue("height").replace("px", ""))
     let width = Number(window.getComputedStyle(container).getPropertyValue("width").replace("px", ""))
-    let heightDifference = y + height - document.documentElement.scrollHeight
+    // let heightDifference = y + height - document.documentElement.scrollHeight
+    let heightDifference = y + height - document.documentElement.clientHeight
     let widthDifference = x + width - document.documentElement.clientWidth
     if(heightDifference > 0)
         data.y = data.y - heightDifference - (option?.marginBottom ?? 0)
