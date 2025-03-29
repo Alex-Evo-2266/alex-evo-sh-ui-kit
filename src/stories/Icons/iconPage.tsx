@@ -5,7 +5,9 @@ import {
     Calendar, Check, ChevronDown, CirclePlus,
     Clock, ArrowLeft, Keyboard, Search, LogoutIcon,
     Plus, Minus, Plug, UnLinkIcon, LinkIcon, UserIcon, AddUserIcon,
-    MinusUserIcon, XUserIcon, OkUserIcon, Group, Room, Copy
+    MinusUserIcon, XUserIcon, OkUserIcon, Group, Room, Copy,
+    ArrowRight,
+    ArrowUp
 } from "../../lib/ui/Icons"
 
 const icons = [
@@ -36,11 +38,14 @@ const icons = [
     CirclePlus, 
     Clock, 
     ArrowLeft, 
+    ArrowRight,
+    ArrowUp,
     Keyboard, 
     Search, 
     Plus, 
     Minus, 
-    Plug
+    Plug,
+    
 ]
 
 export const IconDemoPage:React.FC = () => {
