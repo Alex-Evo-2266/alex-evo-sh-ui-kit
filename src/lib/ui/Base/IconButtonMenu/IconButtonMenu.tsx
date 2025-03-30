@@ -36,7 +36,7 @@ export const IconButtonMenu:React.FC<IconButtonProps> = ({icon, className, class
     return(
         <>
             <IconButton onClick={show} icon={icon} className={className} classNameContainer={classNameContainer} disabled={disabled} style={style} transparent={transparent}/>
-            <Menu onHide={hide} autoHide={autoHide} screensize={screensize} visible={visible} x={poz?.x ?? 0} y={poz?.y ?? 0} blocks={blocks} container={container}/>
+            <Menu marginBottom={screensize === ScreenSize.MOBILE?80:0} onHide={hide} autoHide={autoHide} screensize={screensize} visible={visible} x={poz?.x ?? 0} y={poz?.y ?? 0} blocks={blocks} container={container}/>
         </>
     )
 }

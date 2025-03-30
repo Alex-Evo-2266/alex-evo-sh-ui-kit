@@ -6,9 +6,10 @@ export interface BottomSheetsUiProps{
     onHide: ()=>void
     visible: boolean
     children?: React.ReactNode
+    bottom?: number
 }
 
-export const BottomSheetsUi = (props:BottomSheetsUiProps) => {
+export const BottomSheetsUi = ({bottom = 0, ...props}:BottomSheetsUiProps) => {
 
     const [hided, setHided] = useState<boolean>(false)
     const [isСlosed, setIsСlosed] = useState<boolean>(true)
@@ -37,14 +38,14 @@ export const BottomSheetsUi = (props:BottomSheetsUiProps) => {
         if(window.screen.height - e.changedTouches[0].clientY <= 150)
             hide()
         if(bottomSheets.current)
-            bottomSheets.current.style.height = `${window.screen.height - e.changedTouches[0].clientY}px`
+            bottomSheets.current.style.height = `${window.screen.height - e.changedTouches[0].clientY - bottom}px`
     },[hide])
 
     const mouseMove = (e:MouseEvent) => {
         if(window.screen.height - e.clientY - 120 <= 150)
             hide()
         if(bottomSheets.current)
-            bottomSheets.current.style.height = `${window.screen.height - e.clientY - 120}px`
+            bottomSheets.current.style.height = `${window.screen.height - e.clientY - 120 - bottom}px`
     }
 
     const mouseUp = () => {
@@ -57,13 +58,12 @@ export const BottomSheetsUi = (props:BottomSheetsUiProps) => {
         document.body.addEventListener('mouseup', mouseUp)
     }
 
-
     if(isСlosed && !hided || !props.children)
         return null
 
     return(
         <ModalTemplate onHide={hide}>
-            <div ref={bottomSheets} className={`bottom-sheets ${hided?"hide":""}`}>
+            <div ref={bottomSheets} style={{marginBottom: bottom}} className={`bottom-sheets ${hided?"hide":""}`}>
                 <div className="bottom-sheets-handle" onMouseDown={mouseDown} onTouchMove={touchMove}><span></span></div>
                 <div className="bottom-sheets-content">
                     {props.children}

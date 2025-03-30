@@ -92,7 +92,7 @@ export const SelectField = ({ref, style, screensize = ScreenSize.STANDART, items
                     <label>{(placeholder)?<span>{placeholder}</span>:null}</label>
                 </div>
             </div>
-            <Menu width={pozition.width} screensize={screensize} x={pozition.x} y={pozition.y} onHide={()=>setVisible(false)} container={container} blocks={[{items:items.map(selectMap)}]} visible={visible}/>
+            <Menu marginBottom={screensize === ScreenSize.MOBILE? 80:0} width={pozition.width} screensize={screensize} x={pozition.x} y={pozition.y} onHide={()=>setVisible(false)} container={container} blocks={[{items:items.map(selectMap)}]} visible={visible}/>
         </>
     )
 }

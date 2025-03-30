@@ -7,7 +7,7 @@ import { BottomSheetsUi } from "../.."
 export const SmallWindowMenu = (menu:MenuButtomStateProps) => {
 	const foo = () => {}
     return(
-			<BottomSheetsUi onHide={menu.onHide || foo} visible={menu.visible}>
+			<BottomSheetsUi onHide={menu.onHide || foo} visible={menu.visible} bottom={menu.marginBottom}>
 				<div className="bottom-sheets-menu-container">
 					{
 					menu.blocks.map((item, index)=>(
@@ -23,7 +23,5 @@ export const SmallWindowMenu = (menu:MenuButtomStateProps) => {
 					}
 				</div>
 			</BottomSheetsUi>
-		
-        
     )
 }

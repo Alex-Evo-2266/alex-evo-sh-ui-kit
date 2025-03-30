@@ -32,6 +32,7 @@ export interface MenuStateProps{
     y: number
     width?: number
     autoHide?: boolean
+    marginBottom?: number
     onHide?: ()=>void
     onClick?: ()=>void
 }
@@ -41,6 +42,7 @@ export interface MenuButtomStateProps{
     visible: boolean
     width?: number
     autoHide?: boolean
+    marginBottom?: number
     onHide?: ()=>void
     onClick?: ()=>void
 }
