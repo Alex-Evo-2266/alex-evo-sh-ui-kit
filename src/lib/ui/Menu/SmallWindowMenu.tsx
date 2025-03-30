@@ -17,7 +17,7 @@ export const SmallWindowMenu = (menu:MenuButtomStateProps) => {
 							<Divider/>:
 							null
 						}
-						<MenuBlock block={item} smallDisplay={true}/>
+						<MenuBlock block={item} smallDisplay={true} autoHide={menu.autoHide} onHide={menu.onHide}/>
 						</React.Fragment>
 					))
 					}
