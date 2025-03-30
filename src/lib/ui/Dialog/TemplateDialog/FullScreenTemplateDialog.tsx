@@ -4,6 +4,7 @@ import "./Dialog.scss"
 import { BasicTemplateDialog } from "./BasicTemplateDialog"
 import { TextButton } from "../../Base/Button/Button"
 import { X } from "../../Icons"
+import { useScrollLock } from "../../../hooks/lockScroll.hook"
 
 export interface DialogProps{
 	children: React.ReactNode
@@ -31,6 +32,7 @@ const ButtonDialog = ({onHide, onSave}:ButtonDialogProps) => (
 export const FullScrinTemplateDialog = ({style, className, header, children, onSave, onHide, marginBottom, disableBackplate}:DialogProps) => {
 
 	const [fullScreenDisplay, setFullScreenDisplay] = useState<boolean>(false)
+    useScrollLock(true, document.body)
 
     const resize = useCallback(() => {
         if(window.innerWidth < 720)
