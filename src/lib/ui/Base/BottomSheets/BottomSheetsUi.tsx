@@ -35,17 +35,17 @@ export const BottomSheetsUi = ({bottom = 0, ...props}:BottomSheetsUiProps) => {
     },[props.visible, hide, isСlosed])
 
     const touchMove = useCallback((e:React.TouchEvent<HTMLDivElement>) => {
-        if(window.screen.height - e.changedTouches[0].clientY <= 150)
+        if(window.innerHeight - e.changedTouches[0].clientY <= 150)
             hide()
         if(bottomSheets.current)
-            bottomSheets.current.style.height = `${window.screen.height - e.changedTouches[0].clientY - bottom}px`
+            bottomSheets.current.style.height = `${window.innerHeight - e.changedTouches[0].clientY + 20 - bottom}px`
     },[hide])
 
     const mouseMove = (e:MouseEvent) => {
-        if(window.screen.height - e.clientY - 120 <= 150)
+        if(window.innerHeight - e.clientY + 20 <= 150)
             hide()
         if(bottomSheets.current)
-            bottomSheets.current.style.height = `${window.screen.height - e.clientY - 120 - bottom}px`
+            bottomSheets.current.style.height = `${window.innerHeight - e.clientY + 20 - bottom}px`
     }
 
     const mouseUp = () => {
@@ -57,6 +57,13 @@ export const BottomSheetsUi = ({bottom = 0, ...props}:BottomSheetsUiProps) => {
         document.body.addEventListener('mousemove', mouseMove)
         document.body.addEventListener('mouseup', mouseUp)
     }
+
+    useEffect(()=>{
+      return ()=>{
+        document.body.removeEventListener('mousemove', mouseMove)
+        document.body.removeEventListener('mouseup', mouseUp)
+      } 
+    })
 
     if(isСlosed && !hided || !props.children)
         return null
