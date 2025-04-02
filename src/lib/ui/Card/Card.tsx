@@ -1,3 +1,4 @@
+import { useScreenSize } from "../../hooks/screenSize.hook"
 import { ScreenSize } from "../../model/sizeScreen"
 import { Typography } from "../Text/Text/Typography"
 import "./Card.scss"
@@ -17,7 +18,7 @@ export interface CardProps{
 	style?: React.CSSProperties
 }
 
-export const Card = ({style, className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick, screenSize}:CardProps) => {
+export const Card = ({style, className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick, screenSize: screenProps}:CardProps) => {
 	
 	const isCard = (e:React.MouseEvent<HTMLDivElement>):boolean=>{
 		if((e.target as Element).className === "action-container" || (e.target as Element).closest(".action-container"))
@@ -28,6 +29,10 @@ export const Card = ({style, className, action, imgSrc, alt, header, subhead, te
 			return false
 		return true
 	}
+
+	const {screen} = useScreenSize()
+
+	const screenSize = screenProps ?? screen
 	
 	const click = (e:React.MouseEvent<HTMLDivElement>) => {
 		if(!isCard(e))
