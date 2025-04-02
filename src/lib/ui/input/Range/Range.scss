@@ -2,6 +2,7 @@
     position: relative;
     max-height: "900px";
     --range-width: 80px;
+    --point-width: 30px;
     --point-opacity: 0;
     --truck-color: var(--Primary-color);
     
@@ -77,8 +78,8 @@
   
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: calc(var(--range-width) - 5px);
-        height: calc(var(--range-width) - 5px);
+        width: calc(var(--point-width) - 5px);
+        height: calc(var(--point-width) - 5px);
         background: var(--truck-color);
         border-radius: 50%;
         cursor: pointer;
@@ -88,8 +89,8 @@
       }
   
       &::-moz-range-thumb {
-        width: calc(var(--range-width) - 5px);
-        height: calc(var(--range-width) - 5px);
+        width: calc(var(--point-width) - 5px);
+        height: calc(var(--point-width) - 5px);
         background: var(--truck-color);
         border-radius: 50%;
         cursor: pointer;

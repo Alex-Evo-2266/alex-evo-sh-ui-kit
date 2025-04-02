@@ -9,6 +9,7 @@ export interface ColorSliderProps {
   max?: number;
   step?: number;
   value?: number;
+  ariaLabel?: string
   orientation?: 'horizontal' | 'vertical';
   showValue?: boolean;
   valueDisplayDuration?: number;
@@ -42,6 +43,7 @@ export const Range: React.FC<ColorSliderProps> = ({
   styleTrack = 'base',
   showValue = true,
   valueDisplayDuration = 2000,
+  ariaLabel = "Регулятор значения",
   ...props
 }) => {
   const range = useRef<HTMLInputElement>(null);
@@ -148,6 +150,7 @@ export const Range: React.FC<ColorSliderProps> = ({
 	if (orientation === 'vertical') {
 		return { 
 			'--range-width': width,
+			'--point-width': styleTrack === 'point'? width : '6px',
     		'--point-opacity': styleTrack === 'point'? '1' : '0',
 			'--truck-color': colorRange,
 			width: WIDTH, 
@@ -158,6 +161,7 @@ export const Range: React.FC<ColorSliderProps> = ({
 	}
 	return { 
 		'--range-width': width,
+		'--point-width': styleTrack === 'point'? width : '6px',
 		'--point-opacity': styleTrack === 'point'? '1' : '0',
 		'--truck-color': colorRange,
 		width: '100%', 
@@ -211,6 +215,8 @@ export const Range: React.FC<ColorSliderProps> = ({
 		aria-valuenow={value}
 		aria-valuemin={min}
 		aria-valuemax={max}
+		aria-label={ariaLabel}
+		aria-valuetext={`${value} из ${max}`}
 		{...props}
 	  />
 	</div>
