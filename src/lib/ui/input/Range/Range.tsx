@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import './Range.scss';
+import { useColor } from '../../../hooks/color.hook';
 
 export interface ColorSliderProps {
   colorRange?: string;
@@ -29,7 +30,7 @@ export enum PopupState {
 const WIDTH = "var(--range-width)"
 
 export const Range: React.FC<ColorSliderProps> = ({
-  colorRange = "#2196F3",
+  colorRange: _colorRange,
   colorBg = "var(--Surface-container-color)",
   onChange,
   min = 0,
@@ -50,6 +51,9 @@ export const Range: React.FC<ColorSliderProps> = ({
   const [height, setHeight] = useState<string>('200px');
   const timeoutRef = useRef<number>();
   const hideTimeoutRef = useRef<number>();
+  const {colors} = useColor()
+
+  const colorRange = _colorRange ?? colors.Primary_color ?? "#0000ff"
 
   // Обновляем высоту при изменении ориентации или размера родителя
   useEffect(() => {
