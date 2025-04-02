@@ -30,6 +30,7 @@ export function SelectionDialog<T>({onSuccess, items, header, onHide, noHide = f
     const [value, setValue] = useState<T | undefined>(undefined)
 
     const success = useCallback(() => {
+        console.log(value)
         onSuccess && value && onSuccess(value)
         setValue(undefined)
         !noHide && onHide && onHide()
@@ -47,7 +48,7 @@ export function SelectionDialog<T>({onSuccess, items, header, onHide, noHide = f
                 {
                     items.map((item, index)=>(
                         <label key={index}>
-                            <ListItem hovered header={item.title} onClick={()=>change(item.data)} control={<BaseRadioButton name={name} checked={item.data === value}/>}/>  
+                            <ListItem hovered header={item.title} onClick={()=>change(item.data)} control={<BaseRadioButton onClick={()=>change(item.data)} name={name} checked={item.data === value}/>}/>  
                         </label>
                     ))
                 }

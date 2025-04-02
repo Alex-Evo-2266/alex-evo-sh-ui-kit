@@ -15,6 +15,45 @@
     }
 }
 
+.dialog-container-bottom-sheet{
+
+    padding: 24px 0;
+
+    .dialog-header{
+        flex: 100%;
+        padding-bottom: 16px;
+        padding-left: 24px;
+        padding-right: 24px;
+        color: var(--On-surface-color);
+        h2{
+            display: inline;
+        }
+    }
+    .dialog-action{
+        flex: 100%;
+        padding-top: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .dialog-content{
+        flex: 100%;
+        // overflow-x: hidden;
+        overflow-y: auto;
+        position: relative;
+        color: var(--On-surface-color);
+        & > *{
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+    }
+
+    .dialog-button-container{
+        display: flex;
+        justify-content: end;
+    }
+}
+
 .dialog-container-base{
     position: absolute;
     top: 50%;
@@ -37,8 +76,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 900;
-
-
     
     .dialog-header{
         flex: 100%;

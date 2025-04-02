@@ -13,13 +13,14 @@ export interface RadioButtonProps{
 export interface BaseRadioButtonProps{
     name: string
     checked?: boolean
+    onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>)=>void
 }
 
-export const BaseRadioButton = ({name, checked}:BaseRadioButtonProps) => {
+export const BaseRadioButton = ({name, checked, onClick}:BaseRadioButtonProps) => {
 
     return(
         <label className="radio-button-container">
-            <input className="radio-button" name={name} type="radio" checked={checked} readOnly/>
+            <input className="radio-button" onClick={onClick} name={name} type="radio" checked={checked} readOnly/>
             <span></span>
         </label>
     )

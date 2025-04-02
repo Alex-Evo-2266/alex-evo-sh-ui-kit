@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { IconButton } from "../../Base/IconButton/IconButton"
 import "./Dialog.scss"
-import { BasicTemplateDialog } from "./BasicTemplateDialog"
+import { ModalTemplateDialog } from "./BasicTemplateDialog"
 import { TextButton } from "../../Base/Button/Button"
 import { X } from "../../Icons"
 import { useScrollLock } from "../../../hooks/lockScroll.hook"
@@ -62,7 +62,7 @@ export const FullScrinTemplateDialog = ({style, className, header, children, onS
 	
 	if(!fullScreenDisplay)
 		return(
-			<BasicTemplateDialog disableBackplate={disableBackplate} style={style} header={header} className={`full-screen-dialog-base-format ${className}`} onHide={hide} children={children} action={<ButtonDialog onHide={onHide? hide: undefined} onSave={onSave?save:undefined}/>}/>
+			<ModalTemplateDialog disableBackplate={disableBackplate} style={style} header={header} className={`full-screen-dialog-base-format ${className}`} onHide={hide} children={children} action={<ButtonDialog onHide={onHide? hide: undefined} onSave={onSave?save:undefined}/>}/>
 		)
 
 	return(

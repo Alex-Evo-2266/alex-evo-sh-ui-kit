@@ -70,7 +70,7 @@ export const BottomSheetsUi = ({bottom = 0, ...props}:BottomSheetsUiProps) => {
 
     return(
         <ModalTemplate onHide={hide}>
-            <div ref={bottomSheets} style={{marginBottom: bottom}} className={`bottom-sheets ${hided?"hide":""}`}>
+            <div ref={bottomSheets} style={{paddingBottom: bottom}} className={`bottom-sheets ${hided?"hide":""}`}>
                 <div className="bottom-sheets-handle" onMouseDown={mouseDown} onTouchMove={touchMove}><span></span></div>
                 <div className="bottom-sheets-content">
                     {props.children}
