@@ -1,0 +1,150 @@
+.range-wrapper {
+    position: relative;
+    max-height: "900px";
+    --range-width: 80px;
+    --point-opacity: 0;
+    --truck-color: var(--Primary-color);
+    
+    .track {
+      position: absolute;
+      background: var(--Surface-container-color);
+      border-radius: 20px;
+      overflow: hidden;
+      z-index: 1;
+  
+      .active-track {
+        position: absolute;
+        transition: background 0.3s, width 0.2s, height 0.2s;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+  
+      .value-popup {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--Surface-container-highest-color);
+        color: var(--On-surface-color);
+        padding: 5px 10px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        z-index: 3;
+        will-change: transform, opacity;
+        animation: popup-show 0.3s ease-in-out forwards;
+        
+        &.hiding {
+          animation: popup-hide 0.5s ease-in-out forwards;
+        }
+      }
+    }
+  
+    @keyframes popup-show {
+      0% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.8); 
+      }
+      100% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.1); 
+      }
+    }
+  
+    @keyframes popup-hide {
+      0% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.1); 
+      }
+      100% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.8); 
+      }
+    }
+  
+    .slider-input {
+      -webkit-appearance: none;
+      outline: none;
+      background: transparent;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      margin: 0;
+  
+      &:focus {
+        outline: none;
+      }
+  
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: calc(var(--range-width) - 5px);
+        height: calc(var(--range-width) - 5px);
+        background: var(--truck-color);
+        border-radius: 50%;
+        cursor: pointer;
+        pointer-events: auto;
+        opacity: var(--point-opacity);
+        transition: opacity 0.2s;
+      }
+  
+      &::-moz-range-thumb {
+        width: calc(var(--range-width) - 5px);
+        height: calc(var(--range-width) - 5px);
+        background: var(--truck-color);
+        border-radius: 50%;
+        cursor: pointer;
+        opacity: var(--point-opacity);
+        pointer-events: auto;
+        transition: opacity 0.2s;
+      }
+    }
+  
+    &.horizontal {
+      .track {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 100%;
+        height: var(--range-width);
+  
+        .active-track {
+          top: 0;
+          left: 0;
+          height: 100%;
+          border-radius: 20px;
+        }
+      }
+  
+      .slider-input {
+        width: 100%;
+        height: var(--range-width);
+      }
+    }
+  
+    &.vertical {
+      .track {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--range-width);
+        height: 100%;
+  
+        .active-track {
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          border-radius: 20px;
+        }
+      }
+  
+      .slider-input {
+        width: 200px;
+        height: var(--range-width);
+        transform: rotate(-90deg);
+        transform-origin: left bottom;
+        position: absolute;
+        left: var(--range-width);
+        bottom: 0;
+      }
+    }
+  }

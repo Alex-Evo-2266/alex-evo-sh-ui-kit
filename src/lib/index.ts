@@ -1,6 +1,7 @@
 // Импорты компонентов
 import { BaseButton, Button, FilledButton, FilledTotalButton, OutlineButton, TextButton } from "./ui/Base/Button/Button";
 import { CopyButton } from './ui/Base/CopyButton/CopyButton';
+import { Range } from './ui/input/Range/Range'
 import { FAB } from './ui/Base/FAB/FAB';
 import { IconButton } from './ui/Base/IconButton/IconButton';
 import { IconButtonMenu } from './ui/Base/IconButtonMenu/IconButtonMenu';
@@ -96,6 +97,7 @@ export {
   BottomSheetsUi,
   Button,
   Card,
+  Range,
   Checkbox,
   Chips,
   ColorField,
