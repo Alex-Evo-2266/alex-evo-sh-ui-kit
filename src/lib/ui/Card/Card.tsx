@@ -39,8 +39,9 @@ export const Card = ({style, className, action, imgSrc, alt, header, subhead, te
 			return
         let overlay = document.createElement('span')
         overlay.classList.add("btn-overlay")
-        let x = e.pageX - e.currentTarget.offsetLeft
-        let y = e.pageY - e.currentTarget.offsetTop
+		const containerRect = e.currentTarget.getBoundingClientRect()
+        const x = e.clientX - containerRect.left;
+    	const y = e.clientY - containerRect.top;
         overlay.style.left = x + "px"
         overlay.style.top = y + "px"
 		clickContainer.appendChild(overlay)
