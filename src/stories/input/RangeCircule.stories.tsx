@@ -13,7 +13,7 @@ const meta = {
     
   },
   args: { 
-    onChange: console.log,
+    onChange: fn,
     value: 50,
     rounding: false
    },
