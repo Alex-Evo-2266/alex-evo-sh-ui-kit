@@ -2,6 +2,7 @@
   "name": "alex-evo-sh-ui-kit",
   "version": "1.0.78",
   "type": "module",
+  "homepage": "https://alex-evo-2266.github.io/alex-evo-sh-ui-kit/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
