@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { BaseActionCard, Button, Card, IconButton, IconButtonMenu, ListContainer, ListItem, MenuIcon, MoreVertical } from '../../lib/index';
+import { BaseActionCard, Button, Card, IconButton, IconButtonMenu, ListContainer, ListItem, MoreVertical } from '../../lib/index';
 // import React from 'react';
 import img from '../img/fon-base.jpg'
 
