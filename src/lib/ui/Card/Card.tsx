@@ -16,9 +16,10 @@ export interface CardProps{
 	onClick?: (e:React.MouseEvent<HTMLDivElement>)=>void
 	screenSize?: ScreenSize
 	style?: React.CSSProperties
+	rootApp?: string
 }
 
-export const Card = ({style, className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick, screenSize: screenProps}:CardProps) => {
+export const Card = ({style, className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick, screenSize: screenProps, rootApp = '#root'}:CardProps) => {
 	
 	const isCard = (e:React.MouseEvent<HTMLDivElement>):boolean=>{
 		if((e.target as Element).className === "action-container" || (e.target as Element).closest(".action-container"))
@@ -26,6 +27,8 @@ export const Card = ({style, className, action, imgSrc, alt, header, subhead, te
 		if((e.target as Element).className === "icon-button-container" || (e.target as Element).closest(".icon-button-container"))
 			return false
 		if((e.target as Element).className === "card-child-container" || (e.target as Element).closest(".card-child-container"))
+			return false
+		if(!(e.target as Element).closest(`${rootApp}`))
 			return false
 		return true
 	}

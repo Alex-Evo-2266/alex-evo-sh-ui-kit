@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { BaseActionCard, Button, Card, IconButton, ListContainer, ListItem } from '../../lib/index';
+import { BaseActionCard, Button, Card, IconButton, IconButtonMenu, ListContainer, ListItem, MenuIcon, MoreVertical } from '../../lib/index';
 // import React from 'react';
 import img from '../img/fon-base.jpg'
 
@@ -14,7 +14,9 @@ const meta = {
   argTypes: {
     
   },
-  args: { },
+  args: {
+    rootApp: '#storybook-root'
+   },
 } satisfies Meta<typeof Card>;
 
 export default meta;
@@ -112,6 +114,27 @@ export const Icon: Story = {
       imgSrc: img,
       alt: "img",
       onClick: fn,
+      children: <ListContainer transparent>
+      <ListItem hovered header='test' text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?"/>
+    </ListContainer>
+  },
+  };
+
+
+  export const ClickMenu: Story = {
+    args: {
+      header: "Test header",
+      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
+      subhead: "test",
+      imgSrc: img,
+      alt: "img",
+      onClick: e=>console.log(e.target),
+      action: <IconButtonMenu autoHide container={document.body} icon={<MoreVertical/>} blocks={[{
+        items:[{
+          title: "dg",
+          onClick: console.log
+        }]
+      }]}/>,
       children: <ListContainer transparent>
       <ListItem hovered header='test' text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?"/>
     </ListContainer>
