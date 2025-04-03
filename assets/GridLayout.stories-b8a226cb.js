@@ -1,0 +1,13 @@
+import{j as e}from"./jsx-runtime-0ae02581.js";import{G as q,n as i,e as a}from"./index-9a48c850.js";import"./index-a383d3d5.js";import"./CopyButton-387b9019.js";import"./Copy-916423f3.js";import"./sizeScreen-71d55eb1.js";import"./ColorPicker-fdcc6713.js";import"./index-b0717202.js";const y={title:"Components/Layout/GridLayout",component:q,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{},args:{itemWith:"300px",children:e.jsxs(e.Fragment,{children:[e.jsx(i,{children:e.jsx(a,{header:"test1",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa velit quibusdam rem perspiciatis assumenda doloremque expedita dicta maiores, repudiandae similique, minima ex impedit molestias cupiditate fugit quam recusandae quo beatae."})}),e.jsx(i,{children:e.jsx(a,{header:"test1",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa velit quibusdam rem perspiciatis assumenda doloremque expedita dicta maiores, repudiandae similique, minima ex impedit molestias cupiditate fugit quam recusandae quo beatae."})}),e.jsx(i,{children:e.jsx(a,{header:"test1",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa velit quibusdam rem perspiciatis assumenda doloremque expedita dicta maiores, repudiandae similique, minima ex impedit molestias cupiditate fugit quam recusandae quo beatae."})}),e.jsx(i,{children:e.jsx(a,{header:"test1",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa velit quibusdam rem perspiciatis assumenda doloremque expedita dicta maiores, repudiandae similique, minima ex impedit molestias cupiditate fugit quam recusandae quo beatae."})}),e.jsx(i,{children:e.jsx(a,{header:"test1",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa velit quibusdam rem perspiciatis assumenda doloremque expedita dicta maiores, repudiandae similique, minima ex impedit molestias cupiditate fugit quam recusandae quo beatae."})})]})}},t={args:{minWith:"800px"}},s={args:{minWith:"1000px"}},r={args:{minWith:"500px"}};var m,o,d;t.parameters={...t.parameters,docs:{...(m=t.parameters)==null?void 0:m.docs,source:{originalSource:`{
+  args: {
+    minWith: "800px"
+  }
+}`,...(d=(o=t.parameters)==null?void 0:o.docs)==null?void 0:d.source}}};var u,p,n;s.parameters={...s.parameters,docs:{...(u=s.parameters)==null?void 0:u.docs,source:{originalSource:`{
+  args: {
+    minWith: "1000px"
+  }
+}`,...(n=(p=s.parameters)==null?void 0:p.docs)==null?void 0:n.source}}};var c,l,x;r.parameters={...r.parameters,docs:{...(c=r.parameters)==null?void 0:c.docs,source:{originalSource:`{
+  args: {
+    minWith: "500px"
+  }
+}`,...(x=(l=r.parameters)==null?void 0:l.docs)==null?void 0:x.source}}};const v=["W800","W1000","W500"];export{s as W1000,r as W500,t as W800,v as __namedExportsOrder,y as default};

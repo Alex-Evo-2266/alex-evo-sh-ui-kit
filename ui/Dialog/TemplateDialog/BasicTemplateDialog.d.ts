@@ -6,5 +6,9 @@ export interface DialogProps {
     onHide?: () => void;
     className?: string;
     style?: React.CSSProperties;
+    clearStyle?: boolean;
+    disableBackplate?: boolean;
+    marginBottom?: number;
 }
-export declare const BasicTemplateDialog: ({ className, children, header, action, onHide, style }: DialogProps) => import("react/jsx-runtime").JSX.Element;
+export declare const ModalTemplateDialog: ({ className, children, header, action, onHide, style, clearStyle, disableBackplate }: DialogProps) => import("react/jsx-runtime").JSX.Element;
+export declare const BasicTemplateDialog: ({ marginBottom, ...props }: DialogProps) => import("react/jsx-runtime").JSX.Element;

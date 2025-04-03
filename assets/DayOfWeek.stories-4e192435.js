@@ -1,0 +1,3 @@
+import{z as a}from"./index-9a48c850.js";import"./jsx-runtime-0ae02581.js";import"./index-a383d3d5.js";import"./CopyButton-387b9019.js";import"./Copy-916423f3.js";import"./sizeScreen-71d55eb1.js";import"./ColorPicker-fdcc6713.js";import"./index-b0717202.js";const g={title:"Components/Input/DayOfWeekField",component:a,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{},args:{}},e={args:{}};var r,t,o;e.parameters={...e.parameters,docs:{...(r=e.parameters)==null?void 0:r.docs,source:{originalSource:`{
+  args: {}
+}`,...(o=(t=e.parameters)==null?void 0:t.docs)==null?void 0:o.source}}};const l=["Base"];export{e as Base,l as __namedExportsOrder,g as default};

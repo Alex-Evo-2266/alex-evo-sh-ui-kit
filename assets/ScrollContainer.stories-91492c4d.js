@@ -1,3 +1,0 @@
-import{r as n,j as e,m as s}from"./index-ca9c4b25.js";import"./index-a383d3d5.js";const m={title:"BaseComponents/ScrollContainer",component:n,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{},args:{height:"300px",children:e.jsxs(e.Fragment,{children:[e.jsx(s,{header:"test1"}),e.jsx(s,{header:"test1"}),e.jsx(s,{header:"test1"}),e.jsx(s,{header:"test1"}),e.jsx(s,{header:"test1"}),e.jsx(s,{header:"test1"})]})}},r={args:{}};var t,a,o;r.parameters={...r.parameters,docs:{...(t=r.parameters)==null?void 0:t.docs,source:{originalSource:`{
-  args: {}
-}`,...(o=(a=r.parameters)==null?void 0:a.docs)==null?void 0:o.source}}};const p=["Base"];export{r as Base,p as __namedExportsOrder,m as default};

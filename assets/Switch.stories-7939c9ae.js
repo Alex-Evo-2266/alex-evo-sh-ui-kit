@@ -1,0 +1,3 @@
+import{f as a}from"./index-6eef940f.js";import{d as s}from"./index-9a48c850.js";import"./jsx-runtime-0ae02581.js";import"./index-a383d3d5.js";import"./CopyButton-387b9019.js";import"./Copy-916423f3.js";import"./sizeScreen-71d55eb1.js";import"./ColorPicker-fdcc6713.js";import"./index-b0717202.js";const l={title:"Components/Base/Switch",component:s,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{},args:{onChange:a()}},r={args:{}};var o,t,e;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
+  args: {}
+}`,...(e=(t=r.parameters)==null?void 0:t.docs)==null?void 0:e.source}}};const h=["Base"];export{r as Base,h as __namedExportsOrder,l as default};

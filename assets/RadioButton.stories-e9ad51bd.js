@@ -1,0 +1,3 @@
+import{f as e}from"./index-6eef940f.js";import{R as s}from"./index-9a48c850.js";import"./jsx-runtime-0ae02581.js";import"./index-a383d3d5.js";import"./CopyButton-387b9019.js";import"./Copy-916423f3.js";import"./sizeScreen-71d55eb1.js";import"./ColorPicker-fdcc6713.js";import"./index-b0717202.js";const B={title:"Components/Base/RadioButton",component:s,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{},args:{onChange:e(),name:"test"}},o={args:{}};var t,r,a;o.parameters={...o.parameters,docs:{...(t=o.parameters)==null?void 0:t.docs,source:{originalSource:`{
+  args: {}
+}`,...(a=(r=o.parameters)==null?void 0:r.docs)==null?void 0:a.source}}};const l=["Base"];export{o as Base,l as __namedExportsOrder,B as default};

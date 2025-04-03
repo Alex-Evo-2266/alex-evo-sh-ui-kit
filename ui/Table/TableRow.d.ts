@@ -9,6 +9,7 @@ interface RowProps {
     onEdit?: (data: IDataItem, index: number) => void;
     onContextMenu?: (event: React.MouseEvent<HTMLElement>, data: IDataItem, index: number) => void;
     onClickRow?: (data: IDataItem, index: number) => void;
+    maxH?: number[] | undefined;
 }
-export declare const TableRow: ({ actions, item, columns, onContextMenu, onDelete, onEdit, onClickRow, index }: RowProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TableRow: ({ actions, item, columns, onContextMenu, onDelete, onEdit, onClickRow, index, maxH }: RowProps) => import("react/jsx-runtime").JSX.Element;
 export {};

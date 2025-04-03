@@ -1,0 +1,7 @@
+import{j as t}from"./jsx-runtime-0ae02581.js";import{r as l}from"./index-9a48c850.js";import{f as u}from"./index-6eef940f.js";import{b as s,H as o}from"./Copy-916423f3.js";import"./index-a383d3d5.js";import"./CopyButton-387b9019.js";import"./sizeScreen-71d55eb1.js";import"./ColorPicker-fdcc6713.js";import"./index-b0717202.js";const w={title:"Components/Navigation/NavigationDrawer",component:l,parameters:{layout:"fullscreen"},argTypes:{},args:{mainBtn:[{icon:t.jsx(s,{}),onClick:()=>{},text:"serdth",type:"button",active:!0},{icon:t.jsx(o,{}),onClick:()=>{},text:"home",type:"button"},{icon:t.jsx(s,{}),onClick:()=>{},text:"room",type:"button"}],onHide:u,openAlways:!0,otherBtn:[{icon:t.jsx(o,{}),onClick:()=>{},text:"home",type:"button"},{icon:t.jsx(s,{}),onClick:()=>{},text:"room",type:"button"}],firstBtn:{icon:t.jsx(o,{}),onClick:()=>{},text:"home",type:"button"},backBtn:{icon:t.jsx(o,{}),onClick:()=>{},text:"home",type:"button"}}},e={args:{}},r={args:{openAlways:!1}};var n,a,i;e.parameters={...e.parameters,docs:{...(n=e.parameters)==null?void 0:n.docs,source:{originalSource:`{
+  args: {}
+}`,...(i=(a=e.parameters)==null?void 0:a.docs)==null?void 0:i.source}}};var p,m,c;r.parameters={...r.parameters,docs:{...(p=r.parameters)==null?void 0:p.docs,source:{originalSource:`{
+  args: {
+    openAlways: false
+  }
+}`,...(c=(m=r.parameters)==null?void 0:m.docs)==null?void 0:c.source}}};const h=["Base","noOpenAlways"];export{e as Base,h as __namedExportsOrder,w as default,r as noOpenAlways};

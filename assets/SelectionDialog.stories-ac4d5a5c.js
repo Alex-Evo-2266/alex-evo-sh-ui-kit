@@ -1,3 +1,0 @@
-import{t as o}from"./index-ca9c4b25.js";import"./index-a383d3d5.js";const i={title:"Dialogs/SelectionDialog",component:o,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{},args:{onHide:()=>console.log("close"),header:"testH",items:[{title:"test1",data:"data1"},{title:"test2",data:"data2"},{title:"test3",data:"data3"},{title:"test3",data:"data3"},{title:"test3",data:"data3"},{title:"test3",data:"data3"}]}},t={args:{}};var a,e,s;t.parameters={...t.parameters,docs:{...(a=t.parameters)==null?void 0:a.docs,source:{originalSource:`{
-  args: {}
-}`,...(s=(e=t.parameters)==null?void 0:e.docs)==null?void 0:s.source}}};const l=["Base"];export{t as Base,l as __namedExportsOrder,i as default};

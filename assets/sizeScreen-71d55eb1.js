@@ -1,0 +1,1 @@
+var A=(E=>(E.MOBILE="MOBILE",E.STANDART="STANDART",E.BIG_SCREEN="BIG_SCREEN",E))(A||{});export{A as S};

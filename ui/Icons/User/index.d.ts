@@ -1,0 +1,6 @@
+export { AddUserIcon } from './AddUser';
+export { UserIcon } from './User';
+export { MinusUserIcon } from './MinusUser';
+export { XUserIcon } from './XUser';
+export { OkUserIcon } from './OkUser';
+export { Group } from './Group';

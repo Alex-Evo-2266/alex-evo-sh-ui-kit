@@ -6,5 +6,7 @@ export interface DialogProps {
     onHide?: () => void;
     className?: string;
     style?: React.CSSProperties;
+    marginBottom?: number;
+    disableBackplate?: boolean;
 }
-export declare const FullScrinTemplateDialog: ({ style, className, header, children, onSave, onHide }: DialogProps) => import("react/jsx-runtime").JSX.Element;
+export declare const FullScrinTemplateDialog: ({ style, className, header, children, onSave, onHide, marginBottom, disableBackplate }: DialogProps) => import("react/jsx-runtime").JSX.Element;

@@ -5,6 +5,7 @@ interface CellProps {
     data: IDataItem;
     color?: string;
     backgroundColor?: string;
+    H?: number;
 }
-export declare const TableCell: ({ data, column, color, backgroundColor }: CellProps) => import("react/jsx-runtime").JSX.Element;
+export declare const TableCell: ({ data, column, color, backgroundColor, H }: CellProps) => import("react/jsx-runtime").JSX.Element;
 export {};

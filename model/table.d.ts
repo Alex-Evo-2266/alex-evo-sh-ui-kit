@@ -1,14 +1,14 @@
-import { LucideIcon } from 'lucide-react';
-
+/// <reference types="react" />
 export interface IColumn {
     field: string;
     title: string;
     color?: string;
     backgroundColor?: string;
+    template?: (cell: ICell[], data: IDataItem) => React.ReactNode;
 }
 export type Column = IColumn;
 export interface ICell {
-    content: string | number | LucideIcon;
+    content: string | number | React.ReactNode;
     color?: string;
     onDelete?: () => void;
     onClick?: () => void;
@@ -25,7 +25,6 @@ export interface ITable {
     columns?: Column[];
     data: IDataItem[];
     actions?: ITableAction[];
-    adaptive?: boolean;
     onDelete?: (data: IDataItem, index: number) => void;
     onEdit?: (data: IDataItem, index: number) => void;
     onContextMenu?: (event: React.MouseEvent<HTMLElement>, data: IDataItem, index: number) => void;

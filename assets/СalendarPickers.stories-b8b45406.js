@@ -1,0 +1,3 @@
+import{С as o}from"./index-9a48c850.js";import"./jsx-runtime-0ae02581.js";import"./index-a383d3d5.js";import"./CopyButton-387b9019.js";import"./Copy-916423f3.js";import"./sizeScreen-71d55eb1.js";import"./ColorPicker-fdcc6713.js";import"./index-b0717202.js";const g={title:"Components/Input/Pickers/СalendarPickers",component:o,parameters:{layout:"centered"},tags:["autodocs"],argTypes:{},args:{}},r={args:{}};var e,a,t;r.parameters={...r.parameters,docs:{...(e=r.parameters)==null?void 0:e.docs,source:{originalSource:`{
+  args: {}
+}`,...(t=(a=r.parameters)==null?void 0:a.docs)==null?void 0:t.source}}};const l=["Base"];export{r as Base,l as __namedExportsOrder,g as default};

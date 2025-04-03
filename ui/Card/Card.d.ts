@@ -1,3 +1,4 @@
+import { ScreenSize } from '../../model/sizeScreen';
 
 export interface CardProps {
     className?: string;
@@ -10,5 +11,8 @@ export interface CardProps {
     children?: React.ReactNode;
     iconButtonCell?: React.ReactNode;
     onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+    screenSize?: ScreenSize;
+    style?: React.CSSProperties;
+    rootApp?: string;
 }
-export declare const Card: ({ className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick }: CardProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Card: ({ style, className, action, imgSrc, alt, header, subhead, text, children, iconButtonCell, onClick, screenSize: screenProps, rootApp }: CardProps) => import("react/jsx-runtime").JSX.Element;
