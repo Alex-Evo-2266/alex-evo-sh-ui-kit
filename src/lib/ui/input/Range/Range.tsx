@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import './Range.scss';
 import { useColor } from '../../../hooks/color.hook';
 import { Tooltip, usePopup } from '../../Base/Tooltip/Tooltip';
+import { interpolateColor } from '../../../helpers/color/interpolateColor'
 
 export interface ColorSliderProps {
   colorRange?: string;
@@ -18,9 +19,9 @@ export interface ColorSliderProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onMouseUp?: (e: React.MouseEvent<HTMLInputElement>) => void;
   style?: React.CSSProperties;
   styleTrack?: 'base' | 'static-color' | 'point'
+  startColor?: string
 }
 
 export enum PopupState {
@@ -45,6 +46,7 @@ export const Range: React.FC<ColorSliderProps> = ({
   showValue = true,
   valueDisplayDuration = 2000,
   ariaLabel = "Регулятор значения",
+  startColor,
   ...props
 }) => {
   const range = useRef<HTMLInputElement>(null);
@@ -98,22 +100,6 @@ export const Range: React.FC<ColorSliderProps> = ({
 	onChange?.(e);
   };
 
-  const interpolateColor = useCallback((factor: number): string => {
-	if (styleTrack === 'static-color') return colorRange;
-	if (factor === 0) return "var(--surface-color, #e0e0e0)";
-	if (factor === 1) return colorRange;
-
-	const r1 = 224, g1 = 224, b1 = 224;
-	const r2 = parseInt(colorRange.substring(1, 3), 16);
-	const g2 = parseInt(colorRange.substring(3, 5), 16);
-	const b2 = parseInt(colorRange.substring(5, 7), 16);
-
-	const r = Math.round(r1 + factor * (r2 - r1));
-	const g = Math.round(g1 + factor * (g2 - g1));
-	const b = Math.round(b1 + factor * (b2 - b1));
-
-	return `rgb(${r}, ${g}, ${b})`;
-  }, [colorRange]);
 
   const percentage = useMemo(() => 
 	max !== min ? ((value - min) / (max - min)) * 100 : 0,
@@ -123,8 +109,8 @@ export const Range: React.FC<ColorSliderProps> = ({
   const activeTrackStyle = useMemo(() => ({
 	...props.style,
 	[orientation === 'vertical' ? 'height' : 'width']: `${percentage}%`,
-	background: styleTrack === 'point'? "transperent" :interpolateColor(percentage / 100),
-  }), [percentage, interpolateColor, props.style, orientation, styleTrack]);
+	background: styleTrack === 'point'? "transperent" : styleTrack === 'static-color'? colorRange : interpolateColor(percentage / 100, colorRange, startColor),
+  }), [percentage, colorRange, props.style, orientation, styleTrack]);
 
   const wrapperStyle = useMemo(() => {
 	if (orientation === 'vertical') {
@@ -181,6 +167,8 @@ export const Range: React.FC<ColorSliderProps> = ({
 		step={step}
 		value={value}
 		onChange={handleSliderChange}
+		onFocus={props.onFocus}
+		onBlur={props.onBlur}
 		className="slider-input"
 		aria-orientation={orientation}
 		aria-valuenow={value}

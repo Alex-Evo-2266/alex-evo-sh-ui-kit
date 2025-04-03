@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import CircleInput from '../../lib/ui/input/Range/RangeCircle';
+import { Typography } from '../../lib';
 
 const meta = {
   title: 'Components/Input/CircleInput',
@@ -15,7 +16,6 @@ const meta = {
   args: { 
     onChange: fn,
     value: 50,
-    rounding: false
    },
 } satisfies Meta<typeof CircleInput>;
 
@@ -25,5 +25,19 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
 
+  },
+};
+
+
+export const Content: Story = {
+  args: {
+    children: <Typography type='heading'>test</Typography>
+  },
+};
+
+export const startColor: Story = {
+  args: {
+    children: <Typography type='heading'>test</Typography>,
+    startColor: "#ffff00"
   },
 };

@@ -131,6 +131,9 @@
   .range-circule-children{
     --stroke-width: 10px;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: var(--stroke-width);
     left: var(--stroke-width);
     border-radius: 50%;

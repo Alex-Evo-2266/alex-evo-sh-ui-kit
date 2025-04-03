@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Tooltip } from '../../Base/Tooltip/Tooltip';
 import './Range.scss'
+import { interpolateColor } from '../../../helpers/color/interpolateColor';
+import { useColor } from '../../../hooks/color.hook';
 
 interface CircleInputProps {
   colorBg?: string;
@@ -15,9 +17,9 @@ interface CircleInputProps {
   onChange?: (value: number) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onMouseUp?: (e: React.MouseEvent<HTMLInputElement>) => void;
   children?: React.ReactNode
-  styleTrack?: 'circle' | 'semicircle' | 'brokenCircle';
+  styleTrack?: 'base' | 'static-color' | 'point'
+  styleRange?: 'circle' | 'semicircle' | 'brokenCircle';
   strokeWidth?: number;
   radius?: number;
   showBase?: boolean;
@@ -26,6 +28,7 @@ interface CircleInputProps {
   rounding?: boolean;
   style?: React.CSSProperties;
   className?: string
+  startColor?: string
 }
 
 const CircleInput: React.FC<CircleInputProps> = ({
@@ -35,29 +38,38 @@ const CircleInput: React.FC<CircleInputProps> = ({
   onChange,
   onFocus,
   onBlur,
-  styleTrack = 'circle',
+  styleRange = 'circle',
+  styleTrack = 'base',
   strokeWidth = 20,
-  radius = 25,
-  colorBg = '#eee',
-  colorRange = '#f00',
-  pointColor = '#f00',
+  radius = 100,
+  colorBg = 'var(--Surface-container-color)',
+  colorRange: _colorRange,
+  pointColor: _pointColor,
   showBase = true,
-  showIndicator = true,
-  showPoint = false,
+  showIndicator: showIndicatorProps = true,
+  showPoint:showPointProps = false,
   rounding = true,
   showValue = true,
   style,
   children,
-  className
+  className,
+  startColor
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const isDragging = useRef(false);
-  const width = (radius * 2) + strokeWidth
-  const height = (radius * 2) + strokeWidth
+  const width = (radius * 2)
+  const height = (radius * 2)
   const minSide = Math.min(width, height);
   const centerX = width / 2;
   const centerY = height / 2;
-  const actualRadius = radius || (minSide / 2) - strokeWidth / 2;
+  const actualRadius = (minSide / 2) - strokeWidth / 2;
+
+  const showIndicator = styleTrack === 'point'? false: showIndicatorProps
+  const showPoint = styleTrack === 'point'? true: showPointProps
+
+  const {colors} = useColor()
+  const colorRange = _colorRange ?? colors.Primary_color ?? "#0000ff"
+  const pointColor = _pointColor ?? colors.Primary_color ?? "#0000ff"
 
   const [val, setVal] = useState(value)
 
@@ -69,21 +81,26 @@ const CircleInput: React.FC<CircleInputProps> = ({
     }, [value]);
 
   const getAngleSize = useCallback(() => {
-    switch (styleTrack) {
+    switch (styleRange) {
       case 'semicircle': return 180;
       case 'brokenCircle': return 270;
       default: return 360;
     }
-  },[styleTrack])
+  },[styleRange])
 
   const getLineParams = useCallback(() => {
-    if (styleTrack === 'semicircle') {
+    if (styleRange === 'semicircle') {
       return [actualRadius * Math.PI, actualRadius * Math.PI];
-    } else if (styleTrack === 'brokenCircle') {
+    } else if (styleRange === 'brokenCircle') {
       return [actualRadius * Math.PI * 1.25, actualRadius * Math.PI * 1.5];
     }
     return [actualRadius * Math.PI, actualRadius * Math.PI * 2];
-  },[styleTrack, actualRadius])
+  },[styleRange, actualRadius])
+
+  const percentage = useMemo(() => 
+    max !== min ? ((val - min) / (max - min)) * 100 : 0,
+    [val, min, max]
+    );
 
   const paint = useCallback(() => {
     if (!svgRef.current) return;
@@ -105,7 +122,15 @@ const CircleInput: React.FC<CircleInputProps> = ({
     if (showIndicator) {
       const indicator = svgRef.current.querySelector('[data-el="indicator"]') as SVGCircleElement;
       if (indicator) {
-        indicator.style.stroke = colorRange;
+
+        const oldPercentage = parseFloat(indicator.dataset["percentage"] ?? "")
+        if(oldPercentage !== null && (oldPercentage < percentage - 2 || oldPercentage > percentage + 2))
+          indicator.style.transition = ".3s"
+        else
+          indicator.style.transition = isDragging.current? "none":".3s"
+        indicator.dataset["percentage"] = percentage.toString()
+
+        indicator.style.stroke = styleTrack === 'static-color'? colorRange : interpolateColor(percentage / 100, colorRange, startColor);
         indicator.style.strokeWidth = strokeWidth.toString();
         indicator.style.strokeLinecap = rounding ? 'round' : '';
         indicator.style.strokeDashoffset = dashOffset.toString();
@@ -116,11 +141,19 @@ const CircleInput: React.FC<CircleInputProps> = ({
     if (showPoint) {
       const point = svgRef.current.querySelector('[data-el="point"]') as SVGCircleElement;
       if (point) {
+
+        const oldPercentage = parseFloat(point.dataset["percentage"] ?? "")
+        if(oldPercentage !== null && (oldPercentage < percentage - 2 || oldPercentage > percentage + 2))
+          point.style.transition = ".3s"
+        else
+          point.style.transition = isDragging.current? "none":".3s"
+        point.dataset["percentage"] = percentage.toString()
+
         point.style.stroke = pointColor;
         point.style.strokeWidth = strokeWidth.toString();
         point.style.strokeLinecap = 'round';
         
-        if (val === max && styleTrack === 'semicircle') {
+        if (val === max && styleRange === 'semicircle') {
           point.style.strokeDashoffset = '0';
         } else {
           point.style.strokeDashoffset = (dashOffset - arc).toString();
@@ -129,7 +162,7 @@ const CircleInput: React.FC<CircleInputProps> = ({
         point.style.strokeDasharray = `0, ${actualRadius * Math.PI * 2}`;
       }
     }
-  },[val, getLineParams, max, min, actualRadius, strokeWidth, colorBg, colorRange, pointColor, showBase, showIndicator, showPoint, rounding])
+  },[val, getLineParams, max, min, actualRadius, strokeWidth, colorBg, colorRange, pointColor, showBase, showIndicator, showPoint, rounding, percentage, startColor])
 
   const handleMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true;
