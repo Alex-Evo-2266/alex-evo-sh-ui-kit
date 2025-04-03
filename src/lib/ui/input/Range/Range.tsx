@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import './Range.scss';
 import { useColor } from '../../../hooks/color.hook';
+import { Tooltip, usePopup } from '../../Base/Tooltip/Tooltip';
 
 export interface ColorSliderProps {
   colorRange?: string;
@@ -13,7 +14,7 @@ export interface ColorSliderProps {
   orientation?: 'horizontal' | 'vertical';
   showValue?: boolean;
   valueDisplayDuration?: number;
-  width?: string;
+  strokeWidth?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -37,7 +38,7 @@ export const Range: React.FC<ColorSliderProps> = ({
   min = 0,
   max = 100,
   step = 1,
-  width = "40px",
+  strokeWidth = "40px",
   value: propValue,
   orientation = 'horizontal',
   styleTrack = 'base',
@@ -49,11 +50,9 @@ export const Range: React.FC<ColorSliderProps> = ({
   const range = useRef<HTMLInputElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState<number>(propValue ?? min);
-  const [popupState, setPopupState] = useState<PopupState>(PopupState.CLOSE);
   const [height, setHeight] = useState<string>('200px');
-  const timeoutRef = useRef<number>();
-  const hideTimeoutRef = useRef<number>();
   const {colors} = useColor()
+  const {showPopup, popupState} = usePopup({valueDisplayDuration})
 
   const colorRange = _colorRange ?? colors.Primary_color ?? "#0000ff"
 
@@ -79,14 +78,6 @@ export const Range: React.FC<ColorSliderProps> = ({
 	}
   }, [orientation]);
 
-  // Очистка таймеров при размонтировании
-  useEffect(() => {
-	return () => {
-	  if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
-	  if (hideTimeoutRef.current) window.clearTimeout(hideTimeoutRef.current);
-	};
-  }, []);
-
   // Синхронизация с внешним значением
   useEffect(() => {
 	if (propValue !== undefined) {
@@ -95,21 +86,10 @@ export const Range: React.FC<ColorSliderProps> = ({
 	}
   }, [propValue]);
 
-  const showValuePopup = () => {
+  const showValuePopup = useCallback(() => {
 	if (!showValue) return;
-	
-	setPopupState(PopupState.OPEN);
-	
-	if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
-	if (hideTimeoutRef.current) window.clearTimeout(hideTimeoutRef.current);
-	
-	timeoutRef.current = window.setTimeout(() => {
-	  setPopupState(PopupState.HIDING);
-	  hideTimeoutRef.current = window.setTimeout(() => {
-		setPopupState(PopupState.CLOSE);
-	  }, 500);
-	}, valueDisplayDuration);
-  };
+	showPopup()
+  },[showPopup])
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 	const newValue = parseFloat(e.target.value);
@@ -149,8 +129,8 @@ export const Range: React.FC<ColorSliderProps> = ({
   const wrapperStyle = useMemo(() => {
 	if (orientation === 'vertical') {
 		return { 
-			'--range-width': width,
-			'--point-width': styleTrack === 'point'? width : '6px',
+			'--range-width': strokeWidth,
+			'--point-width': styleTrack === 'point'? strokeWidth : '6px',
     		'--point-opacity': styleTrack === 'point'? '1' : '0',
 			'--truck-color': colorRange,
 			width: WIDTH, 
@@ -160,8 +140,8 @@ export const Range: React.FC<ColorSliderProps> = ({
 		};
 	}
 	return { 
-		'--range-width': width,
-		'--point-width': styleTrack === 'point'? width : '6px',
+		'--range-width': strokeWidth,
+		'--point-width': styleTrack === 'point'? strokeWidth : '6px',
 		'--point-opacity': styleTrack === 'point'? '1' : '0',
 		'--truck-color': colorRange,
 		width: '100%', 
@@ -169,7 +149,7 @@ export const Range: React.FC<ColorSliderProps> = ({
 		margin: `${WIDTH} 0`,
 		...props.style
 	};
-  }, [orientation, height, props.style, width, styleTrack, colorRange]);
+  }, [orientation, height, props.style, strokeWidth, styleTrack, colorRange]);
 
   const rangeInputStyle = useMemo(() => {
 	if (orientation === 'vertical') {
@@ -183,7 +163,6 @@ export const Range: React.FC<ColorSliderProps> = ({
   }, [orientation, height])
 
   return (
-	// <div style={{height: "400px", width: "500px"}}>
 	<div 
 	  ref={wrapperRef}
 	  className={`range-wrapper ${orientation}`}
@@ -191,15 +170,7 @@ export const Range: React.FC<ColorSliderProps> = ({
 	>
 	  <div className="track" style={{background: colorBg}}>
 		<div className="active-track" style={activeTrackStyle} />
-		{popupState !== PopupState.CLOSE && (
-		  <div 
-			className={`value-popup ${popupState === PopupState.HIDING ? "hiding" : ""}`}
-			aria-live="polite"
-			aria-atomic="true"
-		  >
-			{Math.round(value)}
-		  </div>
-		)}
+		<Tooltip text={Math.round(value).toString()} state={popupState} className='value-popup'/>
 	  </div>
 	  <input
 		ref={range}
@@ -220,6 +191,5 @@ export const Range: React.FC<ColorSliderProps> = ({
 		{...props}
 	  />
 	</div>
-	//</div>
   );
 };

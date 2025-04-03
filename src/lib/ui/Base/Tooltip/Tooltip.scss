@@ -1,0 +1,38 @@
+
+.alex-evo-sh-ui-kit-tooltip {
+    background: var(--Surface-container-highest-color);
+    color: var(--On-surface-color);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 3;
+    will-change: transform, opacity;
+    animation: popup-show 0.3s ease-in-out forwards;
+    
+    &.hiding {
+      animation: popup-hide 0.5s ease-in-out forwards;
+    }
+}
+
+@keyframes popup-show {
+  0% { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.8); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.1); 
+  }
+}
+
+@keyframes popup-hide {
+  0% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.1); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.8); 
+  }
+}

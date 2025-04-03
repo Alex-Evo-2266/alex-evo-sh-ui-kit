@@ -1,44 +1,59 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Tooltip } from '../../Base/Tooltip/Tooltip';
+import './Range.scss'
 
 interface CircleInputProps {
-  width?: number;
-  height?: number;
+  colorBg?: string;
+  colorRange?: string;
+  pointColor?: string;
   min?: number;
   max?: number;
   value?: number;
+  ariaLabel?: string
+  showValue?: boolean;
+  valueDisplayDuration?: number;
   onChange?: (value: number) => void;
-  style?: 'circle' | 'semicircle' | 'brokenCircle';
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onMouseUp?: (e: React.MouseEvent<HTMLInputElement>) => void;
+  children?: React.ReactNode
+  styleTrack?: 'circle' | 'semicircle' | 'brokenCircle';
   strokeWidth?: number;
   radius?: number;
-  baseColor?: string;
-  indicatorColor?: string;
-  pointColor?: string;
   showBase?: boolean;
   showIndicator?: boolean;
   showPoint?: boolean;
   rounding?: boolean;
+  style?: React.CSSProperties;
+  className?: string
 }
 
 const CircleInput: React.FC<CircleInputProps> = ({
-  width = 200,
-  height = 200,
   min = 0,
   max = 100,
   value = 0,
   onChange,
-  style = 'circle',
+  onFocus,
+  onBlur,
+  styleTrack = 'circle',
   strokeWidth = 20,
-  radius,
-  baseColor = '#eee',
-  indicatorColor = '#f00',
+  radius = 25,
+  colorBg = '#eee',
+  colorRange = '#f00',
   pointColor = '#f00',
   showBase = true,
   showIndicator = true,
-  showPoint = true,
-  rounding = false,
+  showPoint = false,
+  rounding = true,
+  showValue = true,
+  style,
+  children,
+  className
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const isDragging = useRef(false);
+  const width = (radius * 2) + strokeWidth
+  const height = (radius * 2) + strokeWidth
   const minSide = Math.min(width, height);
   const centerX = width / 2;
   const centerY = height / 2;
@@ -54,21 +69,21 @@ const CircleInput: React.FC<CircleInputProps> = ({
     }, [value]);
 
   const getAngleSize = useCallback(() => {
-    switch (style) {
+    switch (styleTrack) {
       case 'semicircle': return 180;
       case 'brokenCircle': return 270;
       default: return 360;
     }
-  },[style])
+  },[styleTrack])
 
   const getLineParams = useCallback(() => {
-    if (style === 'semicircle') {
+    if (styleTrack === 'semicircle') {
       return [actualRadius * Math.PI, actualRadius * Math.PI];
-    } else if (style === 'brokenCircle') {
+    } else if (styleTrack === 'brokenCircle') {
       return [actualRadius * Math.PI * 1.25, actualRadius * Math.PI * 1.5];
     }
     return [actualRadius * Math.PI, actualRadius * Math.PI * 2];
-  },[style, actualRadius])
+  },[styleTrack, actualRadius])
 
   const paint = useCallback(() => {
     if (!svgRef.current) return;
@@ -79,7 +94,7 @@ const CircleInput: React.FC<CircleInputProps> = ({
     if (showBase) {
       const base = svgRef.current.querySelector('[data-el="base"]') as SVGCircleElement;
       if (base) {
-        base.style.stroke = baseColor;
+        base.style.stroke = colorBg;
         base.style.strokeWidth = strokeWidth.toString();
         base.style.strokeLinecap = rounding ? 'round' : '';
         base.style.strokeDashoffset = dashOffset.toString();
@@ -90,7 +105,7 @@ const CircleInput: React.FC<CircleInputProps> = ({
     if (showIndicator) {
       const indicator = svgRef.current.querySelector('[data-el="indicator"]') as SVGCircleElement;
       if (indicator) {
-        indicator.style.stroke = indicatorColor;
+        indicator.style.stroke = colorRange;
         indicator.style.strokeWidth = strokeWidth.toString();
         indicator.style.strokeLinecap = rounding ? 'round' : '';
         indicator.style.strokeDashoffset = dashOffset.toString();
@@ -105,7 +120,7 @@ const CircleInput: React.FC<CircleInputProps> = ({
         point.style.strokeWidth = strokeWidth.toString();
         point.style.strokeLinecap = 'round';
         
-        if (val === max && style === 'semicircle') {
+        if (val === max && styleTrack === 'semicircle') {
           point.style.strokeDashoffset = '0';
         } else {
           point.style.strokeDashoffset = (dashOffset - arc).toString();
@@ -114,7 +129,7 @@ const CircleInput: React.FC<CircleInputProps> = ({
         point.style.strokeDasharray = `0, ${actualRadius * Math.PI * 2}`;
       }
     }
-  },[val, getLineParams, max, min, actualRadius, strokeWidth, baseColor, indicatorColor, pointColor, showBase, showIndicator, showPoint, rounding])
+  },[val, getLineParams, max, min, actualRadius, strokeWidth, colorBg, colorRange, pointColor, showBase, showIndicator, showPoint, rounding])
 
   const handleMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true;
@@ -124,6 +139,7 @@ const CircleInput: React.FC<CircleInputProps> = ({
   };
 
   const handleMouseMove = (e: MouseEvent) => {
+    e.preventDefault()
     if (!isDragging.current) return;
     updateValue(e);
   };
@@ -153,7 +169,6 @@ const CircleInput: React.FC<CircleInputProps> = ({
     if (angle < 0) angle = 360 + angle;
     if (angle < 0) angle = 0;
     
-    console.log("p0",angle, val, (max - min) / 2)
     if (angle > angleSize && val > (max - min) / 2) {
       angle = angleSize;
     } else if (angle > angleSize) {
@@ -181,8 +196,12 @@ const CircleInput: React.FC<CircleInputProps> = ({
       };
   },[])
 
+  const ChildStyle = {
+    '--stroke-width': `${strokeWidth}px`
+  } as React.CSSProperties
+
   return (
-    <div style={{ width, height }}>
+    <div style={{ width, height, ...style }} className='range-circule-wrapper' onFocus={onFocus} onBlur={onBlur}>
       <svg
         ref={svgRef}
         width="100%"
@@ -217,6 +236,12 @@ const CircleInput: React.FC<CircleInputProps> = ({
           />
         )}
       </svg>
+      <div className={`range-circule-children ${className}`} style={ChildStyle}>
+        {
+          children ?? (showValue &&
+          <Tooltip className='' text={Math.floor(val).toString()}/>)
+        }
+      </div>
     </div>
   );
 };
