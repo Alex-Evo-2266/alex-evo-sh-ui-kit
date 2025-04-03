@@ -19,6 +19,7 @@ const config: StorybookConfig = {
   },
   async viteFinal(config) {
     config.cacheDir = path.join(__dirname, '../node_modules/.vite-unique-name')
+    config.base = '/alex-evo-sh-ui-kit/';
     return config;
   },
 };
