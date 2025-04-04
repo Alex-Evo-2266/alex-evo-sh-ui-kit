@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import './Range.scss';
 import { useColor } from '../../../hooks/color.hook';
-import { Tooltip, usePopup } from '../../Base/Tooltip/Tooltip';
+import { Tooltip } from '../../Base/Tooltip/Tooltip';
 import { interpolateColor } from '../../../helpers/color/interpolateColor'
+import { usePopup } from '../../Base/Tooltip/hooks/Tooltip';
 
 export interface ColorSliderProps {
   colorRange?: string;

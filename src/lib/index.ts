@@ -4,6 +4,7 @@ import { CopyButton } from './ui/Base/CopyButton/CopyButton';
 import { Range } from './ui/input/Range/Range'
 import CircleInput from './ui/input/Range/RangeCircle'
 import { FAB } from './ui/Base/FAB/FAB';
+import { Tooltip } from './ui/Base/Tooltip/Tooltip';
 import { IconButton } from './ui/Base/IconButton/IconButton';
 import { IconButtonMenu } from './ui/Base/IconButtonMenu/IconButtonMenu';
 import { Checkbox } from './ui/Base/Checkbox/Checkbox';
@@ -66,6 +67,7 @@ import { map } from './helpers/map';
 import { hexToRgb, HSVtoHSL, HEXtoRGB, HSLtoHSV, HSVtoRGB, RGBtoHSV } from './helpers/color/colorConvert';
 import { getTextColor, getContainerColor } from './helpers/color/colorGenerator';
 import { DialogModal } from './portal/dialog';
+import { usePopup, PopupState } from './ui/Base/Tooltip/hooks/Tooltip'
 
 import { ScreenSize } from "./model/sizeScreen"
 import {BaseType} from './ui/Other/JSON/JsonComponent'
@@ -89,6 +91,7 @@ import './ui/index.scss';
 
 // Экспорты компонентов
 export {
+  Tooltip,
   BaseActionCard,
   BaseButton,
   BaseDialog,
@@ -155,6 +158,7 @@ export {
 
 // Экспорты хуков и утилит
 export {
+  usePopup,
   useColor,
   useScrollLock,
   useScreenSize,
@@ -171,7 +175,8 @@ export {
   getContainerColor,
   DialogModal,
   ScreenSize,
-  BaseType
+  BaseType,
+  PopupState
 };
 
 // Экспорты типов
