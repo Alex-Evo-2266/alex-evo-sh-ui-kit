@@ -1,70 +1,92 @@
-import { ScreenSize } from "../../../model/sizeScreen"
-import { HeadingProps, TextOption, TextProps } from "./TextProps"
-import './Text.scss'
+import React from "react";
+import { ScreenSize } from "../../../model/sizeScreen";
+import './Text.scss';
 
-type TypographyTypeHeader = "title" | "title-2" | "heading"
+export type TypographyType = 
+  | "title" 
+  | "title-2" 
+  | "heading"
+  | "body" 
+  | "small";
 
-type TypographyTypeBase = "body" | "small"
+export type TypographyWeight = 
+  | "thin" 
+  | "standart" 
+  | "bold";
 
-type TypographyWeight = "thin" | "standart" | "bold"
+export type TypographyDensity = 
+  | "tight" 
+  | "normal" 
+  | "loose";
 
-type TypographyDensity = "tight" | "normal" | "loose"
-
-interface ITypographyBase extends TextProps{
-    type: TypographyTypeBase
-    weight?: TypographyWeight
-    density?: TypographyDensity
-    children?: React.ReactNode
+export interface TypographyProps {
+  /** Тип текстового элемента */
+  type: TypographyType;
+  /** Размер экрана для адаптации */
+  screensize?: ScreenSize;
+  /** Насыщенность шрифта */
+  weight?: TypographyWeight;
+  /** Межстрочный интервал */
+  density?: TypographyDensity;
+  /** Дочерние элементы */
+  children?: React.ReactNode;
+  /** HTML-атрибуты для span/heading элементов */
+  [key: string]: any;
 }
 
-interface ITypographyHeader extends HeadingProps{
-    type: TypographyTypeHeader
-    weight?: TypographyWeight
-    density?: TypographyDensity
-    children?: React.ReactNode
-}
+const FountSize: Record<ScreenSize, string> = {
+  [ScreenSize.MOBILE]: "small-screen",
+  [ScreenSize.STANDART]: "standart-screen",
+  [ScreenSize.BIG_SCREEN]: "big-screen",
+};
 
-type ITypography = ITypographyBase | ITypographyHeader
+const getFontVar = (
+  type: TypographyType, 
+  screenSize: ScreenSize = ScreenSize.STANDART
+): string => `var(--${type}-${FountSize[screenSize]})`;
 
-const FountSize:TextOption = {
-    [ScreenSize.MOBILE]:"small-screen",
-    [ScreenSize.STANDART]:"standart-screen",
-    [ScreenSize.BIG_SCREEN]:"big-screen",
-}
+const getWeightVar = (
+  type: TypographyType, 
+  weight: TypographyWeight = 'standart'
+): string => `var(--${type}-${weight})`;
 
-function getFontVar(type: TypographyTypeHeader | TypographyTypeBase, screenSize: ScreenSize = ScreenSize.STANDART){
-    return `var(--${type}-${FountSize[screenSize]})`
-}
+const getLineHeightVar = (
+  type: TypographyType, 
+  density: TypographyDensity = 'normal', 
+  screenSize: ScreenSize = ScreenSize.STANDART
+): string => `var(--${type}-heights-${FountSize[screenSize]}-${density})`;
 
-function getWeightVar(type: TypographyTypeHeader | TypographyTypeBase, weight: TypographyWeight = 'standart'){
-    return `var(--${type}-${weight})`
-}
-    
-function getLineHeightVar(type: TypographyTypeHeader | TypographyTypeBase, density: TypographyDensity = 'normal', screenSize: ScreenSize = ScreenSize.STANDART){
-    return `var(--${type}-heights-${FountSize[screenSize]}-${density})`
-}
+export const Typography: React.FC<TypographyProps> = ({
+  type,
+  screensize = ScreenSize.STANDART,
+  weight = 'standart',
+  density = 'normal',
+  children,
+  style,
+  className = '',
+  ...props
+}) => {
+  const isHeading = type === "heading" || type === "title" || type === "title-2";
+  const Component = isHeading ? 'h3' : 'span';
+  
+  const typographyStyle = {
+    fontSize: getFontVar(type, screensize),
+    fontWeight: getWeightVar(type, weight),
+    lineHeight: getLineHeightVar(type, density, screensize),
+    ...style,
+  };
 
-export const Typography = (props:ITypography) => {
-    if(props.type === "heading" || props.type === "title")
-        return(
-            <h3 {...{...props}} 
-            style={{
-                ...props.style, 
-                fontSize:props.style?.fontSize ?? getFontVar(props.type, props.screensize),
-                fontWeight: props.style?.fontWeight ?? getWeightVar(props.type, props.weight),
-                lineHeight: props.style?.lineHeight ?? getLineHeightVar(props.type, props.density, props.screensize)
-            }} 
-            className={`alex-evo-ui-kit alex-evo-ui-kit-heading ${props.className}`}
-            />
-        )
-    return(<span {...{...props}} 
-        style={{
-            ...props.style, 
-            fontSize:props.style?.fontSize ?? getFontVar(props.type, props.screensize),
-            fontWeight: props.style?.fontWeight ?? getWeightVar(props.type, props.weight),
-            lineHeight: props.style?.lineHeight ?? getLineHeightVar(props.type, props.density, props.screensize)
-        }} 
-        className={`alex-evo-ui-kit alex-evo-ui-kit-text ${props.className}`}
-        />
-    )
-}
+  const baseClass = isHeading 
+    ? 'typography-heading' 
+    : 'typography-text';
+
+  return (
+    <Component
+      {...props}
+      style={typographyStyle}
+      className={`${baseClass} ${className}`}
+    >
+      {children}
+    </Component>
+  );
+};
