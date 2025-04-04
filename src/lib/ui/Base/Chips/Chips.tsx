@@ -1,38 +1,57 @@
-import './Chips.scss'
-import { ScreenSize } from '../../../model/sizeScreen'
-import { Typography } from '../../Text/Text/Typography'
-import { X } from '../../Icons'
 
-export interface ChipsProps{
-    text: string
-    onClick?: (e:React.MouseEvent<HTMLDivElement>)=>void
-    onDelete?: ()=>void
-    big?: boolean
-    screenSize?:ScreenSize
+import './Chips.scss';
+import { ScreenSize } from '../../../model/sizeScreen';
+import { Typography } from '../../Text/Text/Typography';
+import { X } from '../../Icons';
+import React from 'react';
+
+export interface ChipsProps {
+  /** Текст чипса */
+  text: string;
+  /** Обработчик клика по чипсу */
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  /** Обработчик удаления чипса */
+  onDelete?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Большой размер */
+  big?: boolean;
+  /** Размер экрана для адаптивности */
+  screenSize?: ScreenSize;
+  /** Дополнительные классы */
+  className?: string;
 }
 
-export const Chips = ({text, onDelete, big, onClick, screenSize}:ChipsProps) => {
+export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
+  ({ text, onDelete, big, onClick, screenSize, className }, ref) => {
+    const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      onDelete?.(e);
+    };
 
-    const isChips = (e:React.MouseEvent<HTMLDivElement>):boolean=>{
-		if((e.target as Element).className === "alex-evo-ui-kit-chips-btn" || (e.target as Element).closest(".alex-evo-ui-kit-chips-btn"))
-			return false
-		return true
-	}
+    return (
+      <div
+        ref={ref}
+        className={`chips ${big ? 'chips--big' : ''} ${onClick ? 'chips--clickable' : ''} ${className || ''}`}
+        onClick={onClick}
+        role={onClick ? 'button' : undefined}
+        tabIndex={onClick ? 0 : undefined}
+        aria-label={onClick ? text : undefined}
+      >
+        <Typography type="body" screensize={screenSize}>
+          {text}
+        </Typography>
+        {onDelete && (
+          <button
+            className="chips__delete"
+            onClick={handleDelete}
+            aria-label={`Remove ${text}`}
+            type="button"
+          >
+            <X />
+          </button>
+        )}
+      </div>
+    );
+  }
+);
 
-    const click = (e:React.MouseEvent<HTMLDivElement>) => {
-		if(!isChips(e))
-			return
-        onClick && onClick(e)
-    }
-
-    return(
-        <div className={`alex-evo-ui-kit-chips chips ${big?"big-chips":""} ${onClick?"hovered":""}`} onClick={click}>
-            <Typography type='body' screensize={screenSize}>{text}</Typography>
-            {
-                (onDelete)?
-                <div className='alex-evo-ui-kit-chips-btn chips-btn' onClick={onDelete}><X/></div>:
-                null
-            }
-        </div>
-    )
-}
+Chips.displayName = 'Chips';

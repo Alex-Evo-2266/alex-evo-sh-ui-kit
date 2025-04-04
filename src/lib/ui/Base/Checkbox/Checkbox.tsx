@@ -1,18 +1,64 @@
-import "./Checkbox.scss"
 
-export interface CheckboxProps{
-    name?: string
-    checked?: boolean
-    readOnly?: boolean
-    checkIcon?: React.ReactNode
-    onChange?: (e?: React.ChangeEvent<HTMLInputElement>)=>void
+
+import { Check } from "../../Icons";
+import "./Checkbox.scss";
+import React from "react";
+
+export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>,'size'> {
+  /**
+   * Кастомная иконка для отмеченного состояния
+   */
+  checkIcon?: React.ReactNode;
+  /**
+   * Размер чекбокса
+   * @default 'medium'
+   */
+  size?: 'small' | 'medium' | 'large';
 }
 
-export const Checkbox = ({name, checked, onChange, readOnly, checkIcon}:CheckboxProps) => {
-    return(
-        <label className="checkbox-container">
-            <input className="checkbox" name={name} type="checkbox" checked={checked} onChange={onChange} readOnly={readOnly}/>
-            <span className="checkbox-box">{(checkIcon)?checkIcon:<span className="checkbox-ckeck-icon">&#10003;</span>}</span>
-        </label>
-    )
-}
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+  ({
+    name,
+    checked,
+    onChange,
+    readOnly,
+    disabled,
+    checkIcon = <Check baseColor="var(--On-primary-color)"/>,
+    size = 'medium',
+    className,
+    ...props
+  }, ref) => {
+    return (
+      <label
+        className={[
+          'checkbox-container',
+          `checkbox--${size}`,
+          disabled ? 'checkbox--disabled' : '',
+          className
+        ].filter(Boolean).join(' ')}
+      >
+        <input
+          ref={ref}
+          className="checkbox-input"
+          name={name}
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+          readOnly={readOnly}
+          disabled={disabled}
+          aria-checked={checked}
+          {...props}
+        />
+        <span className="checkbox-box">
+            <span className="checkbox-icon-container">
+                <span className="checkbox-check-icon">
+                    {checkIcon}
+                </span>
+            </span>
+        </span>
+      </label>
+    );
+  }
+);
+
+Checkbox.displayName = "Checkbox";
