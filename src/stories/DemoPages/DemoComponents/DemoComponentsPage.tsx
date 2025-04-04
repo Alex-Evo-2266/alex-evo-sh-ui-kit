@@ -1,4 +1,4 @@
-import { BaseActionCard, Button, Card, Checkbox, Chips, ColorField, DateField, DayOfWeekField, FAB, FilledButton, FilledTotalButton, IconButton, MoreText, NumberField, OutlineButton, Pen, RadioButton, SigmentedButton, Slider, Switch, TextArea, TextButton, TextField, TimeField, Typography, useColor } from "../../../lib"
+import { BaseActionCard, Button, Card, Checkbox, Chips, ColorField, DateField, DayOfWeekField, FAB, FilledButton, FilledTotalButton, IconButton, MoreText, NumberField, OutlineButton, Pen, RadioButton, SegmentedButton, Slider, Switch, TextArea, TextButton, TextField, TimeField, Typography, useColor } from "../../../lib"
 import { useState } from "react"
 import img from '../../img/fon-base.jpg'
 
@@ -56,8 +56,8 @@ export const ComponentsDemoPage = () => {
                         <IconButton disabled icon={<Pen/>}/>
                     </div>
                     <div>
-                        <SigmentedButton items={["btn1", "btn2", "btn3"]}/>
-                        <SigmentedButton multiple items={["btn1", "btn2", "btn3"]}/>
+                        <SegmentedButton items={["btn1", "btn2", "btn3"]}/>
+                        <SegmentedButton multiple items={["btn1", "btn2", "btn3"]}/>
                     </div>
                     <div>
                         <Card 

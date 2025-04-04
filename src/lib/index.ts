@@ -9,7 +9,7 @@ import { IconButtonMenu } from './ui/Base/IconButtonMenu/IconButtonMenu';
 import { Checkbox } from './ui/Base/Checkbox/Checkbox';
 import { Chips } from './ui/Base/Chips/Chips';
 import { RadioButton } from './ui/Base/RadioButton/RadioButton';
-import { SigmentedButton } from './ui/Base/SigmentedButton/SigmentedButton';
+import { SegmentedButton } from './ui/Base/SegmentedButton/SegmentedButton';
 import { Switch } from './ui/Base/Switch/Switch';
 import { BottomSheetsUi } from './ui/Base/BottomSheets/BottomSheetsUi';
 import { BaseDialog } from './ui/Dialog/BaseDialog/BaseDialog';
@@ -134,7 +134,7 @@ export {
   Search,
   SelectField,
   SelectionDialog,
-  SigmentedButton,
+  SegmentedButton,
   Slider,
   SmallWindowMenu,
   Snackbar,

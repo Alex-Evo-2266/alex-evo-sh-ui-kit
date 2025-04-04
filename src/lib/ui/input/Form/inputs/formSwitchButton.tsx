@@ -1,6 +1,6 @@
 import { useCallback, useContext } from "react"
 import { formContext } from "../FormContext"
-import { SigmentedButton } from "../../../Base/SigmentedButton/SigmentedButton"
+import { SegmentedButton } from "../../../../../lib"
 
 export interface SwitchFieldProps {
     password?: boolean
@@ -31,6 +31,6 @@ export const SwitchButtonField = ({placeholder, ref, style, readOnly, className,
     },[value, name, placeholder])
 
     return(
-        <SigmentedButton className={className} style={style} ref={ref} readOnly={readOnly} value={getValue()} multiple items={[placeholder ?? name]} onChange={change}/>
+        <SegmentedButton className={className} style={style} ref={ref} readOnly={readOnly} value={getValue()} multiple items={[placeholder ?? name]} onChange={change}/>
     )
 }

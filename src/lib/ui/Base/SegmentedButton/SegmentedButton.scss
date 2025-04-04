@@ -1,0 +1,127 @@
+.segmented-button {
+    --button-height: 40px;
+    --button-padding: 25px;
+    --button-radius: 20px;
+    --button-gap: 0;
+    --button-bg: var(--Surface-container-high-color);
+    --button-color: var(--On-surface-color);
+    --button-border: 1px solid var(--Outline-color);
+    --button-active-bg: var(--Secondary-container-color);
+    --button-active-color: var(--On-secondary-container-color);
+    --icon-size: 24px;
+    --icon-margin: 6px;
+    --font-size: 1rem;
+  
+    display: inline-flex;
+    position: relative;
+    border-radius: var(--button-radius);
+    overflow: hidden;
+    isolation: isolate;
+  
+    &__item {
+      flex: 1 1 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: var(--button-height);
+      padding: 0 var(--button-padding);
+      background: var(--button-bg);
+      color: var(--button-color);
+      border: var(--button-border);
+      border-right: none;
+      cursor: pointer;
+      position: relative;
+      font-size: var(--font-size);
+      margin: 0;
+      outline: none;
+  
+      &:first-child {
+        border-top-left-radius: var(--button-radius);
+        border-bottom-left-radius: var(--button-radius);
+      }
+  
+      &:last-child {
+        border-top-right-radius: var(--button-radius);
+        border-bottom-right-radius: var(--button-radius);
+        border-right: var(--button-border);
+      }
+  
+      &:hover:not(:disabled) {
+        background: var(--Surface-container-highest-color);
+      }
+  
+      &:focus-visible {
+        z-index: 1;
+        outline: 2px solid var(--Primary-color);
+        outline-offset: -2px;
+      }
+
+  
+      &--active {
+        background: var(--button-active-bg);
+        color: var(--button-active-color);
+        z-index: 1;
+        padding-left: 0;
+        padding-right: calc(var(--button-padding) - ((var(--icon-size) + var(--icon-margin) * 2) - var(--button-padding)));
+        &:hover:not(:disabled) {
+          background: var(--button-active-bg);
+        }
+      }
+  
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  
+    &__icon {
+      width: var(--icon-size);
+      height: var(--icon-size);
+      margin-right: var(--icon-margin);
+      margin-left: var(--icon-margin);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    &__input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  
+    // Размеры
+    &--small {
+      --button-height: 32px;
+      --button-padding: 0 16px;
+      --icon-size: 20px;
+      --icon-margin: 8px;
+      --font-size: 0.875rem;
+    }
+  
+    &--large {
+      --button-height: 48px;
+      --button-padding: 0 24px;
+      --icon-size: 28px;
+      --icon-margin: 16px;
+      --font-size: 1.125rem;
+    }
+  
+    // Варианты
+    &--primary {
+      --button-active-bg: var(--Primary-container-color);
+      --button-active-color: var(--On-primary-container-color);
+    }
+  
+    &--secondary {
+      --button-active-bg: var(--Secondary-container-color);
+      --button-active-color: var(--On-secondary-container-color);
+    }
+  
+    &--surface {
+      --button-active-bg: var(--Surface-container-high-color);
+      --button-active-color: var(--Primary-color);
+      --button-border: 1px solid var(--Primary-color);
+    }
+  }

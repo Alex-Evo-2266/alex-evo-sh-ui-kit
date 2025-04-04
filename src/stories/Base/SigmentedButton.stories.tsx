@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { SigmentedButton } from '../../lib/index';
+import { SegmentedButton } from '../../lib/index';
 
 const meta = {
-  title: 'Components/Base/SigmentedButton',
-  component: SigmentedButton,
+  title: 'Components/Base/SegmentedButton',
+  component: SegmentedButton,
   parameters: {
     layout: 'centered',
   },
@@ -16,7 +16,7 @@ const meta = {
     items:["btn1", "btn2", "btn3"],
     onChange: fn
    },
-} satisfies Meta<typeof SigmentedButton>;
+} satisfies Meta<typeof SegmentedButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
