@@ -1,37 +1,42 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-import { CopyButton } from '../../lib/ui/Base/CopyButton/CopyButton';
-// import React from 'react';
+import { CopyButton } from '../../lib';
 
-const meta = {
+const meta: Meta<typeof CopyButton> = {
   title: 'Components/Base/CopyButton',
   component: CopyButton,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
-    
+    text: { control: 'text' },
+    supportText: { control: 'boolean' },
+    copiedTimeout: { control: 'number' },
+    disabled: { control: 'boolean' },
   },
-  args: { onClick: fn(), text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero assumenda tempore corporis, optio ullam harum iste? Eum sequi rem odio expedita culpa accusamus architecto vitae, laborum obcaecati beatae odit totam." },
-} satisfies Meta<typeof CopyButton>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Base: Story = {
   args: {
+    text: 'Текст для копирования',
+    supportText: true,
+    copiedTimeout: 2000,
   },
 };
 
+export default meta;
+type Story = StoryObj<typeof CopyButton>;
 
-export const BaseTransparent: Story = {
-    args: {
-      transparent: true
-    },
-  };
+export const Стандартный: Story = {};
 
-  export const SWG: Story = {
-    args: {
-    },
-  };
+export const БезТекста: Story = {
+  args: {
+    supportText: false,
+  },
+};
+
+export const Отключенный: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
+export const ДлинныйТекст: Story = {
+  args: {
+    text: 'Это более длинный текст, который нужно скопировать в буфер обмена',
+  },
+};

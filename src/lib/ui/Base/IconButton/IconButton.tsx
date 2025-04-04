@@ -1,54 +1,84 @@
-import React from "react"
-import "./IconButton.scss"
+import React, { useCallback } from "react";
+import "./IconButton.scss";
 
-export interface IconButtonProps{
-    icon: React.ReactNode
-    className?: string
-    classNameContainer?: string
-    onClick?: (event:React.MouseEvent<HTMLButtonElement>)=>void
-    onContextMenu?: (event:React.MouseEvent<HTMLButtonElement>)=>void
-    disabled?: boolean
-    style?: React.CSSProperties
-    transparent?: boolean
+export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Иконка для отображения */
+  icon: React.ReactNode;
+  /** Дополнительные классы для кнопки */
+  className?: string;
+  /** Дополнительные классы для контейнера иконки */
+  classNameContainer?: string;
+  /** Прозрачный фон */
+  transparent?: boolean;
+  /** Размер кнопки */
+  size?: "small" | "medium" | "large";
 }
 
-function getCoords(elem: Element) {
-    let box = elem.getBoundingClientRect();
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+  (
+    {
+      icon,
+      className = "",
+      classNameContainer = "",
+      transparent = false,
+      size = "medium",
+      onClick,
+      onContextMenu,
+      disabled = false,
+      style,
+      ...props
+    },
+    ref
+  ) => {
+    const handleClick = useCallback(
+      (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (disabled) return;
+        
+        onClick?.(e);
+        createRippleEffect(e);
+      },
+      [onClick, disabled]
+    );
 
-    return {
-      top: box.top + window.pageYOffset,
-      right: box.right + window.pageXOffset,
-      bottom: box.bottom + window.pageYOffset,
-      left: box.left + window.pageXOffset
+    const createRippleEffect = (e: React.MouseEvent<HTMLButtonElement>) => {
+      const button = e.currentTarget;
+      const circle = document.createElement("span");
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${e.clientX - button.getBoundingClientRect().left - radius}px`;
+      circle.style.top = `${e.clientY - button.getBoundingClientRect().top - radius}px`;
+      circle.classList.add("iconbutton-ripple");
+
+      const ripple = button.getElementsByClassName("iconbutton-ripple")[0];
+      if (ripple) {
+        ripple.remove();
+      }
+
+      button.appendChild(circle);
     };
-}
 
-function btn_click_effect(e:React.MouseEvent<HTMLButtonElement>){
-    let overlay = document.createElement('span')
-    overlay.classList.add("btn-overlay")
-    const cord = getCoords(e.target as Element)
-    let x = e.pageX - cord.left
-    let y = e.pageY - cord.top
-    overlay.style.left = x + "px"
-    overlay.style.top = y + "px"
-    e.currentTarget.appendChild(overlay)
-    setTimeout(()=>{
-        overlay.remove()
-    },500)
-}
+    return (
+      <button
+        ref={ref}
+        style={{
+          backgroundColor: transparent ? "transparent" : undefined,
+          ...style,
+        }}
+        className={`iconbutton iconbutton--${size} ${className}`}
+        onClick={handleClick}
+        onContextMenu={onContextMenu}
+        disabled={disabled}
+        aria-disabled={disabled}
+        {...props}
+      >
+        <div className={`iconbutton-container ${classNameContainer}`}>
+          {icon}
+        </div>
+      </button>
+    );
+  }
+);
 
-export const IconButton = ({transparent, icon, className, onClick, onContextMenu, disabled, classNameContainer, style}: IconButtonProps) => {
-
-    const click = (e:React.MouseEvent<HTMLButtonElement>) => {
-        onClick && onClick(e)
-        btn_click_effect(e)
-    }
-
-    return(
-        <button style={{backgroundColor:(transparent)?"transparent":undefined , ...style}} className={`iconbutton ${className}`} onClick={click} onContextMenu={onContextMenu} disabled={disabled}>
-            <div className={`${classNameContainer} iconbutton-container`}>
-                {icon}
-            </div>
-        </button>
-    )
-}
+IconButton.displayName = "IconButton";

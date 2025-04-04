@@ -1,64 +1,72 @@
 import { useCallback, useState } from "react";
-import { IconButton } from "../IconButton/IconButton";
+import { IconButton, IconButtonProps } from "../IconButton/IconButton";
 import { Check, Copy } from "../../Icons";
-import './CopyButton.scss'
 import { Typography } from "../../Text/Text/Typography";
+import './CopyButton.scss';
 
-export interface IconButtonProps{
-    text: string
-    supportText?: boolean
-    className?: string
-    classNameContainer?: string
-    onClick?: (event:React.MouseEvent<HTMLButtonElement>)=>void
-    onContextMenu?: (event:React.MouseEvent<HTMLButtonElement>)=>void
-    disabled?: boolean
-    style?: React.CSSProperties
-    transparent?: boolean
+export interface CopyButtonProps extends Omit<IconButtonProps, 'icon'> {
+  /** Текст для копирования в буфер обмена */
+  text: string;
+  /** Показывать ли текст рядом с кнопкой */
+  supportText?: boolean;
+  /** Время в мс, сколько показывать состояние "Скопировано" */
+  copiedTimeout?: number;
 }
 
-export const CopyButton = ({transparent, className, onClick, onContextMenu, disabled, classNameContainer, style, text, supportText = true}: IconButtonProps) => {
+export const CopyButton = ({
+  text,
+  supportText = true,
+  copiedTimeout = 2000,
+  className = '',
+  onClick,
+  disabled,
+  ...props
+}: CopyButtonProps) => {
   const [copied, setCopied] = useState(false);
 
-  const copyToClipboard = useCallback(async (event:React.MouseEvent<HTMLButtonElement>) => {
+  const copyToClipboard = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled) return;
+    
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), copiedTimeout);
     } catch (err) {
-      console.error("Ошибка копирования", err);
+      console.error("Не удалось скопировать текст", err);
     }
-    onClick && onClick(event)
-  },[text])
+    
+    onClick?.(event);
+  }, [text, disabled, copiedTimeout, onClick]);
 
-  if(supportText)
-  {
-    return(
-      <label className="alex-evo-sh-ui-kit-copy-button">
+  const icon = copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />;
+  const labelText = copied ? "Скопировано!" : "Копировать";
+
+  if (supportText) {
+    return (
+      <div className="copy-button">
         <IconButton 
-            icon={copied?<Check/>:<Copy/>} 
-            onClick={copyToClipboard}
-            transparent={transparent}
-            className={className}
-            onContextMenu={onContextMenu}
-            disabled={disabled}
-            classNameContainer={classNameContainer}
-            style={style}
+          icon={icon}
+          onClick={copyToClipboard}
+          disabled={disabled}
+          aria-label={`${labelText} ${text}`}
+          className={className}
+          {...props}
         />
-        <Typography type='body'>{copied ? "Скопировано!" : "Копировать"}</Typography>
-      </label>
-    )
+        <Typography type="body" aria-live="polite">
+          {labelText}
+        </Typography>
+      </div>
+    );
   }
 
   return (
     <IconButton 
-    icon={copied?<Check/>:<Copy/>} 
-    onClick={copyToClipboard}
-    transparent={transparent}
-    className={className}
-    onContextMenu={onContextMenu}
-    disabled={disabled}
-    classNameContainer={classNameContainer}
-    style={style}
+      icon={icon}
+      onClick={copyToClipboard}
+      disabled={disabled}
+      aria-label={`${labelText} ${text}`}
+      className={className}
+      {...props}
     />
   );
-}
+};
