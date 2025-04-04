@@ -1,40 +1,120 @@
-.extendedFAB{
-    border: none;
-    justify-content: center;
+.fab {
+    --fab-size: 56px;
+    --fab-icon-size: 24px;
+    --fab-elevation: 0.3;
+    --fab-bg-color: var(--Primary-container-color);
+    --fab-color: var(--On-primary-container-color);
+    --fab-padding: 0 16px;
+    --fab-radius: 16px;
+  
+    display: inline-flex;
     align-items: center;
-    margin-right: 16px;
-    margin-bottom: 16px;
-    min-width: 56px;
-    min-height: 56px;
-    line-height: 56px;
-    color: #000;
-    display: flex;
-    background-color: var(--Secondary-container-color);
-    color: var(--On-secondary-container-color);
-    border-radius: 16px;
-    padding: 0 16px;
-    transition: .1s;
+    justify-content: center;
+    border: none;
+    min-width: var(--fab-size);
+    min-height: var(--fab-size);
+    padding: var(--fab-padding);
+    border-radius: var(--fab-radius);
+    background-color: var(--fab-bg-color);
+    color: var(--fab-color);
+    font-size: var(--fab-icon-size);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, calc(0.16 * var(--fab-elevation)));
+    position: relative;
+    overflow: hidden;
     z-index: 100;
-    font-size: 24px;
-    *:not(:first-child){
-        margin-left: 16px;
+  
+    &:hover {
+      --fab-elevation: 0.4;
     }
-    box-shadow: 1px 1px 6px -2px #000;
-    &:hover{
-        box-shadow: 1px 1px 4px -2px #000;
+  
+    &:active {
+      --fab-elevation: 0.2;
     }
-    &:active{
-        box-shadow: none;
+  
+    &:focus-visible {
+      outline: 2px solid var(--Primary-color);
+      outline-offset: 2px;
     }
-    &.base-pozitition{
-        position: fixed;
-        bottom: 0;
-        right: 0;
+  
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-}
-
-@media (max-width: 720px) {
-    .extendedFAB{
-        bottom: 80px
+  
+    &__text {
+      margin-left: 12px;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 500;
     }
-}
+  
+    // Размеры
+    &--small {
+      --fab-size: 40px;
+      --fab-icon-size: 20px;
+      --fab-radius: 12px;
+    }
+  
+    &--large {
+      --fab-size: 72px;
+      --fab-icon-size: 28px;
+      --fab-radius: 20px;
+    }
+  
+    // Варианты
+    &--secondary {
+      --fab-bg-color: var(--Secondary-container-color);
+      --fab-color: var(--On-secondary-container-color);
+    }
+  
+    &--tertiary {
+      --fab-bg-color: var(--Tertiary-container-color);
+      --fab-color: var(--On-tertiary-container-color);
+    }
+  
+    &--surface {
+      --fab-bg-color: var(--Surface-container-high-color);
+      --fab-color: var(--On-surface-variant-color);
+    }
+  
+    // Позиционирование
+    &--bottom-right {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+    }
+  
+    &--bottom-left {
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+    }
+  
+    &--top-right {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+    }
+  
+    &--top-left {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+    }
+  
+    // Адаптивность
+    @media (max-width: 720px) {
+      &--bottom-right,
+      &--bottom-left {
+        bottom: 80px;
+      }
+    }
+  }
+  
+  .fab--extended {
+    --fab-padding: 0 16px 0 12px;
+  }
