@@ -8,7 +8,7 @@ import { IconButton } from './ui/Base/IconButton/IconButton';
 import { IconButtonMenu } from './ui/Base/IconButtonMenu/IconButtonMenu';
 import { Checkbox } from './ui/Base/Checkbox/Checkbox';
 import { Chips } from './ui/Base/Chips/Chips';
-import { BaseRadioButton, RadioButton } from './ui/Base/RadioButton/RadioButton';
+import { RadioButton } from './ui/Base/RadioButton/RadioButton';
 import { SigmentedButton } from './ui/Base/SigmentedButton/SigmentedButton';
 import { Switch } from './ui/Base/Switch/Switch';
 import { BottomSheetsUi } from './ui/Base/BottomSheets/BottomSheetsUi';
@@ -93,7 +93,6 @@ export {
   BaseButton,
   BaseDialog,
   BaseMenu,
-  BaseRadioButton,
   BigContainer,
   BottomSheetsUi,
   Button,

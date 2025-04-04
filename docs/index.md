@@ -6,6 +6,7 @@
 
 - [ModalTemplate](./ModalTemplate.md) — базовый компонент для модальных окон.  
 - [BottomSheetsUi](./BottomSheetsUi.md) — компонент для выезжающих снизу модальных окон (Bottom Sheets).  
+- [Button](./Button.md) — компонент кнопки.  
 
 Каждый файл содержит описание компонента, его API, примеры использования и стили.  
 

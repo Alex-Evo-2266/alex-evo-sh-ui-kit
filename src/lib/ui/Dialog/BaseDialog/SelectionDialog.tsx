@@ -2,7 +2,7 @@ import { useCallback, useState } from "react"
 import { BasicTemplateDialog, TextButton } from "../../.."
 import { ListContainer } from "../../List/List"
 import { ListItem } from "../../List/ListItem"
-import { BaseRadioButton } from "../../Base/RadioButton/RadioButton"
+import { RadioButton } from "../../Base/RadioButton/RadioButton"
 import { Divider } from "../../Other/Divider/Divider"
 
 interface IItem<T>{
@@ -48,7 +48,7 @@ export function SelectionDialog<T>({onSuccess, items, header, onHide, noHide = f
                 {
                     items.map((item, index)=>(
                         <label key={index}>
-                            <ListItem hovered header={item.title} onClick={()=>change(item.data)} control={<BaseRadioButton onClick={()=>change(item.data)} name={name} checked={item.data === value}/>}/>  
+                            <ListItem hovered header={item.title} onClick={()=>change(item.data)} control={<RadioButton onClick={()=>change(item.data)} name={name} checked={item.data === value}/>}/>  
                         </label>
                     ))
                 }
