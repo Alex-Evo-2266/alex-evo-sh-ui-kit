@@ -51,3 +51,12 @@ export const Multiple: Story = {
     },
   };
   
+  export const Sizes: StoryObj = {
+    render: () => (
+      <div style={{ display: 'flex', gap: '16px', flexDirection: 'column' }}>
+        <SegmentedButton name="size" items={["btn1", "btn2", "btn3"]} size="small" value={["btn1"]} />
+        <SegmentedButton name="size" items={["btn1", "btn2", "btn3"]} size="medium" value="medium" />
+        <SegmentedButton name="size" items={["btn1", "btn2", "btn3"]} size="large" value="large" />
+      </div>
+    ),
+  };
