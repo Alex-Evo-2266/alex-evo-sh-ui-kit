@@ -1,142 +1,142 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-import { BaseActionCard, Button, Card, IconButton, IconButtonMenu, ListContainer, ListItem, MoreVertical } from '../../lib/index';
-// import React from 'react';
+import { Button, Card, GearIcon, IconButton, Plus, ScreenSize, Typography } from '../../lib';
 import img from '../img/fon-base.jpg'
+import { fn } from '@storybook/test';
 
-const meta = {
-  title: 'Components/Card/Card',
+const meta: Meta<typeof Card> = {
+  title: 'Components/Card',
   component: Card,
-  parameters: {
-    // layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
-    
+    variant: {
+      control: { type: 'select' },
+      options: ['elevated', 'filled', 'outlined'],
+    },
+    loading: {
+      control: 'boolean',
+    },
+    onClick: {
+      action: 'clicked',
+    },
   },
   args: {
-    rootApp: '#storybook-root'
-   },
-} satisfies Meta<typeof Card>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Base: Story = {
-  args: {
-    header: "Test header",
-    text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-    subhead: "test"
-},
+    header: 'Card Title',
+    text: 'This is a card component with customizable content.',
+    rootApp: '#storybook-docs'
+  },
 };
 
+export default meta;
+type Story = StoryObj<typeof Card>;
 
-export const Icon: Story = {
-    args: {
-      header: "Test header",
-      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-      subhead: "test",
-      imgSrc: img,
-      alt: "img"
+export const Elevated: Story = {
+  args: {
+    variant: 'elevated',
   },
-  };
+};
 
-  export const IconAlt: Story = {
-    args: {
-      header: "Test header",
-      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-      subhead: "test",
-      alt: "img",
-      imgSrc: "dfbg"
+export const Filled: Story = {
+  args: {
+    variant: 'filled',
   },
-  };
-  
-  
-  export const IconAction: Story = {
-    args: {
-      header: "Test header",
-      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-      subhead: "test",
-      imgSrc: img,
-      action: <><Button>btn</Button></>
-  },
-  };
+};
 
-  export const IconAndBaseActionCard: Story = {
-    args: {
-      header: "Test header",
-      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-      subhead: "test",
-      imgSrc: img,
-      action: <BaseActionCard>
-        <Button>btn1</Button>
-        <Button>btn2</Button>
-      </BaseActionCard>
+export const Outlined: Story = {
+  args: {
+    variant: 'outlined',
   },
-  };
+};
 
-  export const Children: Story = {
-    args: {
-      header: "Test header",
-      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-      subhead: "test",
-      imgSrc: img,
-      children: <ListContainer transparent>
-        <ListItem hovered header='test' text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?"/>
-      </ListContainer>
+export const WithImage: Story = {
+  args: {
+    imgSrc: img,
+    alt: 'Random image',
   },
-  };
+};
 
-  export const iconBtn: Story = {
-    args: {
-      header: "Test header",
-      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-      subhead: "test",
-      iconButtonCell:<IconButton icon={<i>+</i>}/>
+export const WithActions: Story = {
+  args: {
+    action: (
+      <>
+        <Button styleType='text'>Cancel</Button>
+        <Button>OK</Button>
+      </>
+    ),
   },
-  };
+};
 
-  export const iconBtnAndImg: Story = {
-    args: {
-      header: "Test header",
-      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-      subhead: "test",
-      imgSrc: img,
-      iconButtonCell:<IconButton icon={<i>+</i>}/>
+export const WithIconButton: Story = {
+  args: {
+    iconButtonCell: <IconButton icon={<Plus/>} />,
   },
-  };
+};
 
-  export const Click: Story = {
-    args: {
-      header: "Test header",
-      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-      subhead: "test",
-      imgSrc: img,
-      alt: "img",
-      onClick: fn,
-      children: <ListContainer transparent>
-      <ListItem hovered header='test' text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?"/>
-    </ListContainer>
+export const LoadingState: Story = {
+  args: {
+    loading: true,
   },
-  };
+};
 
-
-  export const ClickMenu: Story = {
-    args: {
-      header: "Test header",
-      text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?",
-      subhead: "test",
-      imgSrc: img,
-      alt: "img",
-      onClick: e=>console.log(e.target),
-      action: <IconButtonMenu autoHide container={document.body} icon={<MoreVertical/>} blocks={[{
-        items:[{
-          title: "dg",
-          onClick: console.log
-        }]
-      }]}/>,
-      children: <ListContainer transparent>
-      <ListItem hovered header='test' text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime aut reiciendis debitis rem dolores officiis, quis, blanditiis odio minima nostrum necessitatibus eveniet nam perspiciatis ipsa voluptates ab tenetur error sunt?"/>
-    </ListContainer>
+export const LoadingStateAndImage: Story = {
+  args: {
+    loading: true,
+    imgSrc: img
   },
-  };
+};
+
+export const ComplexExample: Story = {
+  render: () => (
+    <Card
+      variant="elevated"
+      header="Project Dashboard"
+      subhead="Analytics Overview"
+      imgSrc={img}
+      alt="Dashboard"
+      action={
+        <Button>View Details</Button>
+      }
+      iconButtonCell={<IconButton icon={<GearIcon/>} />}
+    >
+      <Typography type="body">
+        Last updated: {new Date().toLocaleDateString()}
+      </Typography>
+      <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+        <div>
+          <Typography type="title-2">1,234</Typography>
+          <Typography type="small">Visits</Typography>
+        </div>
+        <div>
+          <Typography type="title-2">567</Typography>
+          <Typography type="small">Signups</Typography>
+        </div>
+      </div>
+    </Card>
+  ),
+};
+
+export const ResponsiveCards: StoryObj = {
+  render: () => (
+    <div style={{ 
+      display: 'grid', 
+      gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+      gap: '1rem'
+    }}>
+      <Card 
+        header="Mobile View"
+        text="Optimized for small screens"
+        screenSize={ScreenSize.MOBILE}
+        onClick={fn}
+      />
+      <Card 
+        header="Standard View"
+        text="Default screen size"
+        screenSize={ScreenSize.STANDART}
+      />
+      <Card 
+        header="Large Screen"
+        text="Optimized for big displays"
+        screenSize={ScreenSize.BIG_SCREEN}
+      />
+    </div>
+  ),
+};
