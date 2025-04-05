@@ -34,7 +34,7 @@ import { BaseMenu } from './ui/Menu/BaseMenu';
 import { Menu } from './ui/Menu/Menu';
 import { SmallWindowMenu } from './ui/Menu/SmallWindowMenu';
 import { ListContainer } from './ui/List/List';
-import { ListItem } from './ui/List/ListItem';
+import { ListItem } from './ui/List/List';
 import { Table } from './ui/Table/Table';
 import { NavigationBar } from './ui/Navigation/NavigationBar/NavigationBar';
 import { NavigationDrawer } from './ui/Navigation/NavigationDrawer/NavigationDrawer';

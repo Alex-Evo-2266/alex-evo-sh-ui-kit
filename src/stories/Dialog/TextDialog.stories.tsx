@@ -1,41 +1,77 @@
+import { Meta, StoryObj } from '@storybook/react';
+import { TextDialog } from '../../lib';
 
-
-import type { Meta, StoryObj } from '@storybook/react';
-import { TextDialog} from '../../lib/index';
-
-const meta = {
+const meta: Meta<typeof TextDialog> = {
   title: 'Components/Dialogs/TextDialog',
   component: TextDialog,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
-  },
-  args: {
-    onHide: ()=>console.log("close"),
-    styleContainer: {
-        minHeight: "200px",
-        minWidth: "300px"
+    onSuccess: { action: 'submitted' },
+    onHide: { action: 'closed' },
+    type: {
+      control: 'select',
+      options: ['text', 'number', 'password', 'email']
     },
-    header: "testH",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde atque deleniti aut! Sapiente amet optio tenetur illo doloremque minus numquam quisquam, reprehenderit modi minima sunt eaque! Voluptates amet minima ad.",
-  },
-} satisfies Meta<typeof TextDialog>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Base: Story = {
-  args: {
-   
+    min: {
+      control: { type: 'number', min: 0 }
+    },
+    max: {
+      control: { type: 'number', min: 1 }
+    },
   },
 };
 
+export default meta;
 
-export const Placeholder: Story = {
-    args: {
-        placeholder:"test"
-    },
-  };
-  
+type Story = StoryObj<typeof TextDialog>;
+
+/**
+ * Стандартный текстовый диалог
+ */
+export const Default: Story = {
+  args: {
+    header: 'Введите текст',
+    text: 'Пожалуйста, введите ваш текст:',
+    placeholder: 'Введите что-нибудь...'
+  }
+};
+
+/**
+ * Числовой ввод с ограничениями
+ */
+export const NumberInput: Story = {
+  args: {
+    header: 'Введите возраст',
+    text: 'Пожалуйста, введите ваш возраст:',
+    type: 'number',
+    min: 1,
+    max: 120,
+    placeholder: 'От 1 до 120'
+  }
+};
+
+/**
+ * С кастомной валидацией
+ */
+export const WithValidation: Story = {
+  args: {
+    header: 'Введите email',
+    text: 'Пожалуйста, введите корректный email:',
+    type: 'email',
+    placeholder: 'user@example.com',
+    validate: (value:any) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+  }
+};
+
+/**
+ * С предустановленным значением
+ */
+export const WithDefaultValue: Story = {
+  args: {
+    header: 'Редактирование',
+    text: 'Отредактируйте текст:',
+    defaultValue: 'Предустановленное значение',
+    confirmText: 'Сохранить',
+    cancelText: 'Закрыть'
+  }
+};

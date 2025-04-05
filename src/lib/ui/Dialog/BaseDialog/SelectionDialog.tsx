@@ -1,68 +1,176 @@
-import { useCallback, useState } from "react"
-import { BasicTemplateDialog, TextButton } from "../../.."
-import { ListContainer } from "../../List/List"
-import { ListItem } from "../../List/ListItem"
-import { RadioButton } from "../../Base/RadioButton/RadioButton"
-import { Divider } from "../../Other/Divider/Divider"
+import React, { useCallback, useState } from "react";
+import { BasicTemplateDialog, ListContainer, ListItem, OutlineButton, TextButton } from "../../..";
+import { RadioButton } from "../../Base/RadioButton/RadioButton";
+import { Divider } from "../../Other/Divider/Divider";
 
-interface IItem<T>{
-    title: string
-    data: T
+interface SelectionItem<T> {
+  /** Текст элемента */
+  title: string;
+  
+  /** Дополнительное описание */
+  description?: string;
+  
+  /** Связанные данные */
+  data: T;
+  
+  /** Отключить элемент */
+  disabled?: boolean;
 }
 
-interface BaseDialogButtonProps{
-    onSuccess?: ()=>void
-    onHide?: ()=>void
-    disabled?: boolean
+interface SelectionDialogProps<T> {
+  /** Колбек с выбранными данными */
+  onSuccess?: (data: T) => void;
+  
+  /** Список элементов для выбора */
+  items: SelectionItem<T>[];
+  
+  /** Заголовок диалога */
+  header: string;
+  
+  /** Колбек при закрытии */
+  onHide?: () => void;
+  
+  /** Имя группы radio кнопок */
+  name?: string;
+  
+  /** Не закрывать диалог после выбора */
+  noHide?: boolean;
+  
+  /** Текст кнопки подтверждения */
+  confirmText?: string;
+  
+  /** Текст кнопки отмены */
+  cancelText?: string;
+  
+  /** Выбранное значение по умолчанию */
+  defaultValue?: T;
+  
+  /** Стили контейнера */
+  style?: React.CSSProperties;
 }
 
-interface SelectionDialogProps<T>{
-    onSuccess?: (data:T)=>void
-    items: IItem<T>[]
-    header: string
-    onHide?: ()=>void
-    name?: string
-    noHide?: boolean
+/**
+ * Диалог выбора одного варианта из списка.
+ * 
+ * @example
+ * <SelectionDialog
+ *   header="Выберите язык"
+ *   items={[
+ *     { title: "Русский", data: "ru" },
+ *     { title: "Английский", data: "en" }
+ *   ]}
+ *   onSuccess={handleLanguageSelect}
+ * />
+ */
+export function SelectionDialog<T>({
+  onSuccess,
+  items,
+  header,
+  onHide,
+  noHide = false,
+  name = "selection_dialog",
+  confirmText = "Выбрать",
+  cancelText = "Отмена",
+  defaultValue,
+  style,
+}: SelectionDialogProps<T>) {
+  const [selectedValue, setSelectedValue] = useState<T | undefined>(defaultValue);
+
+  const handleSuccess = useCallback(() => {
+    if (selectedValue !== undefined) {
+      onSuccess?.(selectedValue);
+      setSelectedValue(undefined);
+      !noHide && onHide?.();
+    }
+  }, [selectedValue, onSuccess, noHide, onHide]);
+
+  const handleCancel = useCallback(() => {
+    onHide?.();
+  }, [onHide]);
+
+  const handleSelectionChange = useCallback((data: T) => {
+    setSelectedValue(data);
+  }, []);
+
+  return (
+    <BasicTemplateDialog 
+      header={header}
+      style={style}
+      action={
+        <DialogButtons
+          onHide={handleCancel}
+          onSuccess={handleSuccess}
+          disabled={selectedValue === undefined}
+          confirmText={confirmText}
+          cancelText={cancelText}
+        />
+      }
+    >
+      <Divider style={{ padding: 0 }} />
+      <ListContainer
+        transparent
+        className="selection-dialog-list" 
+        scroll 
+        maxHeight="300px"
+        aria-label="Варианты выбора"
+      >
+        {items.map((item, index) => (
+          <label 
+            key={`${name}_${index}`}
+            className={`selection-item ${item.disabled ? 'disabled' : ''}`}
+            aria-disabled={item.disabled}
+          >
+            <ListItem
+              hovered={!item.disabled}
+              header={item.title}
+              description={item.description}
+              onClick={!item.disabled ? () => handleSelectionChange(item.data) : undefined}
+              control={
+                <RadioButton
+                  onClick={!item.disabled ? () => handleSelectionChange(item.data) : undefined}
+                  name={name}
+                  checked={item.data === selectedValue}
+                  disabled={item.disabled}
+                  aria-label={`Выбрать ${item.title}`}
+                />
+              }
+            />
+          </label>
+        ))}
+      </ListContainer>
+      <Divider style={{ padding: 0 }} />
+    </BasicTemplateDialog>
+  );
 }
 
-export function SelectionDialog<T>({onSuccess, items, header, onHide, noHide = false, name="dailog_name"}:SelectionDialogProps<T>) {
-
-    const [value, setValue] = useState<T | undefined>(undefined)
-
-    const success = useCallback(() => {
-        console.log(value)
-        onSuccess && value && onSuccess(value)
-        setValue(undefined)
-        !noHide && onHide && onHide()
-    },[value])
-
-    const change = useCallback((data: T) => {
-        setValue(data)
-    },[])
-
-
-    return(
-        <BasicTemplateDialog header={header} action={<BaseDialogButton onHide={onHide} onSuccess={success} disabled={value === undefined}/>}>
-            <Divider style={{padding: "0px"}}/>
-            <ListContainer className="transparent" scroll maxHeight="200px">
-                {
-                    items.map((item, index)=>(
-                        <label key={index}>
-                            <ListItem hovered header={item.title} onClick={()=>change(item.data)} control={<RadioButton onClick={()=>change(item.data)} name={name} checked={item.data === value}/>}/>  
-                        </label>
-                    ))
-                }
-            </ListContainer>
-            <Divider style={{padding: "0px"}}/>
-        </BasicTemplateDialog>
-    )
+interface DialogButtonsProps {
+  onSuccess?: () => void;
+  onHide?: () => void;
+  disabled?: boolean;
+  confirmText?: string;
+  cancelText?: string;
 }
 
-function BaseDialogButton({onSuccess, onHide, disabled}:BaseDialogButtonProps){
-    return(
-        <div className="dialog-button-container">
-            <TextButton onClick={onHide}>cancel</TextButton>
-            <TextButton onClick={onSuccess} disabled={disabled}>OK</TextButton>
-        </div>
-    )
+function DialogButtons({
+  onSuccess,
+  onHide,
+  disabled = false,
+  confirmText = "OK",
+  cancelText = "Отмена",
+}: DialogButtonsProps) {
+  return (
+    <div className="dialog-button-container">
+      {onHide && (
+        <OutlineButton onClick={onHide}>
+          {cancelText}
+        </OutlineButton>
+      )}
+      <TextButton 
+        onClick={onSuccess} 
+        disabled={disabled}
+      >
+        {confirmText}
+      </TextButton>
+    </div>
+  );
 }

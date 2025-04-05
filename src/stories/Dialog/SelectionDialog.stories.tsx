@@ -1,54 +1,94 @@
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { SelectionDialog } from '../../lib';
 
-
-import type { Meta, StoryObj } from '@storybook/react';
-import { SelectionDialog} from '../../lib/index';
-
-const meta = {
+const meta: Meta<typeof SelectionDialog> = {
   title: 'Components/Dialogs/SelectionDialog',
   component: SelectionDialog,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
+    onSuccess: { action: 'selected' },
+    onHide: { action: 'closed' },
+    noHide: {
+      control: 'boolean',
+      description: 'Не закрывать диалог после выбора'
+    },
+    confirmText: {
+      control: 'text',
+      description: 'Текст кнопки подтверждения'
+    },
+    cancelText: {
+      control: 'text',
+      description: 'Текст кнопки отмены'
+    }
   },
-  args: {
-    onHide: ()=>console.log("close"),
-    header: "testH",
-    items: [
-    {
-        title: "test1",
-        data: "data1"
-    },
-    {
-        title: "test2",
-        data: "data2"
-    },
-    {
-        title: "test3",
-        data: "data3"
-    },
-    {
-        title: "test3",
-        data: "data4"
-    },
-    {
-        title: "test3",
-        data: "data5"
-    },
-    {
-        title: "test3",
-        data: "data6"
-    },
-    ]
-  },
-} satisfies Meta<typeof SelectionDialog>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Base: Story = {
+type Story = StoryObj<typeof SelectionDialog>;
+
+export const Basic: Story = {
   args: {
-   
-  },
+    header: 'Выберите язык',
+    items: [
+      { title: 'Русский', data: 'ru' },
+      { title: 'Английский', data: 'en' },
+      { title: 'Немецкий', data: 'de' }
+    ],
+    confirmText: 'Выбрать',
+    cancelText: 'Отмена'
+  }
+};
+
+export const WithDescriptions: Story = {
+  args: {
+    header: 'Выберите тариф',
+    items: [
+      { 
+        title: 'Базовый', 
+        description: '10$/мес - основные функции', 
+        data: 'basic' 
+      },
+      { 
+        title: 'Профессиональный', 
+        description: '25$/мес - расширенные возможности', 
+        data: 'pro' 
+      },
+      { 
+        title: 'Премиум', 
+        description: '50$/мес - полный функционал', 
+        data: 'premium' 
+      }
+    ]
+  }
+};
+
+export const WithDisabledItems: Story = {
+  args: {
+    header: 'Выберите способ доставки',
+    items: [
+      { title: 'Курьером', data: 'courier' },
+      { title: 'Самовывоз', data: 'pickup' },
+      { 
+        title: 'Почта (временно недоступно)', 
+        data: 'mail', 
+        disabled: true 
+      }
+    ]
+  }
+};
+
+export const PersistentDialog: Story = {
+  args: {
+    header: 'Выберите тему',
+    noHide: true,
+    items: [
+      { title: 'Светлая', data: 'light' },
+      { title: 'Темная', data: 'dark' },
+      { title: 'Системная', data: 'system' }
+    ],
+    confirmText: 'Применить',
+    cancelText: 'Закрыть'
+  }
 };
