@@ -1,22 +1,43 @@
 import { useCallback, useEffect, useState } from "react"
 import { ScreenSize } from "../model/sizeScreen"
 
-interface ScreenSizeHookOption{
+interface ScreenSizeOption{
 	mobileSize:number,
 	bigSize:number,
 }
 
-const DefaultOption:ScreenSizeHookOption = {
+interface ScreenSizeHookOption{
+	mobileSize?:number,
+	bigSize?:number,
+}
+
+const DefaultOption: ScreenSizeOption = {
 	mobileSize: 720,
 	bigSize: 1400
 }
 
-export const useScreenSize = (option:ScreenSizeHookOption = DefaultOption) => {
+export const useScreenSize = (option_data:ScreenSizeHookOption = {}) => {
 
-	if(option.bigSize <= 100 || option.mobileSize <= 100 || option.bigSize <= 100 || option.mobileSize >= option.bigSize)
+	const option:ScreenSizeOption = {
+		bigSize: option_data.bigSize ?? DefaultOption.bigSize,
+		mobileSize: option_data.mobileSize ?? DefaultOption.mobileSize
+	}
+
+	if(option.bigSize <= 100)
 	{
 		console.error("useScreenSize: invalid option")
-		option = DefaultOption
+		option.bigSize = DefaultOption.bigSize
+	}
+	if(option.mobileSize <= 100)
+	{
+		console.error("useScreenSize: invalid option")
+		option.mobileSize = DefaultOption.mobileSize
+	}
+	if(option.mobileSize >= option.bigSize)
+	{
+		console.error("useScreenSize: invalid option")
+		option.mobileSize = DefaultOption.mobileSize
+		option.bigSize = DefaultOption.bigSize
 	}
 
     const [screen, setScreen] = useState<ScreenSize>(ScreenSize.STANDART)

@@ -1,62 +1,88 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { FullScrinTemplateDialog } from '../../lib/index';
-// import React from 'react';
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { FullScreenTemplateDialog } from '../../lib/ui/Dialog/TemplateDialog/FullScreenTemplateDialog';
 
-const meta = {
-  title: 'Components/Dialogs/FullScrinTemplateDialog',
-  component: FullScrinTemplateDialog,
-  parameters: {
-    layout: 'fullscreen',
-  },
+const meta: Meta<typeof FullScreenTemplateDialog> = {
+  title: 'Components/Dialogs/FullScreenTemplateDialog',
+  component: FullScreenTemplateDialog,
   tags: ['autodocs'],
   argTypes: {
-    
-  },
-  args: { 
-    children: <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius officiis debitis aspernatur! Quasi quibusdam totam quisquam assumenda molestias, iure saepe et sed, veritatis nisi incidunt sint magnam, illo architecto earum.</p>  },
-} satisfies Meta<typeof FullScrinTemplateDialog>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Base: Story = {
-  args: {
-    onHide: ()=>console.log("close"),
+    onHide: { action: 'closed' },
+    onSave: { action: 'saved' },
+    breakpoint: {
+      control: { type: 'number', min: 320, max: 1200 },
+      description: 'Ширина переключения в полноэкранный режим'
+    },
+    marginBottom: {
+      control: { type: 'number', min: 0, max: 200 },
+      description: 'Отступ снизу для контента'
+    },
+    disableBackplate: {
+      control: 'boolean',
+      description: 'Отключить полупрозрачный фон'
+    },
+    saveText: {
+      control: 'text',
+      description: 'Текст кнопки сохранения'
+    },
+    cancelText: {
+      control: 'text',
+      description: 'Текст кнопки отмены'
+    }
   },
 };
 
-export const Save: Story = {
-    args: {
-    onSave: ()=>console.log("save"),
-    onHide: ()=>console.log("close"),
-    },
-  };
-  
-  export const Header: Story = {
-    args: {
-        header:"test H",
-        onHide: ()=>console.log("close"),
-    },
-  };
+export default meta;
 
-  export const HeaderAndSave: Story = {
-    args: {
-        header:"test H",
-        onSave: ()=>console.log("save"),
-        onHide: ()=>console.log("close"),
-    },
-  };
-  
-  export const noHide: Story = {
-    args: {
-        header:"test H",
-    },
-  };
-  
-  export const saveOnly: Story = {
-    args: {
-        header:"test H",
-        onSave: ()=>console.log("save"),
-    },
-  };
-  
+type Story = StoryObj<typeof FullScreenTemplateDialog>;
+
+export const Basic: Story = {
+  args: {
+    header: 'Редактирование профиля',
+    children: (
+      <div style={{ minHeight: '400px' }}>
+        <p>Форма редактирования содержимого</p>
+      </div>
+    ),
+    saveText: 'Сохранить',
+    cancelText: 'Отмена'
+  }
+};
+
+export const WithoutHeader: Story = {
+  args: {
+    children: (
+      <div style={{ minHeight: '400px' }}>
+        <p>Диалог без заголовка</p>
+      </div>
+    )
+  }
+};
+
+export const WithCustomBreakpoint: Story = {
+  args: {
+    header: 'Кастомный breakpoint',
+    breakpoint: 1024,
+    children: (
+      <div style={{ minHeight: '400px' }}>
+        <p>Переключается в полноэкранный режим на ширине меньше 1024px</p>
+      </div>
+    )
+  }
+};
+
+export const ForcedFullScreen: Story = {
+  render: (args) => (
+    <div style={{ width: '300px', height: '500px', position: 'relative' }}>
+      <FullScreenTemplateDialog {...args} />
+    </div>
+  ),
+  args: {
+    header: 'Принудительный полноэкранный',
+    children: (
+      <div style={{ minHeight: '300px' }}>
+        <p>Всегда отображается в полноэкранном режиме</p>
+      </div>
+    )
+  }
+};

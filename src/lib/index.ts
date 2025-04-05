@@ -17,12 +17,13 @@ import { BaseDialog } from './ui/Dialog/BaseDialog/BaseDialog';
 import { SelectionDialog } from './ui/Dialog/BaseDialog/SelectionDialog';
 import { TextDialog } from './ui/Dialog/BaseDialog/TextDialog';
 import { BasicTemplateDialog } from './ui/Dialog/TemplateDialog/BasicTemplateDialog';
-import { FullScrinTemplateDialog } from './ui/Dialog/TemplateDialog/FullScreenTemplateDialog';
+import { FullScreenTemplateDialog } from './ui/Dialog/TemplateDialog/FullScreenTemplateDialog';
 import { ModalTemplate } from './ui/Dialog/TemplateDialog/ModalTemplate';
 import { Card } from './ui/Card/Card';
 import { BaseActionCard } from './ui/Layout/BaseActionCard/BaseActionCard';
 import { BigContainer } from './ui/Layout/BigContainer/BigContainer';
 import { ColumnLayout } from './ui/Layout/ColumnLayout/ColumnLayout';
+import { ModalDialogTemplate } from './ui/Dialog/TemplateDialog/ModalDialogTemplate'
 import { ContentBox } from './ui/Layout/ContentBox/ContentBox';
 import GridLayout from './ui/Layout/GridLayout/GridLayout';
 import { GridLayoutItem } from './ui/Layout/GridLayout/GridLayout';
@@ -96,6 +97,7 @@ export {
   BaseButton,
   BaseDialog,
   BaseMenu,
+  ModalDialogTemplate,
   BigContainer,
   BottomSheetsUi,
   Button,
@@ -152,7 +154,7 @@ export {
   TimePicker,
   Typography,
   BasicTemplateDialog,
-  FullScrinTemplateDialog,
+  FullScreenTemplateDialog,
   СalendarPickers
 };
 

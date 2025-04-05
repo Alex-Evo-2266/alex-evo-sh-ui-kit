@@ -1,4 +1,4 @@
-
+import './ModalTemplate.scss'
 export interface ModalTemplateProps{
     children: React.ReactNode
     onHide?: ()=>void
