@@ -8,6 +8,8 @@ interface MenuItemProps{
     onHide: ()=>void
     smallDisplay: boolean
     globalClick?: ()=>void
+    onGlobalHide?: ()=>void
+    autoHide?: boolean
 }
 
 interface ICord{
@@ -15,7 +17,7 @@ interface ICord{
 	top: string
 }
 
-const SubMenuItemBlock = ({items, onHide, smallDisplay, globalClick}:MenuItemProps) => {
+const SubMenuItemBlock = ({items, onHide, smallDisplay, globalClick, autoHide, onGlobalHide}:MenuItemProps) => {
 
     const container = useRef<HTMLDivElement>(null)
     const [cord, setCord] = useState<ICord>({left:"0px", top:"0px"})
@@ -46,7 +48,7 @@ const SubMenuItemBlock = ({items, onHide, smallDisplay, globalClick}:MenuItemPro
             <div ref={container} className="menu-sub-block" style={{...cord}}>
             {
                 items.map((item, index)=>(
-                <SubMenuItem key={index} item={item} isIcon={isIcon(items)} globalClick={globalClick}/> 
+                <SubMenuItem onHide={onGlobalHide} autoHide={autoHide} key={index} item={item} isIcon={isIcon(items)} globalClick={globalClick}/> 
                 ))
             }
             </div>

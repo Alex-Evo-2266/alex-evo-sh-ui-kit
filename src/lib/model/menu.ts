@@ -3,6 +3,7 @@ export interface IMenuSubItem{
     title: string
     icon?: React.ReactNode
     activated?: boolean
+    disabled?: boolean
     onClick?: ()=>void
 }
 
@@ -12,6 +13,7 @@ export interface IMenuItem{
     activated?: boolean
     onClick?: ()=>void
     subItems?: IMenuSubItem[]
+    disabled?: boolean
 }
 
 export interface IBlock{

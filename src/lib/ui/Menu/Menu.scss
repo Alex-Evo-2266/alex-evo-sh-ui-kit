@@ -33,8 +33,12 @@
         padding-bottom: 8px;
         padding-top: 8px;
         z-index: 3;
-        .menu-item-conatiner{
+        .menu-item-container{
             position: relative;
+            &.disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
             .menu-sub-block{
                 padding-bottom: 8px;
                 min-width: 112px;
@@ -67,6 +71,10 @@
         transition: .3s;
         border-radius: 4px;
         align-items: center;
+        &.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
         &:first-child{
             height: 56px;
         }

@@ -5,17 +5,20 @@ interface MenuItemProps{
     item: IMenuSubItem
     isIcon: boolean
     globalClick?: ()=>void
+    autoHide?: boolean
+    onHide?: ()=>void
 }
 
-const SubMenuItem = ({item, isIcon, globalClick}:MenuItemProps) => {
+const SubMenuItem = ({item, isIcon, globalClick, autoHide, onHide}:MenuItemProps) => {
 
     const click = () => {
         item.onClick && item.onClick()
         globalClick && globalClick()
+        autoHide && onHide?.()
     }
 
     return(
-        <div className="menu-sub-item" onClick={click}>
+        <div className={`menu-sub-item ${item.disabled?"disabled":""}`} onClick={click}>
             {
                 (isIcon)?
                 <div className="menu-icon-container">

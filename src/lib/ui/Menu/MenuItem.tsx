@@ -19,15 +19,16 @@ const MenuItem = ({onHide, autoHide, globalClick, item, isIcon, smallDisplay}:Me
     const subMenuToggle = useCallback(() => {
         if(item.subItems)
             setVisible(prev=>!prev)
-        else
+        else{
             item.onClick && item.onClick()
             globalClick && globalClick()
-        if(autoHide)
-            onHide && onHide()
+            if(autoHide)
+                onHide && onHide()
+        }
     },[item.onClick])
 
     return(
-        <div className="menu-item-conatiner">
+        <div className={`menu-item-container ${item.disabled?"disabled":""}`}>
             <div className="menu-item" onClick={subMenuToggle}>
                 {
                     (isIcon)?
@@ -51,7 +52,7 @@ const MenuItem = ({onHide, autoHide, globalClick, item, isIcon, smallDisplay}:Me
             </div>
                 {
                     (visible && item.subItems)?
-                    <SubMenuItemBlock items={item.subItems} onHide={()=>setVisible(false)} smallDisplay={smallDisplay}/>:
+                    <SubMenuItemBlock autoHide={autoHide} items={item.subItems} onGlobalHide={onHide} onHide={()=>setVisible(false)} smallDisplay={smallDisplay}/>:
                     null
                 }
         </div>
