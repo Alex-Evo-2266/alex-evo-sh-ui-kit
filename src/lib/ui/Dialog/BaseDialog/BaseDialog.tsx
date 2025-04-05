@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { OutlineButton, TextButton } from "../../..";
 import { BasicTemplateDialog } from "../TemplateDialog/BasicTemplateDialog";
+import './Dialogs.scss'
 
 export interface BaseDialogProps {
   /** Текст сообщения в диалоге */
