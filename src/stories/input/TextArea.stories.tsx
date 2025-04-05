@@ -12,9 +12,7 @@ const meta = {
   argTypes: {
     
   },
-  args: { styleContainer:{
-    minWidth: "300px"
-  }  },
+  args: {},
 } satisfies Meta<typeof TextArea>;
 
 export default meta;

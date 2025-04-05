@@ -1,97 +1,202 @@
-import { X } from "../../Icons"
-import "./TextField.scss"
-import { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { X } from "../../Icons";
+import "./TextField.scss";
+import { Typography } from "../../Text/Text/Typography";
 
-export interface ITextFieldProps{
-    onChange?:(event: React.ChangeEvent<HTMLInputElement>)=>void
-    onClick?: (event: React.MouseEvent<HTMLInputElement>)=>void
-    name?: string
-    value?: number | string
-    placeholder?: string
-    validEmptyValue?: boolean
-    className?: string
-    onFocus?: (event:React.FocusEvent<HTMLInputElement>)=>void
-    onBlur?: (event:React.FocusEvent<HTMLInputElement>)=>void
-    error?: boolean
-    icon?:React.ReactNode
-    onClear?: ()=>void
-    border?: boolean
-    password?: boolean
-    readOnly?: boolean
-    type?:string
-    transparent?: boolean
-    min?: number
-    max?: number
-    styleContainer?: React.CSSProperties
-    ref?: React.LegacyRef<HTMLInputElement> | undefined
+export interface TextFieldProps {
+  /** Обработчик изменения значения */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Обработчик клика по полю */
+  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
+  /** Имя поля */
+  name?: string;
+  /** Значение поля */
+  value?: number | string;
+  /** Подсказка в поле */
+  placeholder?: string;
+  /** Валидация пустого значения */
+  validEmptyValue?: boolean;
+  /** Дополнительные классы */
+  className?: string;
+  /** Обработчик фокуса */
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  /** Обработчик потери фокуса */
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  /** Флаг ошибки */
+  error?: boolean;
+  /** Иконка для поля */
+  icon?: React.ReactNode;
+  /** Обработчик очистки поля */
+  onClear?: () => void;
+  /** Показать рамку */
+  border?: boolean;
+  /** Парольное поле */
+  password?: boolean;
+  /** Только для чтения */
+  readOnly?: boolean;
+  /** Тип поля */
+  type?: string;
+  /** Прозрачный фон */
+  transparent?: boolean;
+  /** Минимальное значение (для числовых полей) */
+  min?: number;
+  /** Максимальное значение (для числовых полей) */
+  max?: number;
+  /** Стили контейнера */
+  styleContainer?: React.CSSProperties;
+  /** Ref для input элемента */
+  inputRef?: React.LegacyRef<HTMLInputElement>;
+  /** Автоматический фокус при монтировании */
+  autoFocus?: boolean;
+  /** Отключенное состояние */
+  disabled?: boolean;
+  /** Размер компонента */
+  size?: "small" | "medium" | "large";
+
+  helperText?: string
+  errorText?: string
 }
 
-export const TextField = ({onClick, ref, styleContainer, type = "text", transparent, readOnly, password, border, onClear, icon, onChange, name, value, placeholder, className, validEmptyValue, onFocus, onBlur, error, max, min}:ITextFieldProps) => {
+/**
+ * Компонент текстового поля с поддержкой иконок, валидации и различных состояний
+ */
+export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
+  (
+    {
+      onClick,
+      inputRef,
+      styleContainer,
+      type = "text",
+      transparent,
+      readOnly,
+      password,
+      border,
+      onClear,
+      icon,
+      onChange,
+      name,
+      value,
+      placeholder,
+      className,
+      validEmptyValue,
+      onFocus,
+      onBlur,
+      error,
+      max,
+      min,
+      autoFocus,
+      disabled,
+      size = "medium",
+      helperText, 
+      errorText
+    },
+    ref
+  ) => {
+    const inputContainerElement = useRef<HTMLDivElement>(null);
+    const [isError, setError] = useState<boolean>(false);
+    const [isFocused, setFocused] = useState<boolean>(false);
+    const [isFilled, setIsFilled] = useState<boolean>(!!value);
 
-    const inputContainerElement = useRef<HTMLDivElement>(null)
-    const [isError, setError] = useState<boolean>(false)
-    const [isFocus, setFocus] = useState<boolean>(false)
-
-    const focus = () => {
-        if(!inputContainerElement.current)
-            return
-        const input = inputContainerElement.current.querySelector('input')
-        if(!input)
-            return
-        input.focus()
+    const focusInput = () => {
+      if (!inputContainerElement.current) return;
+      const input = inputContainerElement.current.querySelector("input");
+      input?.focus();
     }
 
-    const changeFocus = (e:React.FocusEvent<HTMLInputElement>) => {
-        onFocus && onFocus(e)
-        setFocus(true)
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        onFocus?.(e);
+        setFocused(true);
     }
 
-    const blur = (event:React.FocusEvent<HTMLInputElement>) => {
-        onBlur && onBlur(event)
-        setFocus(false)
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        onBlur?.(e);
+        setFocused(false);
+        setIsFilled(!!e.target.value);
     }
 
-    const emptyValueClass = useCallback((validEmptyValue?:boolean, value?: string | number) => {
-        if(error)
-            return setError(true)
-        if(validEmptyValue && (!value || value === ""))
-            return setError(true)
-        return setError(false)
-    },[])
+    const validateField = useCallback(
+      (validEmptyValue?: boolean, value?: string | number) => {
+        if (error) return setError(true);
+        if (validEmptyValue && (!value || value === "")) return setError(true);
+        return setError(false);
+      },
+      [error]
+    );
 
-    useEffect(()=>{
-        emptyValueClass(validEmptyValue, value)
-    },[value, validEmptyValue, emptyValueClass])
+    useEffect(() => {
+      validateField(validEmptyValue, value);
+      setIsFilled(!!value);
+    }, [value, validEmptyValue, validateField]);
 
-    return(
-        <div ref={inputContainerElement} style={styleContainer} className={`input-field text-field ${border?"border":""} ${isFocus?"active":""} ${transparent?"transparent":""} ${isError?"error":""} ${className}`}>
-            {
-                (icon)?
-                <div className="icon-container" onClick={focus}>{icon}</div>:
-                null
-            }
-            <div className="input-container" onClick={focus}>
-                <input
-                ref={ref}
-                max={max}
-                min={min}
-                readOnly={readOnly}
-                required 
-                type={password?"password":type} 
-                className={`${isError?"error":""}`} 
-                name={name} 
-                value={value} 
-                onClick={onClick}
-                onChange={onChange}
-                onFocus={changeFocus}
-                onBlur={blur}/>
-                <label>{(placeholder)?<span>{placeholder}</span>:null}</label>
-            </div>
-            {
-                (onClear)?
-                <div className="icon-container clear-btn"><X onClick={onClear}/></div>:
-                null
-            }
-		</div>
-    )
-}
+    const sizeClasses = {
+      small: "text-field--small",
+      medium: "text-field--medium",
+      large: "text-field--large",
+    };
+
+    return (
+    <div className="input-field-container">
+    <div
+        ref={ref}
+        style={styleContainer}
+        className={`
+          input-field 
+          text-field 
+          ${sizeClasses[size]}
+          ${border ? "border" : ""} 
+          ${isFocused ? "active" : ""} 
+          ${transparent ? "transparent" : ""} 
+          ${isError ? "error" : ""} 
+          ${disabled ? "disabled" : ""}
+          ${className || ""}
+        `}
+        onClick={focusInput}
+      >
+        {icon && (
+          <div className="icon-container" aria-hidden="true">
+            {icon}
+          </div>
+        )}
+
+        <div className="input-container" ref={inputContainerElement}>
+          <input
+            ref={inputRef}
+            max={max}
+            min={min}
+            readOnly={readOnly}
+            disabled={disabled}
+            required
+            type={password ? "password" : type}
+            className={`${isError ? "error" : ""}`}
+            name={name}
+            value={value}
+            onClick={onClick}
+            onChange={onChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            autoFocus={autoFocus}
+            aria-invalid={isError}
+            aria-describedby={isError ? `${name}-error` : undefined}
+          />
+          {placeholder && (
+            <label onClick={focusInput} className={isFilled ? "filled" : ""}>
+              <span>{placeholder}</span>
+            </label>
+          )}
+        </div>
+
+        {onClear && value && !disabled && (
+          <div className="icon-container clear-btn" onClick={onClear}>
+            <X aria-label="Clear input" />
+          </div>
+        )}
+        
+      </div>
+        {isError && errorText && <Typography type='small' className="error-text">{errorText}</Typography>}
+        {helperText && !isError && <Typography type='small' className="helper-text">{helperText}</Typography>}
+    </div>
+    );
+  }
+);
+
+TextField.displayName = "TextField";
