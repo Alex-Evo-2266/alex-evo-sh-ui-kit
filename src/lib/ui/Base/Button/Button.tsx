@@ -1,9 +1,13 @@
 import "./button.scss"
 import React from 'react'
 
-type BaseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+type IBaseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export type styleType = "outline" | "text" | "filledTotal" | "filled" | "base"
+
+export interface BaseButtonProps extends IBaseButtonProps {
+    size?: "small" | "medium" | "large";
+}
 
 export interface IButtonProps extends BaseButtonProps {
     styleType?: styleType
@@ -17,7 +21,7 @@ export const FilledTotalButton = (props: BaseButtonProps) => BaseButton({...prop
 
 export const FilledButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " filled-button"})
 
-export const BaseButton = (props: BaseButtonProps) => {
+export const BaseButton = ({size = 'medium', ...props}: BaseButtonProps) => {
 
     const click = (e:React.MouseEvent<HTMLButtonElement>) => {
         props.onClick && props.onClick(e)
@@ -34,8 +38,14 @@ export const BaseButton = (props: BaseButtonProps) => {
         },500)
     }
 
+    const sizeClasses = {
+        small: "btn--small",
+        medium: "btn--medium",
+        large: "btn--large",
+      };
+
     return(
-    <button {...{...props, className:(props.className ?? "") + " btn", onClick: click}}>
+    <button {...{...props, className:(props.className ?? "") + " btn " + sizeClasses[size], onClick: click}}>
         <span>{props.children}</span>
     </button>
     )

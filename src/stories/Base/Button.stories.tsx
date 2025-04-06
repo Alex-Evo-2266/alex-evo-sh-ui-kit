@@ -53,3 +53,10 @@ export const FilledTotal: Story = {
       children: 'Button',
     },
   };
+
+  export const SizeMin: Story = {
+    args: {
+      children: 'Button',
+      size: 'small'
+    },
+  };

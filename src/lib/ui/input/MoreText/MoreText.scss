@@ -1,0 +1,86 @@
+.more-text-controll{
+    display: flex;
+    .chips-container{
+        flex: 100%;
+    }
+    .more-text-btn{
+        white-space: nowrap;
+    }
+}
+
+// Файл: MoreText.scss
+
+/* Стили для скрытия элементов визуально, но оставления их доступными для скринридеров */
+.sr-only {
+    // Абсолютное позиционирование для вывода элемента за пределы видимой области
+    position: absolute;
+    
+    // Минимальные размеры (некоторые скринридеры игнорируют элементы с нулевыми размерами)
+    width: 1px;
+    height: 1px;
+    
+    // Убираем все внутренние и внешние отступы
+    padding: 0;
+    margin: -1px; // Выводим за пределы видимой области
+    
+    // Скрываем содержимое, выходящее за границы элемента
+    overflow: hidden;
+    
+    // Полное обрезание элемента (старый метод, но надежный)
+    clip: rect(0, 0, 0, 0);
+    
+    // Альтернативный современный способ (если поддерживается)
+    clip-path: inset(50%);
+    
+    // Запрещаем перенос текста
+    white-space: nowrap;
+    
+    // Убираем границы
+    border: 0;
+    
+    // Для некоторых браузеров добавляем свойство, улучшающее доступность
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+  }
+  
+  /* Модификация для фокусируемых элементов */
+  .sr-only.focusable:focus,
+  .sr-only.focusable:active {
+    // Возвращаем элемент в поток документа при получении фокуса
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    clip-path: none;
+  }
+  
+  /* Дополнительные классы для разных ситуаций */
+  .sr-only--inline {
+    display: inline-block;
+  }
+  
+  .sr-only--flex {
+    display: flex;
+  }
+  
+  /* Миксин для повторного использования */
+  @mixin sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+    clip-path: inset(50%);
+  }
+  
+  /* Пример использования миксина */
+  .visually-hidden {
+    @include sr-only;
+  }

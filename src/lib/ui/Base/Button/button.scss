@@ -21,6 +21,17 @@
 	background-color: var(--Surface-container-highest-color);
 	color: var(--Primary-color);
 	box-shadow: 1px 1px 6px -2px var(--Shadow-color);
+
+	&--small{
+		line-height: 32px;
+	}
+	&--medium{
+		line-height: 40px;
+	}
+	&--large{
+		line-height: 54px;
+	}
+
 	&.m-0{
 		margin: 0;
 	}

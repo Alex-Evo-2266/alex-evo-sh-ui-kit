@@ -22,6 +22,8 @@ export interface TextFieldProps {
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   /** Обработчик потери фокуса */
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void
   /** Флаг ошибки */
   error?: boolean;
   /** Иконка для поля */
@@ -88,7 +90,8 @@ export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       disabled,
       size = "medium",
       helperText, 
-      errorText
+      errorText,
+      onKeyDown
     },
     ref
   ) => {
@@ -174,6 +177,7 @@ export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
             onChange={onChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
+            onKeyDown={onKeyDown}
             autoFocus={autoFocus}
             aria-invalid={isError}
             aria-describedby={isError ? `${name}-error` : undefined}
