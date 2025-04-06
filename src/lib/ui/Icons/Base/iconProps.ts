@@ -1,4 +1,4 @@
-export type IconProps = {
+export type IconProps = React.SVGAttributes<SVGSVGElement> & {
     className?: string
     size?: string
     onClick?: (evien:React.MouseEvent<SVGSVGElement>)=>void
@@ -6,4 +6,5 @@ export type IconProps = {
     secondaryColor?: string
     tertiaryColor?: string
     baseColor?: string
+    dpi?: string
 }

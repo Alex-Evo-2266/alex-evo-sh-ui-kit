@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Minus, Plus, X } from "../../Icons"
 import { Typography } from "../../Text/Text/Typography"
 
-export interface ITextFieldProps{
+export interface INumberFieldProps{
     onChange?:(value: number, name?: string)=>void
     name?: string
     value?: number
@@ -29,8 +29,11 @@ export interface ITextFieldProps{
     step?: number
     helperText?: string
     errorText?: string
+    ariaLabel?: string
+    ariaLabelledby?: string
+    ariaDescribedby?: string
 }
-export const NumberField = React.forwardRef<HTMLDivElement, ITextFieldProps>((
+export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
     {
         refInput, 
         styleContainer, 
@@ -54,7 +57,10 @@ export const NumberField = React.forwardRef<HTMLDivElement, ITextFieldProps>((
         disabled,
         step = 1,
         helperText,
-        errorText
+        errorText,
+        ariaLabel,
+        ariaLabelledby,
+        ariaDescribedby
     }, ref) => {
 
     const timeOutID = useRef<NodeJS.Timeout | null>(null)
@@ -204,10 +210,13 @@ export const NumberField = React.forwardRef<HTMLDivElement, ITextFieldProps>((
             ${isError ? "error" : ""} 
             ${disabled ? "disabled" : ""}
             ${className || ""}
-        `}>
+        `}
+        aria-disabled={disabled}
+        aria-invalid={isError}
+        >
             {
                 (icon)?
-                <div className="icon-container" onClick={focus}>{icon}</div>:
+                <div className="icon-container" onClick={focus} aria-hidden="true">{icon}</div>:
                 null
             }
             <div ref={inputContainerElement} className="input-container" onClick={focus}>
@@ -224,22 +233,72 @@ export const NumberField = React.forwardRef<HTMLDivElement, ITextFieldProps>((
                 value={val} 
                 onChange={changeNumber}
                 onFocus={onFocus}
-                onBlur={blur}/>
+                onBlur={blur}
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledby}
+                aria-describedby={ariaDescribedby}
+                aria-required="true"
+                aria-invalid={isError}
+                disabled={disabled}
+                />
                 <label>{(placeholder)?<span>{placeholder}</span>:null}</label>
                 <span className="text-field-line"></span>
             </div>
             {
                 (onClear)?
-                <div className="clear-container"><X onClick={onClear}/></div>:
+                <div className="clear-container">
+                    <X 
+                        onClick={onClear}
+                        role="button"
+                        aria-label="Clear input"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && onClear()}
+                    />
+                </div>:
                 null
             }
             <div className="button-block">
-                <div className="minus number-field-btn" onMouseDown={()=>mouseDown("m")}><Minus/></div>
-                <div className="plus number-field-btn" onMouseDown={()=>mouseDown("p")}><Plus/></div>
+                <div 
+                    className="minus number-field-btn" 
+                    onMouseDown={()=>mouseDown("m")}
+                    role="button"
+                    aria-label="Decrease value"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && minusClick()}
+                >
+                    <Minus/>
+                </div>
+                <div 
+                    className="plus number-field-btn" 
+                    onMouseDown={()=>mouseDown("p")}
+                    role="button"
+                    aria-label="Increase value"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && pluseClick()}
+                >
+                    <Plus/>
+                </div>
             </div>
-		</div>
-        {isError && errorText && <Typography type='small' className="error-text">{errorText}</Typography>}
-        {helperText && !isError && <Typography type='small' className="helper-text">{helperText}</Typography>}
+        </div>
+        {isError && errorText && (
+            <Typography 
+                type='small' 
+                className="error-text"
+                id={ariaDescribedby}
+                role="alert"
+            >
+                {errorText}
+            </Typography>
+        )}
+        {helperText && !isError && (
+            <Typography 
+                type='small' 
+                className="helper-text"
+                id={ariaDescribedby}
+            >
+                {helperText}
+            </Typography>
+        )}
         </div>
     )
 })
