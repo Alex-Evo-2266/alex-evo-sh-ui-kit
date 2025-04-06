@@ -1,38 +1,36 @@
-.color-field-placeholder{
-    font-size: 24px;
-    text-align: center;
-    margin-left: 20px;
-
-}
-
-.color-field-label{
+.color-field {
     display: flex;
     align-items: center;
-    padding: 22px;
-}
-
-.color-indicator-field{
-    width: 100%;
-    margin: 0 10px;
-    height: 40px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .color-field-data{
-        font-size: 24px;
-        margin: 0;
+    justify-content: space-around;
+    gap: 8px;
+    
+    .color-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
     }
-}
 
-.color-field{
-    border-bottom: 2px solid var(--On-surface-variant-color);
-    // box-sizing:content-box;
-    // box-sizing:border-box;
-    &.border{
-        border: 1px solid var(--On-surface-variant-color);
+    .color-field-label{
+        flex: 100%;
+        text-align: center;
     }
-    &.transparent{
-		background: transparent
-	}
-}
+
+    .color-icon-container{
+        justify-content: end;
+    }
+  
+    .color-indicator-field {
+      flex-grow: 1;
+      padding: 8px;
+      cursor: pointer;
+      height: calc(100% - 16px);
+      display: flex;
+      align-items: center;
+      background: none !important; // Remove background from here
+    }
+  
+    // Rest of your existing styles...
+  }
