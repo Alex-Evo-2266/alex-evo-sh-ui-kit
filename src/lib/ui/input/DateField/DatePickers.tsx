@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import "./DatePickers.scss"
-import { BasicTemplateDialog, Check, ChevronDown, TextButton } from "../../../index";
+import { BasicTemplateDialog, Check, ChevronDown, ModalDialogTemplate, TextButton } from "../../../index";
 import React from 'react';
 
 const MAX_YEAR = 2050
@@ -134,7 +134,7 @@ export const СalendarPickers:React.FC<IСalendarPickersProps> = ({onChange, onH
     },[month, year, onChange, onHide, day])
 
 	return(
-		<BasicTemplateDialog className="calendar-body-container" style={{maxWidth: "328px"}}>
+		<ModalDialogTemplate className="calendar-body-container" style={{maxWidth: "328px"}}>
 			<div className="calendar-body-select-container">
                 <div className="month" ><span className={page===СalendarPage.MONTHS?"active":""} onClick={()=>setPage(СalendarPage.MONTHS)}>{month} <ChevronDown/></span></div>
                 <div className="years"><span className={page===СalendarPage.YEARS?"active":""} onClick={()=>setPage(СalendarPage.YEARS)}>{year} <ChevronDown/></span></div>
@@ -197,6 +197,6 @@ export const СalendarPickers:React.FC<IСalendarPickersProps> = ({onChange, onH
 				<TextButton className="little m-0" onClick={onHide}>Cancel</TextButton>
 				<TextButton className="little m-0" onClick={selectDate}>OK</TextButton>
 			</div>
-		</BasicTemplateDialog>
+		</ModalDialogTemplate>
 	)
 }

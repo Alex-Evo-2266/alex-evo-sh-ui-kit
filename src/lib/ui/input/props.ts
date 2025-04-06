@@ -132,3 +132,9 @@ export interface IBaseFieldProps {
      */
     id?: string
     }
+
+  
+export interface IDateFieldProps extends IBaseFieldProps{
+  validEmptyValue?: boolean
+  container: HTMLElement | null
+}

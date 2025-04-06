@@ -3,22 +3,29 @@ import "./DateField.scss"
 import { ModalPortal } from "../../../portal/dialog"
 import {СalendarPickers} from './DatePickers'
 import { Calendar } from "../../Icons"
+import { IDateFieldProps } from "../props"
+import { Typography } from "../../Text/Text/Typography"
 
-interface ITimeFieldProps{
-    onChange?:(value: string)=>void
-    name?: string
-    value?: string
-    validEmptyValue?: boolean
-    className?: string
-    error?: boolean
-    border?: boolean
-    container: HTMLElement | null
-}
-
-export const DateField = ({border, onChange, name, value, className, validEmptyValue, error, container}:ITimeFieldProps) => {
+export const DateField:React.FC<IDateFieldProps> = (
+    {
+        border, 
+        onChange, 
+        name, 
+        value, 
+        className, 
+        validEmptyValue, 
+        error, 
+        container,
+        errorText,
+        helperText,
+        size = 'medium',
+        disabled
+    }) => {
 
     const [dateValue, setDateValue] = useState<string>(value ?? "")
     const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
+
+    const isError = error || errorText
 
     const emptyValueClass = useCallback((validEmptyValue?:boolean) => {
         if(error)
@@ -51,15 +58,29 @@ export const DateField = ({border, onChange, name, value, className, validEmptyV
         onChange && onChange(`${year}-${formatMonth(month)}-${formatDay(day)}`)
     },[onChange])
 
+    const sizeClasses = {
+        small: "text-field--small",
+        medium: "text-field--medium",
+        large: "text-field--large",
+    };
+
     return(
-        <>
-        <div className={`input-field date-field ${border?"border":""}`}>
+        <div className="input-field-container">
+        <div className={`
+          input-field 
+          date-field 
+          ${sizeClasses[size]}
+          ${border ? "border" : ""} 
+          ${isError ? "error" : ""} 
+          ${disabled ? "disabled" : ""}
+          ${className || ""}
+        `}>
             <div className="icon-container" onClick={click}><Calendar/></div>
             <div className="input-container" onClick={click}>
                 <input
                 required 
                 type="date" 
-                className={`${className} ${emptyValueClass(validEmptyValue)}`} 
+                role='textbox'
                 name={name} 
                 value={dateValue}
                 readOnly
@@ -73,7 +94,9 @@ export const DateField = ({border, onChange, name, value, className, validEmptyV
             </ModalPortal>
             :null
         }
-        </>
+        {isError && errorText && <Typography type='small' className="error-text">{errorText}</Typography>}
+        {helperText && !isError && <Typography type='small' className="helper-text">{helperText}</Typography>}
+        </div>
         
     )
 }
