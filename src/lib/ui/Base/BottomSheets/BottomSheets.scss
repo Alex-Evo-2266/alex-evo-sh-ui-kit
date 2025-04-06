@@ -64,3 +64,9 @@
         transform: translate(-50%, 100%);
     }
 }
+
+@media (max-width: 600px) {
+    .bottom-sheets{
+        max-width: calc(100% - 30px);
+    }
+}

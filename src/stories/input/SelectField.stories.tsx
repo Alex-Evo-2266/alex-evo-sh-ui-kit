@@ -177,7 +177,7 @@ export const MobileView = {
           items={stringOptions}
           placeholder="Mobile select"
           container={document.body}
-          screensize={ScreenSize.STANDART}
+          screensize={ScreenSize.MOBILE}
           value={value}
           onChange={setValue}
           border
