@@ -1,7 +1,8 @@
 import { useCallback, useContext } from "react"
 import { formContext } from "../FormContext"
-import { IOption, SelectField as SF } from "../../SelectField/Select"
+import { SelectField as SF } from "../../SelectField/Select"
 import { ScreenSize } from "../../../../model/sizeScreen"
+import { IOption } from "../../props"
 
 export interface ISelectFieldProps{
     onChange?:(value: string)=>void

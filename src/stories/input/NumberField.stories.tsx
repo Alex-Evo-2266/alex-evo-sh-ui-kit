@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { GearIcon, NumberField } from "../../../lib";
+import { GearIcon, NumberField } from "../../lib";
 
 const meta: Meta<typeof NumberField> = {
   title: "Components/Input/NumberField",

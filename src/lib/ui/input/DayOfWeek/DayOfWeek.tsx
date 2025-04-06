@@ -1,66 +1,68 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, memo, useState } from "react";
 import './DayOfWeek.scss'
 
-export interface ITimeFieldProps{
-    onChange?:(value: string[])=>void
-    value?: string[]
-    className?: string
+export interface IDayOfWeekFieldProps {
+    onChange?: (value: string[]) => void;
+    value?: string[];
+    className?: string;
+    dayLabels?: Record<string, string>; // Новый пропс для кастомизации названий
 }
 
-export const DayOfWeekField = ({onChange, value, className}:ITimeFieldProps) => {
+const DEFAULT_DAY_LABELS = {
+    Mon: 'Mon',
+    Tue: 'Tue',
+    Wed: 'Wed',
+    Thu: 'Thu',
+    Fri: 'Fri',
+    Sat: 'Sat',
+    Sun: 'Sun'
+};
 
-    const [days, setDays] = useState<string[]>(value || [])
+const DAYS_OF_WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
 
-    const changeDay = useCallback((data: React.ChangeEvent<HTMLInputElement> | undefined) => {
-        if (!data)
-            return
-        let newData = days.slice()
-        const index =  newData.indexOf(data.target.name)
-        if(index !== -1 && ! data.target.checked)
-            newData = newData.filter((_, index1)=>index1 !== index)
-        else if(index === -1 && data.target.checked)
-            newData.push(data.target.name)
-        setDays(newData)
-        onChange && onChange(newData)
-    },[days])
+export const DayOfWeekField = memo(({ 
+    onChange, 
+    value, 
+    className,
+    dayLabels = DEFAULT_DAY_LABELS // Дефолтные значения
+}: IDayOfWeekFieldProps) => {
+    const [selectedDays, setSelectedDays] = useState<string[]>(value ?? []);
 
-    const getChecked = useCallback((day: string) => {
-        return (days.indexOf(day) !== -1)
-    },[days])
-   
-    return(
-        <>
+    useEffect(() => {
+        if(value)
+            setSelectedDays(value);
+    }, [value]);
+
+    const handleDayChange = useCallback((day: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedDays(prevDays => {
+            const newDays = e.target.checked
+                ? [...prevDays, day]
+                : prevDays.filter(d => d !== day);
+            
+            onChange?.(newDays);
+            return newDays;
+        });
+    }, [onChange]);
+
+    const isDayChecked = useCallback((day: string) => {
+        return selectedDays.includes(day);
+    }, [selectedDays]);
+
+    return (
         <div className={`days-week-field-container ${className}`}>
-            <label>
-                <input type="checkbox" onChange={changeDay} name="Mon" checked={getChecked("Mon")}/>
-                <span>Mon</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={changeDay} name="Tue" checked={getChecked("Tue")}/>
-                <span>Tue</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={changeDay} name="Wed" checked={getChecked("Wed")}/>
-                <span>Wed</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={changeDay} name="Thu" checked={getChecked("Thu")}/>
-                <span>Thu</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={changeDay} name="Fri" checked={getChecked("Fri")}/>
-                <span>Fri</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={changeDay} name="Sat" checked={getChecked("Sat")}/>
-                <span>Sat</span>
-            </label>
-            <label>
-                <input type="checkbox" onChange={changeDay} name="Sun" checked={getChecked("Sun")}/>
-                <span>Sun</span>
-            </label>
-		</div>
-        </>
-        
-    )
-}
+            {DAYS_OF_WEEK.map(day => (
+                <label key={day} className="day-of-week-label">
+                    <input 
+                        type="checkbox" 
+                        onChange={handleDayChange(day)} 
+                        checked={isDayChecked(day)}
+                        aria-label={dayLabels[day] || day} // Используем кастомное название для accessibility
+                    />
+                    <span>{dayLabels[day] || day}</span> {/* Отображаем кастомное название */}
+                </label>
+            ))}
+        </div>
+    );
+});
+
+DayOfWeekField.displayName = 'DayOfWeekField';
