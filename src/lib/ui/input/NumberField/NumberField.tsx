@@ -1,8 +1,9 @@
 // import { Minus, Plus, XCircle } from "lucide-react"
 import "./NumberField.scss"
 import '../TextField/TextField.scss'
-import { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Minus, Plus, X } from "../../Icons"
+import { Typography } from "../../Text/Text/Typography"
 
 export interface ITextFieldProps{
     onChange?:(value: number, name?: string)=>void
@@ -22,10 +23,39 @@ export interface ITextFieldProps{
     min?: number
     max?: number
     styleContainer?: React.CSSProperties
-    ref?: React.RefObject<HTMLInputElement>
+    refInput?: React.RefObject<HTMLInputElement>
+    size?: "small" | "medium" | "large";
+    disabled?: boolean
+    step?: number
+    helperText?: string
+    errorText?: string
 }
-
-export const NumberField = ({ref, styleContainer, transparent, readOnly, border, onClear, icon, onChange, name, value, placeholder, className, validEmptyValue, onFocus, onBlur, error, max, min}:ITextFieldProps) => {
+export const NumberField = React.forwardRef<HTMLDivElement, ITextFieldProps>((
+    {
+        refInput, 
+        styleContainer, 
+        transparent, 
+        readOnly, 
+        border, 
+        onClear, 
+        icon, 
+        onChange, 
+        name,
+        value, 
+        placeholder, 
+        className, 
+        validEmptyValue, 
+        onFocus, 
+        onBlur, 
+        error, 
+        max, 
+        min,
+        size = "medium",
+        disabled,
+        step = 1,
+        helperText,
+        errorText
+    }, ref) => {
 
     const timeOutID = useRef<NodeJS.Timeout | null>(null)
     const timeIntervalID = useRef<NodeJS.Timeout | null>(null)
@@ -33,7 +63,7 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
     
     const inputContainerElement = useRef<HTMLDivElement>(null)
     const [isError, setError] = useState<boolean>(false)
-    const [val, setVal] = useState<number>(value ?? 0)
+    const [val, setVal] = useState<number | ''>(value ?? 0)
 
     const emptyValueClass = useCallback((validEmptyValue?:boolean, value?: string | number) => {
         if(error)
@@ -41,7 +71,7 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
         if(validEmptyValue && (!value || value === ""))
             return setError(true)
         return setError(false)
-    },[])
+    },[error])
 
     const focus = () => {
         if(!inputContainerElement.current)
@@ -70,25 +100,34 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
 
     const pluseClick = useCallback(()=>{
         setVal(prev=>{
-            let newData = prev?prev + 1:1
+            let newData = prev?prev + step:step
             if(typeof(max) === 'number' && newData > max)
                 newData = max
             changeHandler(newData, name)
             return newData
         })
-    },[changeHandler, name, max])
+    },[changeHandler, name, max, step])
 
     const minusClick = useCallback(()=>{
         setVal(prev=>{
-            let newData = prev?prev - 1:-1
+            let newData = prev?prev - step:-step
             if(typeof(min) === 'number' && newData < min)
                 newData = min
             changeHandler(newData, name)
             return newData
         })
-    },[changeHandler, name, min])
+    },[changeHandler, name, min, step])
 
     const changeNumber = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        if(event.target.value === '')
+        {
+            setVal('')
+            return
+        }
+        if(event.target.value.length > 1 && event.target.value[0] === '0' && ![',', '.'].includes(event.target.value[1]))
+        {
+            event.target.value = event.target.value.slice(1)
+        }
         let newData = Number(event.target.value)
         if(typeof(min) === 'number' && newData < min)
             newData = min
@@ -127,28 +166,55 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
             
     },[pluseClick, minusClick])
     
+    const blur = (e:React.FocusEvent<HTMLInputElement>) => {
+        if(val === '')
+        {   
+            setVal(0)
+            onChange?.(0)
+        }
+        onBlur?.(e)
+    }
 
     useEffect(()=>{
         emptyValueClass(validEmptyValue, value)
     },[value, validEmptyValue, emptyValueClass])
 
     useEffect(()=>{
-        console.log('d',timeOutSendID.current)
         if(value !== undefined && !timeOutSendID.current)
             setVal(value)
     },[value])
 
+    const sizeClasses = {
+        small: "text-field--small",
+        medium: "text-field--medium",
+        large: "text-field--large",
+    };
+
     return(
-        <div ref={inputContainerElement} style={styleContainer} className={`input-field number-field ${border?"border":""} ${transparent?"transparent":""} ${className}`}>
+        <div className="input-field-container">
+        <div 
+        ref={ref} 
+        style={styleContainer} 
+        className={`
+            input-field 
+            number-field
+            ${sizeClasses[size]}
+            ${border ? "border" : ""} 
+            ${transparent ? "transparent" : ""} 
+            ${isError ? "error" : ""} 
+            ${disabled ? "disabled" : ""}
+            ${className || ""}
+        `}>
             {
                 (icon)?
                 <div className="icon-container" onClick={focus}>{icon}</div>:
                 null
             }
-            <div className="input-container" onClick={focus}>
+            <div ref={inputContainerElement} className="input-container" onClick={focus}>
                 <input
-                ref={ref}
+                ref={refInput}
                 max={max}
+                step={step}
                 min={min}
                 readOnly={readOnly}
                 required 
@@ -158,7 +224,7 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
                 value={val} 
                 onChange={changeNumber}
                 onFocus={onFocus}
-                onBlur={onBlur}/>
+                onBlur={blur}/>
                 <label>{(placeholder)?<span>{placeholder}</span>:null}</label>
                 <span className="text-field-line"></span>
             </div>
@@ -172,5 +238,10 @@ export const NumberField = ({ref, styleContainer, transparent, readOnly, border,
                 <div className="plus number-field-btn" onMouseDown={()=>mouseDown("p")}><Plus/></div>
             </div>
 		</div>
+        {isError && errorText && <Typography type='small' className="error-text">{errorText}</Typography>}
+        {helperText && !isError && <Typography type='small' className="helper-text">{helperText}</Typography>}
+        </div>
     )
-}
+})
+
+NumberField.displayName = "NumberField";

@@ -1,92 +1,214 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { NumberField } from '../../../lib/index';
+import React, { useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
+import { GearIcon, NumberField } from "../../../lib";
 
-const meta = {
-  title: 'Components/Input/NumberField',
+const meta: Meta<typeof NumberField> = {
+  title: "Components/Input/NumberField",
   component: NumberField,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
-    
+    size: {
+      control: "select",
+      options: ["small", "medium", "large"],
+      description: "Размер компонента",
+    },
+    min: {
+      control: "number",
+      description: "Минимальное значение",
+    },
+    max: {
+      control: "number",
+      description: "Максимальное значение",
+    },
+    step: {
+      control: "number",
+      description: "Шаг изменения",
+    },
+    value: {
+      control: "number",
+      description: "Текущее значение",
+    },
+    placeholder: {
+      control: "text",
+      description: "Подсказка в поле",
+    },
+    error: {
+      control: "boolean",
+      description: "Флаг ошибки",
+    },
+    disabled: {
+      control: "boolean",
+      description: "Отключенное состояние",
+    },
+    border: {
+      control: "boolean",
+      description: "Показать рамку",
+    },
+    transparent: {
+      control: "boolean",
+      description: "Прозрачный фон",
+    },
+    onChange: {
+      action: "changed",
+      description: "Обработчик изменения значения",
+    },
+    onFocus: {
+      action: "focused",
+      description: "Обработчик получения фокуса",
+    },
+    onBlur: {
+      action: "blurred",
+      description: "Обработчик потери фокуса",
+    },
+    onClear: {
+      action: "cleared",
+      description: "Обработчик очистки поля",
+    },
   },
-  args: { styleContainer:{
-    minWidth: "300px"
-  },
-  onChange:(event)=>{
-    console.log(event)
-  },
-  },
-} satisfies Meta<typeof NumberField>;
+  args:{
+    border: true,
+    onClear: undefined,
+    onChange: console.log
+  }
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Base: Story = {
-  args: {
+type Story = StoryObj<typeof NumberField>;
+
+const Template: Story = {
+  render: (args) => {
+    const [value, setValue] = useState(args.value || 0);
+    return (
+      <NumberField
+        {...args}
+        value={value}
+        onChange={(val) => {
+          setValue(val);
+          args.onChange?.(val);
+        }}
+      />
+    );
   },
 };
 
-export const Placeholder: Story = {
-    args: {
-        placeholder: "test"
-    },
-  };
-  
+/** Базовое числовое поле */
+export const Basic = {
+  ...Template,
+  args: {
+    placeholder: "Enter number",
+  },
+};
 
-  export const Border: Story = {
-    args: {
-        border:true
-    },
-  };
-  
-  export const BorderAndPlaceholder: Story = {
-    args: {
-        border:true,
-        placeholder: "test",
-    },
-  };
-  
+/** Числовое поле с ограничениями */
+export const WithMinMax = {
+  ...Template,
+  args: {
+    min: 0,
+    max: 100,
+    value: 50,
+    placeholder: "Value between 0-100",
+  },
+};
 
-  export const ErrorBorder: Story = {
-    args: {
-        validEmptyValue: true,
-        border:true,
-        placeholder: "test",
-    },
-  };
-  
+/** Числовое поле с кастомным шагом */
+export const WithStep = {
+  ...Template,
+  args: {
+    min: 0,
+    max: 10,
+    step: 0.5,
+    value: 5,
+    placeholder: "Step 0.5",
+  },
+};
 
-  export const Error: Story = {
-    args: {
-        validEmptyValue: true,
-        placeholder: "test",
-    },
-  };
+/** Числовое поле с иконкой */
+export const WithIcon = {
+  ...Template,
+  args: {
+    placeholder: "With icon",
+    icon: <GearIcon/>,
+  },
+};
 
-  export const BtnClean: Story = {
-    args: {
-        placeholder: "test",
-        onClear: ()=>{}
-    },
-  };
-  
-  
+/** Числовое поле с очисткой */
+export const WithClear = {
+  ...Template,
+  args: {
+    value: 42,
+    placeholder: "Clearable field",
+  },
+};
 
-  export const Min: Story = {
-    args: {
-        placeholder: "test",
-        min: 0
-    },
-  };
-  
+/** Различные размеры */
+export const Sizes = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <NumberField size="small" placeholder="Small" value={5} />
+      <NumberField size="medium" placeholder="Medium (default)" value={10} />
+      <NumberField size="large" placeholder="Large" value={15} />
+    </div>
+  ),
+};
 
+/** Отключенное состояние */
+export const Disabled = {
+  ...Template,
+  args: {
+    value: 25,
+    placeholder: "Disabled",
+    disabled: true,
+  },
+};
 
-  export const Max: Story = {
-    args: {
-        placeholder: "test",
-        max: 10
-    },
-  };
-  
+/** Состояние ошибки */
+export const ErrorState = {
+  ...Template,
+  args: {
+    value: -1,
+    placeholder: "Invalid value",
+    error: true,
+    errorText: "errorText"
+  },
+};
+
+/** Адаптивное поведение */
+export const InteractiveExample = {
+  render: () => {
+    const [value, setValue] = useState(0);
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(100);
+    const [step, setStep] = useState(1);
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <div>
+            <label>Min value</label>
+            <NumberField value={min} onChange={setMin} />
+          </div>
+          <div>
+            <label>Max value</label>
+            <NumberField value={max} onChange={setMax} />
+          </div>
+          <div>
+            <label>Step</label>
+            <NumberField min={0.1} step={0.1} value={step} onChange={setStep} />
+          </div>
+        </div>
+
+        <NumberField
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={setValue}
+          placeholder="Interactive field"
+        />
+
+        <div>Current value: {value}</div>
+      </div>
+    );
+  },
+};
