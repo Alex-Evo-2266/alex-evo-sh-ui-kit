@@ -82,5 +82,10 @@
 			}
 		}
 	}
-	
+	&.disabled{
+		opacity: 0.5;
+		input::-webkit-slider-thumb{
+			cursor: not-allowed;
+		}
+	}
 }

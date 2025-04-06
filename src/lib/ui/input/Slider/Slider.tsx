@@ -12,14 +12,16 @@ export interface InputProps{
     step?: number
     value?: number
     onChange?: (event: React.ChangeEvent<HTMLInputElement>)=>void
-    maxMinDisplay?: boolean
+    showMinMax?: boolean
     onFocus?: (e:React.FocusEvent<HTMLInputElement>)=>void
     onBlur?: (e:React.FocusEvent<HTMLInputElement>)=>void
     onMouseUp?: (e:React.MouseEvent<HTMLInputElement>)=>void
     style?: React.CSSProperties
+    showValue?: boolean
+    disabled?: boolean
 }
 
-export const Slider = (props:InputProps) => {
+export const Slider = ({showValue = true, ...props}:InputProps) => {
     const [value, setValue] = useState<number>(0)
     const [focus, setFocus] = useState<boolean>(false)
     const sliderValue = useRef<HTMLDivElement>(null)
@@ -58,25 +60,28 @@ export const Slider = (props:InputProps) => {
     },[props.onBlur])
 
     return (
-        <div className="range">
+        <div className={`range ${props.disabled?"disabled":""}`}>
             <div className="field" style={props.style}>
                 {
-                    props.maxMinDisplay?
+                    props.showMinMax?
                     <div className="value left">{props.min ?? DEFAULT_MIN}</div>:
                     null
                 }
                 <div className="field-range-container">
                     <div className="slider-value" ref={sliderValue} style={{width: getWidth(value, props.min ?? DEFAULT_MIN, props.max ?? DEFAULT_MAX)}}>
                         <div className="slider-tooltip" style={{display:(focus)?"block":"none"}}>
-                            <span className="slider-tooltip-container"></span>
-                            <span className="slider-tooltip-value">{value}</span>
+                            {showValue && 
+                            <>
+                                <span className="slider-tooltip-container"></span>
+                                <span className="slider-tooltip-value">{value}</span>
+                            </>
+                            }
                         </div>
-                        
                     </div>
-                    <input onMouseUp={props.onMouseUp} ref={slider} step={props.step} type="range" min={props.min ?? DEFAULT_MIN} max={props.max ?? DEFAULT_MAX} onChange={change} value={value} onFocus={focusHandler} onBlur={blurHandler}/>
+                    <input disabled={props.disabled} onMouseUp={props.onMouseUp} ref={slider} step={props.step} type="range" min={props.min ?? DEFAULT_MIN} max={props.max ?? DEFAULT_MAX} onChange={change} value={value} onFocus={focusHandler} onBlur={blurHandler}/>
                 </div>
                 {
-                    props.maxMinDisplay?
+                    props.showMinMax?
                     <div className="value right">{props.max ?? DEFAULT_MAX}</div>:
                     null
                 }
