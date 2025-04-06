@@ -1,14 +1,16 @@
-import { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { Menu } from "../../Menu/Menu"
 import { IPoint } from "../../../model/point"
 import { ScreenSize } from "../../../model/sizeScreen"
 import { IMenuItem } from "../../../model/menu"
 import { getContainerData } from "../../../helpers/getContainerPozAndSize"
+import { Typography } from "../../Text/Text/Typography"
 
 export interface IOption{
     title: string
     value: string
-    // icon?: React.ReactNode
+    icon?: React.ReactNode;
+    disabled?: boolean;
 }
 
 interface ISelectFieldProps{
@@ -25,7 +27,12 @@ interface ISelectFieldProps{
     container: HTMLElement | null
     screensize?: ScreenSize
     style?: React.CSSProperties
-    ref?: React.RefObject<HTMLInputElement>
+    inputRef?: React.RefObject<HTMLInputElement>
+    size?: "small" | "medium" | "large"
+    transparent?: boolean
+    helperText?: string
+    errorText?: string
+    disabled?: boolean
 }
 
 const getTitleByValue = (items:(IOption | string)[], value: string) => {
@@ -43,11 +50,37 @@ interface IMenuSize extends IPoint{
     width: number
 }
 
-export const SelectField = ({ref, style, screensize = ScreenSize.STANDART, items, onChange, value, placeholder, className, border, name, error, onBlur, onFocus, container}:ISelectFieldProps) => {
+export const SelectField = React.forwardRef<HTMLDivElement, ISelectFieldProps>(
+    (
+        {
+            inputRef, 
+            style, 
+            screensize = ScreenSize.STANDART, 
+            items, 
+            onChange, 
+            value,
+            placeholder, 
+            className, 
+            border, 
+            name, 
+            error, 
+            onBlur, 
+            onFocus, 
+            container = document.body,
+            size = 'medium',
+            transparent,
+            helperText,
+            errorText,
+            disabled
+        },
+        ref
+    ) => {
 
     const [selectTitle, setSelectTitle] = useState<string>("")
     const [pozition, setPozition] = useState<IMenuSize>({x:0, y:0, width: 100})
     const [visible, setVisible] = useState<boolean>(false)
+    const isError = !!(error || errorText)
+    
 
     useEffect(()=>{
         setSelectTitle(getTitleByValue(items, value ?? ""))
@@ -62,25 +95,43 @@ export const SelectField = ({ref, style, screensize = ScreenSize.STANDART, items
     const selectMap = useCallback((item: IOption | string):IMenuItem => {
         if(typeof(item) === "string")
             return {title: item, onClick:()=>change(item)}
-        return {title: item.title, onClick:()=>change(item.value)}
+        return {title: item.title, onClick:()=>change(item.value), icon: item.icon, disabled: item.disabled}
     },[change])
 
     const show = useCallback((event: React.MouseEvent<HTMLDivElement>)=>{
+        if(disabled) return
         event.preventDefault()
         let data = getContainerData(event.currentTarget)
         let x = data?.left ?? event.pageX
         let y = (data?.top)?data.top + data.height : event.pageY
         setPozition({x, y, width:data?.width ?? 150})
         setVisible(true)
-    },[items, selectMap])
+    },[items, selectMap, disabled])
+
+    const sizeClasses = {
+        small: "text-field--small",
+        medium: "text-field--medium",
+        large: "text-field--large",
+      };
 
     return(
-        <>
-            <div style={style} className={`input-field select-field ${className} ${visible?"active":""} ${border?"border":""}`}>
+        <div className="input-field-container">
+            <div ref={ref} style={style} className={`
+                input-field 
+                text-field 
+                ${sizeClasses[size]}
+                ${border ? "border" : ""} 
+                ${visible ? "active" : ""} 
+                ${transparent ? "transparent" : ""} 
+                ${isError ? "error" : ""} 
+                ${disabled ? "disabled" : ""}
+                ${className || ""}
+                `}>
                 <div className="input-container" onClick={show}>
                     <input
-                    ref={ref}
+                    ref={inputRef}
                     required 
+                    disabled={disabled}
                     type="text"
                     className={`${error?"error":""}`} 
                     name={name} 
@@ -92,7 +143,11 @@ export const SelectField = ({ref, style, screensize = ScreenSize.STANDART, items
                     <label>{(placeholder)?<span>{placeholder}</span>:null}</label>
                 </div>
             </div>
+            {isError && errorText && <Typography type='small' className="error-text">{errorText}</Typography>}
+            {helperText && !isError && <Typography type='small' className="helper-text">{helperText}</Typography>}
             <Menu marginBottom={screensize === ScreenSize.MOBILE? 80:0} width={pozition.width} screensize={screensize} x={pozition.x} y={pozition.y} onHide={()=>setVisible(false)} container={container} blocks={[{items:items.map(selectMap)}]} visible={visible}/>
-        </>
+        </div>
     )
 }
+)
+SelectField.displayName = "SelectField";
