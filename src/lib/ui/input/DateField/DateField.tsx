@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import "./DateField.scss"
 import { ModalPortal } from "../../../portal/dialog"
 import {СalendarPickers} from './DatePickers'
@@ -13,7 +13,6 @@ export const DateField:React.FC<IDateFieldProps> = (
         name, 
         value, 
         className, 
-        validEmptyValue, 
         error, 
         container,
         errorText,
@@ -26,14 +25,6 @@ export const DateField:React.FC<IDateFieldProps> = (
     const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
 
     const isError = error || errorText
-
-    const emptyValueClass = useCallback((validEmptyValue?:boolean) => {
-        if(error)
-            return "error"
-        if(validEmptyValue && (!dateValue || dateValue === ""))
-            return "error"
-        return ""	
-    },[dateValue])
 
     const click = () => {
         setDatePickerVisible(true)
