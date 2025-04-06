@@ -67,7 +67,7 @@ import { getContainerData, getModalWindowCord } from './helpers/getContainerPozA
 import { map } from './helpers/map';
 import { hexToRgb, HSVtoHSL, HEXtoRGB, HSLtoHSV, HSVtoRGB, RGBtoHSV } from './helpers/color/colorConvert';
 import { getTextColor, getContainerColor } from './helpers/color/colorGenerator';
-import { DialogModal } from './portal/dialog';
+import { ModalPortal } from './portal/dialog';
 import { usePopup, PopupState } from './ui/Base/Tooltip/hooks/Tooltip'
 
 import { ScreenSize } from "./model/sizeScreen"
@@ -175,7 +175,7 @@ export {
   map,
   getTextColor,
   getContainerColor,
-  DialogModal,
+  ModalPortal,
   ScreenSize,
   BaseType,
   PopupState

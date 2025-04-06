@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-export interface DialogModalProps{
+export interface ModalPortalProps{
     children: React.ReactNode
     container?: HTMLElement | null
 }
  
-export const DialogModal:React.FC<DialogModalProps> = ({children, container}) => {
+export const ModalPortal:React.FC<ModalPortalProps> = ({children, container}) => {
 
     if(!container)
         return <p>container not found</p>

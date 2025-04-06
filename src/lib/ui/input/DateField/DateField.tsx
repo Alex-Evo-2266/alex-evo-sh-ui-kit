@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import "./DateField.scss"
-import { DialogModal } from "../../../portal/dialog"
+import { ModalPortal } from "../../../portal/dialog"
 import {СalendarPickers} from './DatePickers'
 import { Calendar } from "../../Icons"
 
@@ -68,9 +68,9 @@ export const DateField = ({border, onChange, name, value, className, validEmptyV
 		</div>
         {
             (datePickerVisible)?
-            <DialogModal container={container}>
+            <ModalPortal container={container}>
                 <СalendarPickers onChange={change} onHide={()=>setDatePickerVisible(false)}/>
-            </DialogModal>
+            </ModalPortal>
             :null
         }
         </>

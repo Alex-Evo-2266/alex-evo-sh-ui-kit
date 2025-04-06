@@ -4,38 +4,11 @@ import '../TextField/TextField.scss'
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Minus, Plus, X } from "../../Icons"
 import { Typography } from "../../Text/Text/Typography"
+import { INumberFieldProps } from "../props"
 
-export interface INumberFieldProps{
-    onChange?:(value: number, name?: string)=>void
-    name?: string
-    value?: number
-    placeholder?: string
-    validEmptyValue?: boolean
-    className?: string
-    onFocus?: (event:React.FocusEvent<HTMLInputElement>)=>void
-    onBlur?: (event:React.FocusEvent<HTMLInputElement>)=>void
-    error?: boolean
-    icon?:React.ReactNode
-    onClear?: ()=>void
-    border?: boolean
-    readOnly?: boolean
-    transparent?: boolean
-    min?: number
-    max?: number
-    styleContainer?: React.CSSProperties
-    refInput?: React.RefObject<HTMLInputElement>
-    size?: "small" | "medium" | "large";
-    disabled?: boolean
-    step?: number
-    helperText?: string
-    errorText?: string
-    ariaLabel?: string
-    ariaLabelledby?: string
-    ariaDescribedby?: string
-}
 export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
     {
-        refInput, 
+        inputRef, 
         styleContainer, 
         transparent, 
         readOnly, 
@@ -221,7 +194,7 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
             }
             <div ref={inputContainerElement} className="input-container" onClick={focus}>
                 <input
-                ref={refInput}
+                ref={inputRef}
                 max={max}
                 step={step}
                 min={min}

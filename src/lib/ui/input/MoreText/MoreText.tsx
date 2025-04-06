@@ -1,69 +1,8 @@
 import { Button, Chips, TextField } from '../../..'
 import { joinValue, splitValue } from '../../../helpers/stringSplitAndJoin'
+import { IMoreTextProps } from '../props'
 import './MoreText.scss'
 import { useCallback, useEffect, useState } from 'react'
-
-export interface MoreTextProps {
-  /**
-   * Текущее значение компонента (строка, объединенная через разделитель)
-   */
-  value: string
-  
-  /**
-   * Колбек при изменении значения
-   */
-  onChange?: (value: string) => void
-  
-  /**
-   * Показать рамку вокруг поля ввода
-   */
-  border?: boolean
-  
-  /**
-   * Минимальная ширина компонента
-   */
-  minWidth?: string
-  
-  /**
-   * Подсказка в поле ввода
-   */
-  placeholder?: string
-  
-  /**
-   * Текст кнопки добавления
-   */
-  addButtonLabel?: string
-  
-  /**
-   * Разделитель значений (по умолчанию запятая)
-   */
-  separator?: string
-  
-  /**
-   * Отключить компонент
-   */
-  disabled?: boolean
-  
-  /**
-   * Дополнительный класс для стилизации
-   */
-  className?: string
-  
-  /**
-   * ARIA-метка для поля ввода (описание для скринридеров)
-   */
-  ariaLabel?: string
-  
-  /**
-   * ARIA-метка для контейнера с чипсами
-   */
-  chipsAriaLabel?: string
-  
-  /**
-   * ID компонента (для ARIA-связей)
-   */
-  id?: string
-}
 
 /**
  * Компонент для добавления нескольких текстовых значений в виде чипсов 
@@ -82,8 +21,11 @@ export const MoreText = ({
   className,
   ariaLabel = 'Добавление нового элемента',
   chipsAriaLabel = 'Список элементов',
-  id
-}: MoreTextProps) => {
+  id,
+  error,
+  errorText,
+  helperText
+}: IMoreTextProps) => {
   const [values, setValues] = useState<string[]>([])
   const [newValue, setNewValue] = useState<string>('')
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
@@ -139,6 +81,9 @@ export const MoreText = ({
           value={newValue}
           border={border}
           placeholder={placeholder}
+          error={error}
+          errorText={errorText}
+          helperText={helperText}
           disabled={disabled}
           aria-label={ariaLabel} // Метка для скринридеров
           aria-describedby={id ? `${id}-help` : undefined} // Связь с подсказкой

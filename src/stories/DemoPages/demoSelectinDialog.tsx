@@ -1,5 +1,5 @@
 import { useState} from "react"
-import { Button, DialogModal, FullScrinTemplateDialog, SelectField, Switch, useColor } from "../../lib"
+import { Button, ModalPortal, FullScreenTemplateDialog, SelectField, Switch, useColor } from "../../lib"
 export type SelectDemoPageProps = {
     placeholder?: string
 }
@@ -32,8 +32,8 @@ export const SelectInDialogDemoPage = ({placeholder}:SelectDemoPageProps) => {
 
             {
                 visibledialog &&
-                <DialogModal container={document.getElementById("portal-root-dialog")}>
-                    <FullScrinTemplateDialog onHide={()=>setVisibleDialog(false)}>
+                <ModalPortal container={document.getElementById("portal-root-dialog")}>
+                    <FullScreenTemplateDialog onHide={()=>setVisibleDialog(false)}>
                         <div>
                             <p>dsfg</p>
                             <p>dsfg</p>
@@ -52,8 +52,8 @@ export const SelectInDialogDemoPage = ({placeholder}:SelectDemoPageProps) => {
                             <p>dsfg</p>
                             <SelectField placeholder={placeholder} border items={["test1", "test2", "test3", "esfrgdf", "test3", "esfrgdf"]} container={document.getElementById('portal-root')}/>
                         </div>
-                    </FullScrinTemplateDialog>
-                </DialogModal>
+                    </FullScreenTemplateDialog>
+                </ModalPortal>
             }
             <p>test</p>
             <p>test</p>

@@ -1,6 +1,6 @@
 import { MenuStateProps } from "../../model/menu"
 import { ScreenSize } from "../../model/sizeScreen"
-import { DialogModal } from "../../portal/dialog"
+import { ModalPortal } from "../../portal/dialog"
 import { BaseMenu } from "./BaseMenu"
 import { SmallWindowMenu } from "./SmallWindowMenu"
 
@@ -13,14 +13,14 @@ export const Menu = (props:IMenu) => {
 
     if(props.screensize === ScreenSize.MOBILE)
         return(
-            <DialogModal container={props.container}>
+            <ModalPortal container={props.container}>
                 <SmallWindowMenu {...props}/>
-            </DialogModal>
+            </ModalPortal>
         )
 
     return(
-        <DialogModal container={props.container}>
+        <ModalPortal container={props.container}>
             <BaseMenu {...props}/>
-        </DialogModal>
+        </ModalPortal>
     )
 }

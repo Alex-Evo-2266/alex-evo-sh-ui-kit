@@ -5,35 +5,7 @@ import { ScreenSize } from "../../../model/sizeScreen"
 import { IMenuItem } from "../../../model/menu"
 import { getContainerData } from "../../../helpers/getContainerPozAndSize"
 import { Typography } from "../../Text/Text/Typography"
-
-export interface IOption{
-    title: string
-    value: string
-    icon?: React.ReactNode;
-    disabled?: boolean;
-}
-
-interface ISelectFieldProps{
-    onChange?:(value: string)=>void
-    value?: string
-    placeholder?: string
-    className?: string
-    items: (IOption | string)[]
-    border?: boolean
-    name?: string
-    error?: boolean
-    onFocus?: (e:React.FocusEvent<HTMLInputElement>)=>void
-    onBlur?: (e:React.FocusEvent<HTMLInputElement>)=>void
-    container: HTMLElement | null
-    screensize?: ScreenSize
-    style?: React.CSSProperties
-    inputRef?: React.RefObject<HTMLInputElement>
-    size?: "small" | "medium" | "large"
-    transparent?: boolean
-    helperText?: string
-    errorText?: string
-    disabled?: boolean
-}
+import { IOption, ISelectFieldProps } from "../props"
 
 const getTitleByValue = (items:(IOption | string)[], value: string) => {
     for(let item of items)

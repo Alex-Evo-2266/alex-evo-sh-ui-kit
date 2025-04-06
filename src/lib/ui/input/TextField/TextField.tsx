@@ -2,67 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { X } from "../../Icons";
 import "./TextField.scss";
 import { Typography } from "../../Text/Text/Typography";
-
-export interface TextFieldProps {
-  /** Обработчик изменения значения */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  /** Обработчик клика по полю */
-  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
-  /** Имя поля */
-  name?: string;
-  /** Значение поля */
-  value?: number | string;
-  /** Подсказка в поле */
-  placeholder?: string;
-  /** Валидация пустого значения */
-  validEmptyValue?: boolean;
-  /** Дополнительные классы */
-  className?: string;
-  /** Обработчик фокуса */
-  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  /** Обработчик потери фокуса */
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-
-  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void
-  /** Флаг ошибки */
-  error?: boolean;
-  /** Иконка для поля */
-  icon?: React.ReactNode;
-  /** Обработчик очистки поля */
-  onClear?: () => void;
-  /** Показать рамку */
-  border?: boolean;
-  /** Парольное поле */
-  password?: boolean;
-  /** Только для чтения */
-  readOnly?: boolean;
-  /** Тип поля */
-  type?: string;
-  /** Прозрачный фон */
-  transparent?: boolean;
-  /** Минимальное значение (для числовых полей) */
-  min?: number;
-  /** Максимальное значение (для числовых полей) */
-  max?: number;
-  /** Стили контейнера */
-  styleContainer?: React.CSSProperties;
-  /** Ref для input элемента */
-  inputRef?: React.LegacyRef<HTMLInputElement>;
-  /** Автоматический фокус при монтировании */
-  autoFocus?: boolean;
-  /** Отключенное состояние */
-  disabled?: boolean;
-  /** Размер компонента */
-  size?: "small" | "medium" | "large";
-
-  helperText?: string
-  errorText?: string
-}
+import { ITextFieldProps } from "../props";
 
 /**
  * Компонент текстового поля с поддержкой иконок, валидации и различных состояний
  */
-export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
+export const TextField = React.forwardRef<HTMLDivElement, ITextFieldProps>(
   (
     {
       onClick,

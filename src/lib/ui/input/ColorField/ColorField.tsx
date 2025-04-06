@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import "./ColorField.scss"
-import { DialogModal } from "../../../portal/dialog"
+import { ModalPortal } from "../../../portal/dialog"
 import { ColorPicker } from "./ColorPicker"
 import { getTextColor } from "../../../helpers/color/colorGenerator"
 import { Palette } from "../../Icons/Palette/Palette"
@@ -50,9 +50,9 @@ export const ColorField = ({border, onChange, container, value, className, trans
 		</div>
         {
             (datePickerVisible)?
-            <DialogModal container={container}>
-                <ColorPicker def={def} userColor={userColor} onAddColor={onAddColor} onChange={change} beginColor={color} onHide={()=>setDatePickerVisible(false)}/>
-            </DialogModal>
+            <ModalPortal container={container}>
+                <ColorPicker defaultColor={def} userColors={userColor} onAddColor={onAddColor} onChange={change} beginColor={color} onHide={()=>setDatePickerVisible(false)}/>
+            </ModalPortal>
             :null
         }
         </>

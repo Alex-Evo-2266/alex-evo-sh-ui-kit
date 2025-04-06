@@ -1,5 +1,5 @@
 import { useState} from "react"
-import { BottomSheetsUi, Button, DialogModal, Home, ListContainer, ListItem, MenuIcon, NavigationBar, Plus, Switch, useColor } from "../../lib"
+import { BottomSheetsUi, Button, ModalPortal, Home, ListContainer, ListItem, MenuIcon, NavigationBar, Plus, Switch, useColor } from "../../lib"
 export type SelectDemoPageProps = {
     placeholder?: string
 }
@@ -20,14 +20,14 @@ export const BottomSheetsPage2 = ({}:SelectDemoPageProps) => {
             {
                 visible &&
                 <>
-                <DialogModal container={document.getElementById("portal-root")}>
+                <ModalPortal container={document.getElementById("portal-root")}>
                     <BottomSheetsUi bottom={80} onHide={()=>{}} visible={true} children={<ListContainer transparent>
                         <ListItem header='test' hovered/>
                         <ListItem header='test' hovered/>
                         <ListItem header='test' hovered/>
                         <ListItem header='test' hovered/>
                     </ListContainer>}/>
-                </DialogModal>
+                </ModalPortal>
                 
 
                 <NavigationBar btns={[{
