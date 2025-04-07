@@ -7,7 +7,7 @@ import { FAB } from './ui/Base/FAB/FAB';
 import { Tooltip } from './ui/Base/Tooltip/Tooltip';
 import { IconButton } from './ui/Base/IconButton/IconButton';
 import { IconButtonMenu } from './ui/Base/IconButtonMenu/IconButtonMenu';
-import { Checkbox } from './ui/Base/Checkbox/Checkbox';
+import { Checkbox } from './ui/input/Checkbox/Checkbox';
 import { Chips } from './ui/Base/Chips/Chips';
 import { RadioButton } from './ui/Base/RadioButton/RadioButton';
 import { SegmentedButton } from './ui/Base/SegmentedButton/SegmentedButton';
@@ -85,7 +85,7 @@ import type { ICell, IColumn, IDataItem, ITable, ITableAction, celData } from '.
 import type { JsonData, JsonDataArray, JsonDataBaseTypes, JsonDataObject, JsonFormat, JsonFormatArray, JsonFormatBaseTypes, JsonFormatObject } from './model/jsonComponentModel';
 import type { ChangeColor, ColorState, BaseColor, NightColor } from './model/color';
 import type { IContainerData, IOptionModalWindowCord } from './helpers/getContainerPozAndSize';
-import type { IOption } from './ui/input/SelectField/Select';
+import type { IOption } from './ui/input/props';
 
 // Импорты стилей и иконок
 import './ui/index.scss';
