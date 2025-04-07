@@ -9,9 +9,10 @@ export interface BigContainerProps{
     width?: string
     id?: string
     pozMove?: IPoint
+    draggable?: boolean;
 }
 
-export const BigContainer = ({children, className, id, height, width, pozMove}:BigContainerProps) => {
+export const BigContainer = ({children, className, id, height, width, pozMove, draggable = true}:BigContainerProps) => {
     const [downButton, setDownButton] = useState<boolean>(false)
     const [oldPozMouse, setOldPozMouse] = useState<IPoint | null>(null)
     const [poz, setPoz] = useState<IPoint>({x:0,y:0})
@@ -26,7 +27,7 @@ export const BigContainer = ({children, className, id, height, width, pozMove}:B
     }
 
     const down = (e:React.MouseEvent<HTMLDivElement>)=>{
-        if(e.button == 1)
+        if(e.button == 1 && draggable)
         {
             
             setOldPozMouse({x: e.clientX, y: e.clientY})
@@ -66,3 +67,4 @@ export const BigContainer = ({children, className, id, height, width, pozMove}:B
         </div>
     )
 }
+
