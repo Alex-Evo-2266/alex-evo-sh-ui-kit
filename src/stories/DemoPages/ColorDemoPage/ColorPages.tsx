@@ -1,29 +1,22 @@
-import { useState} from "react"
-import { Button, ColorField, ContentBox, getTextColor, Switch, useColor } from "../../../lib"
+import { ColorField, ContentBox, getTextColor, Switch, useColor } from "../../../lib"
 import { ColorBlock } from "./ColorBlock"
 import { DefaultColor } from "../../../lib/consts/color"
-import { pSBC } from "../../../lib/helpers/color/colorContrast"
 
 export const ColorPage = () => {
 
-    const {setColor, lightColor, nightColor, nightMode, setNightMode, colors} = useColor()    
+    const {setColor, lightColor, nightColor, nightMode, setNightMode} = useColor()    
 
     const defaultColorArray: string[] = Object.values(DefaultColor)
 
-    const [visible, setVisible] = useState<boolean>(false)
 
     return(
         <div style={{zIndex: 5, background:"var(--Background-color)", color:"var(--On-background-color)"}}>
-        <div id="portal-root" style={{zIndex: 1000}}></div>
-        <Switch checked={nightMode} onChange={(e)=>setNightMode(e.target.checked)}/>
-        {
-        (visible)?
-        <>
+            <Switch checked={nightMode} showLabel labelOff="light" labelOn="night" onChange={e=>setNightMode(e.target.checked)}/>
         <div>
             <ContentBox label="Primary colors" style={{padding:"10px"}}>
-                <ColorField placeholder="test" def="#0000" userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={lightColor.Primary_color} onChange={c=>setColor({Primary_color:c})}/>
-                <ColorField def="red" border container={document.getElementById('portal-root')} value={lightColor.Secondary_color} onChange={c=>setColor({Secondary_color:c})}/>
-                <ColorField def="#346632" border container={document.getElementById('portal-root')} value={lightColor.Tertiary_color} onChange={c=>setColor({Tertiary_color:c})}/>
+                <ColorField placeholder="test" defaultColor="#0000" userColors={defaultColorArray} border container={document.body} value={lightColor.Primary_color} onChange={c=>setColor({Primary_color:c})}/>
+                <ColorField defaultColor="red" border container={document.body} value={lightColor.Secondary_color} onChange={c=>setColor({Secondary_color:c})}/>
+                <ColorField defaultColor="#346632" border container={document.body} value={lightColor.Tertiary_color} onChange={c=>setColor({Tertiary_color:c})}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -42,8 +35,8 @@ export const ColorPage = () => {
         </div>
         <div>
             <ContentBox label="Surface colors" style={{padding:"10px"}}>
-                <ColorField userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={lightColor.Surface_container_color} onChange={c=>setColor({Surface_container_color:c})}/>
-                <ColorField userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={nightColor.Surface_container_color_night} onChange={c=>setColor({Surface_container_color_night:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Surface_container_color} onChange={c=>setColor({Surface_container_color:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={nightColor.Surface_container_color_night} onChange={c=>setColor({Surface_container_color_night:c})}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -56,9 +49,9 @@ export const ColorPage = () => {
         </div>
         <div>
             <ContentBox label="Other colors" style={{padding:"10px"}}>
-                <ColorField userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={lightColor.Background_color} onChange={(c)=>setColor({Background_color:c})}/>
-                <ColorField userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={nightColor.Background_color_night} onChange={c=>setColor({Background_color_night:c})}/>
-                <ColorField userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={lightColor.Error_color} onChange={(c)=>setColor({Error_color:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Background_color} onChange={(c)=>setColor({Background_color:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={nightColor.Background_color_night} onChange={c=>setColor({Background_color_night:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Error_color} onChange={(c)=>setColor({Error_color:c})}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -68,8 +61,8 @@ export const ColorPage = () => {
         </div>
         <div>
             <ContentBox label="Other colors" style={{padding:"10px"}}>
-                <ColorField userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={lightColor.Outline_color} onChange={(c)=>setColor({Outline_color:c})}/>
-                <ColorField userColor={defaultColorArray} border container={document.getElementById('portal-root')} value={lightColor.Shadow_color} onChange={(c)=>setColor({Shadow_color:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Outline_color} onChange={(c)=>setColor({Outline_color:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Shadow_color} onChange={(c)=>setColor({Shadow_color:c})}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -77,12 +70,6 @@ export const ColorPage = () => {
             <ColorBlock baseColorTitle="Outline-variant-color" baseColor={'var(--Outline-variant-color)'} textColor={getTextColor(lightColor.Outline_color)}/>
             <ColorBlock baseColorTitle="Shadow-color" baseColor={'var(--Shadow-color)'} textColor={getTextColor(lightColor.Shadow_color)}/>
         </div>
-        <div className="demo-page-color-row">
-            <ColorBlock baseColorTitle="Outline-color" baseColor={pSBC(0.9, colors.On_surface_color, colors.Primary_color, false)??"red"} textColor={getTextColor(lightColor.Outline_color)}/>
-        </div>
-        </>
-        :<Button onClick={()=>setVisible(true)}>open page</Button>
-        }
         </div>
     )
 }

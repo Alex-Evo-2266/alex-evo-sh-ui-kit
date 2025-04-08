@@ -58,7 +58,6 @@ export const useColor = () => {
     }
 
     const setColor = useCallback(async(newColors:ChangeColor)=>{
-        console.log(newColors)
         for(let key in newColors)
         {
             const newColor = newColors[key as keyof ChangeColor]
@@ -67,7 +66,7 @@ export const useColor = () => {
                 key = convertedKey
             if(!((key in DefaultColor) || (key in DefaultNightColor)) || !newColor)
                 continue
-            if(key in DefaultColor)
+            if(key in DefaultColor) 
             {
                 if(nightColor[(key + "_night") as keyof NightColor] === lightColor[key as keyof BaseColor])
                     setNightColor(prev=>({...prev, [(key + "_night")]:newColor}))

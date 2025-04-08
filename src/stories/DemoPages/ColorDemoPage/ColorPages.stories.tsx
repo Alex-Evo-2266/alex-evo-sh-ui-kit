@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ColorPage } from './ColorPages';
 
 const meta = {
-  title: 'DemoPages/ColorPalitr',
+  title: 'Theme/Color Palette 2',
   component: ColorPage,
   parameters: {
     layout: 'fullscreen',

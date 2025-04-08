@@ -2,7 +2,9 @@
 .alex-evo-ui-kit-color-block{
     width: 250px;
     height: 200px;
+    border-radius: 10px;
     margin: 5px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     .alex-evo-ui-kit-color-block-base{
