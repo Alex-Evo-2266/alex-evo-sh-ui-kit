@@ -4,6 +4,8 @@
     position: relative;
     transition: box-shadow 0.2s ease-in-out;
 
+    // box-shadow: 1px 1px 6px -2px var(--Shadow-color);;
+
     &.padded {
         padding: 16px;
     }
@@ -11,7 +13,7 @@
     // Уровни теней
     @for $i from 0 through 24 {
         &.elevation-#{$i} {
-            box-shadow: var(--Shado-base-v#{$i}, none);
+            box-shadow: var(--shadow-elevation-#{$i}, none);
         }
     }
     
