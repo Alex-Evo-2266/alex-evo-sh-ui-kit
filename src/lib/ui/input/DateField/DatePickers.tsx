@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import "./DatePickers.scss"
-import { BasicTemplateDialog, Check, ChevronDown, ModalDialogTemplate, TextButton } from "../../../index";
+import { Check, ChevronDown, ModalDialogTemplate, TextButton } from "../../../index";
 import React from 'react';
 
 const MAX_YEAR = 2050

@@ -2,7 +2,6 @@ import { useCallback, useState, useEffect } from "react";
 import "./ColorField.scss";
 import { ModalPortal } from "../../../portal/dialog";
 import { ColorPicker } from "./ColorPicker";
-import { getTextColor } from "../../../helpers/color/colorGenerator";
 import { Palette } from "../../Icons/Palette/Palette";
 import { Typography } from "../../Text/Text/Typography";
 
