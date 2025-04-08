@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DateField } from "../../lib";
-import { expect, userEvent, within } from "@storybook/test";
+import { userEvent, within } from "@storybook/test";
 
 const meta: Meta<typeof DateField> = {
   title: "Components/Input/DateField",

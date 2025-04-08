@@ -1,7 +1,6 @@
-import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { useColor } from '../../../lib';
-import { DefaultColor } from '../../../lib/consts/color';
+import { useColor } from '../../lib';
+import { DefaultColor } from '../../lib/consts/color';
 
 const ColorPalette = () => {
   const { colors, nightMode, setNightMode } = useColor();

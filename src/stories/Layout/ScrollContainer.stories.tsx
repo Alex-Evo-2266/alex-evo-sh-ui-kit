@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Card, ScrollContainer } from '../../lib/index';
-// import React from 'react';
 
 
 const meta = {

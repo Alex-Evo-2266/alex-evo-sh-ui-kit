@@ -1,6 +1,6 @@
-import { ColorField, ContentBox, getTextColor, Switch, useColor } from "../../../lib"
+import { ColorField, ContentBox, getTextColor, Switch, useColor } from "../../lib"
 import { ColorBlock } from "./ColorBlock"
-import { DefaultColor } from "../../../lib/consts/color"
+import { DefaultColor } from "../../lib/consts/color"
 
 export const ColorPage = () => {
 

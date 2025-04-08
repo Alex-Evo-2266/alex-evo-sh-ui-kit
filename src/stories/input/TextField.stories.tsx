@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { TextField } from "../../lib";
 import { GearIcon, Search } from "../../lib/ui/Icons";
