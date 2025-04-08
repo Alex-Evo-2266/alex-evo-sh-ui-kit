@@ -12,6 +12,9 @@ npm install alex-evo-sh-ui-kit
 yarn add alex-evo-sh-ui-kit
 ```
 
+## Документация
+если информация по коипонентам не открывается откройте в [github](https://github.com/Alex-Evo-2266/alex-evo-sh-ui-kit/blob/main/README.md)
+
 ## Компоненты
 
 ### **1. Кнопки и переключатели**  
