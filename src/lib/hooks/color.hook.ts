@@ -26,6 +26,7 @@ const initColor:ColorState = {
     Error_container_color: getContainerColor(DefaultColor.Error_color),
     On_error_container_color: getTextColor(getContainerColor(DefaultColor.Error_color)),
     On_surface_variant_color: pSBC(-0.1, getTextColor(DefaultColor.Surface_container_color))??getTextColor(DefaultColor.Surface_container_color),
+	Surface_container_hover_color: pSBC(-0.5,DefaultColor.Surface_container_color) ?? DefaultColor.Surface_container_color
 }
 
 export const useColor = () => {
@@ -52,6 +53,7 @@ export const useColor = () => {
             dependColor.low?.forEach((depColor)=>_setColor(depColor, pSBC(night?-0.1:0.1, newColor)??newColor, night))
             dependColor.high?.forEach((depColor)=>_setColor(depColor, pSBC(night?0.01:-0.01, newColor)??newColor, night))
             dependColor.variant?.forEach((depColor)=>_setColor(depColor, pSBC(night?-0.3:0.3, newColor)??newColor, night))
+            dependColor.hover?.forEach((depColor)=>_setColor(depColor, pSBC(night?-0.5:0.5, newColor)??newColor, night))
         }
     }
 

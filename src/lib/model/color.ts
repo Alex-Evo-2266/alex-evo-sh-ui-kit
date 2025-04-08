@@ -37,7 +37,8 @@ export interface IColorDepends {
         text?:string[],
         low?:string[],
         high?:string[],
-        variant?:string[]
+        variant?:string[],
+        hover?: string[]
     }
 }
 
@@ -90,6 +91,7 @@ export interface SurfaceColor{
     Surface_container_highest_color: string,
     On_surface_color: string
     On_surface_variant_color: string
+	Surface_container_hover_color: string
 }
 
 export interface ColorState extends BaseColor, TextColor, ContainerColor, TextContainerColor, SurfaceColor {

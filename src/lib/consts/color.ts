@@ -27,7 +27,8 @@ export const colorDepends:IColorDepends = {
     Surface_container_color:{
         text:["On_surface_color"],
         low:["Surface_container_low_color"],
-        high:["Surface_container_high_color"]
+        high:["Surface_container_high_color"],
+        hover:["Surface_container_hover_color"]
     },
     Surface_container_low_color:{
         low:["Surface_container_lowest_color"]
