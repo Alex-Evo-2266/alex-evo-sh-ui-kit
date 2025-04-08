@@ -2,4 +2,10 @@
 body{
     --border-size: 1px;
     --border-base: var(--border-size) solid var(--Outline-color);
+
+    @for $i from 0 through 24 {
+        --shadow-elevation-#{$i}: #{0 ($i * 0.5px) ($i * 1px) rgba(0, 0, 0, 0.1), 0 ($i * 0.25px) ($i * 0.5px) rgba(0, 0, 0, 0.06)};
+      }
+      // Переопределяем 0-й уровень (чтобы был none)
+      --shadow-elevation-0: none;
 }

@@ -12,18 +12,6 @@ $z-index: (
 );
 
 body{
-	// --color-base: #333;
-	// --color-base-v2: #555;
-	// --color-base-glass: #5557;
-	// --color-normal: #777;
-	// --color-normal-v2: #999;
-	// --color-normal-glass: #9997;
-	// --color-active: #1E90FF;
-	// --color-active-glass: #1E90FF33;
-	// --text-base: #fff;
-	// --text-normal: #fff;
-	// --text-active: #fff;
-
 
 	--Primary-color: #6750A4;
 	--Primary-container-color: #EADDFF;
@@ -74,7 +62,7 @@ body{
 	--Shadow-base: 0 0 5px -3px var(--Shadow-color);
 	--Shadow-hover: 0 0 5px -3px var(--Shadow-color);
 	--Shadow-click: inset 0 0 5px -3px var(--Shadow-color);
-
+	
 	// --color-disabled: #e6e1e555;
 	// --color-disabled-text: #e6e1e533;
 	// --color-disabled: #1C1B1F55;

@@ -1,8 +1,36 @@
-.adaptiv-grid-layout{
-    justify-content: center;
-}
+// .adaptiv-grid-layout{
+//     justify-content: center;
+// }
 
-.adaptiv-grid-item-container{
-    display: flex;
+// .adaptiv-grid-item-container{
+//     display: flex;
+//     justify-content: center;
+// }
+
+
+.adaptiv-grid-layout {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: dense;
     justify-content: center;
-}
+    
+    // Элемент сетки
+    .adaptiv-grid-item {
+      display: block;
+      overflow: hidden;
+      
+      // Контейнер содержимого элемента
+      .adaptiv-grid-item-container {
+        width: 100%;
+        // height: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    
+    // Оптимизация для анимации
+    will-change: transform, height;
+    
+    // Плавные переходы
+    transition: grid-template-columns 0.3s ease;
+  }
