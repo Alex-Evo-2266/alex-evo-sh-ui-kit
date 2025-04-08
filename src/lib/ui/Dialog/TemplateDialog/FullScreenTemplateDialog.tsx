@@ -90,8 +90,8 @@ export const FullScreenTemplateDialog = ({
         onHide={handleHide}
 		action={
 		  	<>
-				<Button onClick={onHide ? handleHide : undefined}>{cancelText}</Button>
-				<Button onClick={onSave ? handleSave : undefined}>{saveText}</Button>
+				<Button onClick={onHide ? handleHide : undefined}>{cancelText ?? "Отмена"}</Button>
+				<Button onClick={onSave ? handleSave : undefined}>{saveText ?? "Сохранить"}</Button>
 			</>}
       >
         {children}
