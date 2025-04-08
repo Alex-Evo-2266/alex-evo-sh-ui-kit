@@ -64,7 +64,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       const target = e.target as Element;
       return (
         !target.closest(".action-container") &&
-        !target.closest(".icon-button-container") &&
+        !target.closest(".card-icon-button") &&
         !target.closest(".card-child-container") &&
         !target.closest(".card-children") &&
         !!target.closest(rootApp)

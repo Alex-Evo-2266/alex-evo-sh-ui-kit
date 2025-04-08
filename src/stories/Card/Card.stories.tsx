@@ -22,7 +22,8 @@ const meta: Meta<typeof Card> = {
   args: {
     header: 'Card Title',
     text: 'This is a card component with customizable content.',
-    rootApp: '#storybook-docs'
+    rootApp: '#storybook-root',
+    onClick: d=>console.log("card", d)
   },
 };
 
@@ -81,6 +82,15 @@ export const LoadingStateAndImage: Story = {
   args: {
     loading: true,
     imgSrc: img
+  },
+};
+
+
+export const CardIconButton: Story = {
+  args: {
+    loading: true,
+    imgSrc: img,
+    iconButtonCell: <IconButton icon={<GearIcon/>} onClick={d=>console.log("btn", d)}/>
   },
 };
 
