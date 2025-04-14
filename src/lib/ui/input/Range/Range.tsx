@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo, useContext } from 'react';
 import './Range.scss';
-import { useColor } from '../../../hooks/color.hook';
 import { Tooltip } from '../../Base/Tooltip/Tooltip';
 import { interpolateColor } from '../../../helpers/color/interpolateColor'
 import { usePopup } from '../../Base/Tooltip/hooks/Tooltip';
+import { ColorContext } from '../../Base/ColorProvider';
 
 export interface ColorSliderProps {
   colorRange?: string;
@@ -54,7 +54,7 @@ export const Range: React.FC<ColorSliderProps> = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState<number>(propValue ?? min);
   const [height, setHeight] = useState<string>('200px');
-  const {colors} = useColor()
+  const {colors} = useContext(ColorContext)
   const {showPopup, popupState} = usePopup({valueDisplayDuration})
 
   const colorRange = _colorRange ?? colors.Primary_color ?? "#0000ff"

@@ -4,7 +4,7 @@ import { BaseColor, ChangeColor, ColorState, mapNightColorToBaseColor, NightColo
 import { pSBC } from "../helpers/color/colorContrast"
 import { colorDepends, DefaultColor, DefaultNightColor } from "../consts/color"
 
-const initColor:ColorState = {
+export const initColor:ColorState = {
     ...DefaultColor,
     On_primary_color: getTextColor(DefaultColor.Primary_color),
     On_secondary_color: getTextColor(DefaultColor.Secondary_color),

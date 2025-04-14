@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Tooltip } from '../../Base/Tooltip/Tooltip';
 import './Range.scss'
 import { interpolateColor } from '../../../helpers/color/interpolateColor';
-import { useColor } from '../../../hooks/color.hook';
+import { ColorContext } from '../../Base/ColorProvider';
 
 interface CircleInputProps {
   colorBg?: string;
@@ -67,7 +67,7 @@ const CircleInput: React.FC<CircleInputProps> = ({
   const showIndicator = styleTrack === 'point'? false: showIndicatorProps
   const showPoint = styleTrack === 'point'? true: showPointProps
 
-  const {colors} = useColor()
+  const {colors} = useContext(ColorContext)
   const colorRange = _colorRange ?? colors.Primary_color ?? "#0000ff"
   const pointColor = _pointColor ?? colors.Primary_color ?? "#0000ff"
 

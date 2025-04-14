@@ -87,6 +87,9 @@ import type { ChangeColor, ColorState, BaseColor, NightColor } from './model/col
 import type { IContainerData, IOptionModalWindowCord } from './helpers/getContainerPozAndSize';
 import type { IOption } from './ui/input/props';
 
+// Импорт провайдеров
+import {ColorProvider, ColorContext} from './ui/Base/ColorProvider'
+
 // Импорты стилей и иконок
 import './ui/index.scss';
 
@@ -218,6 +221,9 @@ export type {
   IOptionModalWindowCord,
   IOption
 };
+
+// Экспорты провайдеров
+export {ColorProvider, ColorContext}
 
 // Экспорты иконок
 export * from './ui/Icons';
