@@ -56,7 +56,7 @@ export const DateField:React.FC<IDateFieldProps> = (
     };
 
     return(
-        <div className="input-field-container">
+        <div className={`input-field-container ${className}`}>
         <div className={`
           input-field 
           date-field 
@@ -64,7 +64,6 @@ export const DateField:React.FC<IDateFieldProps> = (
           ${border ? "border" : ""} 
           ${isError ? "error" : ""} 
           ${disabled ? "disabled" : ""}
-          ${className || ""}
         `}>
             <div className="icon-container" onClick={click}><Calendar/></div>
             <div className="input-container" onClick={click}>

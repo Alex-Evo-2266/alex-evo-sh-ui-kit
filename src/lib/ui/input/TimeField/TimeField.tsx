@@ -21,7 +21,7 @@ export const TimeField = ({
   onChange,
   name,
   value = "",
-  className,
+  className = "",
   validEmptyValue,
   error,
   container,
@@ -96,7 +96,7 @@ export const TimeField = ({
   }, [isError, errorText, helperText, name])
 
   return (
-    <div className="input-field-container">
+    <div className={`input-field-container ${className}`}>
       <div 
         className={`input-field time-field ${border ? "border" : ""} ${isError ? "error" : ""} ${disabled ? "disabled" : ""}`}
         aria-disabled={disabled}
@@ -115,7 +115,7 @@ export const TimeField = ({
         <div aria-label={ariaLabel} className="input-container" onClick={handleClick}>
           <input
             type="time" 
-            className={`${className} ${getValidationClass()}`} 
+            className={`${getValidationClass()}`} 
             name={name} 
             value={timeValue}
             readOnly

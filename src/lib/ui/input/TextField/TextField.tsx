@@ -83,7 +83,7 @@ export const TextField = React.forwardRef<HTMLDivElement, ITextFieldProps>(
     };
 
     return (
-    <div className="input-field-container">
+    <div className={`input-field-container ${className || ""}`}>
     <div
         ref={ref}
         style={styleContainer}
@@ -96,7 +96,6 @@ export const TextField = React.forwardRef<HTMLDivElement, ITextFieldProps>(
           ${transparent ? "transparent" : ""} 
           ${isError ? "error" : ""} 
           ${disabled ? "disabled" : ""}
-          ${className || ""}
         `}
         onClick={focusInput}
       >

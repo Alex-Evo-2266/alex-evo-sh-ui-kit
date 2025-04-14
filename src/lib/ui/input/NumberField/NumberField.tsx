@@ -170,7 +170,7 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
     };
 
     return(
-        <div className="input-field-container">
+        <div className={`input-field-container ${className}`}>
         <div 
         ref={ref} 
         style={styleContainer} 
@@ -182,7 +182,6 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
             ${transparent ? "transparent" : ""} 
             ${isError ? "error" : ""} 
             ${disabled ? "disabled" : ""}
-            ${className || ""}
         `}
         aria-disabled={disabled}
         aria-invalid={isError}

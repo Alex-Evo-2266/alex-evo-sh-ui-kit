@@ -87,7 +87,7 @@ export const SelectField = React.forwardRef<HTMLDivElement, ISelectFieldProps>(
       };
 
     return(
-        <div className="input-field-container">
+        <div className={`input-field-container ${className}`}>
             <div ref={ref} style={style} className={`
                 input-field 
                 text-field 
@@ -97,7 +97,6 @@ export const SelectField = React.forwardRef<HTMLDivElement, ISelectFieldProps>(
                 ${transparent ? "transparent" : ""} 
                 ${isError ? "error" : ""} 
                 ${disabled ? "disabled" : ""}
-                ${className || ""}
                 `}>
                 <div className="input-container" onClick={show}>
                     <input
