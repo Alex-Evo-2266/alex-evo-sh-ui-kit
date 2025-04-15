@@ -1,8 +1,8 @@
-import React, { forwardRef } from "react";
-import { useScreenSize } from "../../hooks/screenSize.hook";
+import React, { forwardRef, useContext } from "react";
 import { ScreenSize } from "../../model/sizeScreen";
 import { Typography } from "../Text/Text/Typography";
 import "./Card.scss";
+import { SizeContext } from "../Provider/SizeProvider";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Действия внизу карточки (кнопки и т.д.) */
@@ -51,7 +51,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     },
     ref
   ) => {
-    const { screen } = useScreenSize();
+    const { screen } = useContext(SizeContext);
     const currentScreenSize = screenProps ?? screen;
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {

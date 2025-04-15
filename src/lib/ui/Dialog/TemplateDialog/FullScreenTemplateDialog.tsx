@@ -5,8 +5,9 @@ import { useScrollLock } from "../../../hooks/lockScroll.hook";
 import { ModalDialogTemplate } from "./ModalDialogTemplate";
 import './FullScreenTemplateDialog.scss'
 import { Typography } from "../../Text/Text/Typography";
-import { useScreenSize } from "../../../hooks/screenSize.hook";
 import { ScreenSize } from "../../../model/sizeScreen";
+import { useContext } from "react";
+import { SizeContext } from "../../Provider/SizeProvider";
 
 export interface FullScreenDialogProps {
   /** Содержимое диалога */
@@ -38,9 +39,6 @@ export interface FullScreenDialogProps {
   
   /** Текст кнопки отмены */
   cancelText?: string;
-  
-  /** Порог для переключения в полноэкранный режим */
-  breakpoint?: number;
 }
 
 /**
@@ -66,10 +64,9 @@ export const FullScreenTemplateDialog = ({
   marginBottom = 0,
   disableBackplate,
   saveText,
-  cancelText,
-  breakpoint = 720,
+  cancelText
 }: FullScreenDialogProps) => {
-	const {screen} = useScreenSize({mobileSize: breakpoint})
+	const {screen} = useContext(SizeContext)
 	useScrollLock(true, document.body);
 
   const handleHide = () => {

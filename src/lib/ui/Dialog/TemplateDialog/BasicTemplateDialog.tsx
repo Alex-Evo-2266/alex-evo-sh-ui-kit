@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useScrollLock } from "../../../hooks/lockScroll.hook";
-import { useScreenSize } from "../../../hooks/screenSize.hook";
 import { ScreenSize } from "../../../model/sizeScreen";
 import { BottomSheetsUi } from "../../Base/BottomSheets/BottomSheetsUi";
 import { ModalDialogTemplate } from "./ModalDialogTemplate";
 import './BasicTemplateDialog.scss'
 import { Typography } from '../../Text/Text/Typography';
+import { SizeContext } from '../../Provider/SizeProvider';
 
 export interface DialogProps {
   /** Содержимое диалога */
@@ -60,7 +60,7 @@ export const BasicTemplateDialog = ({
   forceModal = false,
   ...props
 }: DialogProps) => {
-  const { screen } = useScreenSize();
+  const { screen } = useContext(SizeContext);
   useScrollLock(true, document.body);
 
   const hide = () => {

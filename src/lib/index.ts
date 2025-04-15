@@ -88,7 +88,8 @@ import type { IContainerData, IOptionModalWindowCord } from './helpers/getContai
 import type { IOption } from './ui/input/props';
 
 // Импорт провайдеров
-import {ColorProvider, ColorContext} from './ui/Base/ColorProvider'
+import {ColorProvider, ColorContext} from './ui/Provider/ColorProvider'
+import {SizeProvider, SizeContext} from './ui/Provider/SizeProvider'
 
 // Импорты стилей и иконок
 import './ui/index.scss';
@@ -224,6 +225,7 @@ export type {
 
 // Экспорты провайдеров
 export {ColorProvider, ColorContext}
+export {SizeProvider, SizeContext}
 
 // Экспорты иконок
 export * from './ui/Icons';

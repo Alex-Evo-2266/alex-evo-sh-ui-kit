@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } 
 import { Tooltip } from '../../Base/Tooltip/Tooltip';
 import './Range.scss'
 import { interpolateColor } from '../../../helpers/color/interpolateColor';
-import { ColorContext } from '../../Base/ColorProvider';
+import { ColorContext } from '../../Provider/ColorProvider';
 
 interface CircleInputProps {
   colorBg?: string;

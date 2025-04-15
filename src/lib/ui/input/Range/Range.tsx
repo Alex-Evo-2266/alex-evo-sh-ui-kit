@@ -3,7 +3,7 @@ import './Range.scss';
 import { Tooltip } from '../../Base/Tooltip/Tooltip';
 import { interpolateColor } from '../../../helpers/color/interpolateColor'
 import { usePopup } from '../../Base/Tooltip/hooks/Tooltip';
-import { ColorContext } from '../../Base/ColorProvider';
+import { ColorContext } from '../../Provider/ColorProvider';
 
 export interface ColorSliderProps {
   colorRange?: string;

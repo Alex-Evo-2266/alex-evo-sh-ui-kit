@@ -6,12 +6,12 @@ interface ScreenSizeOption{
 	bigSize:number,
 }
 
-interface ScreenSizeHookOption{
+export interface ScreenSizeHookOption{
 	mobileSize?:number,
 	bigSize?:number,
 }
 
-const DefaultOption: ScreenSizeOption = {
+export const DefaultOption: ScreenSizeOption = {
 	mobileSize: 720,
 	bigSize: 1400
 }
