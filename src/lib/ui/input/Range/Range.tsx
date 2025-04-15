@@ -23,6 +23,7 @@ export interface ColorSliderProps {
   style?: React.CSSProperties;
   styleTrack?: 'base' | 'static-color' | 'point'
   startColor?: string
+  className?: string
 }
 
 export enum PopupState {
@@ -48,6 +49,7 @@ export const Range: React.FC<ColorSliderProps> = ({
   valueDisplayDuration = 2000,
   ariaLabel = "Регулятор значения",
   startColor,
+  className = "",
   ...props
 }) => {
   const range = useRef<HTMLInputElement>(null);
@@ -152,7 +154,7 @@ export const Range: React.FC<ColorSliderProps> = ({
   return (
 	<div 
 	  ref={wrapperRef}
-	  className={`range-wrapper ${orientation}`}
+	  className={`range-wrapper ${orientation} ${className}`}
 	  style={wrapperStyle}
 	>
 	  <div className="track" style={{background: colorBg}}>
