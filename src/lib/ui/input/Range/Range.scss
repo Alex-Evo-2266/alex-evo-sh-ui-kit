@@ -61,6 +61,7 @@
         pointer-events: auto;
         opacity: var(--point-opacity);
         transition: opacity 0.2s;
+        box-shadow: var(--Shadow-base);
       }
   
       &::-moz-range-thumb {
@@ -71,6 +72,7 @@
         cursor: pointer;
         opacity: var(--point-opacity);
         pointer-events: auto;
+        box-shadow: var(--Shadow-base);
         transition: opacity 0.2s;
       }
     }

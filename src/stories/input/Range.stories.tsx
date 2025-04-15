@@ -61,6 +61,15 @@ export const MinMax: Story = {
         )`
     },
   };
+  export const point2: Story = {
+    args: {
+        max: 100,
+        step: 1,
+        styleTrack: 'point',
+        showValue: false,
+        colorRange: "#cbc"
+    },
+  };
   export const pointVertical: Story = {
     args: {
         max: 100,
