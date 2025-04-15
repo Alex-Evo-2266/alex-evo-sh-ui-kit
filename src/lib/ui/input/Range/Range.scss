@@ -6,6 +6,7 @@
     --point-width: 30px;
     --point-opacity: 0;
     --truck-color: var(--Primary-color);
+    margin: 20px 0;
     
     .track {
       position: absolute;
@@ -100,6 +101,7 @@
     }
   
     &.vertical {
+			margin: '0 20px';
         .track {
         top: 0;
         left: 50%;

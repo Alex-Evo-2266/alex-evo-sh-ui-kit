@@ -135,7 +135,7 @@ export const Range: React.FC<ColorSliderProps> = ({
 		'--truck-color': colorRange,
 		width: '100%', 
 		height: WIDTH,
-		margin: `${WIDTH} 0`,
+		margin: `20px 0`,
 		...props.style
 	};
   }, [orientation, height, props.style, strokeWidth, styleTrack, colorRange]);
