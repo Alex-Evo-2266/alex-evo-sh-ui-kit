@@ -1,6 +1,7 @@
 .range-wrapper {
     position: relative;
     max-height: "900px";
+    overflow: hidden;
     --range-width: 80px;
     --point-width: 30px;
     --point-opacity: 0;
@@ -97,7 +98,7 @@
     }
   
     &.vertical {
-      .track {
+        .track {
         top: 0;
         left: 50%;
         transform: translateX(-50%);
@@ -115,9 +116,9 @@
       .slider-input {
         width: 200px;
         height: var(--range-width);
-        transform: rotate(-90deg);
         transform-origin: left bottom;
         position: absolute;
+        transform: rotate(-90deg) translateY(calc(50% - (var(--range-width) / 2)));
         left: var(--range-width);
         bottom: 0;
       }

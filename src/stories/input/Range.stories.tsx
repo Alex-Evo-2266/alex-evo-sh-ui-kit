@@ -61,13 +61,36 @@ export const MinMax: Story = {
         )`
     },
   };
+  export const pointVertical: Story = {
+    args: {
+        max: 100,
+        step: 1,
+        styleTrack: 'point',
+        showValue: false,
+        colorRange: "#cbc",
+        orientation: 'vertical',
+        style: {height: "200px"},
+        colorBg: `linear-gradient(
+          to right,
+          hsl(0, 100%, 50%),
+          hsl(60, 100%, 50%),
+          hsl(120, 100%, 50%),
+          hsl(180, 100%, 50%),
+          hsl(240, 100%, 50%),
+          hsl(300, 100%, 50%),
+          hsl(360, 100%, 50%)
+        )`
+    },
+  };
 
   export const vertical: Story = {
     args: {
         max: 100,
+        style: {height: "200px"},
         step: 10,
         showValue: true,
-        orientation: 'vertical'
+        orientation: 'vertical',
+        styleTrack: 'point'
     },
   };
   
