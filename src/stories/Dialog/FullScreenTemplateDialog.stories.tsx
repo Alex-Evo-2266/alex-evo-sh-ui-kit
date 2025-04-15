@@ -8,10 +8,6 @@ const meta: Meta<typeof FullScreenTemplateDialog> = {
   argTypes: {
     onHide: { action: 'closed' },
     onSave: { action: 'saved' },
-    breakpoint: {
-      control: { type: 'number', min: 320, max: 1200 },
-      description: 'Ширина переключения в полноэкранный режим'
-    },
     marginBottom: {
       control: { type: 'number', min: 0, max: 200 },
       description: 'Отступ снизу для контента'
@@ -61,7 +57,6 @@ export const WithoutHeader: Story = {
 export const WithCustomBreakpoint: Story = {
   args: {
     header: 'Кастомный breakpoint',
-    breakpoint: 1024,
     children: (
       <div style={{ minHeight: '400px' }}>
         <p>Переключается в полноэкранный режим на ширине меньше 1024px</p>
