@@ -130,6 +130,9 @@
       opacity: 0.5;
       pointer-events: none;
     }
+    .card-icon-button{
+      z-index: 10;
+    }
   }
   
   @keyframes ripple {
