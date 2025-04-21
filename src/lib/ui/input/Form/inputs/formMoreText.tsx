@@ -16,7 +16,7 @@ export const MoreTextField = (props:MoreTextFieldProps) => {
     },[props.name])
 
     const getValue = useCallback(()=>{
-        return value[props.name]
+        return value[props.name] ?? ""
     },[value, props.name])
 
     const getError = useCallback(() => {

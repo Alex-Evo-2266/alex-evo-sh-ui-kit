@@ -1,51 +1,26 @@
 import { useCallback, useContext } from "react"
 import { formContext } from "../FormContext"
 import { SelectField as SF } from "../../SelectField/Select"
-import { ScreenSize } from "../../../../model/sizeScreen"
-import { IOption } from "../../props"
+import { ISelectFieldProps } from "../../props"
 
-export interface ISelectFieldProps{
-    onChange?:(value: string)=>void
-    value?: string
-    placeholder?: string
-    className?: string
-    items: (IOption | string)[]
-    border?: boolean
+export interface ISelectFieldPropsForm extends Omit<ISelectFieldProps, "value">{
     name: string
-    error?: boolean
-    onFocus?: (e:React.FocusEvent<HTMLInputElement>)=>void
-    onBlur?: (e:React.FocusEvent<HTMLInputElement>)=>void
-    container_id: string
-    screensize?: ScreenSize
-    style?: React.CSSProperties
-    ref?: React.RefObject<HTMLInputElement>
 }
 
 
-export const SelectField = ({items, ref, border, error, className, placeholder, name, container_id}:ISelectFieldProps) => {
+export const SelectField = (props:ISelectFieldPropsForm) => {
 
     const {value, changeField} = useContext(formContext)
 
-    const change = (value: any) => {
-        changeField && changeField(name, value)
-    }
+    const change = useCallback((value: any) => {
+        changeField && changeField(props.name, value)
+    },[props.name])
 
     const getValue = useCallback(()=>{
-        return value[name]
-    },[value, name])
+        return value[props.name]
+    },[value, props.name])
 
     return(
-        <SF
-        items={items}
-        ref={ref} 
-        border={border} 
-        error={error} 
-        className={className}
-        placeholder={placeholder}
-        name={name}
-        onChange={change}
-        value={getValue()}
-        container={document.getElementById(container_id)}
-        />
+        <SF {...{...props, value: getValue(), onChange:change}}/>
     )
 }

@@ -1,62 +1,32 @@
 import { useCallback, useContext } from "react"
 import { NumberField as NF } from "../../NumberField/NumberField"
 import { formContext } from "../FormContext"
+import { INumberFieldProps } from "../../props"
 
-export interface TextFieldProps {
-    ref?: React.RefObject<HTMLInputElement>
-    border?: boolean
-    readOnly?: boolean
-    transparent?: boolean
-    styleContainer?: React.CSSProperties
-    icon?:React.ReactNode
-    clear?: boolean
-    className?: string
-    placeholder?: string
+export interface TextFieldProps extends Omit<INumberFieldProps, "value"> {
     name: string
-    min?: number
-    max?: number
 }
 
-export const NumberField = ({ref, border, readOnly, transparent, styleContainer, icon, clear, className, placeholder, name, min, max}:TextFieldProps) => {
+export const NumberField = (props:TextFieldProps) => {
 
     const {value, changeField, errors} = useContext(formContext)
 
-    const change = (value: any) => {
-        changeField && changeField(name, value)
-    }
+    const change = useCallback((value: any) => {
+        changeField && changeField(props.name, value)
+    },[props.name])
 
     const getValue = useCallback(()=>{
-        return Number(value[name])
-    },[value, name])
-
-    const clearHandler = () => {
-        changeField && changeField(name, '')
-    }
+        return Number(value[props.name])
+    },[value, props.name])
 
     const getError = useCallback(() => {
-        if (errors && Object.keys(errors).includes(name))
+        if (errors && Object.keys(errors).includes(props.name))
         {
-            return errors[name]
+            return errors[props.name] ?? props.errorText
         }
-    },[errors, name])
+    },[errors, props.name, props.errorText])
 
     return(
-        <NF 
-        ref={ref} 
-        border={border} 
-        readOnly={readOnly} 
-        transparent={transparent} 
-        styleContainer={styleContainer} 
-        error={Boolean(getError())} 
-        icon={icon} 
-        onClear={clear? clearHandler: undefined}
-        className={className}
-        placeholder={placeholder}
-        name={name}
-        onChange={change}
-        value={getValue()}
-        min={min}
-        max={max}
-        />
+        <NF {...{...props, value:getValue(), onChange:change, errorText:getError()}}/>
     )
 }

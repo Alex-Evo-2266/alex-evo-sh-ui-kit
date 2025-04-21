@@ -1,61 +1,41 @@
 import { useCallback, useContext } from "react"
 import { TextField as TF } from "../../TextField/TextField"
 import { formContext } from "../FormContext"
+import { ITextFieldProps } from "../../props"
 
-export interface TextFieldProps {
-    password?: boolean
-    ref?: React.RefObject<HTMLInputElement>
-    border?: boolean
-    readOnly?: boolean
-    transparent?: boolean
-    styleContainer?: React.CSSProperties
-    error?: boolean
-    icon?:React.ReactNode
-    clear?: boolean
-    className?: string
-    placeholder?: string
+export interface TextFieldPropsForm extends Omit<ITextFieldProps, "value"> {
     name: string
 }
 
-export const TextField = ({password, ref, border, readOnly, transparent, styleContainer, icon, clear, className, placeholder, name}:TextFieldProps) => {
+export const TextField = (props:TextFieldPropsForm) => {
 
     const {value, changeField, errors} = useContext(formContext)
 
-    const change = (event: React.ChangeEvent<HTMLInputElement>) => {
-        changeField && changeField(name, event.target.value)
-    }
+    const change = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        changeField && changeField(props.name, event.target.value)
+    },[props.name])
 
     const getValue = useCallback(()=>{
-        return value[name]
-    },[value, name])
+        return value[props.name]
+    },[value, props.name])
 
-    const clearHandler = () => {
-        changeField && changeField(name, '')
-    }
+    const clearHandler = useCallback(() => {
+        changeField && changeField(props.name, '')
+    },[props.name])
 
     const getError = useCallback(() => {
-        if (errors && Object.keys(errors).includes(name))
+        if (errors && Object.keys(errors).includes(props.name))
         {
-            return errors[name]
+            return errors[props.name]
         }
-    },[errors, name])
+    },[errors, props.name])
 
     return(
-        <TF 
-        ref={ref} 
-        password={password} 
-        border={border} 
-        readOnly={readOnly} 
-        transparent={transparent} 
-        styleContainer={styleContainer} 
-        error={Boolean(getError())} 
-        icon={icon} 
-        onClear={clear? clearHandler: undefined}
-        className={className}
-        placeholder={placeholder}
-        name={name}
+        <TF {...{...props}}
         onChange={change}
         value={getValue()}
+        errorText={getError()}
+        onClear={clearHandler}
         />
     )
 }
