@@ -6,7 +6,7 @@ export const Plus = (props:IconProps) => {
 
     return(
         <SVG {...{...props}}>
-           <path fill="none" d="M6 12H18M12 6V18" stroke={color.primaryColor} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+           <path fill="none" d="M6 12H18M12 6V18" stroke={color.primaryColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </SVG>
     )
 }

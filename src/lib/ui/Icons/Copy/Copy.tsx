@@ -9,15 +9,15 @@ export const Copy = (props:IconProps) => {
     
     return(
         <SVG {...{...props}}>
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
             <g id="SVGRepo_iconCarrier"> 
                 <g id="style=stroke"> 
                     <g id="copy"> 
                         <path 
                         id="rec (Stroke)" 
-                        fill-rule="evenodd" 
-                        clip-rule="evenodd" 
+                        fillRule="evenodd" 
+                        clipRule="evenodd" 
                         d="M6.25 5.25C6.25 2.50265 8.43733 0.25 11.1667
                         0.25H17.8333C20.5627 0.25 22.75 2.50265 22.75 
                         5.25V13.75C22.75 16.4974 20.5627 18.75 17.8333 18.75C17.4191 
@@ -28,8 +28,8 @@ export const Copy = (props:IconProps) => {
                         fill={secondaryColor}></path> 
                         <path 
                         id="rec (Stroke)_2" 
-                        fill-rule="evenodd" 
-                        clip-rule="evenodd" 
+                        fillRule="evenodd" 
+                        clipRule="evenodd" 
                         d="M1.25 10.25C1.25 7.50265 3.43733 5.25 6.16667 5.25H12.8333C15.5627 
                         5.25 17.75 7.50265 17.75 10.25V18.75C17.75 21.4974 15.5627 23.75 12.8333 
                         23.75H6.16667C3.43733 23.75 1.25 21.4974 1.25 18.75V10.25ZM6.16667 6.75C4.29363

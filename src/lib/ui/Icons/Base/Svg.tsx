@@ -2,7 +2,7 @@ import { IconProps } from "./iconProps";
 import './icon.scss'
 import React from "react";
 
-export const SVG = React.forwardRef<SVGSVGElement, IconProps>(({className, onClick, children, dpi = "24", size, ...props},ref) => (
+export const SVG = React.forwardRef<SVGSVGElement, IconProps>(({className, onClick, children, dpi = "24", size,primaryColor, secondaryColor, tertiaryColor, baseColor, ...props},ref) => (
     <svg 
         role={props.role} 
         style={{width: size, height: size}} 
