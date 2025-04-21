@@ -1,7 +1,6 @@
 import { useCallback, useContext } from "react"
 import { formContext } from "../FormContext"
 import { Switch } from "../../../Base/Switch/Switch"
-import { Typography } from "../../../Text/Text/Typography"
 
 export interface SwitchFieldProps {
     password?: boolean
@@ -27,8 +26,7 @@ export const SwitchField = ({placeholder, ref, style, readOnly, className, name}
 
     return(
         <div className={`input-field form-switch ${className}`} style={style}>
-            <Switch readOnly={readOnly} ref={ref} name={name} checked={getValue()} onChange={change}/>
-            <Typography className="form-switch-placeholder" type='body'>{placeholder}</Typography>
+            <Switch readOnly={readOnly} ref={ref} placeholder={placeholder} name={name} checked={getValue()} onChange={change}/>
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import { formContext } from "./FormContext"
+import { MoreTextField } from "./inputs/formMoreText"
 import { NumberField } from "./inputs/formNumberInput"
 import { SelectField } from "./inputs/formSelectInput"
 import { SwitchField } from "./inputs/formSwitch"
@@ -32,5 +33,6 @@ export const Form = Object.assign(BaseForm, {
     NumberInput: NumberField,
     SelectInput: SelectField,
     SwitchField: SwitchField,
-    SwitchButtonField: SwitchButtonField
+    SwitchButtonField: SwitchButtonField,
+    MoreTextField: MoreTextField
 })
