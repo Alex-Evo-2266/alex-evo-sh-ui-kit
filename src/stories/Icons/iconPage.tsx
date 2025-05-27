@@ -6,8 +6,8 @@ import {
     Clock, ArrowLeft, Keyboard, Search, LogoutIcon,
     Plus, Minus, Plug, UnLinkIcon, LinkIcon, UserIcon, AddUserIcon,
     MinusUserIcon, XUserIcon, OkUserIcon, Group, Room, Copy,
-    ArrowRight,
-    ArrowUp
+    ArrowRight, TempHighIcon, Sensor, Curtains,
+    ArrowUp, LampIcon, Switch, ConditionerIcon, ConditionerIcon2, Sensor2, Sensor3, SensorWarning
 } from "../../lib/ui/Icons"
 
 const icons = [
@@ -45,7 +45,14 @@ const icons = [
     Plus, 
     Minus, 
     Plug,
-    
+    LampIcon,
+    Switch,
+    ConditionerIcon,
+    ConditionerIcon2,
+    TempHighIcon,
+    Sensor, Sensor2, Sensor3,
+    SensorWarning,
+    Curtains
 ]
 
 export const IconDemoPage:React.FC = () => {
@@ -55,6 +62,7 @@ export const IconDemoPage:React.FC = () => {
             {
                 icons.map((Item, index)=>(<Item size="50px" key={index}/>))
             }
+            <LampIcon size="50px" secondaryColor="yellow"/>
         </div>
     )
 }

@@ -52,7 +52,7 @@ export const useColor = () => {
             dependColor.text?.forEach((depColor)=>_setColor(depColor, getTextColor(newColor), night))
             dependColor.low?.forEach((depColor)=>_setColor(depColor, pSBC(night?-0.5:0.5, newColor)??newColor, night))
             dependColor.high?.forEach((depColor)=>_setColor(depColor, pSBC(night?0.01:-0.01, newColor)??newColor, night))
-            dependColor.variant?.forEach((depColor)=>_setColor(depColor, pSBC(night?-0.3:0.3, newColor)??newColor, night))
+            dependColor.variant?.forEach((depColor)=>_setColor(depColor, pSBC(night?-0.5:0.5, newColor)??newColor, night))
             dependColor.hover?.forEach((depColor)=>_setColor(depColor, pSBC(night?-0.5:0.5, newColor)??newColor, night))
         }
     }
