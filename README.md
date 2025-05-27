@@ -37,6 +37,7 @@ yarn add alex-evo-sh-ui-kit
 
 ### **3. Текстовые элементы и ввод**  
 - [Text](./docs/Text.md)  
+- [RunningLine](./docs/RunningLine.md)
 - [MoreText](./docs/MoreText.md)  
 - [TextInput](./docs/TextInput.md)  
 - [NumberField](./docs/NumberField.md)  

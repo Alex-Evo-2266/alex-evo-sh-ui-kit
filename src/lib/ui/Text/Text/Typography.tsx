@@ -1,23 +1,7 @@
 import React from "react";
 import { ScreenSize } from "../../../model/sizeScreen";
 import './Text.scss';
-
-export type TypographyType = 
-  | "title" 
-  | "title-2" 
-  | "heading"
-  | "body" 
-  | "small";
-
-export type TypographyWeight = 
-  | "thin" 
-  | "standart" 
-  | "bold";
-
-export type TypographyDensity = 
-  | "tight" 
-  | "normal" 
-  | "loose";
+import { getFontVar, getLineHeightVar, getWeightVar, TypographyDensity, TypographyType, TypographyWeight } from "../textProps";
 
 export interface TypographyProps {
   /** Тип текстового элемента */
@@ -33,28 +17,6 @@ export interface TypographyProps {
   /** HTML-атрибуты для span/heading элементов */
   [key: string]: any;
 }
-
-const FountSize: Record<ScreenSize, string> = {
-  [ScreenSize.MOBILE]: "small-screen",
-  [ScreenSize.STANDART]: "standart-screen",
-  [ScreenSize.BIG_SCREEN]: "big-screen",
-};
-
-const getFontVar = (
-  type: TypographyType, 
-  screenSize: ScreenSize = ScreenSize.STANDART
-): string => `var(--${type}-${FountSize[screenSize]})`;
-
-const getWeightVar = (
-  type: TypographyType, 
-  weight: TypographyWeight = 'standart'
-): string => `var(--${type}-${weight})`;
-
-const getLineHeightVar = (
-  type: TypographyType, 
-  density: TypographyDensity = 'normal', 
-  screenSize: ScreenSize = ScreenSize.STANDART
-): string => `var(--${type}-heights-${FountSize[screenSize]}-${density})`;
 
 export const Typography: React.FC<TypographyProps> = ({
   type,

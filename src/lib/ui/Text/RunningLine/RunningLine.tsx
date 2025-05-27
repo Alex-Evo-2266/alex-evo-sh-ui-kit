@@ -1,38 +1,82 @@
-import React,{useEffect,useCallback, useRef} from 'react'
+import React,{useEffect,useCallback, useRef, useState} from 'react'
 import "./runningLine.scss"
+import "../Text/Text.scss"
+import { getFontVar, getLineHeightVar, getWeightVar, TypographyDensity, TypographyType, TypographyWeight } from '../textProps'
+import { ScreenSize } from '../../../model/sizeScreen'
 
-export interface RunningLineProps{
-  text: string
-  className?: string
-  onClick?:(event:React.MouseEvent<HTMLDivElement>)=>void
-  onContextMenu?: (event:React.MouseEvent<HTMLDivElement>)=>void
-  style?: React.CSSProperties
+export interface RunningLineProps {
+  /** Тип текстового элемента */
+  type: TypographyType;
+  /** Размер экрана для адаптации */
+  screensize?: ScreenSize;
+  /** Насыщенность шрифта */
+  weight?: TypographyWeight;
+  /** Межстрочный интервал */
+  density?: TypographyDensity;
+  text: string;
+  onClick?:(event:React.MouseEvent<HTMLDivElement>)=>void;
+  onContextMenu?: (event:React.MouseEvent<HTMLDivElement>)=>void;
+  /** HTML-атрибуты для span/heading элементов */
+  [key: string]: any;
 }
 
-export const RunningLine = ({style, text, className, onClick, onContextMenu}:RunningLineProps)=>{
+export const RunningLine: React.FC<RunningLineProps> = ({
+  type,
+  screensize = ScreenSize.STANDART,
+  weight = 'standart',
+  density = 'normal',
+  className = '',
+  text,
+  style,
+  onClick,
+  onContextMenu,
+  ...props
+}) => {
+  const textContainer = useRef<HTMLDivElement>(null);
+  const [isAnimated, setIsAnimated] = useState(false);
 
-  const textContainer = useRef<HTMLDivElement>(null)
+  const isHeading = type === "heading" || type === "title" || type === "title-2";
+  const Component = isHeading ? 'h3' : 'span';
 
-  const anim = useCallback(()=>{
-    if(!textContainer.current)
-      return
-    let $p = textContainer.current.getElementsByTagName("p")
-    if($p[0] && textContainer.current.clientWidth <= $p[0].clientWidth){
-      $p[0].className="runing"
-      $p[0].innerHTML=`| ${text} | ${text}`
+  const anim = useCallback(() => {
+    if (!textContainer.current) return;
+    const el = textContainer.current.querySelector("span, h3");
+    if (el && textContainer.current.clientWidth <= el.scrollWidth) {
+      setIsAnimated(true);
+    } else {
+      setIsAnimated(false);
     }
-    else{
-      $p[0].className=""
-    }
-  },[text])
+  }, [text]);
 
-  useEffect(()=>{
-    anim()
-  },[anim])
+  useEffect(() => {
+    anim();
+    window.addEventListener("resize", anim);
+    return () => window.removeEventListener("resize", anim);
+  }, [anim]);
 
-  return(
-    <div style={style} ref={textContainer} onClick={onClick} onContextMenu={onContextMenu} className={`runing-text ${className}`}>
-      <p>{text}</p>
+  const typographyStyle = {
+    fontSize: getFontVar(type, screensize),
+    fontWeight: getWeightVar(type, weight),
+    lineHeight: getLineHeightVar(type, density, screensize),
+    ...style,
+  };
+
+  const baseClass = isHeading ? 'typography-heading' : 'typography-text';
+
+  return (
+    <div
+      ref={textContainer}
+      onClick={onClick}
+      onContextMenu={onContextMenu}
+      className={`runing-text ${isAnimated ? 'runing' : ''}`}
+    >
+      <Component
+        {...props}
+        style={typographyStyle}
+        className={`${baseClass} ${className}`}
+      >
+        {isAnimated ? `| ${text} | ${text}` : text}
+      </Component>
     </div>
-  )
-}
+  );
+};
