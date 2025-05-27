@@ -2,7 +2,7 @@ import { IconProps } from "../Base/iconProps";
 import { SVG } from "../Base/Svg";
 import { getColor } from "../Base/Svg";
 
-export const Switch = (props: IconProps) => {
+export const SwitchIcon = (props: IconProps) => {
     const { primaryColor, secondaryColor } = getColor(props);
 
     return (

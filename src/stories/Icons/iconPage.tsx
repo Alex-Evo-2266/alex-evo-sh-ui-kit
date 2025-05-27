@@ -7,7 +7,7 @@ import {
     Plus, Minus, Plug, UnLinkIcon, LinkIcon, UserIcon, AddUserIcon,
     MinusUserIcon, XUserIcon, OkUserIcon, Group, Room, Copy,
     ArrowRight, TempHighIcon, Sensor, Curtains,
-    ArrowUp, LampIcon, Switch, ConditionerIcon, ConditionerIcon2, Sensor2, Sensor3, SensorWarning
+    ArrowUp, LampIcon, SwitchIcon, ConditionerIcon, ConditionerIcon2, Sensor2, Sensor3, SensorWarning
 } from "../../lib/ui/Icons"
 
 const icons = [
@@ -46,7 +46,7 @@ const icons = [
     Minus, 
     Plug,
     LampIcon,
-    Switch,
+    SwitchIcon,
     ConditionerIcon,
     ConditionerIcon2,
     TempHighIcon,
