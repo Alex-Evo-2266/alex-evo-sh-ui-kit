@@ -24,6 +24,15 @@
             color: var(--On-surface-color);
             cursor: pointer;
         }
+        & > button:first-child{
+            padding-left: 16px;
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            color: var(--On-surface-color);
+            cursor: pointer;
+            --iconbutton-size: auto
+        }
         & > span:last-child{
             padding-right: 16px;
             display: flex;

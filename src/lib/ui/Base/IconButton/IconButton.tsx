@@ -12,6 +12,7 @@ export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   transparent?: boolean;
   /** Размер кнопки */
   size?: "small" | "medium" | "large";
+  rippleDisabled?: boolean
 }
 
 export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -26,6 +27,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       onContextMenu,
       disabled = false,
       style,
+      rippleDisabled = false,
       ...props
     },
     ref
@@ -35,7 +37,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         if (disabled) return;
         
         onClick?.(e);
-        createRippleEffect(e);
+        !rippleDisabled && createRippleEffect(e);
       },
       [onClick, disabled]
     );

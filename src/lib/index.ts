@@ -54,10 +54,12 @@ import { Divider } from './ui/Other/Divider/Divider';
 import { EmptyPage } from './ui/Other/EmptyPage/EmptyPage';
 import { JsonContainer } from './ui/Other/JSON/Json';
 import { Search } from './ui/Other/Search/Search';
+import { SearchAndFilter } from './ui/Other/Search/SearchAndFilter';
 import { Snackbar } from './ui/Other/Snackbar/Snackbar';
 import { RunningLine } from './ui/Text/RunningLine/RunningLine';
 import { Typography } from './ui/Text/Text/Typography';
 import { SelectField } from './ui/input/SelectField/Select';
+import { MultiFilter } from './ui/Other/Filter/Filter'
 
 // Импорты хуков и утилит
 import { useColor } from './hooks/color.hook';
@@ -86,6 +88,9 @@ import type { JsonData, JsonDataArray, JsonDataBaseTypes, JsonDataObject, JsonFo
 import type { ChangeColor, ColorState, BaseColor, NightColor } from './model/color';
 import type { IContainerData, IOptionModalWindowCord } from './helpers/getContainerPozAndSize';
 import type { IOption } from './ui/input/props';
+import type { ButtonSearch } from './ui/Other/Search/Search'
+import type { FilterGroup, SelectedFilters } from './ui/Other/Filter/Filter'
+
 
 // Импорт провайдеров
 import {ColorProvider, ColorContext} from './ui/Provider/ColorProvider'
@@ -96,6 +101,7 @@ import './ui/index.scss';
 
 // Экспорты компонентов
 export {
+  MultiFilter,
   Tooltip,
   BaseActionCard,
   BaseButton,
@@ -141,6 +147,7 @@ export {
   RunningLine,
   ScrollContainer,
   Search,
+  SearchAndFilter,
   SelectField,
   SelectionDialog,
   SegmentedButton,
@@ -187,6 +194,9 @@ export {
 
 // Экспорты типов
 export type {
+  FilterGroup, 
+  SelectedFilters,
+  ButtonSearch,
   ChangeColor,
   ColorState,
   BaseColor,

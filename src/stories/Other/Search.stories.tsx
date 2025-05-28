@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { Search } from '../../lib/index';
+import { FilterIcon, IconButton, LampIcon, Search } from '../../lib/index';
 
 const meta = {
   title: 'Components/Other/Search',
@@ -27,10 +27,19 @@ export const Base: Story = {
   },
 };
 
-
 export const MenuBtn: Story = {
     args: {
-        onMenu: ()=>{}
+        btn: {
+          icon: <LampIcon/>,
+          onClick: ()=> console.log("yt")
+        }
+    },
+  };
+  
+
+export const MenuBtn2: Story = {
+    args: {
+        btnComponent:<IconButton rippleDisabled icon={<FilterIcon/>} onClick={()=>console.log("d")}/>
     },
   };
   

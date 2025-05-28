@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScreenSize } from "../../../model/sizeScreen";
 import './Text.scss';
 import { getFontVar, getLineHeightVar, getWeightVar, TypographyDensity, TypographyType, TypographyWeight } from "../textProps";
+import { SizeContext } from "../../Provider/SizeProvider";
 
 export interface TypographyProps {
   /** Тип текстового элемента */
@@ -28,13 +29,15 @@ export const Typography: React.FC<TypographyProps> = ({
   className = '',
   ...props
 }) => {
+  const size = useContext(SizeContext)
+  const screen = size? size.screen: screensize
   const isHeading = type === "heading" || type === "title" || type === "title-2";
   const Component = isHeading ? 'h3' : 'span';
   
   const typographyStyle = {
-    fontSize: getFontVar(type, screensize),
+    fontSize: getFontVar(type, screen),
     fontWeight: getWeightVar(type, weight),
-    lineHeight: getLineHeightVar(type, density, screensize),
+    lineHeight: getLineHeightVar(type, density, screen),
     ...style,
   };
 

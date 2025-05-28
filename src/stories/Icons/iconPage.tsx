@@ -6,7 +6,7 @@ import {
     Clock, ArrowLeft, Keyboard, Search, LogoutIcon,
     Plus, Minus, Plug, UnLinkIcon, LinkIcon, UserIcon, AddUserIcon,
     MinusUserIcon, XUserIcon, OkUserIcon, Group, Room, Copy,
-    ArrowRight, TempHighIcon, Sensor, Curtains,
+    ArrowRight, TempHighIcon, Sensor, Curtains,FilterIcon,
     ArrowUp, LampIcon, SwitchIcon, ConditionerIcon, ConditionerIcon2, Sensor2, Sensor3, SensorWarning
 } from "../../lib/ui/Icons"
 
@@ -52,7 +52,8 @@ const icons = [
     TempHighIcon,
     Sensor, Sensor2, Sensor3,
     SensorWarning,
-    Curtains
+    Curtains,
+    FilterIcon
 ]
 
 export const IconDemoPage:React.FC = () => {
