@@ -27,6 +27,11 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "elevated" | "filled" | "outlined";
   /** Состояние загрузки */
   loading?: boolean;
+  /**
+  * Уровень тени (0-24)
+  * @default 6
+  */
+  elevation?: number;
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
@@ -47,12 +52,14 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       variant = "elevated",
       loading = false,
       style,
+      elevation = 6,
       ...props
     },
     ref
   ) => {
     const { screen } = useContext(SizeContext);
     const currentScreenSize = screenProps ?? screen;
+    const elevationClass = `elevation-${Math.min(24, Math.max(0, elevation))}`;
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       if (!isValidCardClick(e)) return;
@@ -95,7 +102,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         style={style}
-        className={`card card--${variant} ${loading ? "card--loading" : ""} ${className}`}
+        className={`card card--${variant} ${elevationClass} ${loading ? "card--loading" : ""} ${className}`}
         onClick={handleClick}
         {...props}
       >

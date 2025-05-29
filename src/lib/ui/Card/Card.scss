@@ -1,7 +1,6 @@
 .card {
     --card-bg: var(--Surface-container-color);
     --card-color: var(--On-surface-color);
-    --card-shadow: 1px 1px 6px -2px var(--Shadow-color);
     --card-radius: var(--card-border-radius);
     --card-padding: 1rem;
     --card-image-height: 200px;
@@ -36,7 +35,12 @@
     }
   
     &--elevated {
-      box-shadow: var(--card-shadow);
+      // Уровни теней
+      @for $i from 0 through 24 {
+        &.elevation-#{$i} {
+            box-shadow: var(--shadow-elevation-#{$i}, none);
+        }
+    }
     }
   
     &--filled {

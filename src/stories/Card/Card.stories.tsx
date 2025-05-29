@@ -12,6 +12,9 @@ const meta: Meta<typeof Card> = {
       control: { type: 'select' },
       options: ['elevated', 'filled', 'outlined'],
     },
+    elevation: {
+      control: { type: 'range', min: 0, max: 24, step: 1 },
+    },
     loading: {
       control: 'boolean',
     },
@@ -30,8 +33,15 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof Card>;
 
+export const Default: Story = {
+  args: {
+    elevation: 6,
+  },
+};
+
 export const Elevated: Story = {
   args: {
+    ...Default.args,
     variant: 'elevated',
   },
 };
