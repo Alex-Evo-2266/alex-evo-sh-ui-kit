@@ -13,9 +13,10 @@ export interface SearchProps{
     btnComponent?: React.ReactNode
     placeholder?: string
     autoChenge?: boolean
+    border?: boolean
 }
 
-export const Search = ({btn, btnComponent, onSearch, placeholder, autoChenge}:SearchProps) => {
+export const Search = ({btn, btnComponent, onSearch, placeholder, autoChenge, border = false}:SearchProps) => {
 
     const inputSearch = useRef<HTMLInputElement>(null)
     const [value, setvalue] = useState<string>("")
@@ -62,7 +63,7 @@ export const Search = ({btn, btnComponent, onSearch, placeholder, autoChenge}:Se
     }
 
     return(
-        <div className="search-container">
+        <div className={`search-container ${border? "border": ""}`}>
             <div className="search-field">
                 {
                     (focus)? 

@@ -102,7 +102,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         style={style}
-        className={`card card--${variant} ${elevationClass} ${loading ? "card--loading" : ""} ${className}`}
+        className={`${className} card card--${variant} ${elevationClass} ${loading ? "card--loading" : ""}`}
         onClick={handleClick}
         {...props}
       >

@@ -18,6 +18,7 @@ export interface SearchProps{
     filters: FilterGroup[];
     selectedFilters: SelectedFilters;
     onChangeFilter: (selected: SelectedFilters) => void;
+    border?: boolean;
 }
 
 export const SearchAndFilter = ({
@@ -26,7 +27,8 @@ export const SearchAndFilter = ({
     autoChenge,
     filters,
     selectedFilters,
-    onChangeFilter
+    onChangeFilter,
+    border = false
 }:SearchProps) => {
 
     const inputSearch = useRef<HTMLInputElement>(null)
@@ -85,7 +87,7 @@ export const SearchAndFilter = ({
 
     return(
         <>
-        <div className="search-container">
+        <div className={`search-container ${border? "border": ""}`}>
             <div className="search-field">
                 {
                     (focus)? 

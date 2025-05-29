@@ -29,3 +29,9 @@ export const Base: Story = {
 
   },
 };
+
+export const Border: Story = {
+  args: {
+    border: true
+  },
+};
