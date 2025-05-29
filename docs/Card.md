@@ -21,6 +21,7 @@
 | `children`      | `React.ReactNode`       | -             | Дочерние элементы |
 | `iconButtonCell`| `React.ReactNode`       | -             | Иконка/кнопка в заголовке |
 | `variant`       | `'elevated'`, `'filled'`, `'outlined'` | `'elevated'` | Вариант стиля |
+| `elevation`    | `number` (0-24)         | `6`          | Уровень тени (от 0 до 24). Работает при `'variant' = 'elevated'`|
 | `loading`       | `boolean`               | `false`       | Состояние загрузки |
 | `screenSize`    | `ScreenSize`            | -             | Размер экрана для адаптации |
 | `rootApp`       | `string`                | `'#root'`     | CSS-селектор корневого элемента |
