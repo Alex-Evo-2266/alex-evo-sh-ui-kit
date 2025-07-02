@@ -14,15 +14,49 @@ export interface IButtonProps extends BaseButtonProps {
     styleType?: styleType
 }
 
-export const OutlineButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " outline-button"})
+// export const OutlineButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " outline-button"})
+export const OutlineButton: React.FC<BaseButtonProps> = (props) => {
+  return (
+    <BaseButton
+      {...props}
+      className={(props.className ?? "") + " outline-button"}
+    />
+  );
+};
 
-export const TextButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " text-button"})
+// export const TextButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " text-button"})
 
-export const FilledTotalButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " total-button"})
+// export const FilledTotalButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " total-button"})
 
-export const FilledButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " filled-button"})
+// export const FilledButton = (props: BaseButtonProps) => BaseButton({...props, className:(props.className ?? "") + " filled-button"})
+export const TextButton: React.FC<BaseButtonProps> = (props) => {
+  return (
+    <BaseButton
+      {...props}
+      className={(props.className ?? "") + " text-button"}
+    />
+  );
+};
 
-export const BaseButton = ({size = 'medium', ...props}: BaseButtonProps) => {
+export const FilledTotalButton: React.FC<BaseButtonProps> = (props) => {
+  return (
+    <BaseButton
+      {...props}
+      className={(props.className ?? "") + " total-button"}
+    />
+  );
+};
+
+export const FilledButton: React.FC<BaseButtonProps> = (props) => {
+  return (
+    <BaseButton
+      {...props}
+      className={(props.className ?? "") + " filled-button"}
+    />
+  );
+};
+
+export const BaseButton: React.FC<BaseButtonProps> = ({size = 'medium', ...props}) => {
 
     const click = (e:React.MouseEvent<HTMLButtonElement>) => {
         props.onClick && props.onClick(e)
@@ -52,14 +86,10 @@ export const BaseButton = ({size = 'medium', ...props}: BaseButtonProps) => {
     )
 }
 
-export const Button = ({styleType = "base", ...props}:IButtonProps) => {
-    if(styleType === "outline")
-        return OutlineButton({...props})
-    if(styleType === "text")
-        return TextButton({...props})
-    if(styleType === "filledTotal")
-        return FilledTotalButton({...props})
-    if(styleType === "filled")
-        return FilledButton({...props})
-    return BaseButton({...props})
-}
+export const Button: React.FC<IButtonProps> = ({ styleType = "base", ...props }) => {
+  if (styleType === "outline") return <OutlineButton {...props} />;
+  if (styleType === "text") return <TextButton {...props} />;
+  if (styleType === "filledTotal") return <FilledTotalButton {...props} />;
+  if (styleType === "filled") return <FilledButton {...props} />;
+  return <BaseButton {...props} />;
+};
