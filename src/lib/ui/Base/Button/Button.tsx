@@ -7,6 +7,7 @@ export type styleType = "outline" | "text" | "filledTotal" | "filled" | "base"
 
 export interface BaseButtonProps extends IBaseButtonProps {
     size?: "small" | "medium" | "large";
+    children?: React.ReactNode
 }
 
 export interface IButtonProps extends BaseButtonProps {

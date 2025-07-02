@@ -80,6 +80,7 @@ export interface IBaseFieldProps {
   
   // Интерфейс для числового поля
   export interface INumberFieldProps extends IBaseFieldProps {
+    onChange?: (value: number, name?: string) => void;
     /** Минимальное значение */
     min?: number;
     /** Максимальное значение */
