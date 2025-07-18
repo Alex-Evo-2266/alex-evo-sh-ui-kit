@@ -78,7 +78,7 @@ import {BaseType} from './ui/Other/JSON/JsonComponent'
 // Импорты типов
 import type { NavigationBtn, NavigationButton, NavigationLink } from './model/navigation';
 import type { MenuStateProps } from './model/menu';
-import type { IOptionSnackbar, SnackbarProps } from './ui/Other/Snackbar/Snackbar';
+import type { IOptionSnackbar, SnackbarProps } from './ui/Provider/SnackbarProvider';
 import type { styleType } from './ui/Base/Button/Button';
 import type { IColumnElement } from './ui/Layout/ColumnLayout/ColumnLayout';
 import type { IBlock, IMenuItem, IMenuOption, IMenuSubItem } from './model/menu';
@@ -95,6 +95,7 @@ import type { FilterGroup, SelectedFilters } from './ui/Other/Filter/Filter'
 // Импорт провайдеров
 import {ColorProvider, ColorContext} from './ui/Provider/ColorProvider'
 import {SizeProvider, SizeContext} from './ui/Provider/SizeProvider'
+import {SneckbarContext, SneckbarProvider} from './ui/Provider/SnackbarProvider'
 
 // Импорты стилей и иконок
 import './ui/index.scss';
@@ -236,6 +237,7 @@ export type {
 // Экспорты провайдеров
 export {ColorProvider, ColorContext}
 export {SizeProvider, SizeContext}
+export {SneckbarProvider, SneckbarContext}
 
 // Экспорты иконок
 export * from './ui/Icons';

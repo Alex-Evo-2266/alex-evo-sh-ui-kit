@@ -1,64 +1,39 @@
 
+import { useContext } from "react"
+import type { Meta, StoryObj } from "@storybook/react"
+import { SneckbarProvider, SneckbarContext } from "../../lib"
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { Snackbar} from '../../lib/index';
+const meta: Meta = {
+  title: "Components/Other/Sneckbar",
+  component: SneckbarProvider,
+}
+export default meta
+type Story = StoryObj
 
-const meta = {
-  title: 'Components/Other/Snackbar',
-  component: Snackbar,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
-  argTypes: {
-  },
-  args: {
-    visible: true,
-    text: "asegdf sdfxngcszfd g cfasdf"
-  },
-} satisfies Meta<typeof Snackbar>;
+const DemoComponent = () => {
+  const { showSnackbar } = useContext(SneckbarContext)
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+  return (
+    <div style={{ padding: "20px" }}>
+      <button
+        onClick={() =>
+          showSnackbar("This is a snackbar from context",{
+            buttonText: "Undo",
+            onClick: () => alert("Undo clicked"),
+            closeButton: true,
+          })
+        }
+      >
+        Show Snackbar
+      </button>
+    </div>
+  )
+}
 
-export const Base: Story = {
-  args: {
-   
-  },
-};
-
-export const Red: Story = {
-  args: {
-   option:{
-    color: "#fff",
-    backgroundColor: "red"
-   }
-  },
-};
-
-export const Btn: Story = {
-  args: {
-   option:{
-    buttonText:"drgtf",
-    onClick:()=>{}
-   }
-  },
-};
-
-export const Close: Story = {
-  args: {
-   option:{
-    closeButton:true
-   }
-  },
-};
-
-export const CloseAndBtn: Story = {
-  args: {
-   option:{
-    closeButton:true,
-    buttonText:"drgtf",
-    onClick:()=>{}
-   }
-  },
-};
+export const Default: Story = {
+  render: () => (
+    <SneckbarProvider>
+      <DemoComponent />
+    </SneckbarProvider>
+  ),
+}
