@@ -28,7 +28,7 @@ export default defineConfig({
         globals:{
           react: "React",
           "react-dom": "ReactDOM",
-          
+          "react-router-dom": "ReactRouterDOM",
         }
       }
     }
