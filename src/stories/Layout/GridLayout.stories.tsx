@@ -50,7 +50,8 @@ const SampleItem = ({ height = 100, text = 'Item' }: { height?: number, text?: s
     height: `${height}px`, 
     background: '#f0f0f0',
     padding: '10px',
-    border: '1px solid #ddd'
+    border: '1px solid #ddd',
+    width: "200px"
   }}>
     {text}
   </div>
@@ -71,7 +72,7 @@ export const Basic: Story = {
 
 export const WithFixedWidth: Story = {
   args: {
-    itemWith: '300px'
+    itemWith: '200px'
   },
   render: (args) => (
     <GridLayout {...args}>
@@ -115,6 +116,25 @@ export const WithGaps: Story = {
           <SampleItem 
             height={100 + i * 20} 
             text={`Gap ${i + 1}`} 
+          />
+        </GridLayoutItem>
+      ))}
+    </GridLayout>
+  )
+}
+
+export const MoreColl: Story = {
+  args: {
+    itemMinWith: '200px',
+    itemMaxWith: '1fr'
+  },
+  render: (args) => (
+    <GridLayout {...args}>
+      {[...Array(8)].map((_, i) => (
+        <GridLayoutItem key={i} colSpan={i === 2?2:undefined}>
+          <SampleItem 
+            height={80 + Math.random() * 120} 
+            text={`Responsive ${i + 1}`} 
           />
         </GridLayoutItem>
       ))}

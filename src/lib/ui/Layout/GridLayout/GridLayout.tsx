@@ -1,19 +1,17 @@
 import "./GridLayout.scss"
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-/**
- * Props для элемента сетки
- */
 interface IAdaptivGridItemProps {
   children?: React.ReactNode
+  colSpan?: number // количество колонок, которые займет элемент
 }
 
-/**
- * Элемент сетки
- */
-const GridLayoutItem = ({ children }: IAdaptivGridItemProps) => {
+const GridLayoutItem = ({ children, colSpan = 1 }: IAdaptivGridItemProps) => {
   return (
-    <div className={`adaptiv-grid-item`}>
+    <div 
+      className="adaptiv-grid-item"
+      style={{ gridColumnEnd: `span ${colSpan}` }}
+    >
       <div className="adaptiv-grid-item-container">
         {children}
       </div>
@@ -21,33 +19,21 @@ const GridLayoutItem = ({ children }: IAdaptivGridItemProps) => {
   )
 }
 
-/**
- * Основные props для сетки
- */
 export interface IAdaptivGridProps {
   children?: React.ReactNode
   className?: string
-  gridRowGap?: string  // Отступ между строками
-  gridColumnGap?: string  // Отступ между колонками
-  itemMinWith?: string  // Минимальная ширина элемента
-  itemMaxWith?: string  // Максимальная ширина элемента
-  itemWith?: string  // Фиксированная ширина элемента (если min/max не указаны)
-  minWith?: string  // Минимальная ширина всей сетки
+  gridRowGap?: string
+  gridColumnGap?: string
+  itemMinWith?: string
+  itemMaxWith?: string
+  itemWith?: string
+  minWith?: string
 }
 
-/**
- * Адаптивная CSS Grid Layout с автоматическим расчетом высоты строк
- * 
- * Особенности:
- * - Автоматическое распределение элементов по доступному пространству
- * - Динамический расчет высоты строк на основе содержимого
- * - Поддержка отзывчивого дизайна
- * - Оптимизированная перерисовка при изменении размеров
- */
 const GridLayout = ({
   minWith,
   children,
-  className,
+  className = "",
   gridRowGap = "10px",
   gridColumnGap = "5px",
   itemMinWith,
@@ -56,67 +42,83 @@ const GridLayout = ({
 }: IAdaptivGridProps) => {
   const root = useRef<HTMLDivElement>(null)
   const [items, setItems] = useState<HTMLDivElement[]>([])
+  const observerRef = useRef<ResizeObserver | null>(null)
+  const rafIdRef = useRef<number | null>(null)
 
-  // Установка базовых стилей для сетки
   const bindStyles = useCallback(() => {
-    if (!root.current) return;
-    
-    root.current.style.display = 'grid';
-    root.current.style.gridRowGap = gridRowGap;
-    root.current.style.gridColumnGap = gridColumnGap;
-    
-    // Определение ширины элементов
-    let itemMinWith2: string = itemMinWith ?? itemWith
-    let itemMaxWith2: string = itemMaxWith ?? itemWith
-    
-    root.current.style.gridTemplateColumns = `repeat(auto-fill, minmax(${itemMinWith2}, ${itemMaxWith2}))`;
-    root.current.style.gridAutoRows = '0';
-    
-    // Сброс стилей для элементов
-    items.forEach(item => {
-      item.style.gridAutoRows = '0';
-      item.style.gridAutoColumns = '0';
-    });
-  }, [root.current, gridRowGap, gridColumnGap, itemMinWith, itemMaxWith, itemWith])
-
-  // Пересчет высоты строк при изменении размеров
-  const resizeItems = useCallback(() => {
     if (!root.current) return
     
-    const rowGap = parseInt(window.getComputedStyle(root.current).getPropertyValue('grid-row-gap'))
-    const rowHeight = parseInt(window.getComputedStyle(root.current).getPropertyValue('grid-auto-rows'))
-    
-    items.forEach(item => {
-      let rowSpan = 0;
-      const itemContent = item.querySelector(".adaptiv-grid-item-container");
-      
-      if (itemContent) {
-        const contentHeight = itemContent.getBoundingClientRect().height
-        rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap))
-      }
-      
-      item.style.gridRowEnd = 'span ' + rowSpan;
-    });
-  }, [items, root.current])
+    root.current.style.display = 'grid'
+    root.current.style.gridRowGap = gridRowGap
+    root.current.style.gridColumnGap = gridColumnGap
 
-  // Поиск всех элементов сетки
+    const itemMin = itemMinWith ?? itemWith
+    const itemMax = itemMaxWith ?? itemWith
+
+    root.current.style.gridTemplateColumns = `repeat(auto-fill, minmax(${itemMin}, ${itemMax}))`
+    root.current.style.gridAutoRows = '1px'
+  }, [gridRowGap, gridColumnGap, itemMinWith, itemMaxWith, itemWith])
+
   const findItems = useCallback(() => {
     if (root.current) {
-      const children = root.current.querySelectorAll(".adaptiv-grid-item")
-      setItems(Array.prototype.slice.call(children, 0))
+      const nodes = root.current.querySelectorAll<HTMLDivElement>(".adaptiv-grid-item")
+      setItems(Array.from(nodes))
     }
-  }, [root.current, children])
+  }, [])
 
-  // Эффекты
-  useEffect(() => findItems(), [findItems])
-  useEffect(() => bindStyles(), [bindStyles])
-  useEffect(() => resizeItems(), [resizeItems, children])
+  const resizeItemsNow = useCallback(() => {
+    if (!root.current) return
+    const styles = window.getComputedStyle(root.current)
+    const rowGap = parseInt(styles.getPropertyValue('grid-row-gap')) || 0
+    const rowHeight = parseInt(styles.getPropertyValue('grid-auto-rows')) || 1
 
-  // Обработчик изменения размеров окна
+    items.forEach(item => {
+      const content = item.querySelector<HTMLElement>(".adaptiv-grid-item-container")
+      if (content) {
+        const height = content.getBoundingClientRect().height
+        const span = Math.ceil((height + rowGap) / (rowHeight + rowGap))
+        item.style.gridRowEnd = `span ${span}`
+      }
+    })
+  }, [items])
+
+  // Оборачиваем пересчет через requestAnimationFrame
+  const resizeItems = useCallback(() => {
+    if (rafIdRef.current !== null) {
+      cancelAnimationFrame(rafIdRef.current)
+    }
+    rafIdRef.current = requestAnimationFrame(() => {
+      resizeItemsNow()
+      rafIdRef.current = null
+    })
+  }, [resizeItemsNow])
+
   useEffect(() => {
-    window.addEventListener('resize', resizeItems)
-    return () => window.removeEventListener('resize', resizeItems)
-  }, [resizeItems])
+    bindStyles()
+    findItems()
+  }, [bindStyles, findItems, children])
+
+  useEffect(() => {
+    // Чистим старый observer
+    if (observerRef.current) {
+      observerRef.current.disconnect()
+    }
+
+    observerRef.current = new ResizeObserver(() => resizeItems())
+    const observer = observerRef.current
+
+    items.forEach(item => observer.observe(item))
+
+    // Первоначальный расчет
+    resizeItems()
+
+    return () => {
+      observer.disconnect()
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current)
+      }
+    }
+  }, [items, resizeItems])
 
   return (
     <div 
