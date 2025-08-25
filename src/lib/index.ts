@@ -60,7 +60,7 @@ import { RunningLine } from './ui/Text/RunningLine/RunningLine';
 import { Typography } from './ui/Text/Text/Typography';
 import { SelectField } from './ui/input/SelectField/Select';
 import { MultiFilter } from './ui/Other/Filter/Filter'
-import {IconSelectField} from './ui/Base/IconPicker/IconPicker'
+import {IconSelectField, IconsSelect} from './ui/Base/IconPicker/IconPicker'
 
 // Импорты хуков и утилит
 import { useColor } from './hooks/color.hook';
@@ -72,6 +72,7 @@ import { hexToRgb, HSVtoHSL, HEXtoRGB, HSLtoHSV, HSVtoRGB, RGBtoHSV } from './he
 import { getTextColor, getContainerColor } from './helpers/color/colorGenerator';
 import { ModalPortal } from './portal/dialog';
 import { usePopup, PopupState } from './ui/Base/Tooltip/hooks/Tooltip'
+import {getIcons} from './ui/Base/IconPicker/IconPicker'
 
 import { ScreenSize } from "./model/sizeScreen"
 import {BaseType} from './ui/Other/JSON/JsonComponent'
@@ -91,7 +92,7 @@ import type { IContainerData, IOptionModalWindowCord } from './helpers/getContai
 import type { IOption } from './ui/input/props';
 import type { ButtonSearch } from './ui/Other/Search/Search'
 import type { FilterGroup, SelectedFilters } from './ui/Other/Filter/Filter'
-import type { IconOption, IconSelectFieldProps } from './ui/Base/IconPicker/IconPicker'
+import type { IconOption, IconSelectFieldProps, IconsSelectProps } from './ui/Base/IconPicker/IconPicker'
 
 
 // Импорт провайдеров
@@ -104,6 +105,7 @@ import './ui/index.scss';
 
 // Экспорты компонентов
 export {
+  IconsSelect,
   IconSelectField,
   MultiFilter,
   Tooltip,
@@ -175,6 +177,7 @@ export {
 
 // Экспорты хуков и утилит
 export {
+  getIcons,
   usePopup,
   useColor,
   useScrollLock,
@@ -198,6 +201,7 @@ export {
 
 // Экспорты типов
 export type {
+  IconsSelectProps,
   IconOption,
   IconSelectFieldProps,
   FilterGroup, 
