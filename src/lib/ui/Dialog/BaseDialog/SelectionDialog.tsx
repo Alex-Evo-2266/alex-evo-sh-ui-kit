@@ -15,6 +15,8 @@ interface SelectionItem<T> {
   
   /** Отключить элемент */
   disabled?: boolean;
+
+  icon?: React.ReactNode
 }
 
 interface SelectionDialogProps<T> {
@@ -123,6 +125,7 @@ export function SelectionDialog<T>({
             <ListItem
               hovered={!item.disabled}
               header={item.title}
+              icon={item.icon}
               description={item.description}
               onClick={!item.disabled ? () => handleSelectionChange(item.data) : undefined}
               control={

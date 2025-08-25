@@ -60,6 +60,7 @@ import { RunningLine } from './ui/Text/RunningLine/RunningLine';
 import { Typography } from './ui/Text/Text/Typography';
 import { SelectField } from './ui/input/SelectField/Select';
 import { MultiFilter } from './ui/Other/Filter/Filter'
+import {IconSelectField} from './ui/Base/IconPicker/IconPicker'
 
 // Импорты хуков и утилит
 import { useColor } from './hooks/color.hook';
@@ -90,6 +91,7 @@ import type { IContainerData, IOptionModalWindowCord } from './helpers/getContai
 import type { IOption } from './ui/input/props';
 import type { ButtonSearch } from './ui/Other/Search/Search'
 import type { FilterGroup, SelectedFilters } from './ui/Other/Filter/Filter'
+import type { IconOption, IconSelectFieldProps } from './ui/Base/IconPicker/IconPicker'
 
 
 // Импорт провайдеров
@@ -102,6 +104,7 @@ import './ui/index.scss';
 
 // Экспорты компонентов
 export {
+  IconSelectField,
   MultiFilter,
   Tooltip,
   BaseActionCard,
@@ -195,6 +198,8 @@ export {
 
 // Экспорты типов
 export type {
+  IconOption,
+  IconSelectFieldProps,
   FilterGroup, 
   SelectedFilters,
   ButtonSearch,
