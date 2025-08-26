@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 import { initColor, useColor } from "../../hooks/color.hook";
 import { BaseColor, ChangeColor, ColorState, NightColor } from "../../model/color";
 
-interface IColorContext{
+export interface IColorContext{
     colors: ColorState,
     setColor: (newColor: ChangeColor)=>void,
     nightMode: boolean,
