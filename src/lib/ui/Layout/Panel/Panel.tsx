@@ -33,6 +33,9 @@ interface PanelProps {
      * @default 12
      */
     borderRadius?: number;
+
+    onClick:(e:React.MouseEvent<HTMLDivElement>)=>void;
+    onContextMenu:(e:React.MouseEvent<HTMLDivElement>)=>void;
 }
 
 export const Panel: React.FC<PanelProps> = ({
@@ -41,7 +44,9 @@ export const Panel: React.FC<PanelProps> = ({
     style, 
     elevation = 1,
     padded = true,
-    borderRadius = 12
+    borderRadius = 12,
+    onClick,
+    onContextMenu
 }) => {
     const elevationClass = `elevation-${Math.min(24, Math.max(0, elevation))}`;
     
@@ -51,6 +56,8 @@ export const Panel: React.FC<PanelProps> = ({
                 borderRadius: `${borderRadius}px`,
                 ...style
             }}
+            onClick={onClick}
+            onContextMenu={onContextMenu}
             className={`alex-evo-sh-ui-kit-panel ${elevationClass} ${padded ? 'padded' : ''} ${className}`}
         >
             {children}
