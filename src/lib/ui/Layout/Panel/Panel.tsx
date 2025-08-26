@@ -34,8 +34,8 @@ interface PanelProps {
      */
     borderRadius?: number;
 
-    onClick:(e:React.MouseEvent<HTMLDivElement>)=>void;
-    onContextMenu:(e:React.MouseEvent<HTMLDivElement>)=>void;
+    onClick?:(e:React.MouseEvent<HTMLDivElement>)=>void;
+    onContextMenu?:(e:React.MouseEvent<HTMLDivElement>)=>void;
 }
 
 export const Panel: React.FC<PanelProps> = ({
