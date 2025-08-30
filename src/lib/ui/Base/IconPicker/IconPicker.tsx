@@ -12,7 +12,7 @@ import {
     MinusUserIcon, XUserIcon, OkUserIcon, Group, Room, Copy,
     ArrowRight, TempHighIcon, Sensor, Curtains,FilterIcon, Play,
     ArrowUp, LampIcon, SwitchIcon, ConditionerIcon, ConditionerIcon2, Sensor2, Sensor3, SensorWarning,
-    ToolsIcon
+    ToolsIcon, Dashboard
 } from "../../../../lib/ui/Icons"
 
 export interface IconOption {
@@ -64,6 +64,7 @@ export const IconSelectField: React.FC<IconSelectFieldProps> = ({ icons, value, 
 
 
 const icons = [
+    Dashboard,
     Copy,
     LogoutIcon,
     Room,
