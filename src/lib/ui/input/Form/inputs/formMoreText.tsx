@@ -27,6 +27,6 @@ export const MoreTextField = (props:MoreTextFieldProps) => {
     },[errors, props.name, props.errorText])
 
     return(
-        <MT {...{...props, onChange:change, value:getValue(), errorText:getError()}}/>
+        <MT {...{...props, onChange:change, value:getValue(), errorText:getError(), error: errors && Boolean(errors[props.name])}}/>
     )
 }

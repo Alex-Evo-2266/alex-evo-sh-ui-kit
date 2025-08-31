@@ -10,7 +10,7 @@ export interface ISelectFieldPropsForm extends Omit<ISelectFieldProps, "value">{
 
 export const SelectField = (props:ISelectFieldPropsForm) => {
 
-    const {value, changeField} = useContext(formContext)
+    const {value, changeField, errors} = useContext(formContext)
 
     const change = useCallback((value: any) => {
         changeField && changeField(props.name, value)
@@ -20,7 +20,15 @@ export const SelectField = (props:ISelectFieldPropsForm) => {
         return value[props.name]
     },[value, props.name])
 
+    const getError = useCallback(() => {
+        if (errors && Object.keys(errors).includes(props.name))
+        {
+            return errors[props.name]
+        }
+    },[errors, props.name])
+
     return(
-        <SF {...{...props, value: getValue(), onChange:change}}/>
+        
+        <SF {...{...props, value: getValue(), onChange:change, errorText: getError(), error: errors && Boolean(errors[props.name])}}/>
     )
 }

@@ -27,6 +27,6 @@ export const NumberField = (props:TextFieldProps) => {
     },[errors, props.name, props.errorText])
 
     return(
-        <NF {...{...props, value:getValue(), onChange:change, errorText:getError()}}/>
+        <NF {...{...props, value:getValue(), onChange:change, errorText:getError(), error: errors && Boolean(errors[props.name])}}/>
     )
 }

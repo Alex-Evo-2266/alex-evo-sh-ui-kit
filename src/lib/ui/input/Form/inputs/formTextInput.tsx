@@ -32,6 +32,7 @@ export const TextField = (props:TextFieldPropsForm) => {
 
     return(
         <TF {...{...props}}
+        error={errors && Boolean(errors[props.name])}
         onChange={change}
         value={getValue()}
         errorText={getError()}
