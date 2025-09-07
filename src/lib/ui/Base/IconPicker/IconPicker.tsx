@@ -14,6 +14,7 @@ import {
     ArrowUp, LampIcon, SwitchIcon, ConditionerIcon, ConditionerIcon2, Sensor2, Sensor3, SensorWarning,
     ToolsIcon, Dashboard
 } from "../../../../lib/ui/Icons"
+import { ModalPortal } from "../../../portal/dialog";
 
 export interface IconOption {
   id: string;
@@ -27,9 +28,10 @@ export interface IconSelectFieldProps {
   onChange?: (id: string) => void;
   disabled?: boolean
   placeholder?: string
+  container?: HTMLElement | null
 }
 
-export const IconSelectField: React.FC<IconSelectFieldProps> = ({ icons, value, onChange, disabled, placeholder }) => {
+export const IconSelectField: React.FC<IconSelectFieldProps> = ({ icons, value, onChange, disabled, placeholder, container = document.getElementById("root") }) => {
   const [open, setOpen] = useState(false);
   const selectedIcon = icons.find((i) => i.id === value);
 
@@ -50,12 +52,15 @@ export const IconSelectField: React.FC<IconSelectFieldProps> = ({ icons, value, 
         placeholder={placeholder}
       />
         {open && (
-          <SelectionDialog 
-            header="Icons" 
-            onHide={()=>setOpen(false)} 
-            onSuccess={handleSelect} 
-            items={icons.map(i=>({icon: i.component, title: i.name, data: i.id}))}
-          />
+          <ModalPortal container={container}>
+            <SelectionDialog 
+              header="Icons" 
+              onHide={()=>setOpen(false)} 
+              onSuccess={handleSelect} 
+              items={icons.map(i=>({icon: i.component, title: i.name, data: i.id}))}
+            />
+          </ModalPortal>
+          
       )}
     </>
   );
