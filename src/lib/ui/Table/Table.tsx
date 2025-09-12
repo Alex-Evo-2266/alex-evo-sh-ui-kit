@@ -45,7 +45,7 @@ export const Table = ({data, columns, onDelete, onContextMenu, onEdit, actions, 
                     <tr>
                         {
                             cols.map((item, index)=>(
-                                <th style={{height:getMaxHeight()?.[index]}} className="min-width" key={index}>{item.title}</th>
+                                <th className="min-width" key={index}>{item.title}</th>
                             ))
                         }
                         {
@@ -59,7 +59,7 @@ export const Table = ({data, columns, onDelete, onContextMenu, onEdit, actions, 
                 <tbody>
                     {
                         data.map((item, index)=>(
-                            <TableRow maxH={getMaxHeight()} onClickRow={onClickRow} actions={actions} index={index} columns={cols} item={item} key={index} onDelete={onDelete} onContextMenu={onContextMenu} onEdit={onEdit}/>
+                            <TableRow onClickRow={onClickRow} actions={actions} index={index} columns={cols} item={item} key={index} onDelete={onDelete} onContextMenu={onContextMenu} onEdit={onEdit}/>
                         ))
                     }
                 </tbody>
