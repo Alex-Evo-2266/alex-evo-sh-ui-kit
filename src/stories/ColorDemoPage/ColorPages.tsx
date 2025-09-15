@@ -1,4 +1,4 @@
-import { ColorField, ContentBox, getTextColor, Switch, useColor } from "../../lib"
+import { ColorField, ContentBox, getTextColor, Switch } from "../../lib"
 import { ColorBlock } from "./ColorBlock"
 import { DefaultColor } from "../../lib/consts/color"
 import { useThemes } from "../../lib/hooks/themeColors.hook"

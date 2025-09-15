@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { useColor } from '../../lib';
+import { useThemes } from '../../lib';
 import { DefaultColor } from '../../lib/consts/color';
 
 const ColorPalette = () => {
-  const { colors, nightMode, setNightMode } = useColor();
+  const { colors, activeTheme, setActiveTheme } = useThemes();
 
   // Функция для рендеринга цветовых карточек
   const renderColorCards = () => {
@@ -46,8 +46,8 @@ const ColorPalette = () => {
         <label>
           <input
             type="checkbox"
-            checked={nightMode}
-            onChange={(e) => setNightMode(e.target.checked)}
+            checked={activeTheme === "dark"}
+            onChange={(e) => setActiveTheme(!e.target.checked?"light":"dark")}
             style={{ marginRight: '8px' }}
           />
           Night Mode
