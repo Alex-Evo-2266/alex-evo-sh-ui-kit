@@ -21,7 +21,8 @@ const meta = {
     },
     {
         field: "test2",
-        title: "test2"
+        title: "test2",
+        backgroundColor: "red"
     },
     {
         field: "test3",
@@ -36,14 +37,18 @@ const meta = {
     }],
     data:[
         {
-            test1: 54,
+            test1: {
+              content: 54,
+              backgroundColor: "blue",
+              color: "#fff"
+            },
             test2: "dfgh",
             test3: "67"
         },
         {
             test1: 54,
             test2: "tere",
-            test3: "67"
+            test3: "67",
         },
         {
             test1: 54,
@@ -142,5 +147,44 @@ export const ActionSmall: Story = {
         onDelete: (data, index)=>console.log(data, index),
         onEdit: (data, index)=>console.log(data, index),
         adaptive: true
+    },
+  };
+
+
+
+  export const All: Story = {
+    args: {
+        screenSize: ScreenSize.MOBILE,
+        onContextMenu:(e, data, index)=>console.log(e, data, index),
+        onDelete: (data, index)=>console.log(data, index),
+        onEdit: (data, index)=>console.log(data, index),
+        adaptive: true,
+        data: [
+        {
+            test1: {
+              content: 54,
+              backgroundColor: "blue",
+              color: "#fff"
+            },
+            test2: "dfgh",
+            test3: "67"
+        },
+        {
+            test1: 54,
+            test2: "tere",
+            test3: "67"
+        },
+        {
+          __all__:{
+            content: <div>test row</div>,
+            backgroundColor: "#0f0"
+          }
+        },
+        {
+            test1: 54,
+            test2: "tere",
+            test3: ["tere", "dsvfg"]
+        }
+    ]
     },
   };

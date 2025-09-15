@@ -1,56 +1,33 @@
-import { Column, ICell, IDataItem, celData } from "../../model/table"
+import { getCells } from "../../helpers/table"
+import { Column, IDataItem, ICell, celData } from "../../model/table"
 
-interface CellProps{
-    column: Column
-    data: IDataItem
-    color?: string
-    backgroundColor?: string
-    H?: number
+interface CellProps {
+  column: Column
+  data: IDataItem
+  color?: string
+  backgroundColor?: string
+  H?: number
 }
 
-export const TableCell = ({data, column, color, backgroundColor, H}:CellProps) => {
-    
-    function getValue(colummnName: string, data: IDataItem): celData | celData[] | undefined{
-        for(let key in data)
-        {
-            if(colummnName === key)
-            {
-                return data[key]
-            }
-        }
-    }
+export const TableCell = ({ data, column, color, backgroundColor, H }: CellProps) => {
+  const value = data[column.field] as celData | celData[] | undefined
 
-    function getCell(data: celData):ICell{
-        if(typeof(data) === "number" || typeof(data) === "string"){
-            let cell: ICell = {content: data}
-            return cell
-        }
-        return data
-    }
+  const cells: ICell[] = getCells(value)
 
-    function getCellArr(data: celData | celData[] | undefined):ICell[]{
-        if(!data)
-            return[]
-        if(Array.isArray(data))
-        {
-            return data.map(item=>getCell(item))
-        }
-        return [getCell(data)]
-    }
-
-    return(<td style={{backgroundColor: backgroundColor, height: H}}>
-    {
-        function(){
-            const dataCell = getCellArr(getValue(column.field, data))
-            if(column.template)
-                return column.template(dataCell, data)
-
-            return(dataCell.map((item, index)=>(
-                <p key={index} style={{color: item.color ?? color}} className={(item.onClick)?"no-click":""} onClick={item.onClick}>
-                    {item.content}
-                </p>
-            )))
-        }()
-    }
-    </td>)
+  return (
+    <td style={{ backgroundColor: (cells.length > 0 && cells[0].backgroundColor)?cells[0].backgroundColor:backgroundColor, height: H }}>
+      {column.template
+        ? column.template(cells, data)
+        : cells.map((item, idx) => (
+            <p
+              key={idx}
+              style={{ color: item.color ?? color }}
+              className={item.onClick ? "no-click" : ""}
+              onClick={item.onClick}
+            >
+              {item.content}
+            </p>
+          ))}
+    </td>
+  )
 }
