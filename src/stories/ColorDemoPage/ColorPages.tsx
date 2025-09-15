@@ -1,22 +1,23 @@
 import { ColorField, ContentBox, getTextColor, Switch, useColor } from "../../lib"
 import { ColorBlock } from "./ColorBlock"
 import { DefaultColor } from "../../lib/consts/color"
+import { useThemes } from "../../lib/hooks/themeColors.hook"
 
 export const ColorPage = () => {
 
-    const {setColor, lightColor, nightColor, nightMode, setNightMode} = useColor()    
+    const { colors, activeTheme, updateThemeColor, setActiveTheme } = useThemes()    
 
     const defaultColorArray: string[] = Object.values(DefaultColor)
 
 
     return(
         <div style={{zIndex: 5, background:"var(--Background-color)", color:"var(--On-background-color)"}}>
-            <Switch checked={nightMode} showLabel labelOff="light" labelOn="night" onChange={e=>setNightMode(e.target.checked)}/>
+            <Switch checked={activeTheme === "dark"} showLabel labelOff="light" labelOn="dark" onChange={e=>{setActiveTheme(!e.target.checked?"light":"dark")}}/>
         <div>
             <ContentBox label="Primary colors" style={{padding:"10px"}}>
-                <ColorField placeholder="test" defaultColor="#0000" userColors={defaultColorArray} border container={document.body} value={lightColor.Primary_color} onChange={c=>setColor({Primary_color:c})}/>
-                <ColorField defaultColor="red" border container={document.body} value={lightColor.Secondary_color} onChange={c=>setColor({Secondary_color:c})}/>
-                <ColorField defaultColor="#346632" border container={document.body} value={lightColor.Tertiary_color} onChange={c=>setColor({Tertiary_color:c})}/>
+                <ColorField placeholder="test" defaultColor="#0000" userColors={defaultColorArray} border container={document.body} value={colors.Primary_color} onChange={c=>updateThemeColor("light", "Primary_color", c)}/>
+                <ColorField defaultColor="red" border container={document.body} value={colors.Secondary_color} onChange={c=>updateThemeColor("light", "Secondary_color", c)}/>
+                <ColorField defaultColor="#346632" border container={document.body} value={colors.Tertiary_color} onChange={c=>updateThemeColor("light", "Tertiary_color", c)}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -35,8 +36,7 @@ export const ColorPage = () => {
         </div>
         <div>
             <ContentBox label="Surface colors" style={{padding:"10px"}}>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Surface_container_color} onChange={c=>setColor({Surface_container_color:c})}/>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={nightColor.Surface_container_color_night} onChange={c=>setColor({Surface_container_color_night:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Surface_container_color} onChange={c=>updateThemeColor("light", "Surface_container_color", c)}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -49,9 +49,8 @@ export const ColorPage = () => {
         </div>
         <div>
             <ContentBox label="Other colors" style={{padding:"10px"}}>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Background_color} onChange={(c)=>setColor({Background_color:c})}/>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={nightColor.Background_color_night} onChange={c=>setColor({Background_color_night:c})}/>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Error_color} onChange={(c)=>setColor({Error_color:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Background_color} onChange={(c)=>updateThemeColor("light", "Background_color", c)}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Error_color} onChange={(c)=>updateThemeColor("light", "Error_color", c)}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -61,14 +60,14 @@ export const ColorPage = () => {
         </div>
         <div>
             <ContentBox label="Other colors" style={{padding:"10px"}}>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Outline_color} onChange={(c)=>setColor({Outline_color:c})}/>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={lightColor.Shadow_color} onChange={(c)=>setColor({Shadow_color:c})}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Outline_color} onChange={(c)=>updateThemeColor("light", "Outline_color", c)}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Shadow_color} onChange={(c)=>updateThemeColor("light", "Shadow_color", c)}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
-            <ColorBlock baseColorTitle="Outline-color" baseColor={'var(--Outline-color)'} textColor={getTextColor(lightColor.Outline_color)}/>
-            <ColorBlock baseColorTitle="Outline-variant-color" baseColor={'var(--Outline-variant-color)'} textColor={getTextColor(lightColor.Outline_color)}/>
-            <ColorBlock baseColorTitle="Shadow-color" baseColor={'var(--Shadow-color)'} textColor={getTextColor(lightColor.Shadow_color)}/>
+            <ColorBlock baseColorTitle="Outline-color" baseColor={'var(--Outline-color)'} textColor={getTextColor(colors.Outline_color)}/>
+            <ColorBlock baseColorTitle="Outline-variant-color" baseColor={'var(--Outline-variant-color)'} textColor={getTextColor(colors.Outline_color)}/>
+            <ColorBlock baseColorTitle="Shadow-color" baseColor={'var(--Shadow-color)'} textColor={getTextColor(colors.Shadow_color)}/>
         </div>
         </div>
     )
