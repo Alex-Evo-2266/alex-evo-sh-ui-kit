@@ -4,8 +4,6 @@ import { NavButton } from './NavButton'
 import { Divider } from "../../Other/Divider/Divider"
 import { NavigationBtn, NavigationButton } from '../../../model/navigation'
 import { MenuIcon, MoreHorizontal } from '../../Icons'
-import { useContext } from 'react'
-import { ColorContext } from '../../Provider/ColorProvider'
 
 export interface NavigationRailProps{
 	firstBtn?: NavigationBtn
