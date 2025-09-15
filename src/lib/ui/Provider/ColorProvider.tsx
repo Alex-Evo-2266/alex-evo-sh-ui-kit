@@ -1,11 +1,11 @@
 import React, { createContext } from "react";
 import { initColor } from "../../hooks/color.hook";
-import { BaseColor, ColorState } from "../../model/color";
-import { useThemes } from "../../hooks/themeColors.hook";
+import { ColorState } from "../../model/color";
+import { ThemeBase, useThemes } from "../../hooks/themeColors.hook";
 
 export interface IColorContext{
     colors: ColorState;
-    themes: Record<string, BaseColor>;
+    themes: Record<string, ThemeBase>;
     activeTheme: string;
     setActiveTheme: (themeName: string) => void;
     updateThemeColor: (themeName: string, key: string, value: string) => void;

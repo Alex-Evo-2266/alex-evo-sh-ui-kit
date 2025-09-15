@@ -48,9 +48,9 @@ const defaultColors: ColorState = {
 };
 
 // ===== Зависимости групп цветов =====
-const colorGroups: Record<string, (base: string) => Record<string, string>> = {
-  Primary_color: (base) => {
-    const container = getContainerColor(base)
+const colorGroups: Record<string, (base: string, reverse: boolean) => Record<string, string>> = {
+  Primary_color: (base, reverse) => {
+    const container = getContainerColor(base, reverse)
     return {
       Primary_color: base,
       On_primary_color: getTextColor(base),
@@ -58,8 +58,8 @@ const colorGroups: Record<string, (base: string) => Record<string, string>> = {
       On_primary_container_color: getTextColor(container),
     }
   },
-  Secondary_color: (base) => {
-    const container = getContainerColor(base)
+  Secondary_color: (base, reverse) => {
+    const container = getContainerColor(base, reverse)
     return {
       Secondary_color: base,
       On_secondary_color: getTextColor(base),
@@ -67,8 +67,8 @@ const colorGroups: Record<string, (base: string) => Record<string, string>> = {
       On_secondary_container_color: getTextColor(container),
     }
   },
-  Tertiary_color: (base) => {
-    const container = getContainerColor(base)
+  Tertiary_color: (base, reverse) => {
+    const container = getContainerColor(base, reverse)
     return {
       Tertiary_color: base,
       On_tertiary_color: getTextColor(base),
@@ -76,12 +76,12 @@ const colorGroups: Record<string, (base: string) => Record<string, string>> = {
       On_tertiary_container_color: getTextColor(container),
     }
   },
-  Background_color: (base) => ({
+  Background_color: (base, _) => ({
     Background_color: base,
     On_background_color: getTextColor(base),
   }),
-  Error_color: (base) => {
-    const container = getContainerColor(base)
+  Error_color: (base, reverse) => {
+    const container = getContainerColor(base, reverse)
     return {
       Error_color: base,
       On_error_color: getTextColor(base),
@@ -89,12 +89,12 @@ const colorGroups: Record<string, (base: string) => Record<string, string>> = {
       On_error_container_color: getTextColor(container),
     }
   },
-  Surface_container_color: (base) => {
-    const low = pSBC(-0.4, base) ?? base
-    const lowest = pSBC(-0.8, base) ?? base
-    const high = pSBC(0.4, base) ?? base
-    const highest = pSBC(0.8, base) ?? base
-    const hover = pSBC(-0.5, base) ?? base
+  Surface_container_color: (base, reverse) => {
+    const low = pSBC(reverse?-0.2:0.2, base) ?? base
+    const lowest = pSBC(reverse?-0.4:0.4, base) ?? base
+    const high = pSBC(reverse?0.2:-0.2, base) ?? base
+    const highest = pSBC(reverse?0.4:-0.4, base) ?? base
+    const hover = pSBC(reverse?-0.5:0.5, base) ?? base
 
     return {
       Surface_container_color: base,
@@ -105,18 +105,19 @@ const colorGroups: Record<string, (base: string) => Record<string, string>> = {
       Surface_container_highest_color: highest,
       Surface_container_hover_color: hover,
       On_surface_variant_color:
-        pSBC(-0.1, getTextColor(base)) ?? getTextColor(base),
+        pSBC(reverse?-0.6:0.4, getTextColor(base)) ?? getTextColor(base),
     }
   },
-  Outline_color: (base) => ({
+  Outline_color: (base, reverse) => ({
     Outline_color: base,
-    Outline_variant_color: pSBC(-0.1, base) ?? base,
+    Outline_variant_color: pSBC(reverse?0.1:-0.1, base) ?? base,
   }),
 }
 
 // ===== Хук =====
-export function useColors(initialColors: BaseColor) {
+export function useColors(initialColors: BaseColor, reverse: boolean = false) {
 const [colors, setColors] = useState<ColorState>({...defaultColors, ...initialColors})
+const [rev, setRev] = useState<boolean>(reverse)
 
   const setColor = useCallback(
     (key: string, value: string) => {
@@ -124,7 +125,7 @@ const [colors, setColors] = useState<ColorState>({...defaultColors, ...initialCo
       if (!updater) return
 
       // Получаем всю группу
-      const newGroup = updater(value)
+      const newGroup = updater(value, rev)
 
       // Обновляем state
       setColors((prev) => ({ ...prev, ...newGroup }))
@@ -134,11 +135,14 @@ const [colors, setColors] = useState<ColorState>({...defaultColors, ...initialCo
         document.body.style.setProperty(`--${k.replace(/_/g, "-")}`, v)
       })
     },
-    []
+    [rev]
   )
+
+  const setReverse = (reverse: boolean) => setRev(reverse)
 
   return {
     colors,
     setColor,
+    setReverse
   }
 }

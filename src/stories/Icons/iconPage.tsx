@@ -1,3 +1,4 @@
+import { Switch, useThemes } from "../../lib"
 import {
     GearIcon, X, Trash, Pen, 
     Palette, Home, MoreHorizontal, 
@@ -62,8 +63,12 @@ const icons = [
 
 export const IconDemoPage:React.FC = () => {
 
+    const {setActiveTheme, activeTheme, colors} = useThemes()
+
     return(
-        <div>
+        <div style={{background: colors.Surface_container_color}}>
+            <Switch checked={activeTheme === "dark"} showLabel labelOff="light" labelOn="dark" onChange={e=>{setActiveTheme(!e.target.checked?"light":"dark")}}/>
+            
             {
                 icons.map((Item, index)=>(<Item size="50px" key={index}/>))
             }

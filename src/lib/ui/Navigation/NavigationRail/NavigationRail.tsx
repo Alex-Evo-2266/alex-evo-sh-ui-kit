@@ -4,6 +4,8 @@ import { NavButton } from './NavButton'
 import { Divider } from "../../Other/Divider/Divider"
 import { NavigationBtn, NavigationButton } from '../../../model/navigation'
 import { MenuIcon, MoreHorizontal } from '../../Icons'
+import { useContext } from 'react'
+import { ColorContext } from '../../Provider/ColorProvider'
 
 export interface NavigationRailProps{
 	firstBtn?: NavigationBtn
@@ -20,7 +22,7 @@ export const NavigationRail = ({onToggleMenu, firstBtn, mainBtn, backBtn}:Naviga
                 <div className='block-content'>
                     {
                         (onToggleMenu)?
-                        <NavButton icon={<MenuIcon/>} onClick={onToggleMenu}/>:
+                        <NavButton icon={<MenuIcon className='icon-menu'/>} onClick={onToggleMenu}/>:
                         null
                     }
                     {
