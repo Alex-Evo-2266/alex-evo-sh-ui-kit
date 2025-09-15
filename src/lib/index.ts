@@ -64,6 +64,8 @@ import {IconSelectField, IconsSelect} from './ui/Base/IconPicker/IconPicker'
 
 // Импорты хуков и утилит
 import { useColor } from './hooks/color.hook';
+import { useThemes } from './hooks/themeColors.hook';
+import { useColors } from './hooks/colorv2.hook';
 import { useScrollLock } from './hooks/lockScroll.hook';
 import { useScreenSize } from './hooks/screenSize.hook';
 import { getContainerData, getModalWindowCord } from './helpers/getContainerPozAndSize';
@@ -178,6 +180,8 @@ export {
 
 // Экспорты хуков и утилит
 export {
+  useThemes,
+  useColors,
   getIcons,
   usePopup,
   useColor,
