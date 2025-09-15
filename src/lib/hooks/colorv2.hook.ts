@@ -90,10 +90,10 @@ const colorGroups: Record<string, (base: string) => Record<string, string>> = {
     }
   },
   Surface_container_color: (base) => {
-    const low = pSBC(-0.1, base) ?? base
-    const lowest = pSBC(-0.2, base) ?? base
-    const high = pSBC(0.1, base) ?? base
-    const highest = pSBC(0.2, base) ?? base
+    const low = pSBC(-0.4, base) ?? base
+    const lowest = pSBC(-0.8, base) ?? base
+    const high = pSBC(0.4, base) ?? base
+    const highest = pSBC(0.8, base) ?? base
     const hover = pSBC(-0.5, base) ?? base
 
     return {

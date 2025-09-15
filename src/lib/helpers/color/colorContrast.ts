@@ -1,3 +1,5 @@
+import { HEXtoHSL, HSLtoHEX } from "./colorConvert";
+
 export const pSBC=(p:number,c0:string,c1:string | boolean = "",l?:boolean)=>{
 	let r,g,b,P,f,t,h,m=Math.round,a=typeof(c1)=="string";
 	if(typeof(p)!="number"||p<-1||p>1||typeof(c0)!="string"||(c0[0]!='r'&&c0[0]!='#')||(c1&&!a))return null;
@@ -32,3 +34,10 @@ pSBC.pSBCr=(inputd:string)=>{
 		else x.r=intd>>16,x.g=intd>>8&255,x.b=intd&255,x.a=-1
 	}return x
 };
+
+export function shadeHSL(base: string, lightnessDelta: number) {
+  const data = HEXtoHSL(base)
+	if(!data)
+		return base
+  return HSLtoHEX(data.h as string, data.s as string, String(Math.min(100, Math.max(0, data.l + lightnessDelta))))
+}

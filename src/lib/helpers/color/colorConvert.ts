@@ -129,3 +129,25 @@ export const getGlassColor = (hex?:string)=>{
       return "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0))"
   return `linear-gradient(135deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1), rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0))`
 }
+
+export function HEXtoHSL(hex:string){
+  const rgb = HEXtoRGB(hex)
+  if(!rgb)
+    return null
+  const hsv = RGBtoHSV(rgb)
+  return HSVtoHSL(hsv)
+}
+
+export function HSLtoHEX(h:string | {h: string, s:string, l:string}, s?:string, l?:string):string | null{
+    let hh = h
+    let ss = s
+    let ll = l
+  if (arguments.length === 1 && typeof h === "object" && h !== null && "h" in h && "s" in h && "l" in h) {
+      hh = h.h
+      ss = h.s
+      ll = h.l
+    }
+  const hsv = HSLtoHSV(hh, ss, ll)
+  const rgb = HSVtoRGB(hsv)
+  return RGBtoHEX(rgb)
+}
