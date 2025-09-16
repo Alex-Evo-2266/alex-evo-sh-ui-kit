@@ -20,9 +20,9 @@ export const ColorProviderDemo2 = () => {
             <Switch checked={activeTheme === "dark"} showLabel labelOff="light" labelOn="dark" onChange={e=>{setActiveTheme(!e.target.checked?"light":"dark")}}/>
         <div>
             <ContentBox label="Primary colors" style={{padding:"10px"}}>
-                <ColorField placeholder="test" defaultColor="#0000" userColors={defaultColorArray} border container={document.body} value={colors.Primary_color} onChange={c=>updateThemeColor("light", "Primary_color", c)}/>
-                <ColorField defaultColor="red" border container={document.body} value={colors.Secondary_color} onChange={c=>updateThemeColor("light", "Secondary_color", c)}/>
-                <ColorField defaultColor="#346632" border container={document.body} value={colors.Tertiary_color} onChange={c=>updateThemeColor("light", "Tertiary_color", c)}/>
+                <ColorField placeholder="test" defaultColor="#0000" userColors={defaultColorArray} border container={document.body} value={colors.Primary_color} onChange={c=>updateThemeColor(activeTheme, "Primary_color", c)}/>
+                <ColorField defaultColor="red" border container={document.body} value={colors.Secondary_color} onChange={c=>updateThemeColor(activeTheme, "Secondary_color", c)}/>
+                <ColorField defaultColor="#346632" border container={document.body} value={colors.Tertiary_color} onChange={c=>updateThemeColor(activeTheme, "Tertiary_color", c)}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -41,7 +41,7 @@ export const ColorProviderDemo2 = () => {
         </div>
         <div>
             <ContentBox label="Surface colors" style={{padding:"10px"}}>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Surface_container_color} onChange={c=>updateThemeColor("light", "Surface_container_color", c)}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Surface_container_color} onChange={c=>updateThemeColor(activeTheme, "Surface_container_color", c)}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -54,8 +54,8 @@ export const ColorProviderDemo2 = () => {
         </div>
         <div>
             <ContentBox label="Other colors" style={{padding:"10px"}}>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Background_color} onChange={(c)=>updateThemeColor("light", "Background_color", c)}/>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Error_color} onChange={(c)=>updateThemeColor("light", "Error_color", c)}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Background_color} onChange={(c)=>updateThemeColor(activeTheme, "Background_color", c)}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Error_color} onChange={(c)=>updateThemeColor(activeTheme, "Error_color", c)}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">
@@ -65,8 +65,8 @@ export const ColorProviderDemo2 = () => {
         </div>
         <div>
             <ContentBox label="Other colors" style={{padding:"10px"}}>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Outline_color} onChange={(c)=>updateThemeColor("light", "Outline_color", c)}/>
-                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Shadow_color} onChange={(c)=>updateThemeColor("light", "Shadow_color", c)}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Outline_color} onChange={(c)=>updateThemeColor(activeTheme, "Outline_color", c)}/>
+                <ColorField userColors={defaultColorArray} border container={document.body} value={colors.Shadow_color} onChange={(c)=>updateThemeColor(activeTheme, "Shadow_color", c)}/>
             </ContentBox>
         </div>
         <div className="demo-page-color-row">

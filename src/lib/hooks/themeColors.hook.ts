@@ -68,8 +68,8 @@ export function useThemes(initialTheme: string = "light") {
       setThemes((prev) => ({
         ...prev,
         [themeName]: {
-          ...prev[themeName],
-          [key]: value,
+          colors: {...prev[themeName].colors, [key]: value},
+          reverse: prev[themeName].reverse
         },
       }))
     },
