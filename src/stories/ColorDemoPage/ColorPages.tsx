@@ -1,13 +1,13 @@
 import { ColorField, ContentBox, getTextColor, Switch } from "../../lib"
 import { ColorBlock } from "./ColorBlock"
-import { DefaultColor } from "../../lib/consts/color"
+import { baseColors } from "../../lib/consts/color"
 import { useThemes } from "../../lib/hooks/themeColors.hook"
 
 export const ColorPage = () => {
 
     const { colors, activeTheme, updateThemeColor, setActiveTheme } = useThemes()    
 
-    const defaultColorArray: string[] = Object.values(DefaultColor)
+    const defaultColorArray: string[] = Object.values(baseColors)
 
 
     return(

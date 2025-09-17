@@ -4,16 +4,17 @@ import { pSBC } from "../helpers/color/colorContrast"
 import { BaseColor, ColorState } from "../model/color"
 
 // 🔹 Дефолтные цвета (фолбэк)
-const defaultColors: ColorState = {
+export const defaultColors: ColorState = {
   // BaseColor
-  Primary_color: "#6750A4",
-  Secondary_color: "#625B71",
-  Tertiary_color: "#7D5260",
-  Surface_container_color: "#E6E0E9",
-  Background_color: "#FFFBFE",
-  Error_color: "#B3261E",
-  Outline_color: "#79747E",
-  Shadow_color: "#000000",
+  Primary_color: "#6750A4",        // фиолетовый акцент
+  Secondary_color: "#8c5a9c",      // серо-фиолетовый
+  Tertiary_color: "#7D5260",       // розово-коричневый
+  Background_color: "#FFFBFE",     // почти белый
+  Surface_container_color: "#FFFBFE",
+  Error_color: "#B3261E",          // красный
+  Outline_color: "#79747E",        // серый
+  Shadow_color: "#000000",        // чёрный (для теней)
+
 
   // TextColor
   On_primary_color: "#FFFFFF",

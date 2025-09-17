@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
-import { initColor } from "../../hooks/color.hook";
 import { ColorState } from "../../model/color";
 import { ThemeBase, useThemes } from "../../hooks/themeColors.hook";
+import { defaultColors } from "../../hooks/colorv2.hook";
 
 export interface IColorContext{
     colors: ColorState;
@@ -17,7 +17,7 @@ export interface IColorContext{
 const foo = ()=>{}
 
 const initData: IColorContext = {
-    colors: initColor,
+    colors: defaultColors,
     themes: {},
     activeTheme: "",
     setActiveTheme: foo,

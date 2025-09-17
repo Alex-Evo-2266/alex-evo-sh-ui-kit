@@ -63,7 +63,6 @@ import { MultiFilter } from './ui/Other/Filter/Filter'
 import {IconSelectField, IconsSelect} from './ui/Base/IconPicker/IconPicker'
 
 // Импорты хуков и утилит
-import { useColor } from './hooks/color.hook';
 import { useThemes } from './hooks/themeColors.hook';
 import { useColors } from './hooks/colorv2.hook';
 import { useScrollLock } from './hooks/lockScroll.hook';
@@ -184,7 +183,6 @@ export {
   useColors,
   getIcons,
   usePopup,
-  useColor,
   useScrollLock,
   useScreenSize,
   getContainerData,

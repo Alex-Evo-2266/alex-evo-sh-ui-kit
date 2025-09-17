@@ -1,6 +1,4 @@
-import { pSBC } from "../helpers/color/colorContrast"
-import { getTextColor } from "../helpers/color/colorGenerator"
-import { BaseColor, IColorDepends, NightColor } from "../model/color"
+import { IColorDepends } from "../model/color"
 
 export const colorDepends:IColorDepends = {
     Primary_color: {
@@ -54,24 +52,25 @@ export const colorDepends:IColorDepends = {
     }
 }
 
-export const DefaultColor:BaseColor = {
-    Primary_color:"#6750A4",
-    Secondary_color:"#625B71",
-    Tertiary_color:"#7D5260",
-    Surface_container_color: "#F3EDF7",
-    Background_color: "#FFFFFF",
-    Error_color: "#B3261E",
-    Outline_color: "#79747E",
-    Shadow_color: "#000000"
+export const baseColors = {
+  Primary_color: "#6750A4",        // фиолетовый акцент
+  Secondary_color: "#8c5a9c",      // серо-фиолетовый
+  Tertiary_color: "#7D5260",       // розово-коричневый
+  Background_color: "#FFFBFE",     // почти белый
+  Surface_container_color: "#FFFBFE",
+  Error_color: "#B3261E",          // красный
+  Outline_color: "#79747E",        // серый
+  Shadow_color: "#000000"          // чёрный (для теней)
 }
 
-export const DefaultNightColor:NightColor = {
-    Primary_color_night:pSBC(0.9, getTextColor("#121212"), DefaultColor.Primary_color)??DefaultColor.Primary_color,
-    Secondary_color_night:"#625B71",
-    Tertiary_color_night:"#7D5260",
-    Surface_container_color_night: "#121212",
-    Background_color_night: "#101010",
-    Error_color_night: "#B3261E",
-    Outline_color_night: "#79747E",
-    Shadow_color_night: "#000000"
+
+export const baseColorsDark = {
+  Primary_color: "#D0BCFF",        // светло-фиолетовый
+  Secondary_color: "#dbb0e8",      // серо-фиолетовый
+  Tertiary_color: "#EFB8C8",       // розоватый
+  Background_color: "#1C1B1F",     // почти чёрный
+  Surface_container_color: "#1C1B1F",
+  Error_color: "#F2B8B5",          // светло-красный
+  Outline_color: "#938F99",        // светло-серый
+  Shadow_color: "#000000"
 }

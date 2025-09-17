@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react"
 import { useColors } from "./colorv2.hook"
 import { BaseColor } from "../model/color"
+import {baseColors, baseColorsDark} from '../consts/color'
 
 export interface ThemeBase{
   colors: BaseColor,
@@ -8,31 +9,13 @@ export interface ThemeBase{
 }
 
 // ===== Базовые темы =====
-const baseThemes: Record<string, ThemeBase> = {
+export const baseThemes: Record<string, ThemeBase> = {
   light: {
-    colors:{
-      Primary_color: "#6750A4",
-      Secondary_color: "#625B71",
-      Tertiary_color: "#7D5260",
-      Surface_container_color: "#F3EDF7",
-      Background_color: "#FEF7FF",
-      Error_color: "#B3261E",
-      Outline_color: "#79747E",
-      Shadow_color: "#000000",
-    }
+    colors:baseColors
   },
   dark: {
     reverse: true,
-    colors: {
-      Primary_color: "#D0BCFF",
-      Secondary_color: "#CCC2DC",
-      Tertiary_color: "#EFB8C8",
-      Surface_container_color: "#141218",
-      Background_color: "#1C1B1F",
-      Error_color: "#F2B8B5",
-      Outline_color: "#938F99",
-      Shadow_color: "#000000",
-    }
+    colors: baseColorsDark
   },
 }
 

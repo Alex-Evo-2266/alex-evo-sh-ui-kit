@@ -1,6 +1,6 @@
 import { ColorContext, ColorField, ColorProvider, ContentBox, getTextColor, Switch } from "../../lib"
 import { ColorBlock } from "./ColorBlock"
-import { DefaultColor } from "../../lib/consts/color"
+import { baseColors } from "../../lib/consts/color"
 import { useContext, useEffect } from "react"
 
 
@@ -13,7 +13,7 @@ export const ColorProviderDemo2 = () => {
         console.log(colors)
     },[colors])
 
-    const defaultColorArray: string[] = Object.values(DefaultColor)
+    const defaultColorArray: string[] = Object.values(baseColors)
 
     return(
         <div style={{zIndex: 5, background:"var(--Background-color)", color:"var(--On-background-color)"}}>

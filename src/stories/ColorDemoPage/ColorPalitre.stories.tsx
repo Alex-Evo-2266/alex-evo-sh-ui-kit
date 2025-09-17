@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { useThemes } from '../../lib';
-import { DefaultColor } from '../../lib/consts/color';
+import { baseColors } from '../../lib/consts/color';
 
 const ColorPalette = () => {
   const { colors, activeTheme, setActiveTheme } = useThemes();
@@ -56,7 +56,7 @@ const ColorPalette = () => {
       
       <h2>Default Colors</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {Object.entries(DefaultColor).map(([key, value]) => (
+        {Object.entries(baseColors).map(([key, value]) => (
           <div 
             key={key} 
             style={{
