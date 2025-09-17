@@ -16,14 +16,14 @@ const meta = {
         icon: <Plug/>,
         onClick: ()=>{},
         text: "serdth",
-        type: "button",
-        active: true
+        type: "button"
        },
        {
         icon: <Home/>,
         onClick: ()=>{},
         text: "home",
-        type: "button"
+        type: "button",
+        active: true
        },
        {
         icon: <Plug/>,
