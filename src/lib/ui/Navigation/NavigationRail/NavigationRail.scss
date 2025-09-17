@@ -41,6 +41,11 @@
 		&.active .navigation-item-icon{
 			background-color: var(--Secondary-container-color);
 			color: var(--On-secondary-container-color);
+			svg{
+				--icon-primary: var(--On-secondary-container-color);
+				--icon-secondary: var(--On-secondary-container-color);
+				--icon-tertiary: var(--On-secondary-container-color);
+			}
 		}
 	}
 	.icon-menu{
