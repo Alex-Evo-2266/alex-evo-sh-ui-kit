@@ -68,7 +68,7 @@ export const IconSelectField: React.FC<IconSelectFieldProps> = ({ icons, value, 
 
 
 
-const icons = [
+const iconComponents = {
     Dashboard,
     Copy,
     LogoutIcon,
@@ -115,17 +115,23 @@ const icons = [
     FilterIcon,
     Play,
     ToolsIcon
-]
+}
+    
+const icons = Object.entries(iconComponents).map(([id, Icon]) => ({
+  id,
+  name: id.charAt(0).toUpperCase() + id.slice(1),
+  component: <Icon />
+}));
 
 export interface IconsSelectProps extends Omit<IconSelectFieldProps, "icons"> {}
 
 export const IconsSelect:React.FC<IconsSelectProps> = (props) => {
 
   return(
-    <IconSelectField icons={icons.map(Text=>({component:<Text/>, name: Text.name, id:Text.name}))} {...{...props}}/>
+    <IconSelectField icons={icons} {...{...props}}/>
   )
 }
 
-export function getIcons(name: string){
-  return icons.find(Icon=>Icon.name === name)
+export function getIcons(id: string){
+  return icons.find(Icon=>Icon.id === id)?.component
 }

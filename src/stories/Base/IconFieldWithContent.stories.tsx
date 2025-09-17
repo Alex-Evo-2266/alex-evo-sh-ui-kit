@@ -16,7 +16,7 @@ export const Controlled: Story = {
   const [selected, setSelected] = useState<string>("home");
   return (
     <div style={{ padding: 20 }}>
-      <IconsSelect value={selected} onChange={setSelected} />
+      <IconsSelect value={selected} onChange={setSelected} container={document.body}/>
       <p>Выбранная иконка: {selected}</p>
     </div>
   );
