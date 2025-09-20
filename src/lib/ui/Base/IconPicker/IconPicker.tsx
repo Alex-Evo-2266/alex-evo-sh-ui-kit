@@ -15,7 +15,6 @@ import {
     ToolsIcon, Dashboard
 } from "../../../../lib/ui/Icons"
 import { ModalPortal } from "../../../portal/dialog";
-import { IconProps } from "../../Icons/Base/iconProps";
 
 export interface IconOption {
   id: string;
