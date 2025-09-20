@@ -15,6 +15,7 @@ import {
     ToolsIcon, Dashboard
 } from "../../../../lib/ui/Icons"
 import { ModalPortal } from "../../../portal/dialog";
+import { IconProps } from "../../Icons/Base/iconProps";
 
 export interface IconOption {
   id: string;
@@ -132,6 +133,8 @@ export const IconsSelect:React.FC<IconsSelectProps> = (props) => {
   )
 }
 
-export function getIcons(id: string){
-  return icons.find(Icon=>Icon.id === id)?.component
+export type IconName = keyof typeof iconComponents;
+
+export function getIcons(id: IconName){
+  return iconComponents[id] ?? undefined
 }

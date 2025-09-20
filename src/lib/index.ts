@@ -95,6 +95,7 @@ import type { ButtonSearch } from './ui/Other/Search/Search'
 import type { FilterGroup, SelectedFilters } from './ui/Other/Filter/Filter'
 import type { IconOption, IconSelectFieldProps, IconsSelectProps } from './ui/Base/IconPicker/IconPicker'
 import type { IColorContext } from './ui/Provider/ColorProvider'
+import type {IconName} from './ui/Base/IconPicker/IconPicker'
 
 
 // Импорт провайдеров
@@ -204,6 +205,7 @@ export {
 
 // Экспорты типов
 export type {
+  IconName,
   IColorContext,
   IconsSelectProps,
   IconOption,
