@@ -12,7 +12,7 @@ import {
     MinusUserIcon, XUserIcon, OkUserIcon, Group, Room, Copy,
     ArrowRight, TempHighIcon, Sensor, Curtains,FilterIcon, Play,
     ArrowUp, LampIcon, SwitchIcon, ConditionerIcon, ConditionerIcon2, Sensor2, Sensor3, SensorWarning,
-    ToolsIcon, Dashboard
+    ToolsIcon, Dashboard, Addons
 } from "../../../../lib/ui/Icons"
 import { ModalPortal } from "../../../portal/dialog";
 
@@ -114,7 +114,8 @@ const iconComponents = {
     Curtains,
     FilterIcon,
     Play,
-    ToolsIcon
+    ToolsIcon,
+    Addons
 }
     
 const icons = Object.entries(iconComponents).map(([id, Icon]) => ({
