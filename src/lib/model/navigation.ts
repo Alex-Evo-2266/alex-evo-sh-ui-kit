@@ -13,4 +13,12 @@ export interface NavigationLink{
 	type: "link"
 }
 
-export type NavigationButton = NavigationBtn | NavigationLink
+export interface NavigationSubmenu {
+	icon: React.ReactNode
+	text: string
+	type: "submenu"
+	children: NavigationButton[]
+	open?: boolean
+}
+
+export type NavigationButton = NavigationBtn | NavigationLink | NavigationSubmenu

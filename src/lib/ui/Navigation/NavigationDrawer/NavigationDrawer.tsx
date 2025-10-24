@@ -4,6 +4,7 @@ import { NavigationDrawerItem } from './NavigationDrawerItem'
 import { NavButton } from './NavButton'
 import { NavigationBtn, NavigationButton } from '../../../model/navigation'
 import { MoreHorizontal } from '../../Icons'
+import { NavigationSubmenu } from './NavSub'
 
 export interface NavigationDrawerProps{
 	visible?: boolean
@@ -16,6 +17,16 @@ export interface NavigationDrawerProps{
 }
 
 export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, backBtn, openAlways}:NavigationDrawerProps) => {
+
+	const renderButton = (item: NavigationButton, index: number) => {
+		if (item.type === "button")
+			return <NavButton key={index} active={item.active} onClick={item.onClick} title={item.text} icon={item.icon} />
+		if (item.type === "link")
+			return <NavigationDrawerItem key={index} onClick={() => onHide()} title={item.text} icon={item.icon} to={item.to} />
+		if (item.type === "submenu")
+			return <NavigationSubmenu key={index} item={item} onHide={onHide} />
+		return null
+	}
 
 	return(
 		<>
@@ -39,13 +50,7 @@ export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, 
 				<div className='block-header'></div>
 				<div className='block-content'>
 				{
-					mainBtn && mainBtn.map((item, index)=>(
-						(item.type === "button")?
-						<NavButton active={item.active} onClick={item.onClick} key={index} title={item.text} icon={item.icon}/>:
-						(item.type === "link")?
-						<NavigationDrawerItem onClick={()=>onHide()} key={index} title={item.text} icon={item.icon} to={item.to}/>:
-						null
-					))
+					mainBtn && mainBtn.map(renderButton)
 				}
 				</div>
 			</div>
@@ -56,13 +61,7 @@ export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, 
 				<div className='block-header'></div>
 				<div className='block-content'>
 				{
-					otherBtn && otherBtn.map((item, index)=>(
-						(item.type === "button")?
-						<NavButton active={item.active} onClick={item.onClick} key={index} title={item.text} icon={item.icon}/>:
-						(item.type === "link")?
-						<NavigationDrawerItem onClick={()=>onHide()} key={index} title={item.text} icon={item.icon} to={item.to}/>:
-						null
-					))
+					otherBtn && otherBtn.map(renderButton)
 				}
 				</div>
 			</div>

@@ -45,6 +45,16 @@ const meta = {
          onClick: ()=>{},
          text: "room",
          type: "button"
+        },{
+          icon: <Plug/>,
+          type: "submenu",
+          text: "test2",
+          children: [{
+            icon: <Home/>,
+            type: "button",
+            text: "subtest1",
+            onClick: ()=>{}
+          }]
         }],
     firstBtn: {
         icon: <Home/>,

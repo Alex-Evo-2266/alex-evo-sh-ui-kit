@@ -63,6 +63,25 @@
 	}
 }
 
+.navigation-submenu {
+	.submenu-content {
+		padding-left: 24px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+}
+
+.rotate-90{
+	transition: 0.2s;
+	transform: rotate(90deg);
+}
+.rotate-0{
+	transition: 0.2s;
+	transform: rotate(0deg);
+}
+
+
 @media (max-width: 720px) {
 	.navigation-drawer-container{
 		border-top-right-radius: 0;
