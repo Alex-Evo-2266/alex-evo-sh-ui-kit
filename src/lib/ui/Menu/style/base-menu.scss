@@ -1,0 +1,14 @@
+
+.base-menu{
+    position: absolute;
+    z-index: 2000;
+    min-width: 112px;
+    max-width: 280px;
+    box-shadow: 1px 1px 6px -2px var(--Shadow-color);
+    border-radius: 4px;
+    font-size: 14px;
+    &_color_surface-container-high{
+        background-color: var(--Surface-container-high-color);
+        color: var(--On-surface-color);
+    }
+}

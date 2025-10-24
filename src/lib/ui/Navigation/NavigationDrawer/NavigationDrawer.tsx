@@ -1,10 +1,10 @@
-import './NavigationDrawer.scss'
 import { Divider } from "../../Other/Divider/Divider"
 import { NavigationDrawerItem } from './NavigationDrawerItem'
 import { NavButton } from './NavButton'
 import { NavigationBtn, NavigationButton } from '../../../model/navigation'
 import { MoreHorizontal } from '../../Icons'
 import { NavigationSubmenu } from './NavSub'
+import './style/navigation-drawer.scss'
 
 export interface NavigationDrawerProps{
 	visible?: boolean
@@ -30,54 +30,54 @@ export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, 
 
 	return(
 		<>
-		<div className={`navigation-drawer-container ${(visible || openAlways)?"show":"hide"}`}>
+		<div className={`navigation-drawer ${(visible || openAlways)?"navigation-drawer_show":"navigation-drawer_hide"}`}>
 			{
 				(firstBtn)?
 				<>
-					<div className='navigation-block'>
-						<div className='block-header'></div>
-						<div className='block-content'>
+					<div className='navigation-drawer__block'>
+						<div className='navigation-drawer__block__header'></div>
+						<div className='navigation-drawer__block__content'>
 							<NavButton active={firstBtn.active} onClick={firstBtn.onClick} title={firstBtn.text} icon={firstBtn.icon ?? <MoreHorizontal/>}/>
 						</div>
 					</div>
-					<div className='divider-container'>
+					<div className='navigation-drawer__divider'>
 						<Divider/>
 					</div>
 				</>:
 				null
 			}
-			<div className='navigation-block'>
-				<div className='block-header'></div>
-				<div className='block-content'>
+			<div className='navigation-drawer__block'>
+				<div className='navigation-drawer__block__header'></div>
+				<div className='navigation-drawer__block__content'>
 				{
 					mainBtn && mainBtn.map(renderButton)
 				}
 				</div>
 			</div>
-			<div className='divider-container'>
+			<div className='navigation-drawer__divider'>
 				<Divider/>
 			</div>
-			<div className='navigation-block'>
-				<div className='block-header'></div>
-				<div className='block-content'>
+			<div className='navigation-drawer__block'>
+				<div className='navigation-drawer__block__header'></div>
+				<div className='navigation-drawer__block__content'>
 				{
 					otherBtn && otherBtn.map(renderButton)
 				}
 				</div>
 			</div>
-			<div className='divider-container'>
+			<div className='navigation-drawer__divider'>
 				<Divider/>
 			</div>
 			{
 				(backBtn)?
-				<div className='navigation-block'>
+				<div className='navigation-drawer__block'>
 					<NavButton active={backBtn.active} onClick={backBtn.onClick} title={backBtn.text} icon={backBtn.icon}/>
 				</div>:null
 			}
 		</div>
 		{
 			(visible && !openAlways)?
-			<div className="backplate" style={{zIndex:1100}} onClick={()=>onHide()}></div>:
+			<div className="navigation-drawer-backplate" style={{zIndex:1100}} onClick={()=>onHide()}></div>:
 			null
 		}
 		</>

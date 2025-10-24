@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Divider } from "../Other/Divider/Divider"
-import "./Menu.scss"
 import { MenuBlock } from "./MenuBlock"
 import { getModalWindowCord } from "../../helpers/getContainerPozAndSize"
 import { MenuStateProps } from "../../model/menu"
 import { ModalTemplate } from "../Dialog/TemplateDialog/ModalTemplate"
+import './style/base-menu.scss'
 
 const MENU_MARGIN_BOTTOM = 100
 
@@ -35,7 +35,11 @@ export const BaseMenu = (menu:MenuStateProps) => {
 
 	return(
 		<ModalTemplate onHide={hide}>
-		<div ref={container} className="menu-container" style={{...cord, opacity:(cord.top !== "0px")?"100%":"0%", width:menu.width, maxWidth:(menu.width)?"100%":undefined}}>
+		<div 
+			ref={container} 
+			className={`base-menu base-menu_color_surface-container-high`} 
+			style={{...cord, opacity:(cord.top !== "0px")?"100%":"0%", width:menu.width, maxWidth:(menu.width)?"100%":undefined}}
+		>
 		{
 			menu.blocks.map((item, index)=>(
 				<React.Fragment key={index}>

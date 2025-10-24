@@ -1,5 +1,6 @@
 import { IMenuSubItem } from "../../model/menu"
 import { Check } from "../Icons"
+import './style/menu-item.scss'
 
 interface MenuItemProps{
     item: IMenuSubItem
@@ -18,7 +19,7 @@ const SubMenuItem = ({item, isIcon, globalClick, autoHide, onHide}:MenuItemProps
     }
 
     return(
-        <div className={`menu-sub-item ${item.disabled?"disabled":""}`} onClick={click}>
+        <div className={`menu-item menu-item__info ${item.disabled?"menu-item_disabled":""}`} onClick={click}>
             {
                 (isIcon)?
                 <div className="menu-icon-container">

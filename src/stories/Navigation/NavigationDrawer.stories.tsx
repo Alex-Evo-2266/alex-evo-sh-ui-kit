@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Home, NavigationDrawer, Plug } from '../../lib/index';
+import { Home, NavigationDrawer, Plug, SizeProvider } from '../../lib/index';
 import { fn } from '@storybook/test';
 
 const meta = {
@@ -75,6 +75,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
+  render:(args)=>{
+    return(
+      <SizeProvider>
+        <NavigationDrawer {...{...args}}/>
+      </SizeProvider>
+    )
+  },
   args: {
   },
 };

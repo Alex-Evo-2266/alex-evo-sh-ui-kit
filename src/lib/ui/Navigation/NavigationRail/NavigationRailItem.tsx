@@ -7,11 +7,15 @@ interface NavigationRailItemProps{
 }
 
 export const NavigationRailItem = ({icon, title, to}:NavigationRailItemProps) => {
-	// ${(window.location.pathname === to)?"active":""}
 	return(
-		<NavLink to={to} className={`navigation-item`}>
-			<div className='navigation-item-icon'>{icon}</div>
-			<div className='navigation-item-text'>{title}</div>
+		<NavLink to={to} className={`navigation-item navigation-item-rail`}>
+			<div className='
+			navigation-item-rail__icon 
+			navigation-item-rail__icon_color_surface-variant 
+			navigation-item-rail__icon_hover-color_surface-container-highest 
+			navigation-item-rail__icon_color_active-secondary-container 
+			'>{icon}</div>
+			<div className='navigation-item-rail__text navigation-item-rail__text_color_surface-variant'>{title}</div>
 		</NavLink>
 	)
 }

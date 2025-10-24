@@ -3,11 +3,11 @@ import { Button } from "../../Base/Button/Button";
 import { X } from "../../Icons";
 import { useScrollLock } from "../../../hooks/lockScroll.hook";
 import { ModalDialogTemplate } from "./ModalDialogTemplate";
-import './FullScreenTemplateDialog.scss'
 import { Typography } from "../../Text/Text/Typography";
 import { ScreenSize } from "../../../model/sizeScreen";
 import { useContext } from "react";
 import { SizeContext } from "../../Provider/SizeProvider";
+import './style/full-screen-dialog.scss'
 
 export interface FullScreenDialogProps {
   /** Содержимое диалога */
@@ -83,7 +83,7 @@ export const FullScreenTemplateDialog = ({
         disableBackplate={disableBackplate}
         style={style}
         header={header}
-        className={`full-screen-dialog-base-format ${className}`}
+        className={`full-screen-dialog ${className}`}
         onHide={handleHide}
 		action={
 		  	<>
@@ -103,10 +103,14 @@ export const FullScreenTemplateDialog = ({
         height: `calc(100vh - ${marginBottom}px)`,
         paddingBottom: `${marginBottom}px`
       }} 
-      className={`full-screen-dialog-container ${className}`}
+      className={`
+        full-screen-dialog 
+        full-screen-dialog__container 
+        full-screen-dialog__container_color_surface-container 
+        ${className}`}
     >
-      <div className="full-screen-dialog-header">
-        <div className="dialog-icon-container">
+      <div className="full-screen-dialog__container__header">
+        <div className="full-screen-dialog__container__header__button">
           {onHide && (
             <IconButton 
               transparent 
@@ -116,18 +120,18 @@ export const FullScreenTemplateDialog = ({
             />
           )}
         </div>
-        <div className="header">{header}</div>
-        <div className="save-container">
+        <div className="full-screen-dialog__container__header__text">{header}</div>
+        <div className="full-screen-dialog__container__header__save">
           {onSave && (
-            <button onClick={handleSave}>
-				<Typography type='body' weight='bold'>
-					{saveText || "Сохранить"}
-				</Typography>
+            <button onClick={handleSave} className="full-screen-dialog__container__header__save__button">
+              <Typography type='body' weight='bold'>
+                {saveText || "Сохранить"}
+              </Typography>
             </button>
           )}
         </div>
       </div>
-      <div className="full-screen-dialog-content">
+      <div className="full-screen-dialog__content">
         {children}
       </div>
     </div>

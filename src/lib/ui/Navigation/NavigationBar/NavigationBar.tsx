@@ -1,4 +1,4 @@
-import './NavigationBar.scss'
+import './style/navigation-bar.scss'
 import { NavigationbarItem } from './NavigationBarItem'
 import { NavButton } from './NavButton'
 import { NavigationButton } from '../../../model/navigation'
@@ -10,8 +10,8 @@ export interface NavigationBarProps{
 export const NavigationBar = ({btns}:NavigationBarProps) => {
 
 	return(
-		<div className={`navigation-bar-container`}>
-			<div className='block-content'>
+		<div className={`navigation-bar`}>
+			<div className='navigation-bar__content'>
 				{
 					btns.map((item, index)=>(
 						(item.type === "button")?

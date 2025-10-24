@@ -15,16 +15,16 @@
     border-top-left-radius: 28px;
     animation: .2s linear showBottomSheets;
     box-shadow: var(--Shadow-base-v3);
-    .bottom-sheets-content{
+    &_hide{
+        animation: .2s linear hideBottomSheets;
+        transform: translate(-50%, 100%);
+    }
+    &__content{
         position: relative;
         height: calc(100% - 50px);
         overflow-y: scroll;
     }
-    &.hide{
-        animation: .2s linear hideBottomSheets;
-        transform: translate(-50%, 100%);
-    }
-    .bottom-sheets-handle{
+    &__handle{
         width: 100%;
         height: 50px;
         display: flex;
@@ -41,10 +41,6 @@
             background-color: var(--On-surface-variant-color);
         }
     }
-}
-.bottom-sheets-backplate{
-    background-color: var(--Scrim-color);
-    opacity: 40%;
 }
 
 @keyframes showBottomSheets{

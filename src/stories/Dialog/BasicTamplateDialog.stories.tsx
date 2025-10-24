@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { BasicTemplateDialog, Button } from '../../lib';
+import { BasicTemplateDialog, Button, SizeProvider } from '../../lib';
 
 const meta: Meta<typeof BasicTemplateDialog> = {
   title: 'Components/Dialogs/BasicTemplateDialog',
@@ -34,24 +34,31 @@ type Story = StoryObj<typeof BasicTemplateDialog>;
  * Стандартное использование (адаптивное)
  */
 export const Adaptive: Story = {
+  render: (args) => (
+    <SizeProvider>
+      <div style={{ width: '300px', height: '500px', position: 'relative' }}>
+        <BasicTemplateDialog {...args} />
+      </div>
+    </SizeProvider>
+  ),
   args: {
     header: 'Адаптивный диалог',
     children: (
-      <p>На десктопе это модальное окно, на мобильных - bottom sheet</p>
-    ),
-    action: (
-      <>
-        <Button styleType="text">Отмена</Button>
-        <Button>Подтвердить</Button>
-      </>
+      <div style={{ minHeight: '100px' }}>
+        <p>На десктопе это модальное окно, на мобильных - bottom sheet</p>
+      </div>
     )
   }
 };
 
-/**
- * Принудительный bottom sheet
- */
 export const ForcedBottomSheet: Story = {
+  render: (args) => (
+    <SizeProvider>
+      <div style={{ width: '300px', height: '500px', position: 'relative' }}>
+        <BasicTemplateDialog {...args} />
+      </div>
+    </SizeProvider>
+  ),
   args: {
     header: 'Bottom Sheet',
     forceBottomSheet: true,
@@ -62,10 +69,14 @@ export const ForcedBottomSheet: Story = {
   }
 };
 
-/**
- * Принудительное модальное окно
- */
 export const ForcedModal: Story = {
+  render: (args) => (
+    <SizeProvider>
+      <div style={{ width: '300px', height: '500px', position: 'relative' }}>
+        <BasicTemplateDialog {...args} />
+      </div>
+    </SizeProvider>
+  ),
   args: {
     header: 'Модальное окно',
     forceModal: true,
@@ -76,10 +87,14 @@ export const ForcedModal: Story = {
   }
 };
 
-/**
- * Длинный контент со скроллом
- */
 export const WithScroll: Story = {
+  render: (args) => (
+    <SizeProvider>
+      <div style={{ width: '300px', height: '500px', position: 'relative' }}>
+        <BasicTemplateDialog {...args} />
+      </div>
+    </SizeProvider>
+  ),
   args: {
     header: 'Длинный контент',
     children: (

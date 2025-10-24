@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react"
-import "./BottomSheets.scss"
+import "./bottom-sheets.scss"
 import { ModalTemplate } from "../../Dialog/TemplateDialog/ModalTemplate"
 
 export interface BottomSheetsUiProps{
@@ -70,9 +70,9 @@ export const BottomSheetsUi = ({bottom = 0, ...props}:BottomSheetsUiProps) => {
 
     return(
         <ModalTemplate onHide={hide}>
-            <div ref={bottomSheets} style={{paddingBottom: bottom}} className={`bottom-sheets ${hided?"hide":""}`}>
-                <div className="bottom-sheets-handle" onMouseDown={mouseDown} onTouchMove={touchMove}><span></span></div>
-                <div className="bottom-sheets-content">
+            <div ref={bottomSheets} style={{paddingBottom: bottom}} className={`bottom-sheets ${hided?"bottom-sheets_hide":"bottom-sheets_show"}`}>
+                <div className="bottom-sheets__handle" onMouseDown={mouseDown} onTouchMove={touchMove}><span></span></div>
+                <div className="bottom-sheets__content">
                     {props.children}
                 </div>
             </div>

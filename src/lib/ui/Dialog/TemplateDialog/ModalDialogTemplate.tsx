@@ -1,6 +1,6 @@
 import React from 'react';
 import { ModalTemplate } from "./ModalTemplate";
-import "./ModalDialogTemplate.scss";
+import "./style/dialog-template.scss"
 import { Typography } from '../../Text/Text/Typography';
 import { IconButton } from '../../Base/IconButton/IconButton';
 import { X } from '../../Icons';
@@ -86,18 +86,18 @@ export const ModalDialogTemplate = ({
         >
             <div 
                 style={containerStyle}
-                className={`${clearStyle ? "" : "dialog-container"} dialog-container-base ${className}`}
+                className={`${clearStyle ? "" : "dialog-template__container dialog-template_base dialog-template_color_surface-container"} dialog-template ${className}`}
                 role="dialog"
                 aria-modal="true"
                 aria-label={ariaLabel || header}
             >
                 {header && (
-                    <div className="dialog-header">
+                    <div className="dialog-template__container__header dialog-template__container__header_color_surface-container">
                         <Typography type='heading'>{header}</Typography>
                         {
                             showCloseButton && (
                                 <IconButton 
-                                className="dialog-close-button" 
+                                className="dialog-template__container__header__button dialog-template__container__header__button_color_surface-container" 
                                 onClick={handleHide}
                                 aria-label="Close dialog" 
                                 icon={<X/>}/>
@@ -105,11 +105,11 @@ export const ModalDialogTemplate = ({
                         }
                     </div>
                 )}
-                <div className="dialog-content">
+                <div className="dialog-template__container__content">
                     {children}
                 </div>
                 {action && (
-                    <div className="dialog-action">
+                    <div className="dialog-template__container__action">
                         {action}
                     </div>
                 )}

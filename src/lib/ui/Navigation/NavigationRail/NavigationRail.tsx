@@ -1,4 +1,4 @@
-import './NavigationRail.scss'
+import './style/navigation-rail.scss'
 import { NavigationRailItem } from './NavigationRailItem'
 import { NavButton } from './NavButton'
 import { Divider } from "../../Other/Divider/Divider"
@@ -15,12 +15,12 @@ export interface NavigationRailProps{
 export const NavigationRail = ({onToggleMenu, firstBtn, mainBtn, backBtn}:NavigationRailProps) => {
 
     return(
-        <div className={`navigation-rail-container`}>
-            <div className='navigation-block'>
-                <div className='block-content'>
+        <div className={`navigation-rail`}>
+            <div className='navigation-rail__block'>
+                <div className='navigation-rail__block__content'>
                     {
                         (onToggleMenu)?
-                        <NavButton icon={<MenuIcon className='icon-menu'/>} onClick={onToggleMenu}/>:
+                        <NavButton icon={<MenuIcon className='navigation-rail__block__content__icon navigation-rail__block__content__icon_color_surface-variant'/>} onClick={onToggleMenu}/>:
                         null
                     }
                     {

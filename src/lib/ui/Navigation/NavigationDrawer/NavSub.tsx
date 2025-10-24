@@ -3,6 +3,8 @@ import { NavButton } from "./NavButton"
 import { NavigationDrawerItem } from "./NavigationDrawerItem"
 import { NavigationButton } from "../../../model/navigation"
 import { ChevronDown,  } from "../../Icons"
+import '../style/navigation-item.scss'
+import './style/navigation-sub-menu.scss'
 
 interface NavigationSubmenuProps {
 	item: NavigationButton
@@ -14,19 +16,24 @@ export const NavigationSubmenu = ({ item, onHide }: NavigationSubmenuProps) => {
 	const [open, setOpen] = useState(item.open ?? false)
 
 	return (
-		<div className={`navigation-submenu ${open ? "open" : ""}`}>
+		<div className={`navigation-sub-menu ${open ? "navigation-sub-menu__open" : ""}`}>
 			<NavButton
 				icon={
-					<div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+					<div className="navigation-sub-menu__icon">
 						{item.icon}
-						<ChevronDown className={open?"rotate-90":"rotate-0"}/>
+						<ChevronDown className={`
+							navigation-sub-menu__icon__chevron 
+							${open?
+							"navigation-sub-menu__icon__chevron_rotate_90":
+							"navigation-sub-menu__icon__chevron_rotate_0"
+							}`}/>
 					</div>
 				}
 				title={item.text}
 				onClick={() => setOpen((prev) => !prev)}
 			/>
 			{open && (
-				<div className="submenu-content">
+				<div className="navigation-sub-menu__content">
 					{item.children.map((child, index) =>
 						child.type === "button" ? (
 							<NavButton

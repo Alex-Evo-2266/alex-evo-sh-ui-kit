@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
-import { OutlineButton, TextButton } from "../../..";
+import { OutlineButton, TextButton, Typography } from "../../..";
 import { BasicTemplateDialog } from "../TemplateDialog/BasicTemplateDialog";
-import './Dialogs.scss'
 
 export interface BaseDialogProps {
   /** Текст сообщения в диалоге */
@@ -103,7 +102,7 @@ export const BaseDialog = ({
       header={header}
       action={renderActions()}
     >
-      {text && <p className="base-dialog-text">{text}</p>}
+      {text && <Typography type="body">{text}</Typography>}
       {children}
     </BasicTemplateDialog>
   );
@@ -120,7 +119,7 @@ const BaseDialogButton = ({
   disabled = false,
 }: BaseDialogButtonProps) => {
   return (
-    <div className="dialog-button-container">
+    <div>
       {onHide && (
         <OutlineButton 
           onClick={onHide}

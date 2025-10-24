@@ -111,7 +111,6 @@ export function SelectionDialog<T>({
       <Divider style={{ padding: 0 }} />
       <ListContainer
         transparent
-        className="selection-dialog-list" 
         scroll 
         maxHeight="300px"
         aria-label="Варианты выбора"
@@ -119,7 +118,6 @@ export function SelectionDialog<T>({
         {items.map((item, index) => (
           <label 
             key={`${name}_${index}`}
-            className={`selection-item ${item.disabled ? 'disabled' : ''}`}
             aria-disabled={item.disabled}
           >
             <ListItem
@@ -162,7 +160,7 @@ function DialogButtons({
   cancelText = "Отмена",
 }: DialogButtonsProps) {
   return (
-    <div className="dialog-button-container">
+    <div>
       {onHide && (
         <OutlineButton onClick={onHide}>
           {cancelText}

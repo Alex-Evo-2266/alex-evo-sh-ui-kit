@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { FullScreenTemplateDialog } from '../../lib/ui/Dialog/TemplateDialog/FullScreenTemplateDialog';
+import { SizeProvider } from '../../lib';
 
 const meta: Meta<typeof FullScreenTemplateDialog> = {
   title: 'Components/Dialogs/FullScreenTemplateDialog',
@@ -67,9 +68,11 @@ export const WithCustomBreakpoint: Story = {
 
 export const ForcedFullScreen: Story = {
   render: (args) => (
-    <div style={{ width: '300px', height: '500px', position: 'relative' }}>
-      <FullScreenTemplateDialog {...args} />
-    </div>
+    <SizeProvider>
+      <div style={{ width: '300px', height: '500px', position: 'relative' }}>
+        <FullScreenTemplateDialog {...args} />
+      </div>
+    </SizeProvider>
   ),
   args: {
     header: 'Принудительный полноэкранный',

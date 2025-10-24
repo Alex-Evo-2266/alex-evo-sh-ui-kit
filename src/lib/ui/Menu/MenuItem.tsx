@@ -2,6 +2,7 @@ import { IMenuItem } from "../../model/menu"
 import { useCallback, useState } from "react"
 import { SubMenuItemBlock } from "./SubMenuItemBlock"
 import { Check } from "../Icons"
+import './style/menu-item.scss'
 
 interface MenuItemProps{
     item: IMenuItem
@@ -28,25 +29,25 @@ const MenuItem = ({onHide, autoHide, globalClick, item, isIcon, smallDisplay}:Me
     },[item.onClick])
 
     return(
-        <div className={`menu-item-container ${item.disabled?"disabled":""}`}>
-            <div className="menu-item" onClick={subMenuToggle}>
+        <div className={`menu-item ${item.disabled?"menu-item_disabled":""}`}>
+            <div className="menu-item__info" onClick={subMenuToggle}>
                 {
                     (isIcon)?
-                    <div className="menu-icon-container">
+                    <div className="menu-item__info__icon">
                         {item.icon}
                     </div>:
                     null
                 }
-                <div className="menu-text-container">
+                <div className="menu-item__info__text">
                     {item.title}
                 </div>
-                <div className="menu-status-container">
+                <div className="menu-item__info__status ">
                     {
                         (item.subItems)?
-                        <span className={`menu-status-submenu ${visible?"active":""}`}></span>:
+                        <span className={`menu-item__info__status__arrow ${visible?"menu-item__info__status__arrow_active":""}`}></span>:
                         (item.activated)?
                         <Check/>:
-                        <span className="none-status"/>
+                        <span className="menu-item__info__status__none"/>
                     }
                 </div>
             </div>

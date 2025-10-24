@@ -3,9 +3,9 @@ import { useScrollLock } from "../../../hooks/lockScroll.hook";
 import { ScreenSize } from "../../../model/sizeScreen";
 import { BottomSheetsUi } from "../../Base/BottomSheets/BottomSheetsUi";
 import { ModalDialogTemplate } from "./ModalDialogTemplate";
-import './BasicTemplateDialog.scss'
 import { Typography } from '../../Text/Text/Typography';
 import { SizeContext } from '../../Provider/SizeProvider';
+import "./style/dialog-bottom.scss"
 
 export interface DialogProps {
   /** Содержимое диалога */
@@ -83,20 +83,20 @@ export const BasicTemplateDialog = ({
     >
       <div 
         style={props.style} 
-        className={`dialog-container-bottom-sheet ${props.className || ''}`}
+        className={`dialog-bottom ${props.className || ''}`}
       >
         {props.header && (
-          <div className="dialog-header">
+          <div className="dialog-bottom__header">
             <Typography type='heading'>{props.header}</Typography>
           </div>
         )}
-        <div className="dialog-content">
-            <div className='dialog-content-scroll'>
+        <div className="dialog-bottom__content dialog-bottom__content_color_text-surface-color">
+            <div className='dialog-bottom__content__scroll'>
                 {props.children}
             </div>
         </div>
         {props.action && (
-          <div className="dialog-action">
+          <div className="dialog-bottom__action">
             {props.action}
           </div>
         )}

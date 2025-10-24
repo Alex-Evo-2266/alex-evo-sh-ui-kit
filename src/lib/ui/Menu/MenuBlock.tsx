@@ -1,5 +1,6 @@
 import { IBlock } from "../../model/menu"
 import { MenuItem } from "./MenuItem"
+import './style/menu-block.scss'
 
 interface MenuItemProps{
     block: IBlock

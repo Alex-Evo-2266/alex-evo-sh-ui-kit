@@ -1,0 +1,21 @@
+.navigation-sub-menu{
+    &__icon{
+        display: "flex";
+        align-items: "center";
+        gap: "4px";
+        &__chevron{
+          transition: 0.2s;
+          @for $i from 0 through 360 {
+            &_rotate_#{$i} {
+              transform: rotate(#{$i}deg);
+            }
+          }
+        }
+    }
+    &__content{
+      padding-left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+}

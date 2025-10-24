@@ -2,6 +2,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { BasicTemplateDialog } from "../TemplateDialog/BasicTemplateDialog";
 import { TextField } from "../../input/TextField/TextField";
 import { TextButton } from "../../Base/Button/Button";
+import { Typography } from "../../Text/Text/Typography";
 
 export interface TextDialogProps {
   /** Текст сообщения перед полем ввода */
@@ -122,7 +123,7 @@ export const TextDialog = ({
       style={styleContainer} 
       header={header}
       action={
-        <div className="dialog-button-container">
+        <div>
           <TextButton onClick={handleCancel}>{cancelText}</TextButton>
           <TextButton 
             onClick={handleSuccess}
@@ -133,8 +134,8 @@ export const TextDialog = ({
         </div>
       }
     >
-      {text && <p className="text-dialog-message">{text}</p>}
-      <div className="dialog-input-container">
+      {text && <Typography type="body">{text}</Typography>}
+      <div>
         <TextField
           type={type}
           min={min}
@@ -146,9 +147,9 @@ export const TextDialog = ({
           error={!isValid}
         />
         {!isValid && type === "number" && (
-          <p className="text-dialog-error">
+          <Typography type="body">
             Введите число от {min} до {max}
-          </p>
+          </Typography>
         )}
       </div>
     </BasicTemplateDialog>

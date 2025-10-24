@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { IMenuSubItem } from "../../model/menu"
 import { SubMenuItem } from "./SubMenuItem"
 import { getContainerData, getModalWindowCord } from "../../helpers/getContainerPozAndSize"
+import './style/menu-block.scss'
 
 interface MenuItemProps{
     items: IMenuSubItem[]
@@ -21,6 +22,7 @@ const SubMenuItemBlock = ({items, onHide, smallDisplay, globalClick, autoHide, o
 
     const container = useRef<HTMLDivElement>(null)
     const [cord, setCord] = useState<ICord>({left:"0px", top:"0px"})
+    const [visible, setVisible] = useState<boolean>(false)
 
     function isIcon(items: IMenuSubItem[]){
         for(let item of items){
@@ -41,11 +43,12 @@ const SubMenuItemBlock = ({items, onHide, smallDisplay, globalClick, autoHide, o
             left: data.x - rootContainerData.left + "px",
             top: data.y - rootContainerData.top + "px"
         })
+        setVisible(true)
 	},[])
 
     return(
         <>
-            <div ref={container} className="menu-sub-block" style={{...cord}}>
+            <div ref={container} className={`menu-block menu-block_color_surface-container-highest ${!smallDisplay?"menu-block_sub":""}`} style={{...cord, ...visible?{}:{display: "none"}}}>
             {
                 items.map((item, index)=>(
                 <SubMenuItem onHide={onGlobalHide} autoHide={autoHide} key={index} item={item} isIcon={isIcon(items)} globalClick={globalClick}/> 
@@ -55,7 +58,7 @@ const SubMenuItemBlock = ({items, onHide, smallDisplay, globalClick, autoHide, o
             {
                 smallDisplay?
                 null:
-                <div style={{zIndex: 4}} className="backplate" onClick={onHide}></div>
+                <div style={{zIndex: 4}} className="menu-block-backplate" onClick={onHide}></div>
             }
         </>
     )
