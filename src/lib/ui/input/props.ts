@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react";
 import { ScreenSize } from "../../model/sizeScreen";
 
 export interface IOption{
