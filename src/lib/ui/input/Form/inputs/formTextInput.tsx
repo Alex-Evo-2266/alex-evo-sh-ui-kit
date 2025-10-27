@@ -11,8 +11,8 @@ export const TextField = (props:TextFieldPropsForm) => {
 
     const {value, changeField, errors} = useContext(formContext)
 
-    const change = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        changeField && changeField(props.name, event.target.value)
+    const change = useCallback((value: string) => {
+        changeField && changeField(props.name, value)
     },[props.name])
 
     const getValue = useCallback(()=>{

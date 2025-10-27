@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { ScreenSize } from "../../model/sizeScreen";
 
 export interface IOption{
@@ -76,6 +77,7 @@ export interface IBaseFieldProps {
     styleContainer?: React.CSSProperties;
     /** Автоматический фокус при монтировании */
     autoFocus?: boolean;
+    onChange?: (value: any, name?: string, e?:React.ChangeEvent<HTMLInputElement>) => void;
   }
   
   // Интерфейс для числового поля

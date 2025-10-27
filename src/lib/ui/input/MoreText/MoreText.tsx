@@ -35,8 +35,8 @@ export const MoreText = ({
     setValues(splitValue(value, separator))
   }, [value, separator])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewValue(e.target.value)
+  const handleInputChange = (value: string) => {
+    setNewValue(value)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

@@ -118,7 +118,7 @@ export const TextField = React.forwardRef<HTMLDivElement, ITextFieldProps>(
             name={name}
             value={value}
             onClick={onClick}
-            onChange={onChange}
+            onChange={e=>onChange?.(e.target.value, e.target.name, e)}
             onFocus={handleFocus}
             onBlur={handleBlur}
             onKeyDown={onKeyDown}

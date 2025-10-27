@@ -76,7 +76,7 @@ const Template: Story = {
       <TextField
         {...args}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={setValue}
         onClear={() => setValue("")}
       />
     );

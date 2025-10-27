@@ -135,6 +135,7 @@ export const IconsSelect:React.FC<IconsSelectProps> = (props) => {
 
 export type IconName = keyof typeof iconComponents;
 
-export function getIcons(id: IconName){
+export function getIcons(id?: IconName){
+  if(!id) return undefined
   return iconComponents[id] ?? undefined
 }

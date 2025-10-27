@@ -98,8 +98,7 @@ export const TextDialog = ({
     onHide?.();
   }, [onHide]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let newValue = e.target.value;
+  const handleChange = (newValue: string) => {
     
     if (type === "number") {
       if (newValue === "") {
