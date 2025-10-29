@@ -7,7 +7,8 @@ export interface ModalTemplateProps{
 
 export const ModalTemplate:React.FC<ModalTemplateProps> = ({children, onHide, disableBackplate}) => {
 
-    function hide() {
+    function hide(e: React.MouseEvent<HTMLInputElement>) {
+        e.stopPropagation()
         onHide && onHide()
     }
 
