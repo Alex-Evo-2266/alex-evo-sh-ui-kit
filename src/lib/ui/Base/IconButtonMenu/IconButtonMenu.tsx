@@ -29,6 +29,7 @@ export const IconButtonMenu:React.FC<IconButtonProps> = ({icon, className, class
     }
 
     const show = (event:React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation()
         setVisible(true)
         setPoz({x: event.clientX, y: event.clientY})
     }
