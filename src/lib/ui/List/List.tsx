@@ -170,7 +170,7 @@ export interface ListItemContainerProps {
             )}
           </div>
         )}
-        {control && <div className="control-container">{control}</div>}
+        {control && <div onClick={e=>{e.stopPropagation()}} className="control-container">{control}</div>}
       </li>
     );
   };
