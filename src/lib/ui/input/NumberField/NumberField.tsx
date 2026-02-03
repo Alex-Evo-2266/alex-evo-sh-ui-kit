@@ -36,9 +36,9 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
         ariaDescribedby
     }, ref) => {
 
-    const timeOutID = useRef<NodeJS.Timeout | null>(null)
-    const timeIntervalID = useRef<NodeJS.Timeout | null>(null)
-    const timeOutSendID = useRef<NodeJS.Timeout | null>(null)
+    const timeOutID = useRef<ReturnType<typeof setTimeout> | null>(null)
+    const timeIntervalID = useRef<ReturnType<typeof setInterval> | null>(null)
+    const timeOutSendID = useRef<ReturnType<typeof setTimeout> | null>(null)
     
     const inputContainerElement = useRef<HTMLDivElement>(null)
     const [isError, setError] = useState<boolean>(false)
