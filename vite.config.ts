@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { defineConfig } from 'vite'
 import dts from "vite-plugin-dts"
 import react from '@vitejs/plugin-react'
@@ -6,6 +8,11 @@ import {libInjectCss} from 'vite-plugin-lib-inject-css'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    globals: true,       // включает describe/it/expect без импорта
+    environment: "jsdom", // нужен для тестирования DOM/React
+    setupFiles: "./src/tests/setup.ts", // опционально
+  },
   base: "/alex-evo-sh-ui-kit/",  
   plugins: [
     react(),

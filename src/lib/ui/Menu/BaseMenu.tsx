@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useLayoutEffect, useRef, useState } from "react"
 import { Divider } from "../Other/Divider/Divider"
 import { MenuBlock } from "./MenuBlock"
 import { getModalWindowCord } from "../../helpers/getContainerPozAndSize"
@@ -22,7 +22,7 @@ export const BaseMenu = (menu:MenuStateProps) => {
 		menu.onHide && menu.onHide()
 	}
 
-	useEffect(()=>{
+	useLayoutEffect(()=>{
 		let data = getModalWindowCord(menu.x, menu.y, container.current, {marginBottom: MENU_MARGIN_BOTTOM})
 		setCord({
 			left: data.x + "px", 
@@ -38,7 +38,7 @@ export const BaseMenu = (menu:MenuStateProps) => {
 		<div 
 			ref={container} 
 			className={`base-menu base-menu_color_surface-container-high`} 
-			style={{...cord, opacity:(cord.top !== "0px")?"100%":"0%", width:menu.width, maxWidth:(menu.width)?"100%":undefined}}
+			style={{...cord, width:menu.width, maxWidth:(menu.width)?"100%":undefined}}
 		>
 		{
 			menu.blocks.map((item, index)=>(

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { Home, ScreenSize, Table } from '../../lib/index';
+import { useCallback, useState } from 'react';
 // import React from 'react';
 
 
@@ -95,6 +96,80 @@ export const Action: Story = {
         screenSize: ScreenSize.STANDART,
         onContextMenu:fn
     },
+  };
+
+  export const Input: Story = {
+    render:(args)=>{
+      const [state, setState] = useState([
+        {
+            test1: {
+              content: 54,
+              backgroundColor: "blue",
+              color: "#fff"
+            },
+            test2: "dfgh",
+            test3: "67",
+            input: ""
+        },
+        {
+            test1: 54,
+            test2: "tere",
+            test3: "67",
+            input: ""
+        },
+        {
+            test1: 54,
+            test2: "tere",
+            test3: ["tere", "dsvfg"],
+            input: ""
+        }
+    ])
+      const handler = useCallback((id: number, e:React.ChangeEvent<HTMLInputElement>)=>{
+        setState(prev=>{
+          const newArr = prev.slice()
+          newArr[id].input = e.target.value
+          return newArr
+        })
+      },[])
+      return(
+        <div>
+          <Table {...args} data={state.map((item, index)=>({...item, _id:index}))} columns={[{
+        field: "test1",
+        title: "hello"
+      },
+      {
+        field: "test2",
+        title: "test2",
+        backgroundColor: "red"
+      },
+      {
+        field: "input",
+        title: "input",
+        template(cell, data) {
+          return(
+            <input onChange={(e)=>handler(data._id as number, e)} style={{
+              border: 'none',
+              textDecoration: 'none',
+              backgroundColor: 'transparent',
+              fontSize: '24px'
+            }} value={cell[0]?.content?.toString()}/>
+          )
+        },
+      },
+      {
+        field: "test3",
+        title: "test3",
+        template(cell) {
+          return(<div className='sdgd' style={{backgroundColor: 'orange'}}>
+            {cell.map((item, index)=>(
+              <p key={index}>{String(item.content)}</p>
+            ))}
+          </div>)
+        },
+    }]}/>
+        </div>
+      )
+    }
   };
 
   export const Combo: Story = {
