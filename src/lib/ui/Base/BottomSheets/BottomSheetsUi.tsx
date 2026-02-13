@@ -12,7 +12,7 @@ export interface BottomSheetsUiProps{
 export const BottomSheetsUi = ({bottom = 0, ...props}:BottomSheetsUiProps) => {
 
     const [hided, setHided] = useState<boolean>(false)
-    const [isСlosed, setIsСlosed] = useState<boolean>(true)
+    const [isClosed, setIsClosed] = useState<boolean>(true)
     const bottomSheets = useRef<HTMLDivElement>(null)
 
     const hide = useCallback(() => {
@@ -20,19 +20,19 @@ export const BottomSheetsUi = ({bottom = 0, ...props}:BottomSheetsUiProps) => {
         setTimeout(()=>{
             props.onHide()
             setHided(false)
-            setIsСlosed(true)
+            setIsClosed(true)
         },200)
     },[props.onHide])
 
     useEffect(()=>{
         if(props.visible)
-            setIsСlosed(false)
+            setIsClosed(false)
     },[props.visible])
 
     useEffect(()=>{
-        if(!props.visible && !isСlosed)
+        if(!props.visible && !isClosed)
             hide()
-    },[props.visible, hide, isСlosed])
+    },[props.visible, hide, isClosed])
 
     const touchMove = useCallback((e:React.TouchEvent<HTMLDivElement>) => {
         if(window.innerHeight - e.changedTouches[0].clientY <= 150)
@@ -65,13 +65,13 @@ export const BottomSheetsUi = ({bottom = 0, ...props}:BottomSheetsUiProps) => {
       } 
     })
 
-    if(isСlosed && !hided || !props.children)
+    if(isClosed && !hided || !props.children)
         return null
 
     return(
         <ModalTemplate onHide={hide}>
             <div ref={bottomSheets} style={{paddingBottom: bottom}} className={`bottom-sheets ${hided?"bottom-sheets_hide":"bottom-sheets_show"}`}>
-                <div className="bottom-sheets__handle" onMouseDown={mouseDown} onTouchMove={touchMove}><span></span></div>
+                <div role="presentation" data-testid="bottom-sheet-handle" className="bottom-sheets__handle" onMouseDown={mouseDown} onTouchMove={touchMove}><span></span></div>
                 <div className="bottom-sheets__content">
                     {props.children}
                 </div>
