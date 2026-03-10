@@ -1,3 +1,5 @@
+$max-elevation: 24;
+
 .list-container {
     padding: 8px 0;
     min-height: 56px;
@@ -6,11 +8,11 @@
     list-style: none;
     margin: 0;
     
-    &.transparent {
+    &_transparent {
       background-color: transparent;
     }
     
-    &.scroll {
+    &_scroll {
       overflow-y: scroll;
       
       &::-webkit-scrollbar {
@@ -24,7 +26,7 @@
     }
   }
   
-  li.list-item-container {
+  .list-item-container {
     padding: 8px 24px 8px 16px;
     display: flex;
     flex-direction: row;
@@ -34,7 +36,7 @@
     transition: background-color 0.2s ease;
     min-height: 56px;
     
-    &.hovered {
+    &_hovered {
       cursor: pointer;
       
       &:hover {
@@ -46,51 +48,53 @@
       }
     }
     
-    &.disabled {
+    &_disabled {
       opacity: 0.5;
       pointer-events: none;
     }
     
-    &.active {
+    &_active {
       background-color: var(--Primary-container-color);
       
-      .header, .text, .icon-container {
+      .list-item-container__text-container__header, 
+      .list-item-container__text-container__text, 
+      .list-item-container__icon-container {
         color: var(--On-primary-container-color);
       }
     }
     
-    .text-container {
+    &__text-container {
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 2px;
         
-        .header {
+        &__header {
           font-size: 16px;
           color: var(--On-surface-color);
         }
         
-        .text {
+        &__text {
           font-size: 14px;
           color: var(--On-surface-variant-color);
         }
         
-        .description {
+        &__description {
           font-size: 12px;
           color: var(--Outline-color);
           margin-top: 4px;
         }
       }
     
-    .control-container {
+    &__control-container {
       padding-left: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     
-    .icon-container {
+    &__icon-container {
       padding-right: 16px;
       display: flex;
       align-items: center;
@@ -110,6 +114,12 @@
         height: 32px;
         border-radius: 4px;
         object-fit: cover;
+      }
+    }
+
+    @for $i from 1 through $max-elevation {
+      &_shadow-#{$i} {
+        box-shadow: var(--shadow-elevation-#{$i});
       }
     }
   }

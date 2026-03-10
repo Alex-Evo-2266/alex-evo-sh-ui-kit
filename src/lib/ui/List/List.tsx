@@ -50,8 +50,8 @@ export const ListContainer = ({
   const classes = [
     "list-container",
     className,
-    scroll ? "scroll" : "",
-    transparent ? "transparent" : "",
+    scroll ? "list-container_scroll" : "",
+    transparent ? "list-container_transparent" : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -111,6 +111,8 @@ export interface ListItemContainerProps {
     disabled?: boolean;
     /** Выделить элемент как активный */
     active?: boolean;
+
+    shadow?: number;
   }
   
   export const ListItem = ({
@@ -125,6 +127,7 @@ export interface ListItemContainerProps {
     className = "",
     disabled = false,
     active = false,
+    shadow = 0
   }: ListItemContainerProps) => {
     const handleClick = (event: React.MouseEvent<HTMLLIElement>) => {
       if (!disabled && !(event.target as HTMLElement).closest(".control-container")) {
@@ -135,9 +138,10 @@ export interface ListItemContainerProps {
     const classes = [
       "list-item-container",
       className,
-      hovered && !disabled ? "hovered" : "",
-      disabled ? "disabled" : "",
-      active ? "active" : "",
+      `list-item-container_shadow-${shadow}`,
+      hovered && !disabled ? "list-item-container_hovered" : "",
+      disabled ? "list-item-container_disabled" : "",
+      active ? "list-item-container_active" : "",
     ]
       .filter(Boolean)
       .join(" ");
@@ -145,24 +149,24 @@ export interface ListItemContainerProps {
     return (
       <li className={classes} onClick={handleClick} aria-disabled={disabled}>
         {(icon || value) && (
-          <div className="icon-container">
+          <div className="list-item-container__icon-container">
             {icon || (value && <Typography type="body">{value}</Typography>)}
           </div>
         )}
         {(header || text || description) && (
-          <div className="text-container">
+          <div className="list-item-container__text-container">
             {header && (
-              <div className="header">
+              <div className="list-item-container__text-container__header">
                 <Typography type="body">{header}</Typography>
               </div>
             )}
             {text && (
-              <div className="text">
+              <div className="list-item-container__text-container__text">
                 <Typography type="small">{text}</Typography>
               </div>
             )}
             {description && (
-              <div className="description">
+              <div className="list-item-container__text-container__description">
                 <Typography type="small" color="variant">
                   {description}
                 </Typography>
@@ -170,7 +174,7 @@ export interface ListItemContainerProps {
             )}
           </div>
         )}
-        {control && <div onClick={e=>{e.stopPropagation()}} className="control-container">{control}</div>}
+        {control && <div onClick={e=>{e.stopPropagation()}} className="list-item-container__control-container">{control}</div>}
       </li>
     );
   };

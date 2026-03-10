@@ -33,6 +33,13 @@ export default meta;
 type Story = StoryObj<typeof FullScreenTemplateDialog>;
 
 export const Basic: Story = {
+  render: (args) => (
+    <SizeProvider>
+      <div style={{ width: '300px', height: '500px', position: 'relative' }}>
+        <FullScreenTemplateDialog {...args} />
+      </div>
+    </SizeProvider>
+  ),
   args: {
     header: 'Редактирование профиля',
     children: (
@@ -46,6 +53,13 @@ export const Basic: Story = {
 };
 
 export const WithoutHeader: Story = {
+  render: (args) => (
+    <SizeProvider>
+      <div style={{ width: '300px', height: '500px', position: 'relative' }}>
+        <FullScreenTemplateDialog {...args} />
+      </div>
+    </SizeProvider>
+  ),
   args: {
     children: (
       <div style={{ minHeight: '400px' }}>
@@ -56,6 +70,13 @@ export const WithoutHeader: Story = {
 };
 
 export const WithCustomBreakpoint: Story = {
+  render: (args) => (
+    <SizeProvider>
+      <div style={{ width: '300px', height: '500px', position: 'relative' }}>
+        <FullScreenTemplateDialog {...args} />
+      </div>
+    </SizeProvider>
+  ),
   args: {
     header: 'Кастомный breakpoint',
     children: (

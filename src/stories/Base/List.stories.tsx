@@ -214,3 +214,34 @@ export const WithDescription: Story = {
     </ListContainer>
   ),
 };
+
+export const Shadow: Story = {
+  render: (args) => (
+    <ListContainer {...args}>
+      <ListItem 
+        header="Основные настройки"
+        text="Общие параметры системы"
+        description="Настройте основные параметры работы приложения"
+        icon={<LinkIcon />}
+      />
+      <ListItem 
+        header="Безопасность"
+        text="Пароли и доступы"
+        description="Управление безопасностью вашего аккаунта"
+        icon={<LinkIcon />}
+        shadow={1}
+      />
+      <ListItem 
+        header="Уведомления"
+        text="Настройки оповещений"
+        description="Выберите, какие уведомления вы хотите получать"
+        icon={<LinkIcon />}
+        shadow={4}
+      />
+      <ListItem header="элемент 1" shadow={10}/>
+      <ListItem header="элемент 2" shadow={15}/>
+      <ListItem header="элемент 3" shadow={24}/>
+      <ListItem header="элемент 4" shadow={25}/>
+    </ListContainer>
+  ),
+};
