@@ -1,8 +1,7 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { BottomSheetsUi, ListContainer, ListItem } from '../../lib/index';
 import { within, expect, fireEvent, fn, waitFor } from '@storybook/test'
 // import React from 'react';
-
 
 const meta = {
   title: 'Components/Base/BottomSheetsUi',
@@ -63,6 +62,7 @@ export const Base: Story = {
 }
 
 export const WithBottomOffset: Story = {
+  tags: ['!autodocs'],
   args: {
     visible: true,
     onHide: fn(),
@@ -76,6 +76,7 @@ export const WithBottomOffset: Story = {
 }
 
 export const Hidden: Story = {
+  tags: ['!autodocs'],
   args: {
     visible: false,
     onHide: fn(),
@@ -84,6 +85,7 @@ export const Hidden: Story = {
 }
 
 export const Visible: Story = {
+  tags: ['!autodocs'],
   args: {
     visible: true,
     onHide: fn(),
@@ -96,6 +98,7 @@ export const Visible: Story = {
 }
 
 export const CloseTest: Story = {
+  tags: ['!autodocs'],
   args: {
     visible: true,
     onHide: fn(),

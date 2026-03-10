@@ -76,6 +76,7 @@ export const ForcedFullScreen: Story = {
   ),
   args: {
     header: 'Принудительный полноэкранный',
+    forceFullScreen: true,
     children: (
       <div style={{ minHeight: '300px' }}>
         <p>Всегда отображается в полноэкранном режиме</p>

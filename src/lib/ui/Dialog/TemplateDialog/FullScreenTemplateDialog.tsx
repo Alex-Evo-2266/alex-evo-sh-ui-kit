@@ -39,6 +39,8 @@ export interface FullScreenDialogProps {
   
   /** Текст кнопки отмены */
   cancelText?: string;
+
+  forceFullScreen?: boolean;
 }
 
 /**
@@ -64,7 +66,8 @@ export const FullScreenTemplateDialog = ({
   marginBottom = 0,
   disableBackplate,
   saveText,
-  cancelText
+  cancelText,
+  forceFullScreen
 }: FullScreenDialogProps) => {
 	const {screen} = useContext(SizeContext)
 	useScrollLock(true, document.body);
@@ -77,7 +80,9 @@ export const FullScreenTemplateDialog = ({
     onSave?.();
   };
 
-  if (screen !== ScreenSize.MOBILE) {
+  const screenMode = forceFullScreen || screen === ScreenSize.MOBILE
+
+  if (!screenMode) {
     return (
       <ModalDialogTemplate 
         disableBackplate={disableBackplate}
