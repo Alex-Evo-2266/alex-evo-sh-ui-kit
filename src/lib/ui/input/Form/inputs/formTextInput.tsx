@@ -2,6 +2,7 @@ import { useCallback, useContext } from "react"
 import { TextField as TF } from "../../TextField/TextField"
 import { formContext } from "../FormContext"
 import { ITextFieldProps } from "../../props"
+import { isString } from "../../../../helpers/typesCheck"
 
 export interface TextFieldPropsForm extends Omit<ITextFieldProps, "value"> {
     name: string
@@ -16,7 +17,10 @@ export const TextField = (props:TextFieldPropsForm) => {
     },[props.name])
 
     const getValue = useCallback(()=>{
-        return value[props.name]
+        const val = value?.[props.name]
+        if(isString(val))
+            return val ?? ""
+        return ""
     },[value, props.name])
 
     const clearHandler = useCallback(() => {

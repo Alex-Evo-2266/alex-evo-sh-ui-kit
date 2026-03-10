@@ -2,6 +2,7 @@ import { useCallback, useContext } from "react"
 import { formContext } from "../FormContext"
 import { MoreText as MT } from "../../MoreText/MoreText"
 import { IMoreTextProps } from "../../props"
+import { isString } from "../../../../helpers/typesCheck"
 
 export interface MoreTextFieldProps extends Omit<IMoreTextProps, "value" | "onChange"> {
     name: string
@@ -11,12 +12,15 @@ export const MoreTextField = (props:MoreTextFieldProps) => {
 
     const {value, changeField, errors} = useContext(formContext)
 
-    const change = useCallback((value: any) => {
+    const change = useCallback((value: unknown) => {
         changeField && changeField(props.name, value)
     },[props.name])
 
     const getValue = useCallback(()=>{
-        return value[props.name] ?? ""
+        const val = value?.[props.name]
+        if(isString(val))
+            return val ?? ""
+        return ""
     },[value, props.name])
 
     const getError = useCallback(() => {

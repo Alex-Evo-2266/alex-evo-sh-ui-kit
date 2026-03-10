@@ -24,7 +24,8 @@ export const SwitchButtonField = ({placeholder, ref, style, readOnly, className,
     }
 
     const getValue = useCallback(()=>{
-        if(Boolean(value[name])) {
+        const val = value?.[name]
+        if(Boolean(val)) {
             return [placeholder ?? name]
         }
         return []

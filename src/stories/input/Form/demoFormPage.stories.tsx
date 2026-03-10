@@ -1,80 +1,134 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Form } from '../../../lib';
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Form } from "../../../lib";
 
 const meta: Meta<typeof Form> = {
-  title: 'Components/Form',
+  title: "Components/Form",
   component: Form,
-  tags: ['autodocs'],
-  argTypes: {
-    name: {
-      control: 'text',
-      description: 'Имя формы (атрибут name)'
-    },
-    changeValue: {
-      action: 'changeValue',
-      description: 'Колбек при изменении значения поля'
-    }
+  subcomponents: {
+    // TextInput: Form.TextInput,
+    // NumberInput: Form.NumberInput,
+    // SelectInput: Form.SelectInput,
+    // SwitchField: Form.SwitchField,
+    // SwitchButtonField: Form.SwitchButtonField,
+    // MoreTextField: Form.MoreTextField,
   },
+  tags: ["autodocs"],
 };
 
 export default meta;
+
 type Story = StoryObj<typeof Form>;
 
-// Базовый пример формы
-export const BasicForm: Story = {
-  args: {
-    name: 'userForm',
-    value: {
-      username: '',
-      age: 18,
-      notifications: true
-    },
-    changeValue: (name, value) => console.log(`Field ${name} changed to ${value}`),
-    errors: {}
+export const Basic: Story = {
+  render: () => {
+    const [result, setResult] = useState<any>();
+
+    return (
+      <div style={{ maxWidth: 400 }}>
+        <Form
+          name="demoForm"
+          onFinish={(data) => {
+            console.log("submit", data);
+            setResult(data);
+          }}
+        >
+          <Form.TextInput
+            name="name"
+            // label="Name"
+            placeholder="Enter name"
+          />
+
+          <Form.NumberInput
+            name="age"
+            // label="Age"
+            placeholder="Enter age"
+          />
+
+          <Form.SelectInput
+            name="role"
+            // label="Role"
+            items={[
+              { title: "User", value: "user" },
+              { title: "Admin", value: "admin" },
+            ]}
+          />
+
+          <Form.SwitchField
+            name="active"
+            // label="Active"
+          />
+
+          <Form.SwitchButtonField
+            name="notifications"
+            // label="Notifications"
+          />
+
+          <Form.MoreTextField
+            name="description"
+            // label="Description"
+            placeholder="Enter description"
+          />
+
+          <button type="submit">Submit</button>
+        </Form>
+
+        {result && (
+          <pre style={{ marginTop: 20 }}>
+            {JSON.stringify(result, null, 2)}
+          </pre>
+        )}
+      </div>
+    );
   },
-  render: (args) => (
-    <Form {...args}>
-      <Form.TextInput 
-        name="username" 
-        placeholder="Введите имя"
-      />
-      <Form.NumberInput 
-        name="age" 
-        placeholder='test'
-        helperText='test help'
-        border
-        min={18} 
-        max={100}
-      />
-      <Form.SwitchField 
-        name="notifications" 
-      />
-      <Form.MoreTextField name='test' separator='-'/>
-    </Form>
-  )
 };
 
-// Форма с ошибками
-export const FormWithErrors: Story = {
-  args: {
-    name: 'userForm',
-    value: {
-      email: 'invalid-email',
-      password: 'short'
-    },
-    errors: {
-      email: 'Некорректный email',
-      password: 'Пароль слишком короткий'
-    }
-  },
-  render: (args) => (
-    <Form {...args}>
-      <Form.TextInput 
-        name="email" 
+export const WithDefaultValues: Story = {
+  render: () => (
+    <Form
+      name="defaultValues"
+      value={{
+        name: "Alex",
+        age: 25,
+        role: "admin",
+        active: true,
+        notifications: false,
+        description: "Example text",
+      }}
+      onFinish={(data) => console.log(data)}
+    >
+      <Form.TextInput name="name" helperText="Name" />
+      <Form.NumberInput name="age" helperText="Age" />
+      <Form.SelectInput
+        name="role"
+        // label="Role"
+        items={[
+          { title: "User", value: "user" },
+          { title: "Admin", value: "admin" },
+        ]}
       />
-      <Form.TextInput 
-        name="password" 
-      />
+      <Form.SwitchField name="active" />
+      <Form.SwitchButtonField name="notifications"/>
+      <Form.MoreTextField name="description" helperText="Description" />
+
+      <button type="submit">Submit</button>
     </Form>
-  )
+  ),
+};
+
+export const WithErrors: Story = {
+  render: () => (
+    <Form
+      name="errors"
+      errors={{
+        name: "Name is required",
+        age: "Invalid age",
+      }}
+      onFinish={(data) => console.log(data)}
+    >
+      <Form.TextInput name="name" helperText="Name" />
+      <Form.NumberInput name="age" helperText="Age" />
+      <button type="submit">Submit</button>
+    </Form>
+  ),
 };

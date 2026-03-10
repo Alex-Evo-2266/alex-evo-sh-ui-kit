@@ -16,7 +16,8 @@ export const NumberField = (props:TextFieldProps) => {
     },[props.name])
 
     const getValue = useCallback(()=>{
-        return Number(value[props.name])
+        const val = value?.[props.name]
+        return Number(val)
     },[value, props.name])
 
     const getError = useCallback(() => {

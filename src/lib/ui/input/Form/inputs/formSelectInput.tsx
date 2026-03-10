@@ -2,9 +2,11 @@ import { useCallback, useContext } from "react"
 import { formContext } from "../FormContext"
 import { SelectField as SF } from "../../SelectField/Select"
 import { ISelectFieldProps } from "../../props"
+import { isString } from "../../../../helpers/typesCheck"
 
-export interface ISelectFieldPropsForm extends Omit<ISelectFieldProps, "value">{
-    name: string
+export interface ISelectFieldPropsForm extends Omit<ISelectFieldProps, "value" | "container">{
+    name: string,
+    container?: HTMLElement | null
 }
 
 
@@ -17,7 +19,10 @@ export const SelectField = (props:ISelectFieldPropsForm) => {
     },[props.name])
 
     const getValue = useCallback(()=>{
-        return value[props.name]
+        const val = value?.[props.name]
+        if(isString(val))
+            return val ?? ""
+        return ""
     },[value, props.name])
 
     const getError = useCallback(() => {
@@ -29,6 +34,6 @@ export const SelectField = (props:ISelectFieldPropsForm) => {
 
     return(
         
-        <SF {...{...props, value: getValue(), onChange:change, errorText: getError(), error: errors && Boolean(errors[props.name])}}/>
+        <SF {...{...props, container: props.container ?? document.body, value: getValue(), onChange:change, errorText: getError(), error: errors && Boolean(errors[props.name])}}/>
     )
 }

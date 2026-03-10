@@ -1,9 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Checkbox, LinkIcon, ListContainer, ListItem, Switch } from "../../lib";
+import { ComponentType } from "react";
 
 const meta: Meta<typeof ListContainer> = {
   title: "Components/Base/List",
   component: ListContainer,
+  subcomponents: { ListItem: ListItem as unknown as ComponentType<unknown>},
   tags: ["autodocs"],
   argTypes: {
     maxHeight: {
@@ -35,7 +37,7 @@ const meta: Meta<typeof ListContainer> = {
 
 export default meta;
 
-type Story = StoryObj<typeof ListContainer>;
+type Story = StoryObj<typeof meta>;
 
 /**
  * Базовый список с элементами

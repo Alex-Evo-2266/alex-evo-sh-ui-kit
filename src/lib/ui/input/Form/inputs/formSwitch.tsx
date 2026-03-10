@@ -21,7 +21,8 @@ export const SwitchField = ({placeholder, ref, style, readOnly, className, name}
     }
 
     const getValue = useCallback(()=>{
-        return Boolean(value[name])
+        const val = value?.[name]
+        return Boolean(val)
     },[value, name])
 
     return(
