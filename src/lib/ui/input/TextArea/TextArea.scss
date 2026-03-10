@@ -1,8 +1,8 @@
 
-.text-area{
+.input-field__text-area{
     min-height: 34px;
     padding-block: 10px;
-    textarea{
+    &__textarea{
         resize: none;
         background-color: transparent;
         color: var(--On-surface-color);
@@ -15,6 +15,14 @@
             color: var(--Error-color);
         }
     }
+}
+
+.input-field__text-area .input-field__text-area__label{
+    top: 29px
+}
+.input-field__text-area .input-field__text-area__input-container{
+    padding-block: 10px;
+    padding-right: 15px;
 }
 
 @import '../inputField.scss';

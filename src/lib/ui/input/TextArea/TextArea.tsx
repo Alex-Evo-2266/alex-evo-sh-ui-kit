@@ -79,24 +79,23 @@ export const TextArea = React.forwardRef<HTMLDivElement, ITextAreaProps>(
           ref={ref}
           style={styleContainer}
           className={`
-            text-area 
+            input-field__text-area 
             input-field 
-            text-field--area
-            ${border ? "border" : ""} 
-            ${isFocused ? "active" : ""} 
-            ${transparent ? "transparent" : ""} 
-            ${isError ? "error" : ""} 
-            ${disabled ? "disabled" : ""}
+            ${border ? "input-field_border" : ""} 
+            ${isFocused ? "input-field_active" : ""} 
+            ${transparent ? "input-field_transparent" : ""} 
+            ${isError ? "input-field_error" : ""} 
+            ${disabled ? "input-field_disabled" : ""}
           `}
           onClick={focusInput}
         >
           {icon && (
-            <div className="icon-container" aria-hidden="true">
+            <div className="input-field__icon-container" aria-hidden="true">
               {icon}
             </div>
           )}
 
-          <div className="input-container" ref={inputContainerElement}>
+          <div className="input-field__input-container input-field__text-area__input-container" ref={inputContainerElement}>
             <textarea
               ref={inputRef}
               id={reactId}
@@ -106,7 +105,7 @@ export const TextArea = React.forwardRef<HTMLDivElement, ITextAreaProps>(
               rows={rows}
               name={name}
               value={value}
-              className={`${isError ? "error" : ""}`}
+              className={`input-field__input-container__input input-field__text-area__textarea ${isError ? "input-field__input-container__input_error" : ""}`}
               onClick={onClick}
               onChange={(e) => onChange?.(e.target.value, e.target.name, e)}
               onFocus={handleFocus}
@@ -121,28 +120,28 @@ export const TextArea = React.forwardRef<HTMLDivElement, ITextAreaProps>(
               <label
                 htmlFor={reactId}
                 onClick={focusInput}
-                className={isFilled ? "filled" : ""}
+                className={`input-field__input-container__label input-field__text-area__label ${isFilled ? "input-field__input-container__label_filled" : ""}`}
               >
-                <span>{placeholder}</span>
+                <span className="input-field__input-container__label__span">{placeholder}</span>
               </label>
             )}
           </div>
 
           {onClear && value && !disabled && (
-            <div className="icon-container clear-btn" onClick={onClear}>
+            <div className="input-field__icon-container input-field__icon-container__clear-btn" onClick={onClear}>
               <X aria-label="Clear textarea" />
             </div>
           )}
         </div>
 
         {isError && errorText && (
-          <Typography type="small" className="error-text">
+          <Typography type="small" className="input-field-container__error-text">
             {errorText}
           </Typography>
         )}
 
         {helperText && !isError && (
-          <Typography type="small" className="helper-text">
+          <Typography type="small" className="input-field-container__helper-text">
             {helperText}
           </Typography>
         )}
