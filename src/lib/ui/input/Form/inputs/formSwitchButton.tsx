@@ -1,6 +1,6 @@
-import { useCallback, useContext } from "react"
-import { formContext } from "../FormContext"
+import { useCallback } from "react"
 import { SegmentedButton } from "../../../../../lib"
+import { useFieldForm } from "../FormField.hook"
 
 export interface SwitchFieldProps {
     password?: boolean
@@ -14,24 +14,32 @@ export interface SwitchFieldProps {
 
 export const SwitchButtonField = ({placeholder, ref, style, readOnly, className, name}:SwitchFieldProps) => {
 
-    const {value, changeField} = useContext(formContext)
+    const {value, change:changeField} = useFieldForm(name)
 
     const change = (value: string[]) => {
         if(value.length > 0) {
-            return changeField && changeField(name, true)
+            return changeField && changeField(true)
         }
-        changeField && changeField(name, false)
+        changeField && changeField(false)
     }
 
     const getValue = useCallback(()=>{
-        const val = value?.[name]
-        if(Boolean(val)) {
+        if(Boolean(value)) {
             return [placeholder ?? name]
         }
         return []
     },[value, name, placeholder])
 
     return(
-        <SegmentedButton className={className} style={style} ref={ref} readOnly={readOnly} value={getValue()} multiple items={[placeholder ?? name]} onChange={change}/>
+        <SegmentedButton 
+        className={className} 
+        style={style} 
+        ref={ref} 
+        readOnly={readOnly} 
+        value={getValue()} 
+        multiple 
+        items={[placeholder ?? name]} 
+        onChange={change}
+        />
     )
 }

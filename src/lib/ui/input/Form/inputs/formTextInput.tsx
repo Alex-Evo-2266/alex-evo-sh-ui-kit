@@ -1,45 +1,21 @@
-import { useCallback, useContext } from "react"
 import { TextField as TF } from "../../TextField/TextField"
-import { formContext } from "../FormContext"
 import { ITextFieldProps } from "../../props"
-import { isString } from "../../../../helpers/typesCheck"
+import { useFieldForm } from "../FormField.hook"
 
-export interface TextFieldPropsForm extends Omit<ITextFieldProps, "value"> {
+export interface TextFieldPropsForm extends Omit<ITextFieldProps, "name" | "value" | "onChange" | "onClear" | "error" | "errorText"> {
     name: string
 }
 
 export const TextField = (props:TextFieldPropsForm) => {
 
-    const {value, changeField, errors} = useContext(formContext)
-
-    const change = useCallback((value: string) => {
-        changeField && changeField(props.name, value)
-    },[props.name])
-
-    const getValue = useCallback(()=>{
-        const val = value?.[props.name]
-        if(isString(val))
-            return val ?? ""
-        return ""
-    },[value, props.name])
-
-    const clearHandler = useCallback(() => {
-        changeField && changeField(props.name, '')
-    },[props.name])
-
-    const getError = useCallback(() => {
-        if (errors && Object.keys(errors).includes(props.name))
-        {
-            return errors[props.name]
-        }
-    },[errors, props.name])
+    const {error, value, change, clearHandler} = useFieldForm(props.name)
 
     return(
         <TF {...{...props}}
-        error={errors && Boolean(errors[props.name])}
+        error={Boolean(error)}
         onChange={change}
-        value={getValue()}
-        errorText={getError()}
+        value={String(value)}
+        errorText={error}
         onClear={clearHandler}
         />
     )

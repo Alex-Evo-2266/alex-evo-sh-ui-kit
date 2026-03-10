@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { Form } from "../../../lib";
+import { Form, Home } from "../../../lib";
 
 const meta: Meta<typeof Form> = {
   title: "Components/Form",
@@ -61,6 +61,14 @@ export const Basic: Story = {
 
           <Form.SwitchButtonField
             name="notifications"
+            // label="Notifications"
+          />
+
+          <Form.TextArea
+            name="area"
+            rows={5}
+            border
+            icon={<Home/>}
             // label="Notifications"
           />
 

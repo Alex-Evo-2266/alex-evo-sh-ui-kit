@@ -105,7 +105,7 @@ export const TextArea = React.forwardRef<HTMLDivElement, ITextAreaProps>(
               rows={rows}
               name={name}
               value={value}
-              className={`input-field__input-container__input input-field__text-area__textarea ${isError ? "input-field__input-container__input_error" : ""}`}
+              className={`input-field__input-container__input input-field__text-area__input-container__textarea ${isError ? "input-field__input-container__input_error" : ""}`}
               onClick={onClick}
               onChange={(e) => onChange?.(e.target.value, e.target.name, e)}
               onFocus={handleFocus}

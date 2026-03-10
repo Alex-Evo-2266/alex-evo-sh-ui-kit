@@ -7,6 +7,7 @@ import { SwitchField } from "./inputs/formSwitch"
 import { SwitchButtonField } from "./inputs/formSwitchButton"
 import { TextField } from "./inputs/formTextInput"
 import './inputs/styleInput.scss'
+import { TextAreaField } from "./inputs/formTextArea"
 
 export interface FormProps<T extends {[x:string]: unknown}>{
     children: React.ReactNode
@@ -50,5 +51,6 @@ export const Form = Object.assign(BaseForm, {
     SelectInput: SelectField,
     SwitchField: SwitchField,
     SwitchButtonField: SwitchButtonField,
-    MoreTextField: MoreTextField
+    MoreTextField: MoreTextField,
+    TextArea: TextAreaField
 })

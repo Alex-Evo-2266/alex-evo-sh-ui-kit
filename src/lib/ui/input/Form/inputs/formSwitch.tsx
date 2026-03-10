@@ -1,6 +1,5 @@
-import { useCallback, useContext } from "react"
-import { formContext } from "../FormContext"
 import { Switch } from "../../../Base/Switch/Switch"
+import { useFieldForm } from "../FormField.hook"
 
 export interface SwitchFieldProps {
     password?: boolean
@@ -14,20 +13,22 @@ export interface SwitchFieldProps {
 
 export const SwitchField = ({placeholder, ref, style, readOnly, className, name}:SwitchFieldProps) => {
 
-    const {value, changeField} = useContext(formContext)
+    const {value, change: changeField} = useFieldForm(name)
 
     const change = (e:React.ChangeEvent<HTMLInputElement>) => {
-        changeField && changeField(name, e.target.checked)
+        changeField && changeField(e.target.checked)
     }
-
-    const getValue = useCallback(()=>{
-        const val = value?.[name]
-        return Boolean(val)
-    },[value, name])
 
     return(
         <div className={`input-field form-switch ${className}`} style={style}>
-            <Switch readOnly={readOnly} ref={ref} placeholder={placeholder} name={name} checked={getValue()} onChange={change}/>
+            <Switch 
+            readOnly={readOnly}
+            ref={ref} 
+            placeholder={placeholder} 
+            name={name} 
+            checked={Boolean(value)} 
+            onChange={change}
+            />
         </div>
     )
 }

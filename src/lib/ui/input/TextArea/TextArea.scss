@@ -2,19 +2,6 @@
 .input-field__text-area{
     min-height: 34px;
     padding-block: 10px;
-    &__textarea{
-        resize: none;
-        background-color: transparent;
-        color: var(--On-surface-color);
-        font-size: var(--text-base-standart-screen);
-        width: calc(100% - 30px);
-        margin-left: 15px;
-        outline: none;
-        border: none;
-        &.error::placeholder{
-            color: var(--Error-color);
-        }
-    }
 }
 
 .input-field__text-area .input-field__text-area__label{
@@ -23,6 +10,18 @@
 .input-field__text-area .input-field__text-area__input-container{
     padding-block: 10px;
     padding-right: 15px;
+    .input-field__text-area__input-container__textarea{
+        resize: none;
+        background-color: transparent;
+        color: var(--On-surface-color);
+        font-size: var(--text-base-standart-screen);
+        width: calc(100% - 30px);
+        outline: none;
+        border: none;
+        &.error::placeholder{
+            color: var(--Error-color);
+        }
+    }
 }
 
 @import '../inputField.scss';

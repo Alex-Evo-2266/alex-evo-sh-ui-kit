@@ -1,8 +1,6 @@
-import { useCallback, useContext } from "react"
-import { formContext } from "../FormContext"
 import { MoreText as MT } from "../../MoreText/MoreText"
 import { IMoreTextProps } from "../../props"
-import { isString } from "../../../../helpers/typesCheck"
+import { useFieldForm } from "../FormField.hook"
 
 export interface MoreTextFieldProps extends Omit<IMoreTextProps, "value" | "onChange"> {
     name: string
@@ -10,27 +8,9 @@ export interface MoreTextFieldProps extends Omit<IMoreTextProps, "value" | "onCh
 
 export const MoreTextField = (props:MoreTextFieldProps) => {
 
-    const {value, changeField, errors} = useContext(formContext)
-
-    const change = useCallback((value: unknown) => {
-        changeField && changeField(props.name, value)
-    },[props.name])
-
-    const getValue = useCallback(()=>{
-        const val = value?.[props.name]
-        if(isString(val))
-            return val ?? ""
-        return ""
-    },[value, props.name])
-
-    const getError = useCallback(() => {
-        if (errors && Object.keys(errors).includes(props.name))
-        {
-            return errors[props.name] ?? props.errorText
-        }
-    },[errors, props.name, props.errorText])
+    const {value, change, error} = useFieldForm(props.name)
 
     return(
-        <MT {...{...props, onChange:change, value:getValue(), errorText:getError(), error: errors && Boolean(errors[props.name])}}/>
+        <MT {...{...props, onChange:change, value: String(value), errorText:error, error: Boolean(error)}}/>
     )
 }

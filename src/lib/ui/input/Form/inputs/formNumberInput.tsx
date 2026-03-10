@@ -1,7 +1,6 @@
-import { useCallback, useContext } from "react"
 import { NumberField as NF } from "../../NumberField/NumberField"
-import { formContext } from "../FormContext"
 import { INumberFieldProps } from "../../props"
+import { useFieldForm } from "../FormField.hook"
 
 export interface TextFieldProps extends Omit<INumberFieldProps, "value"> {
     name: string
@@ -9,25 +8,9 @@ export interface TextFieldProps extends Omit<INumberFieldProps, "value"> {
 
 export const NumberField = (props:TextFieldProps) => {
 
-    const {value, changeField, errors} = useContext(formContext)
-
-    const change = useCallback((value: any) => {
-        changeField && changeField(props.name, value)
-    },[props.name])
-
-    const getValue = useCallback(()=>{
-        const val = value?.[props.name]
-        return Number(val)
-    },[value, props.name])
-
-    const getError = useCallback(() => {
-        if (errors && Object.keys(errors).includes(props.name))
-        {
-            return errors[props.name] ?? props.errorText
-        }
-    },[errors, props.name, props.errorText])
+    const {value, change, error} = useFieldForm(props.name)
 
     return(
-        <NF {...{...props, value:getValue(), onChange:change, errorText:getError(), error: errors && Boolean(errors[props.name])}}/>
+        <NF {...{...props, value:Number(value), onChange:change, errorText:error, error: Boolean(error)}}/>
     )
 }
