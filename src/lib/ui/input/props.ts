@@ -140,3 +140,28 @@ export interface IDateFieldProps extends IBaseFieldProps{
   validEmptyValue?: boolean
   container: HTMLElement | null
 }
+
+export interface ITextAreaProps extends Omit<IBaseFieldProps, "value" | "inputRef" | "onClick" | "onKeyDown" | "onChange" | "onFocus" | "onBlur"> {
+  className?: string
+  value?: string
+
+  inputRef?: React.Ref<HTMLTextAreaElement>
+
+  onClear?: () => void
+
+  validEmptyValue?: boolean
+
+  autoFocus?: boolean
+
+  rows?: number
+
+  styleContainer?: React.CSSProperties
+
+  onClick?: (event: React.MouseEvent<HTMLTextAreaElement>) => void;
+    /** Обработчик нажатия клавиши */
+  onKeyDown?: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  onChange?: (value: string, name?: string, event?: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
+    /** Обработчик потери фокуса */
+  onBlur?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
+}

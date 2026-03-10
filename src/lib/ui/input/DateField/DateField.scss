@@ -1,5 +1,12 @@
 @import '../inputField.scss';
 
 
-.date-field{
+.input-field__date-field_small{
+	height: 34px;
+}
+.input-field__date-field_medium{
+	height: 48px;
+}
+.input-field__date-field_large{
+	height: 54px;
 }

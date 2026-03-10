@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import { X } from "../../Icons";
 import "./TextField.scss";
 import { Typography } from "../../Text/Text/Typography";
@@ -44,6 +44,7 @@ export const TextField = React.forwardRef<HTMLDivElement, ITextFieldProps>(
     const [isError, setError] = useState<boolean>(false);
     const [isFocused, setFocused] = useState<boolean>(false);
     const [isFilled, setIsFilled] = useState<boolean>(!!value);
+    const reactId = useId()
 
     const focusInput = () => {
       if (!inputContainerElement.current) return;
@@ -77,9 +78,9 @@ export const TextField = React.forwardRef<HTMLDivElement, ITextFieldProps>(
     }, [value, validEmptyValue, validateField]);
 
     const sizeClasses = {
-      small: "text-field--small",
-      medium: "text-field--medium",
-      large: "text-field--large",
+      small: "input-field__text-field_small",
+      medium: "input-field__text-field_medium",
+      large: "input-field__text-field_large",
     };
 
     return (
@@ -89,32 +90,36 @@ export const TextField = React.forwardRef<HTMLDivElement, ITextFieldProps>(
         style={styleContainer}
         className={`
           input-field 
-          text-field 
+          input-field__text-field 
           ${sizeClasses[size]}
-          ${border ? "border" : ""} 
-          ${isFocused ? "active" : ""} 
-          ${transparent ? "transparent" : ""} 
-          ${isError ? "error" : ""} 
-          ${disabled ? "disabled" : ""}
+          ${border ? "input-field_border" : ""} 
+          ${isFocused ? "input-field_active" : ""} 
+          ${transparent ? "input-field_transparent" : ""} 
+          ${isError ? "input-field_error" : ""} 
+          ${disabled ? "input-field_disabled" : ""}
         `}
         onClick={focusInput}
       >
         {icon && (
-          <div className="icon-container" aria-hidden="true">
+          <div className="input-field__icon-container" aria-hidden="true">
             {icon}
           </div>
         )}
 
-        <div className="input-container" ref={inputContainerElement}>
+        <div className="input-field__input-container" ref={inputContainerElement}>
           <input
             ref={inputRef}
             max={max}
             min={min}
+            id={reactId}
             readOnly={readOnly}
             disabled={disabled}
             required
             type={password ? "password" : type}
-            className={`${isError ? "error" : ""}`}
+            className={`
+              input-field__input-container__input 
+              ${isError ? "input-field__input-container__input_error" : ""}
+              `}
             name={name}
             value={value}
             onClick={onClick}
@@ -127,21 +132,30 @@ export const TextField = React.forwardRef<HTMLDivElement, ITextFieldProps>(
             aria-describedby={isError ? `${name}-error` : undefined}
           />
           {placeholder && (
-            <label onClick={focusInput} className={isFilled ? "filled" : ""}>
-              <span>{placeholder}</span>
+            <label 
+            htmlFor={reactId} 
+            onClick={focusInput} 
+            className={`input-field__input-container__label 
+              ${isFilled ? "input-field__input-container__label_filled" : ""}
+            `}
+            >
+              <span className="input-field__input-container__label__span">{placeholder}</span>
             </label>
           )}
         </div>
 
         {onClear && value && !disabled && (
-          <div className="icon-container clear-btn" onClick={onClear}>
+          <div className="
+          input-field__icon-container 
+          input-field__icon-container_clear-btn
+          " onClick={onClear}>
             <X aria-label="Clear input" />
           </div>
         )}
         
       </div>
-        {isError && errorText && <Typography type='small' className="error-text">{errorText}</Typography>}
-        {helperText && !isError && <Typography type='small' className="helper-text">{helperText}</Typography>}
+        {isError && errorText && <Typography type='small' className="input-field-container__error-text">{errorText}</Typography>}
+        {helperText && !isError && <Typography type='small' className="input-field-container__helper-text">{helperText}</Typography>}
     </div>
     );
   }

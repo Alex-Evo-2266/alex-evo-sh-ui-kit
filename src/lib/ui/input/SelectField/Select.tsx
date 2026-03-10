@@ -6,6 +6,7 @@ import { IMenuItem } from "../../../model/menu"
 import { getContainerData } from "../../../helpers/getContainerPozAndSize"
 import { Typography } from "../../Text/Text/Typography"
 import { IOption, ISelectFieldProps } from "../props"
+import './Select.scss'
 
 const getTitleByValue = (items:(IOption | string)[], value: string) => {
     for(let item of items)
@@ -81,41 +82,47 @@ export const SelectField = React.forwardRef<HTMLDivElement, ISelectFieldProps>(
     },[items, selectMap, disabled])
 
     const sizeClasses = {
-        small: "text-field--small",
-        medium: "text-field--medium",
-        large: "text-field--large",
+        small: "input-field__text-field_small",
+        medium: "input-field__text-field_medium",
+        large: "input-field__text-field_large",
       };
 
     return(
         <div className={`input-field-container ${className}`}>
             <div ref={ref} style={style} className={`
                 input-field 
-                text-field 
+                input-field__text-field 
                 ${sizeClasses[size]}
-                ${border ? "border" : ""} 
-                ${visible ? "active" : ""} 
-                ${transparent ? "transparent" : ""} 
-                ${isError ? "error" : ""} 
-                ${disabled ? "disabled" : ""}
+                ${border ? "input-field_border" : ""} 
+                ${visible ? "input-field_active" : ""} 
+                ${transparent ? "input-field_transparent" : ""} 
+                ${isError ? "input-field_error" : ""} 
+                ${disabled ? "input-field_disabled" : ""}
                 `}>
-                <div className="input-container" onClick={show}>
+                <div className="input-field__input-container" onClick={show}>
                     <input
                     ref={inputRef}
                     required 
                     disabled={disabled}
                     type="text"
-                    className={`${error?"error":""}`} 
+                    className={`input-field__input-container__input ${error?"input-field__input-container__input_error":""}`} 
                     name={name} 
                     value={selectTitle}
                     onFocus={onFocus}
                     onBlur={onBlur}
                     readOnly
                     />
-                    <label>{(placeholder)?<span>{placeholder}</span>:null}</label>
+                    <label className="input-field__input-container__label">
+                        {
+                        (placeholder)?
+                        <span className="input-field__input-container__label__span">{placeholder}</span>:
+                        null
+                        }
+                    </label>
                 </div>
             </div>
-            {isError && errorText && <Typography type='small' className="error-text">{errorText}</Typography>}
-            {helperText && !isError && <Typography type='small' className="helper-text">{helperText}</Typography>}
+            {isError && errorText && <Typography type='small' className="input-field-container__error-text">{errorText}</Typography>}
+            {helperText && !isError && <Typography type='small' className="input-field-container__helper-text">{helperText}</Typography>}
             <Menu marginBottom={screensize === ScreenSize.MOBILE? 80:0} width={pozition.width} screensize={screensize} x={pozition.x} y={pozition.y} onHide={()=>setVisible(false)} container={container} blocks={[{items:items.map(selectMap)}]} visible={visible}/>
         </div>
     )

@@ -6,6 +6,12 @@ import { Clock } from "../../Icons"
 import { Typography } from "../../Text/Text/Typography"
 import { ITimeFieldProps } from "../props"
 
+const sizeClasses = {
+  small: "input-field__time-field_small",
+  medium: "input-field__time-field_medium",
+  large: "input-field__time-field_large",
+};
+
 /**
  * Кастомизируемое поле для ввода времени с всплывающим пикером.
  * 
@@ -29,6 +35,7 @@ export const TimeField = ({
   errorText,
   helperText,
   ariaLabel,
+  size = "medium",
   ariaLabelledby,
   style
 }: ITimeFieldProps) => {
@@ -98,12 +105,19 @@ export const TimeField = ({
   return (
     <div className={`input-field-container ${className}`}>
       <div 
-        className={`input-field time-field ${border ? "border" : ""} ${isError ? "error" : ""} ${disabled ? "disabled" : ""}`}
+        className={`
+          input-field 
+          input-field__time-field 
+          ${sizeClasses[size]}
+          ${border ? "input-field_border" : ""} 
+          ${isError ? "input-field_error" : ""} 
+          ${disabled ? "input-field_disabled" : ""}
+          `}
         aria-disabled={disabled}
         style={style}
       >
         <div 
-          className="icon-container" 
+          className="input-field__icon-container" 
           onClick={handleClick}
           aria-label="Открыть пикер времени"
           role="button"
@@ -112,10 +126,10 @@ export const TimeField = ({
         >
           <Clock />
         </div>
-        <div aria-label={ariaLabel} className="input-container" onClick={handleClick}>
+        <div aria-label={ariaLabel} className="input-field__input-container" onClick={handleClick}>
           <input
             type="time" 
-            className={`${getValidationClass()}`} 
+            className={`input-field__input-container__input ${getValidationClass()}`} 
             name={name} 
             value={timeValue}
             readOnly
@@ -127,7 +141,7 @@ export const TimeField = ({
               helperText ? `${name}-helper` : undefined
             }
           />
-          <span className="text-field-line"></span>
+          <span className="input-field__input-container__text-field-line"></span>
         </div>
       </div>
       

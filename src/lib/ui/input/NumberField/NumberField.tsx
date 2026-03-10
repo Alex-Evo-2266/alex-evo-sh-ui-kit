@@ -164,9 +164,9 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
     },[value])
 
     const sizeClasses = {
-        small: "text-field--small",
-        medium: "text-field--medium",
-        large: "text-field--large",
+        small: "input-field__number-field_small",
+        medium: "input-field__number-field_medium",
+        large: "input-field__number-field_large",
     };
 
     return(
@@ -176,22 +176,22 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
         style={styleContainer} 
         className={`
             input-field 
-            number-field
+            input-field__number-field
             ${sizeClasses[size]}
-            ${border ? "border" : ""} 
-            ${transparent ? "transparent" : ""} 
-            ${isError ? "error" : ""} 
-            ${disabled ? "disabled" : ""}
+            ${border ? "input-field_border" : ""} 
+            ${transparent ? "input-field_transparent" : ""} 
+            ${isError ? "input-field_error" : ""} 
+            ${disabled ? "input-field_disabled" : ""}
         `}
         aria-disabled={disabled}
         aria-invalid={isError}
         >
             {
                 (icon)?
-                <div className="icon-container" onClick={focus} aria-hidden="true">{icon}</div>:
+                <div className="input-field__icon-container" onClick={focus} aria-hidden="true">{icon}</div>:
                 null
             }
-            <div ref={inputContainerElement} className="input-container" onClick={focus}>
+            <div ref={inputContainerElement} className="input-field__input-container" onClick={focus}>
                 <input
                 ref={inputRef}
                 max={max}
@@ -200,7 +200,7 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
                 readOnly={readOnly}
                 required 
                 type="number" 
-                className={`alex-evo-number-field ${isError?"error":""}`} 
+                className={`input-field__input-container__input ${isError?"input-field__input-container__input_error":""}`} 
                 name={name} 
                 value={val} 
                 onChange={changeNumber}
@@ -213,7 +213,9 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
                 aria-invalid={isError}
                 disabled={disabled}
                 />
-                <label>{(placeholder)?<span>{placeholder}</span>:null}</label>
+                <label className="input-field__input-container__label">
+                    {(placeholder)?<span className="input-field__input-container__label__span">{placeholder}</span>:null}
+                </label>
                 <span className="text-field-line"></span>
             </div>
             {
@@ -229,9 +231,9 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
                 </div>:
                 null
             }
-            <div className="button-block">
+            <div className="input-field__number-field__button-block">
                 <div 
-                    className="minus number-field-btn" 
+                    className="minus input-field__number-field__button-block__btn" 
                     onMouseDown={()=>mouseDown("m")}
                     role="button"
                     aria-label="Decrease value"
@@ -241,7 +243,7 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
                     <Minus/>
                 </div>
                 <div 
-                    className="plus number-field-btn" 
+                    className="plus input-field__number-field__button-block__btn" 
                     onMouseDown={()=>mouseDown("p")}
                     role="button"
                     aria-label="Increase value"
@@ -255,7 +257,7 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
         {isError && errorText && (
             <Typography 
                 type='small' 
-                className="error-text"
+                className="input-field-container__error-text"
                 id={ariaDescribedby}
                 role="alert"
             >
@@ -265,7 +267,7 @@ export const NumberField = React.forwardRef<HTMLDivElement, INumberFieldProps>((
         {helperText && !isError && (
             <Typography 
                 type='small' 
-                className="helper-text"
+                className="input-field-container__helper-text"
                 id={ariaDescribedby}
             >
                 {helperText}

@@ -1,9 +1,9 @@
-@import '../inputField.scss';
 
 .text-area{
     min-height: 34px;
+    padding-block: 10px;
     textarea{
-        resize: vertical;
+        resize: none;
         background-color: transparent;
         color: var(--On-surface-color);
         font-size: var(--text-base-standart-screen);
@@ -16,3 +16,5 @@
         }
     }
 }
+
+@import '../inputField.scss';

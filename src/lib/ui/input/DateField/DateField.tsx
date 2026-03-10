@@ -50,24 +50,25 @@ export const DateField:React.FC<IDateFieldProps> = (
     },[onChange])
 
     const sizeClasses = {
-        small: "text-field--small",
-        medium: "text-field--medium",
-        large: "text-field--large",
+        small: "input-field__date-field_small",
+        medium: "input-field__date-field_medium",
+        large: "input-field__date-field_large",
     };
 
     return(
         <div className={`input-field-container ${className}`}>
         <div className={`
           input-field 
-          date-field 
+          input-field__date-field 
           ${sizeClasses[size]}
-          ${border ? "border" : ""} 
-          ${isError ? "error" : ""} 
-          ${disabled ? "disabled" : ""}
+          ${border ? "input-field_border" : ""} 
+          ${isError ? "input-field_error" : ""} 
+          ${disabled ? "input-field_disabled" : ""}
         `}>
-            <div className="icon-container" onClick={click}><Calendar/></div>
-            <div className="input-container" onClick={click}>
+            <div className="input-field__icon-container" onClick={click}><Calendar/></div>
+            <div className="input-field__input-container" onClick={click}>
                 <input
+                className="input-field__input-container__input"
                 required 
                 type="date" 
                 role='textbox'
@@ -84,8 +85,8 @@ export const DateField:React.FC<IDateFieldProps> = (
             </ModalPortal>
             :null
         }
-        {isError && errorText && <Typography type='small' className="error-text">{errorText}</Typography>}
-        {helperText && !isError && <Typography type='small' className="helper-text">{helperText}</Typography>}
+        {isError && errorText && <Typography type='small' className="input-field-container__error-text">{errorText}</Typography>}
+        {helperText && !isError && <Typography type='small' className="input-field-container__helper-text">{helperText}</Typography>}
         </div>
         
     )

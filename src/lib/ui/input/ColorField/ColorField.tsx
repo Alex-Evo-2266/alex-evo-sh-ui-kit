@@ -59,8 +59,8 @@ export const ColorField = ({
   const fieldClasses = [
     "input-field",
     "color-field",
-    border ? "border" : "",
-    transparent ? "transparent" : "",
+    border ? "input-field_border" : "",
+    transparent ? "input-field_transparent" : "",
     className,
   ]
     .filter(Boolean)
