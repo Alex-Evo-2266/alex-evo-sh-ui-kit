@@ -1,12 +1,12 @@
 // List.tsx
-import React from "react";
+import React, { forwardRef, HTMLAttributes, LiHTMLAttributes } from "react";
 import { Typography } from "../Text/Text/Typography";
 import "./List.scss";
 
 /**
  * Пропсы для контейнера списка
  */
-export interface ListContainerProps {
+export interface ListContainerProps extends HTMLAttributes<HTMLUListElement> {
   /** Дочерние элементы списка (обычно ListItem) */
   children?: React.ReactNode;
   /** Дополнительные классы для стилизации */
@@ -28,7 +28,7 @@ export interface ListContainerProps {
 /**
  * Контейнер для списка элементов с поддержкой скролла и кастомизации
  */
-export const ListContainer = ({
+export const ListContainer = forwardRef<HTMLUListElement, ListContainerProps>(({
   children,
   className = "",
   maxHeight,
@@ -37,7 +37,8 @@ export const ListContainer = ({
   width,
   padding,
   margin,
-}: ListContainerProps) => {
+  ...rest
+}, ref) => {
   const styles:React.CSSProperties = {
     overflowY: maxHeight ? (scroll ? "scroll" : "hidden") : undefined,
     maxHeight,
@@ -57,38 +58,17 @@ export const ListContainer = ({
     .join(" ");
 
   return (
-    <ul style={styles} className={classes}>
+    <ul ref={ref} style={styles} className={classes} {...rest}>
       {children}
     </ul>
   );
-};
+})
 
 /**
  * Пропсы для элемента списка
  */
-export interface ListItemContainerProps {
-  /** Иконка элемента (ReactNode или строка) */
-  icon?: React.ReactNode;
-  /** Заголовок элемента */
-  header?: string;
-  /** Вторичный текст элемента */
-  text?: string;
-  /** Элемент управления (кнопка, переключатель и т.д.) */
-  control?: React.ReactNode;
-  /** Текстовое значение (альтернатива иконке) */
-  value?: string;
-  /** Обработчик клика */
-  onClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
-  /** Показывать hover-эффект */
-  hovered?: boolean;
-  /** Дополнительные классы */
-  className?: string;
-  /** Отключить элемент */
-  disabled?: boolean;
-  /** Выделить элемент как активный */
-  active?: boolean;
-}
-export interface ListItemContainerProps {
+
+export interface ListItemContainerProps extends LiHTMLAttributes<HTMLLIElement> {
     /** Иконка элемента (ReactNode или строка) */
     icon?: React.ReactNode;
     /** Заголовок элемента */
@@ -115,7 +95,7 @@ export interface ListItemContainerProps {
     shadow?: number;
   }
   
-  export const ListItem = ({
+  export const ListItem = forwardRef<HTMLLIElement, ListItemContainerProps>(({
     icon,
     control,
     text,
@@ -127,8 +107,9 @@ export interface ListItemContainerProps {
     className = "",
     disabled = false,
     active = false,
-    shadow = 0
-  }: ListItemContainerProps) => {
+    shadow = 0,
+    ...rest
+  }, ref) => {
     const handleClick = (event: React.MouseEvent<HTMLLIElement>) => {
       if (!disabled && !(event.target as HTMLElement).closest(".control-container")) {
         onClick?.(event);
@@ -147,7 +128,7 @@ export interface ListItemContainerProps {
       .join(" ");
   
     return (
-      <li className={classes} onClick={handleClick} aria-disabled={disabled}>
+      <li ref={ref} className={classes} onClick={handleClick} aria-disabled={disabled} {...rest}>
         {(icon || value) && (
           <div className="list-item-container__icon-container">
             {icon || (value && <Typography type="body">{value}</Typography>)}
@@ -177,4 +158,4 @@ export interface ListItemContainerProps {
         {control && <div onClick={e=>{e.stopPropagation()}} className="list-item-container__control-container">{control}</div>}
       </li>
     );
-  };
+  })
