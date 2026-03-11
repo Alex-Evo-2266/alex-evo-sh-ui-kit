@@ -258,3 +258,4 @@ export {SneckbarProvider, SneckbarContext}
 export * from './ui/Icons';
 
 export {Form} from './ui/input/Form/Form'
+export type {FormProps, FormRef} from './ui/input/Form/Form'

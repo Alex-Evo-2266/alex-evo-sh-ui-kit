@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { forwardRef, useCallback, useImperativeHandle, useState } from "react"
 import { formContext } from "./FormContext"
 import { MoreTextField } from "./inputs/formMoreText"
 import { NumberField } from "./inputs/formNumberInput"
@@ -9,15 +9,27 @@ import { TextField } from "./inputs/formTextInput"
 import './inputs/styleInput.scss'
 import { TextAreaField } from "./inputs/formTextArea"
 
-export interface FormProps<T extends {[x:string]: unknown}>{
+export interface FormProps<T extends Record<string, unknown>>{
     children: React.ReactNode
     onFinish?: (data:{[x:string]: unknown})=>void
     value?: T
     name?: string
-    errors?: {[key:string]:string}
+    errors?: Record<string, string>
 }
 
-const BaseForm = <T extends {[x:string]: any},>({children, value, name, errors, onFinish}:FormProps<T>) => {
+export interface FormRef {
+  submit: () => void
+  setFieldValue: (name: string, value: unknown) => void
+  setValues: (values: Record<string, unknown>) => void
+  getValues: () => Record<string, unknown>
+  reset: () => void
+}
+
+const BaseForm = forwardRef(
+    function BaseForm<T extends Record<string, unknown>>(
+        {children, value, name, errors, onFinish}:FormProps<T>,
+        ref: React.Ref<FormRef>
+    ){
 
     const [values, setValues] = useState<{
         [x: string]: unknown
@@ -28,11 +40,21 @@ const BaseForm = <T extends {[x:string]: any},>({children, value, name, errors, 
         onFinish?.(values)
     },[onFinish, values])
 
-    const changeHandler = (name: string, data: unknown) => {
+    const changeHandler = useCallback((name: string, data: unknown) => {
         setValues(prev=>({
             ...prev, [name]: data
         }))
-    }
+    },[])
+
+    useImperativeHandle(ref, () => ({
+        submit: () => onFinish?.(values),
+        setFieldValue: (name, value) => {
+            setValues(prev=>({ ...prev, [name]: value }))
+        },
+        setValues: (v) => setValues(v),
+        getValues: () => values,
+        reset: () => setValues(value ?? {})
+    }),[onFinish, values, value])
 
     return(
         <formContext.Provider value={{value: values, changeField: changeHandler, errors}}>
@@ -41,8 +63,7 @@ const BaseForm = <T extends {[x:string]: any},>({children, value, name, errors, 
             </form>
         </formContext.Provider>
     )
-
-}
+})
 
 
 export const Form = Object.assign(BaseForm, {
