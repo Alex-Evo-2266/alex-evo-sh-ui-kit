@@ -1,5 +1,5 @@
 import { IconButton } from "../../Base/IconButton/IconButton";
-import { Button, FilledButton } from "../../Base/Button/Button";
+import { Button } from "../../Base/Button/Button";
 import { X } from "../../Icons";
 import { useScrollLock } from "../../../hooks/lockScroll.hook";
 import { ModalDialogTemplate } from "./ModalDialogTemplate";
