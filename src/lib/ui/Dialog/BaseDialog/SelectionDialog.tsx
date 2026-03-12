@@ -98,6 +98,7 @@ export function SelectionDialog<T>({
     <BasicTemplateDialog 
       header={header}
       style={style}
+      onHide={handleCancel}
       action={
         <DialogButtons
           onHide={handleCancel}

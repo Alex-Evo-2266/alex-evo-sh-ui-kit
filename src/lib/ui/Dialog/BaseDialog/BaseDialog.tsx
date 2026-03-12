@@ -82,7 +82,7 @@ export const BaseDialog = ({
     onHide?.();
   }, [onCancel, onHide]);
 
-  const renderActions = () => {
+  const renderActions = useCallback(() => {
     if (customActions) return customActions;
     if (disableDefaultButtons) return null;
     
@@ -94,12 +94,13 @@ export const BaseDialog = ({
         cancelText={cancelText}
       />
     );
-  };
+  },[customActions, disableDefaultButtons, handleCancel, handleSuccess, actionText, cancelText])
 
   return (
     <BasicTemplateDialog 
       style={styleContainer} 
       header={header}
+      onHide={handleCancel}
       action={renderActions()}
     >
       {text && <Typography type="body">{text}</Typography>}

@@ -121,6 +121,7 @@ export const TextDialog = ({
     <BasicTemplateDialog 
       style={styleContainer} 
       header={header}
+      onHide={handleCancel}
       action={
         <div>
           <TextButton onClick={handleCancel}>{cancelText}</TextButton>
