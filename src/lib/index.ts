@@ -1,5 +1,6 @@
 // Импорты компонентов
 import { BaseButton, Button, FilledButton, FilledTotalButton, OutlineButton, TextButton } from "./ui/Base/Button/Button";
+import { DangerButton } from './ui/Base/Button/DangerButton'
 import { CopyButton } from './ui/Base/CopyButton/CopyButton';
 import { Range } from './ui/input/Range/Range'
 import CircleInput from './ui/input/Range/RangeCircle'
@@ -136,6 +137,7 @@ export {
   CircleInput,
   FilledButton,
   FilledTotalButton,
+  DangerButton,
   GridLayout,
   GridLayoutItem,
   IconButton,
