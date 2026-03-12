@@ -106,18 +106,18 @@ export const FullScreenTemplateDialog = ({
 		action={
       (btns === undefined)?
 		  	<>
-          <Button onClick={onHide ? handleHide : undefined}>{cancelText ?? "Отмена"}</Button>
-          <Button onClick={onSave ? handleSave : undefined}>{saveText ?? "Сохранить"}</Button>
+          {onHide && <Button onClick={handleHide}>{cancelText ?? "Отмена"}</Button>}
+          {onHide && <Button onClick={handleSave}>{saveText ?? "Сохранить"}</Button>}
         </>:
         btns.map(btn=>btn.danger?(
-          <FilledButton style={{backgroundColor: "var(--Error-color)", ...btn.style}} onClick={
+          <FilledButton key={btn.text} style={{backgroundColor: "var(--Error-color)", ...btn.style}} onClick={
             btn.save? onSave ? handleSave : undefined :
             btn.hide? onHide ? handleHide : undefined :
             btn.onClick
           }
           >{btn.text}</FilledButton>
         ):(
-          <Button style={btn.style} onClick={
+          <Button key={btn.text} style={btn.style} onClick={
             btn.save? onSave ? handleSave : undefined :
             btn.hide? onHide ? handleHide : undefined :
             btn.onClick
@@ -169,14 +169,14 @@ export const FullScreenTemplateDialog = ({
       <div className="full-screen-dialog__content">
         {children}
         {btns?.filter(btn=>!btn.hide && !btn.save).map(btn=>btn.danger?(
-          <FilledButton style={{backgroundColor: "var(--Error-color)", ...btn.style}} onClick={
+          <FilledButton key={btn.text} style={{backgroundColor: "var(--Error-color)", ...btn.style}} onClick={
             btn.save? onSave ? handleSave : undefined :
             btn.hide? onHide ? handleHide : undefined :
             btn.onClick
           }
           >{btn.text}</FilledButton>
         ):(
-          <Button onClick={
+          <Button key={btn.text} onClick={
             btn.onClick
           }
           style={btn.style}
