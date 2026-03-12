@@ -9,6 +9,15 @@ import { useContext } from "react";
 import { SizeContext } from "../../Provider/SizeProvider";
 import './style/full-screen-dialog.scss'
 
+export interface DialogButton {
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+  save?: boolean
+  hide?: boolean
+  text: string
+  color?: string
+}
+
+
 export interface FullScreenDialogProps {
   /** Содержимое диалога */
   children: React.ReactNode;
@@ -41,6 +50,8 @@ export interface FullScreenDialogProps {
   cancelText?: string;
 
   forceFullScreen?: boolean;
+
+  btns?: DialogButton[]
 }
 
 /**
@@ -67,7 +78,8 @@ export const FullScreenTemplateDialog = ({
   disableBackplate,
   saveText,
   cancelText,
-  forceFullScreen
+  forceFullScreen,
+  btns
 }: FullScreenDialogProps) => {
 	const {screen} = useContext(SizeContext)
 	useScrollLock(true, document.body);
@@ -91,10 +103,21 @@ export const FullScreenTemplateDialog = ({
         className={`full-screen-dialog ${className}`}
         onHide={handleHide}
 		action={
+      (btns === undefined)?
 		  	<>
-				<Button onClick={onHide ? handleHide : undefined}>{cancelText ?? "Отмена"}</Button>
-				<Button onClick={onSave ? handleSave : undefined}>{saveText ?? "Сохранить"}</Button>
-			</>}
+          <Button onClick={onHide ? handleHide : undefined}>{cancelText ?? "Отмена"}</Button>
+          <Button onClick={onSave ? handleSave : undefined}>{saveText ?? "Сохранить"}</Button>
+        </>:
+        btns.map(btn=>(
+          <Button onClick={
+            btn.save? onSave ? handleSave : undefined :
+            btn.hide? onHide ? handleHide : undefined :
+            btn.onClick
+          }
+          color={btn.color}
+          >{btn.text}</Button>
+        ))
+        }
       >
         {children}
       </ModalDialogTemplate>
@@ -138,6 +161,13 @@ export const FullScreenTemplateDialog = ({
       </div>
       <div className="full-screen-dialog__content">
         {children}
+        {btns?.filter(btn=>!btn.hide && !btn.save).map(btn=>(
+          <Button onClick={
+            btn.onClick
+          }
+          color={btn.color}
+          >{btn.text}</Button>
+        ))}
       </div>
     </div>
   );
