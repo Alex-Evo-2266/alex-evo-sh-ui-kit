@@ -1,5 +1,5 @@
 import { IconButton } from "../../Base/IconButton/IconButton";
-import { Button } from "../../Base/Button/Button";
+import { Button, FilledButton } from "../../Base/Button/Button";
 import { X } from "../../Icons";
 import { useScrollLock } from "../../../hooks/lockScroll.hook";
 import { ModalDialogTemplate } from "./ModalDialogTemplate";
@@ -14,7 +14,8 @@ export interface DialogButton {
   save?: boolean
   hide?: boolean
   text: string
-  color?: string
+  danger?: boolean
+  style?: React.CSSProperties
 }
 
 
@@ -108,13 +109,19 @@ export const FullScreenTemplateDialog = ({
           <Button onClick={onHide ? handleHide : undefined}>{cancelText ?? "Отмена"}</Button>
           <Button onClick={onSave ? handleSave : undefined}>{saveText ?? "Сохранить"}</Button>
         </>:
-        btns.map(btn=>(
-          <Button onClick={
+        btns.map(btn=>btn.danger?(
+          <FilledButton style={{backgroundColor: "var(--Error-color)", ...btn.style}} onClick={
             btn.save? onSave ? handleSave : undefined :
             btn.hide? onHide ? handleHide : undefined :
             btn.onClick
           }
-          color={btn.color}
+          >{btn.text}</FilledButton>
+        ):(
+          <Button style={btn.style} onClick={
+            btn.save? onSave ? handleSave : undefined :
+            btn.hide? onHide ? handleHide : undefined :
+            btn.onClick
+          }
           >{btn.text}</Button>
         ))
         }
@@ -161,11 +168,18 @@ export const FullScreenTemplateDialog = ({
       </div>
       <div className="full-screen-dialog__content">
         {children}
-        {btns?.filter(btn=>!btn.hide && !btn.save).map(btn=>(
+        {btns?.filter(btn=>!btn.hide && !btn.save).map(btn=>btn.danger?(
+          <FilledButton style={{backgroundColor: "var(--Error-color)", ...btn.style}} onClick={
+            btn.save? onSave ? handleSave : undefined :
+            btn.hide? onHide ? handleHide : undefined :
+            btn.onClick
+          }
+          >{btn.text}</FilledButton>
+        ):(
           <Button onClick={
             btn.onClick
           }
-          color={btn.color}
+          style={btn.style}
           >{btn.text}</Button>
         ))}
       </div>
