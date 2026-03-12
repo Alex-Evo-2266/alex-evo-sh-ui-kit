@@ -86,6 +86,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({size = 'medium', ...props
     )
 }
 
+
 export const Button: React.FC<IButtonProps> = ({ styleType = "base", ...props }) => {
   if (styleType === "outline") return <OutlineButton {...props} />;
   if (styleType === "text") return <TextButton {...props} />;

@@ -6,7 +6,7 @@ export interface ModalPortalProps{
     container?: HTMLElement | null
 }
  
-export const ModalPortal:React.FC<ModalPortalProps> = ({children, container}) => {
+export const ModalPortal:React.FC<ModalPortalProps> = ({children, container = document.body}) => {
 
     if(!container)
         return <p>container not found</p>

@@ -8,15 +8,8 @@ import { ScreenSize } from "../../../model/sizeScreen";
 import { useContext } from "react";
 import { SizeContext } from "../../Provider/SizeProvider";
 import './style/full-screen-dialog.scss'
-
-export interface DialogButton {
-  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
-  save?: boolean
-  hide?: boolean
-  text: string
-  danger?: boolean
-  style?: React.CSSProperties
-}
+import type { DialogButtonType } from "../types";
+import { DialogButton } from "./DialogButton";
 
 
 export interface FullScreenDialogProps {
@@ -52,7 +45,7 @@ export interface FullScreenDialogProps {
 
   forceFullScreen?: boolean;
 
-  btns?: DialogButton[]
+  btns?: DialogButtonType[]
 }
 
 /**
@@ -106,24 +99,10 @@ export const FullScreenTemplateDialog = ({
 		action={
       (btns === undefined)?
 		  	<>
-          {onHide && <Button onClick={handleHide}>{cancelText ?? "Отмена"}</Button>}
+          {onHide && <Button styleType="outline" onClick={handleHide}>{cancelText ?? "Отмена"}</Button>}
           {onHide && <Button onClick={handleSave}>{saveText ?? "Сохранить"}</Button>}
         </>:
-        btns.map(btn=>btn.danger?(
-          <FilledButton key={btn.text} style={{backgroundColor: "var(--Error-color)", ...btn.style}} onClick={
-            btn.save? onSave ? handleSave : undefined :
-            btn.hide? onHide ? handleHide : undefined :
-            btn.onClick
-          }
-          >{btn.text}</FilledButton>
-        ):(
-          <Button key={btn.text} style={btn.style} onClick={
-            btn.save? onSave ? handleSave : undefined :
-            btn.hide? onHide ? handleHide : undefined :
-            btn.onClick
-          }
-          >{btn.text}</Button>
-        ))
+        <DialogButton btns={btns} onHide={onHide} onSuccess={onSave}/>
         }
       >
         {children}
@@ -168,20 +147,7 @@ export const FullScreenTemplateDialog = ({
       </div>
       <div className="full-screen-dialog__content">
         {children}
-        {btns?.filter(btn=>!btn.hide && !btn.save).map(btn=>btn.danger?(
-          <FilledButton key={btn.text} style={{backgroundColor: "var(--Error-color)", ...btn.style}} onClick={
-            btn.save? onSave ? handleSave : undefined :
-            btn.hide? onHide ? handleHide : undefined :
-            btn.onClick
-          }
-          >{btn.text}</FilledButton>
-        ):(
-          <Button key={btn.text} onClick={
-            btn.onClick
-          }
-          style={btn.style}
-          >{btn.text}</Button>
-        ))}
+        {btns && <DialogButton btns={btns.filter(btn=>!btn.hide && !btn.success)}/>}
       </div>
     </div>
   );

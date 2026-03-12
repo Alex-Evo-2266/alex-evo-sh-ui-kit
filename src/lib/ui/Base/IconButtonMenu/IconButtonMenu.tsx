@@ -1,27 +1,23 @@
-import { useState } from "react"
+import React, { useContext, useState } from "react"
 import { IBlock } from "../../../model/menu"
 import { Menu } from "../../Menu/Menu"
-import { IconButton } from "../IconButton/IconButton"
+import { IconButton, IconButtonProps } from "../IconButton/IconButton"
 import { ScreenSize } from "../../../model/sizeScreen"
 import { IPoint } from "../../../model/point"
+import { SizeContext } from "../../Provider/SizeProvider"
 
-export interface IconButtonProps{
-    icon: React.ReactNode
-    className?: string
-    classNameContainer?: string
-    disabled?: boolean
-    style?: React.CSSProperties
-    transparent?: boolean
+export interface  IconButtonMenuProps extends IconButtonProps {
     container?:HTMLElement | null
     blocks: IBlock[]
     screensize?: ScreenSize
     autoHide?: boolean
-  }
+}
 
-export const IconButtonMenu:React.FC<IconButtonProps> = ({icon, className, classNameContainer, disabled, style, transparent, container, blocks, screensize, autoHide}) => {
+export const IconButtonMenu = React.forwardRef<HTMLButtonElement, IconButtonMenuProps>(({screensize, autoHide, blocks, container, onClick, ...props}, ref) => {
 
     const [visible, setVisible] = useState<boolean>(false)
     const [poz, setPoz] = useState<IPoint|undefined>(undefined)
+    const {screen} = useContext(SizeContext)
 
     const hide = () => {
         setVisible(false)
@@ -32,12 +28,29 @@ export const IconButtonMenu:React.FC<IconButtonProps> = ({icon, className, class
         event.stopPropagation()
         setVisible(true)
         setPoz({x: event.clientX, y: event.clientY})
+        onClick?.(event)
     }
+
+    const screenData = screensize ?? screen
 
     return(
         <>
-            <IconButton onClick={show} icon={icon} className={className} classNameContainer={classNameContainer} disabled={disabled} style={style} transparent={transparent}/>
-            <Menu marginBottom={screensize === ScreenSize.MOBILE?80:0} onHide={hide} autoHide={autoHide} screensize={screensize} visible={visible} x={poz?.x ?? 0} y={poz?.y ?? 0} blocks={blocks} container={container}/>
+            <IconButton 
+            ref={ref}
+            onClick={show}
+            {...{...props}}
+            />
+            <Menu 
+            marginBottom={screenData === ScreenSize.MOBILE?80:0} 
+            onHide={hide} 
+            autoHide={autoHide} 
+            screensize={screensize} 
+            visible={visible} 
+            x={poz?.x ?? 0} 
+            y={poz?.y ?? 0} 
+            blocks={blocks} 
+            container={container}
+            />
         </>
     )
-}
+})

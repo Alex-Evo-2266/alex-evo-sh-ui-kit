@@ -1,6 +1,8 @@
 import React, { useCallback } from "react";
-import { OutlineButton, TextButton, Typography } from "../../..";
+import { Typography } from "../../..";
 import { BasicTemplateDialog } from "../TemplateDialog/BasicTemplateDialog";
+import type { DialogButtonType  } from "../types";
+import { DialogButton } from "../TemplateDialog/DialogButton";
 
 export interface BaseDialogProps {
   /** Текст сообщения в диалоге */
@@ -35,15 +37,10 @@ export interface BaseDialogProps {
   
   /** Кастомные кнопки действий */
   customActions?: React.ReactNode;
+
+  btns?: DialogButtonType[]
 }
 
-interface BaseDialogButtonProps {
-  actionText?: string;
-  cancelText?: string;
-  onSuccess?: () => void;
-  onHide?: () => void;
-  disabled?: boolean;
-}
 
 /**
  * Базовый диалоговый компонент для стандартных подтверждений и уведомлений.
@@ -71,6 +68,7 @@ export const BaseDialog = ({
   children,
   disableDefaultButtons = false,
   customActions,
+  btns
 }: BaseDialogProps) => {
   const handleSuccess = useCallback(() => {
     onSuccess?.();
@@ -85,15 +83,21 @@ export const BaseDialog = ({
   const renderActions = useCallback(() => {
     if (customActions) return customActions;
     if (disableDefaultButtons) return null;
-    
-    return (
-      <BaseDialogButton
-        onHide={handleCancel}
-        onSuccess={handleSuccess}
-        actionText={actionText}
-        cancelText={cancelText}
-      />
-    );
+
+    if(btns)
+    return <DialogButton onHide={handleCancel} onSuccess={handleSuccess} btns={btns}/>
+
+
+    return <DialogButton onHide={handleCancel} onSuccess={handleSuccess} btns={[
+      {
+      text: cancelText,
+      hide: true,
+      styleType: "outline"
+    },{
+      text: actionText ?? "OK",
+      success: true
+    }]}/>
+
   },[customActions, disableDefaultButtons, handleCancel, handleSuccess, actionText, cancelText])
 
   return (
@@ -106,34 +110,5 @@ export const BaseDialog = ({
       {text && <Typography type="body">{text}</Typography>}
       {children}
     </BasicTemplateDialog>
-  );
-};
-
-/**
- * Компонент стандартных кнопок диалога
- */
-const BaseDialogButton = ({
-  actionText = "OK",
-  cancelText = "Отмена",
-  onSuccess,
-  onHide,
-  disabled = false,
-}: BaseDialogButtonProps) => {
-  return (
-    <div>
-      {onHide && (
-        <OutlineButton 
-          onClick={onHide}
-        >
-          {cancelText}
-        </OutlineButton>
-      )}
-      <TextButton 
-        onClick={onSuccess}
-        disabled={disabled}
-      >
-        {actionText}
-      </TextButton>
-    </div>
   );
 };
