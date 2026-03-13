@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useImperativeHandle, useState } from "react"
+import { FormHTMLAttributes, forwardRef, useCallback, useImperativeHandle, useState } from "react"
 import { formContext } from "./FormContext"
 import { MoreTextField } from "./inputs/formMoreText"
 import { NumberField } from "./inputs/formNumberInput"
@@ -10,7 +10,7 @@ import './inputs/styleInput.scss'
 import { TextAreaField } from "./inputs/formTextArea"
 import { DateField } from "./inputs/formDateInput"
 
-export interface FormProps<T extends Record<string, unknown>>{
+export interface FormProps<T extends Record<string, unknown>> extends FormHTMLAttributes<HTMLFormElement>{
     children: React.ReactNode
     onFinish?: (data:{[x:string]: unknown})=>void
     value?: T
@@ -28,7 +28,7 @@ export interface FormRef {
 
 const BaseForm = forwardRef(
     function BaseForm<T extends Record<string, unknown>>(
-        {children, value, name, errors, onFinish}:FormProps<T>,
+        {children, value, name, errors, onFinish, ...props}:FormProps<T>,
         ref: React.Ref<FormRef>
     ){
 
@@ -59,7 +59,7 @@ const BaseForm = forwardRef(
 
     return(
         <formContext.Provider value={{value: values, changeField: changeHandler, errors}}>
-            <form name={name} onSubmit={submiteHandler} noValidate>
+            <form name={name} onSubmit={submiteHandler} noValidate {...props}>
             {children}
             </form>
         </formContext.Provider>

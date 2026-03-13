@@ -15,6 +15,7 @@
     }
     &_color_surface-container{
         background-color: var(--Surface-container-color);
+        color: var(--On-surface-color);
         box-shadow: var(--shadow-elevation-6);
     }
     &__container{
