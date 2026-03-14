@@ -9,6 +9,7 @@ import { TextField } from "./inputs/formTextInput"
 import './inputs/styleInput.scss'
 import { TextAreaField } from "./inputs/formTextArea"
 import { DateField } from "./inputs/formDateInput"
+import { TimeField } from "./inputs/formTimeInput"
 
 export interface FormProps<T extends Record<string, unknown>> extends FormHTMLAttributes<HTMLFormElement>{
     children: React.ReactNode
@@ -75,5 +76,6 @@ export const Form = Object.assign(BaseForm, {
     SwitchButtonField: SwitchButtonField,
     MoreTextField: MoreTextField,
     TextArea: TextAreaField,
-    DateField: DateField
+    DateField: DateField,
+    TimeField: TimeField
 })
