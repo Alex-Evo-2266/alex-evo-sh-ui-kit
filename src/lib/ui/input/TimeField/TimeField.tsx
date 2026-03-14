@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect, useMemo } from "react"
+import { useCallback, useState, useEffect, useMemo, useId } from "react"
 import "./TimeField.scss"
 import { ModalPortal } from "../../../portal/dialog"
 import { TimePicker } from "./TimePickers"
@@ -37,10 +37,17 @@ export const TimeField = ({
   ariaLabel,
   size = "medium",
   ariaLabelledby,
-  style
+  placeholder,
+  onBlur,
+  onFocus,
+  style,
+  ...props
 }: ITimeFieldProps) => {
   const [timeValue, setTimeValue] = useState<string>(value)
   const [pickerVisible, setPickerVisible] = useState<boolean>(false)
+  const [isFocused, setFocused] = useState<boolean>(false);
+  const [isFilled, setIsFilled] = useState<boolean>(!!value);
+  const reactId = useId()
 
   // Определяем состояние ошибки
   const isError = error || !!errorText
@@ -69,6 +76,21 @@ export const TimeField = ({
       setPickerVisible(true)
     }
   }
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+      onFocus?.(e);
+      setFocused(true);
+  }
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      onBlur?.(e);
+      setFocused(false);
+      setIsFilled(!!e.target.value);
+  }
+
+  useEffect(() => {
+      setIsFilled(!!value);
+  }, [value]);
 
   // Парсим начальные часы и минуты из текущего значения
   const initialHours = timeValue ? parseInt(timeValue.split(':')[0]) || 0 : 0
@@ -110,6 +132,7 @@ export const TimeField = ({
           input-field__time-field 
           ${sizeClasses[size]}
           ${border ? "input-field_border" : ""} 
+          ${isFocused ? "input-field_active" : ""} 
           ${isError ? "input-field_error" : ""} 
           ${disabled ? "input-field_disabled" : ""}
           `}
@@ -128,11 +151,14 @@ export const TimeField = ({
         </div>
         <div aria-label={ariaLabel} className="input-field__input-container" onClick={handleClick}>
           <input
+            {...props}
             type="time" 
             className={`input-field__input-container__input ${getValidationClass()}`} 
             name={name} 
             value={timeValue}
             readOnly
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             disabled={disabled}
             aria-labelledby={ariaLabelledby}
             aria-invalid={isError}
@@ -141,6 +167,16 @@ export const TimeField = ({
               helperText ? `${name}-helper` : undefined
             }
           />
+          {placeholder && (
+              <label 
+              htmlFor={reactId} 
+              className={`input-field__input-container__label 
+              ${isFilled ? "input-field__input-container__label_filled" : ""}
+              `}
+              >
+              <span className="input-field__input-container__label__span">{placeholder}</span>
+              </label>
+          )}
           <span className="input-field__input-container__text-field-line"></span>
         </div>
       </div>

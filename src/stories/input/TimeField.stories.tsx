@@ -90,6 +90,14 @@ export const Disabled: Story = {
   }
 }
 
+export const Placeholder: Story = {
+  args: {
+    value: "14:00",
+    border: true,
+    placeholder: "test"
+  }
+}
+
 export const InteractiveExample = () => {
   const [time, setTime] = useState("")
   return (
@@ -107,6 +115,7 @@ export const InteractiveExample = () => {
     </div>
   )
 }
+
 InteractiveExample.parameters = {
   docs: {
     description: {

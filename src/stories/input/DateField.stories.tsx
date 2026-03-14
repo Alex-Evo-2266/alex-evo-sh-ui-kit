@@ -55,5 +55,13 @@ export const WithError: Story = {
 export const WithoutBorder: Story = {
   args: {
     border: false,
+    placeholder: "test"
+  },
+};
+
+export const Placeholder: Story = {
+  args: {
+    border: true,
+    placeholder: "test"
   },
 };
