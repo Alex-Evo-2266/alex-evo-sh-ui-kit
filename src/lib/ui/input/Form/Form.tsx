@@ -14,6 +14,7 @@ import { TimeField } from "./inputs/formTimeInput"
 export interface FormProps<T> extends FormHTMLAttributes<HTMLFormElement>{
     children: React.ReactNode
     onFinish?: (data:T)=>void
+    onChangeValue?: (name: keyof T, value: T[keyof T])=>void
     value: T
     name?: string
     errors?: Partial<Record<keyof T, string>>
@@ -33,7 +34,7 @@ export type FormComponent = <T>(
 
 const BaseForm = forwardRef(
     function BaseForm<T>(
-        {children, value, name, errors, onFinish, ...props}:FormProps<T>,
+        {children, value, name, errors, onFinish, onChangeValue, ...props}:FormProps<T>,
         ref: React.Ref<FormRef<T>>
     ){
 
@@ -48,7 +49,8 @@ const BaseForm = forwardRef(
         setValues(prev=>({
             ...prev, [name]: data
         }))
-    },[])
+        onChangeValue?.(name, data)
+    },[onChangeValue])
 
     useImperativeHandle(ref, () => ({
         submit: () => onFinish?.(values),
