@@ -11,38 +11,40 @@ import { TextAreaField } from "./inputs/formTextArea"
 import { DateField } from "./inputs/formDateInput"
 import { TimeField } from "./inputs/formTimeInput"
 
-export interface FormProps<T extends Record<string, unknown>> extends FormHTMLAttributes<HTMLFormElement>{
+export interface FormProps<T> extends FormHTMLAttributes<HTMLFormElement>{
     children: React.ReactNode
-    onFinish?: (data:{[x:string]: unknown})=>void
-    value?: T
+    onFinish?: (data:Partial<T>)=>void
+    value?: Partial<T>
     name?: string
-    errors?: Record<string, string>
+    errors?: Partial<Record<keyof T, string>>
 }
 
-export interface FormRef {
+export interface FormRef<T> {
   submit: () => void
-  setFieldValue: (name: string, value: unknown) => void
-  setValues: (values: Record<string, unknown>) => void
-  getValues: () => Record<string, unknown>
+  setFieldValue: (name: keyof T, value: T[keyof T]) => void
+  setValues: (values: Partial<T>) => void
+  getValues: () => Partial<T>
   reset: () => void
 }
 
+export type FormComponent = <T>(
+  props: FormProps<T> & { ref?: React.Ref<FormRef<T>> }
+) => React.ReactNode | null;
+
 const BaseForm = forwardRef(
-    function BaseForm<T extends Record<string, unknown>>(
+    function BaseForm<T>(
         {children, value, name, errors, onFinish, ...props}:FormProps<T>,
-        ref: React.Ref<FormRef>
+        ref: React.Ref<FormRef<T>>
     ){
 
-    const [values, setValues] = useState<{
-        [x: string]: unknown
-    }>(value ?? {})
+    const [values, setValues] = useState<Partial<T>>(value ?? {})
 
     const submiteHandler = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         onFinish?.(values)
     },[onFinish, values])
 
-    const changeHandler = useCallback((name: string, data: unknown) => {
+    const changeHandler = useCallback(<K extends keyof T>(name: K, data: T[K]) => {
         setValues(prev=>({
             ...prev, [name]: data
         }))
@@ -65,7 +67,7 @@ const BaseForm = forwardRef(
             </form>
         </formContext.Provider>
     )
-})
+}) as FormComponent
 
 
 export const Form = Object.assign(BaseForm, {
