@@ -9,8 +9,8 @@ export enum PopupState {
 export const usePopup = ({valueDisplayDuration = 2000}:{valueDisplayDuration: number}) => {
 
     const [popupState, setPopupState] = useState<PopupState>(PopupState.CLOSE);
-    const timeoutRef = useRef<number>();
-    const hideTimeoutRef = useRef<number>();
+    const timeoutRef = useRef<number | null>(null);
+    const hideTimeoutRef = useRef<number | null>(null);
 
     const hidePopup = () => {
         setPopupState(PopupState.HIDING);

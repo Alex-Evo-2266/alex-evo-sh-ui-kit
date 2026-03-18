@@ -4,7 +4,7 @@ import './Range.scss'
 import { interpolateColor } from '../../../helpers/color/interpolateColor';
 import { ColorContext } from '../../Provider/ColorProvider';
 
-interface CircleInputProps {
+export interface CircleInputProps {
   colorBg?: string;
   colorRange?: string;
   pointColor?: string;

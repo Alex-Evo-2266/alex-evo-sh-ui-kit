@@ -5,7 +5,7 @@ import { getColumnsName, getFirstCell } from "../../helpers/table"
 import { TableRow } from "./TableRow"
 import { ScreenSize } from "../../model/sizeScreen"
 
-interface ITableProps extends ITable {
+export interface ITableProps extends ITable {
   adaptive?: boolean
   screenSize?: ScreenSize
 }
