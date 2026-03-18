@@ -1,14 +1,14 @@
-import { useCallback, useContext } from "react"
-import { formContext } from "./FormContext"
+import { useCallback } from "react"
+import { useFormContext } from "./FormContext"
 import { isBoolean, isNumber, isString } from "../../../helpers/typesCheck"
 
 
 export const useFieldForm = (name: string) => {
 
-        const {value: v, changeField, errors} = useContext(formContext)
+        const {value: v, changeField, errors} = useFormContext<Record<string, unknown>>()
     
         const change = useCallback((value: unknown) => {
-            changeField && changeField(name, value)
+            changeField && changeField(name as never, value as never)
         },[name])
     
         const getValue = useCallback(()=>{
