@@ -28,6 +28,11 @@ export const Basic: Story = {
       <div style={{ maxWidth: 400 }}>
         <Form
           name="demoForm"
+          value={{
+            name: "",
+            age: 0,
+            role: "user"
+          }}
           onFinish={(data) => {
             console.log("submit", data);
             setResult(data);
@@ -128,6 +133,10 @@ export const WithErrors: Story = {
   render: () => (
     <Form
       name="errors"
+      value={{
+        name: "",
+        age: 0
+      }}
       errors={{
         name: "Name is required",
         age: "Invalid age",
