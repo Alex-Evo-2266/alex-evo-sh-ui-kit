@@ -1,4 +1,4 @@
-@import '../inputField.scss';
+@use '../inputField' as inputField;
 
 .input-field__number-field_small{
 	height: 34px;

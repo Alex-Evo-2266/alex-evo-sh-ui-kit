@@ -1,5 +1,5 @@
 
-@import '../inputField.scss';
+@use '../inputField' as inputField;
 
 .input-field__time-field_small{
 	height: 34px;

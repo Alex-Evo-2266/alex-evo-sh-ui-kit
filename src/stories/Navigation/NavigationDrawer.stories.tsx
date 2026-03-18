@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Home, NavigationDrawer, Plug, SizeProvider } from '../../lib/index';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 const meta = {
   title: 'Components/Navigation/NavigationDrawer',

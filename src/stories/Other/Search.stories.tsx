@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import { FilterIcon, IconButton, LampIcon, Search } from '../../lib/index';
 
 const meta = {
@@ -13,7 +13,7 @@ const meta = {
     
   },
   args: { 
-    onSearch: fn,
+    onSearch: ()=>fn(),
     placeholder: "search"
    },
 } satisfies Meta<typeof Search>;

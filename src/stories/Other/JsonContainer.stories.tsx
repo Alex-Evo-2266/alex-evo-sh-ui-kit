@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { JsonContainer } from '../../lib/index';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import { BaseType } from '../../lib/ui/Other/JSON/JsonComponent';
 
 const meta = {
@@ -14,7 +14,7 @@ const meta = {
     
   },
   args: {
-    onChange: fn,
+    onChange:()=> fn(),
     name:"test",
     data: {
       tesr: "df",

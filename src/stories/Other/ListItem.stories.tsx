@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import {ListItem, IconButton } from '../../lib/index';
 // import React from 'react';
 import img from '../img/fon-base.jpg'
@@ -15,7 +15,7 @@ const meta = {
   argTypes: {
     
   },
-  args: { onClick: fn },
+  args: { onClick: ()=>fn() },
 } satisfies Meta<typeof ListItem>;
 
 export default meta;

@@ -1,4 +1,4 @@
-@import '../inputField.scss';
+@use '../inputField' as inputField;
 
 .text-field{
 	height: 54px;

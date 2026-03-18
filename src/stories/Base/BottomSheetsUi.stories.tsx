@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BottomSheetsUi, ListContainer, ListItem } from '../../lib/index';
-import { within, expect, fireEvent, fn, waitFor } from '@storybook/test'
+import { within, expect, fireEvent, waitFor, fn } from 'storybook/test'
 // import React from 'react';
 
 const meta = {

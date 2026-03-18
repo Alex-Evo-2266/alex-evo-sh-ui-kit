@@ -1,8 +1,8 @@
-@import "./colors.scss";
-@import "./animate.scss";
-@import "./variable.scss";
 
-@import "./input//inputField.scss";
+@use './input/inputField.scss' as inputField;
+@use './colors.scss' as colors;
+@use './animate.scss' as animate;
+@use './variable.scss' as variable;
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {

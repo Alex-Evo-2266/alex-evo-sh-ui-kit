@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import { Range } from '../../lib/index';
 
 const meta = {
@@ -13,7 +13,7 @@ const meta = {
     
   },
   args: { 
-    onChange: fn,
+    onChange: ()=>fn(),
     value: 0
    },
 } satisfies Meta<typeof Range>;

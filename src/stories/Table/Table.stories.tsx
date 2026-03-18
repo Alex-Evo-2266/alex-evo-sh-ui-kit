@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import { Home, ScreenSize, Table } from '../../lib/index';
 import { useCallback, useState } from 'react';
 // import React from 'react';
@@ -87,14 +87,14 @@ export const Action: Story = {
   export const Delete: Story = {
     args: {
         screenSize: ScreenSize.STANDART,
-        onDelete:fn
+        onDelete:()=>fn()
     },
   };
 
   export const Menu: Story = {
     args: {
         screenSize: ScreenSize.STANDART,
-        onContextMenu:fn
+        onContextMenu:()=>fn()
     },
   };
 
@@ -204,14 +204,14 @@ export const ActionSmall: Story = {
   export const DeleteSmall: Story = {
     args: {
         screenSize: ScreenSize.MOBILE,
-        onDelete:fn
+        onDelete:()=>fn()
     },
   };
 
   export const MenuSmall: Story = {
     args: {
         screenSize: ScreenSize.MOBILE,
-        onContextMenu:fn
+        onContextMenu:()=>fn()
     },
   };
 

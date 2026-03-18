@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button, Card, GearIcon, IconButton, Plus, ScreenSize, Typography } from '../../lib';
 import img from '../img/fon-base.jpg'
-import { fn } from '@storybook/test';
+
+const handleClick = () => console.log("clicked");
 
 const meta: Meta<typeof Card> = {
   title: 'Components/Card',
@@ -145,7 +146,7 @@ export const ResponsiveCards: StoryObj = {
         header="Mobile View"
         text="Optimized for small screens"
         screenSize={ScreenSize.MOBILE}
-        onClick={fn}
+        onClick={handleClick}
       />
       <Card 
         header="Standard View"

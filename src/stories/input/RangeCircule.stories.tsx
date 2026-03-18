@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import CircleInput from '../../lib/ui/input/Range/RangeCircle';
 import { Typography } from '../../lib';
 
@@ -14,7 +14,7 @@ const meta = {
     
   },
   args: { 
-    onChange: fn,
+    onChange: ()=>fn(),
     value: 50,
    },
 } satisfies Meta<typeof CircleInput>;

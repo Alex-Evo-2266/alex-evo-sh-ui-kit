@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import { SegmentedButton } from '../../lib/index';
 
 const meta = {
@@ -14,7 +14,7 @@ const meta = {
   },
   args: { 
     items:["btn1", "btn2", "btn3"],
-    onChange: fn
+    onChange: ()=> fn()
    },
 } satisfies Meta<typeof SegmentedButton>;
 
