@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 type AnyObject = unknown
 
 export interface IContext<T extends AnyObject>{
-    value?: Partial<T>,
+    value?: T,
     changeField?: (name: keyof T, data: T[keyof T])=>void
     errors?: Partial<Record<string, string>>
 }

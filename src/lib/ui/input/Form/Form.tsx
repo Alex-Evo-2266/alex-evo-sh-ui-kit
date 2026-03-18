@@ -13,8 +13,8 @@ import { TimeField } from "./inputs/formTimeInput"
 
 export interface FormProps<T> extends FormHTMLAttributes<HTMLFormElement>{
     children: React.ReactNode
-    onFinish?: (data:Partial<T>)=>void
-    value?: Partial<T>
+    onFinish?: (data:T)=>void
+    value: T
     name?: string
     errors?: Partial<Record<keyof T, string>>
 }
@@ -22,8 +22,8 @@ export interface FormProps<T> extends FormHTMLAttributes<HTMLFormElement>{
 export interface FormRef<T> {
   submit: () => void
   setFieldValue: (name: keyof T, value: T[keyof T]) => void
-  setValues: (values: Partial<T>) => void
-  getValues: () => Partial<T>
+  setValues: (values: T) => void
+  getValues: () => T
   reset: () => void
 }
 
@@ -37,7 +37,7 @@ const BaseForm = forwardRef(
         ref: React.Ref<FormRef<T>>
     ){
 
-    const [values, setValues] = useState<Partial<T>>(value ?? {})
+    const [values, setValues] = useState<T>(value)
 
     const submiteHandler = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -57,7 +57,7 @@ const BaseForm = forwardRef(
         },
         setValues: (v) => setValues(v),
         getValues: () => values,
-        reset: () => setValues(value ?? {})
+        reset: () => setValues(value)
     }),[onFinish, values, value])
 
     return(
