@@ -8,6 +8,11 @@ import { ScreenSize } from "../../model/sizeScreen"
 export interface ITableProps extends ITable {
   adaptive?: boolean
   screenSize?: ScreenSize
+  /**
+     * Уровень тени (0-24)
+     * @default 1
+     */
+  shadow?:number;
 }
 
 export const Table = ({
@@ -17,8 +22,10 @@ export const Table = ({
   onContextMenu,
   onEdit,
   actions,
+  shadow = 2,
   onClickRow,
 }: ITableProps) => {
+  
   const cols = useMemo<Column[]>(
     () => columns ?? getColumnsName(data),
     [data, columns]
@@ -52,8 +59,11 @@ export const Table = ({
     })
   }
 
+  const elevationClass = `container_shadow-${shadow}`;
+
+
   return (
-    <div className={`table-container mt-3 ${onClickRow ? "clicked" : ""}`}>
+    <div className={`table-container mt-3 ${onClickRow ? "clicked" : ""} ${elevationClass}`}>
       <table>
         <thead>
           <tr>
