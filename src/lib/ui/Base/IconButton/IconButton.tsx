@@ -10,6 +10,7 @@ export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   classNameContainer?: string;
   /** Прозрачный фон */
   transparent?: boolean;
+  shadow?: number
   /** Размер кнопки */
   size?: "small" | "medium" | "large";
   rippleDisabled?: boolean
@@ -28,6 +29,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       disabled = false,
       style,
       rippleDisabled = false,
+      shadow = 0,
       ...props
     },
     ref
@@ -68,7 +70,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           backgroundColor: transparent ? "transparent" : undefined,
           ...style,
         }}
-        className={`iconbutton iconbutton--${size} ${className}`}
+        className={`iconbutton iconbutton--${size} ${className} container_shadow-hover-${shadow}`}
         onClick={handleClick}
         onContextMenu={onContextMenu}
         disabled={disabled}

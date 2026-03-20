@@ -6,16 +6,18 @@ import img from '../img/fon-base.jpg'
 
 
 const meta = {
-  title: 'Components/Other/List/ListItem',
+  title: 'Components/Base/List/ListItem',
   component: ListItem,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    
+    shadow: {
+      control: { type: 'range', min: 0, max: 28, step: 1 },
+    },
   },
-  args: { onClick: ()=>fn() },
+  args: { onClick: ()=>fn(), shadow: 4 },
 } satisfies Meta<typeof ListItem>;
 
 export default meta;

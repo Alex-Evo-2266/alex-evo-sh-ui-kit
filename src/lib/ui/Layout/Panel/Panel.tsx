@@ -20,7 +20,7 @@ interface PanelProps {
      * Уровень тени (0-24)
      * @default 1
      */
-    elevation?: number;
+    shadow?:number;
     
     /**
      * Имеет ли панель внутренние отступы
@@ -34,6 +34,8 @@ interface PanelProps {
      */
     borderRadius?: number;
 
+
+
     onClick?:(e:React.MouseEvent<HTMLDivElement>)=>void;
     onContextMenu?:(e:React.MouseEvent<HTMLDivElement>)=>void;
 }
@@ -42,13 +44,13 @@ export const Panel: React.FC<PanelProps> = ({
     children, 
     className = '', 
     style, 
-    elevation = 1,
+    shadow = 1,
     padded = true,
     borderRadius = 12,
     onClick,
     onContextMenu
 }) => {
-    const elevationClass = `elevation-${Math.min(24, Math.max(0, elevation))}`;
+    const elevationClass = `container_shadow-${shadow}`;
     
     return (
         <div 

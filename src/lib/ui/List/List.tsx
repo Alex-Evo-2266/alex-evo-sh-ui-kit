@@ -23,6 +23,8 @@ export interface ListContainerProps extends HTMLAttributes<HTMLUListElement> {
   padding?: string;
   /** Внешние отступы */
   margin?: string;
+  gap?: number
+  flex?: boolean
 }
 
 /**
@@ -37,6 +39,8 @@ export const ListContainer = forwardRef<HTMLUListElement, ListContainerProps>(({
   width,
   padding,
   margin,
+  flex,
+  gap = 0,
   ...rest
 }, ref) => {
   const styles:React.CSSProperties = {
@@ -47,6 +51,15 @@ export const ListContainer = forwardRef<HTMLUListElement, ListContainerProps>(({
     padding,
     margin,
   };
+
+  if(flex)
+  {
+    styles["display"] = "flex"
+    styles["flexDirection"] = "column"
+    if(gap > 0){
+      styles["gap"] = gap
+    }
+  }
 
   const classes = [
     "list-container",
@@ -119,7 +132,7 @@ export interface ListItemContainerProps extends LiHTMLAttributes<HTMLLIElement> 
     const classes = [
       "list-item-container",
       className,
-      `list-item-container_shadow-${shadow}`,
+      `container_shadow-hover-${shadow}`,
       hovered && !disabled ? "list-item-container_hovered" : "",
       disabled ? "list-item-container_disabled" : "",
       active ? "list-item-container_active" : "",
@@ -138,7 +151,7 @@ export interface ListItemContainerProps extends LiHTMLAttributes<HTMLLIElement> 
           <div className="list-item-container__text-container">
             {header && (
               <div className="list-item-container__text-container__header">
-                <Typography type="body">{header}</Typography>
+                <Typography type="title">{header}</Typography>
               </div>
             )}
             {text && (

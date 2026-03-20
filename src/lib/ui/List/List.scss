@@ -1,4 +1,3 @@
-$max-elevation: 24;
 
 .list-container {
     padding: 8px 0;
@@ -117,9 +116,5 @@ $max-elevation: 24;
       }
     }
 
-    @for $i from 1 through $max-elevation {
-      &_shadow-#{$i} {
-        box-shadow: var(--shadow-elevation-#{$i});
-      }
-    }
+
   }

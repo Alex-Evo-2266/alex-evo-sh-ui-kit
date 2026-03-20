@@ -11,6 +11,9 @@ const meta: Meta<typeof IconButton> = {
     icon: {
       control: false, // Отключаем контроль в Storybook, так как это React-нода
     },
+    shadow: {
+      control: { type: 'range', min: 0, max: 28, step: 1 },
+    },
     size: {
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],
@@ -56,6 +59,7 @@ type Story = StoryObj<typeof IconButton>;
 // Базовая история
 export const Default: Story = {
   args: {
+    shadow: 4,
     icon: <Copy />,
     'aria-label': 'Копировать',
   },

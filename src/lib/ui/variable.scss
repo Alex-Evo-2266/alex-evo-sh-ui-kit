@@ -1,12 +1,19 @@
-$max-elevation: 24;
+$max-elevation: 34;
 
-body{
-    --border-size: 1px;
-    --border-base: var(--border-size) solid var(--Outline-color);
 
-    @for $i from 0 through 24 {
-        --shadow-elevation-#{$i}: #{0 ($i * 0.5px) ($i * 1px) rgba(0, 0, 0, 0.1), 0 ($i * 0.25px) ($i * 0.5px) rgba(0, 0, 0, 0.06)};
-      }
-      // Переопределяем 0-й уровень (чтобы был none)
-      --shadow-elevation-0: none;
+body {
+  --border-size: 1px;
+  --border-base: var(--border-size) solid var(--Outline-color);
+
+  @for $i from 0 through 34 {
+    $y: $i * 0.4px;
+    $blur: $i * 1.2px;
+    $spread: -$i * 0.1px;
+
+    --shadow-elevation-#{$i}: 
+      #{0 $y $blur $spread rgba(0, 0, 0, 0.18 - ($i * 0.003)),
+        0 ($y * 0.5) ($blur * 0.6) 0 rgba(0, 0, 0, 0.08)};
+  }
+
+  --shadow-elevation-0: none;
 }

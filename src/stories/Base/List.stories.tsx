@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Checkbox, LinkIcon, ListContainer, ListItem, Switch } from "../../lib";
+import { Checkbox, LinkIcon, ListContainer, ListItem, Pen, Switch } from "../../lib";
 import { ComponentType } from "react";
+import img from '../img/fon-base.jpg'
 
 const meta: Meta<typeof ListContainer> = {
   title: "Components/Base/List",
@@ -247,3 +248,16 @@ export const Shadow: Story = {
     </ListContainer>
   ),
 };
+
+export const Combo: Story = {
+  render: (args:any) => (
+    <ListContainer {...args} flex gap={10}>
+      <ListItem header="Обычный элемент" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quis repellendus ipsa unde, ab eos possimus tenetur quod totam tempore repellat, aliquam, neque laudantium est mollitia voluptates dolorem. Illo, explicabo." shadow={10}/>
+      <ListItem description="asegdfhn" icon={<Pen/>} control={<Checkbox/>} header="Активный элемент" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quis repellendus ipsa unde, ab eos possimus tenetur quod totam tempore repellat, aliquam, neque laudantium est mollitia voluptates dolorem. Illo, explicabo." active shadow={10}/>
+      <ListItem icon={<Pen/>} header="Еще один обычный" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quis repellendus ipsa unde, ab eos possimus tenetur quod totam tempore repellat, aliquam, neque laudantium est mollitia voluptates dolorem. Illo, explicabo." shadow={10}/>
+      <ListItem icon={<img src={img}/>} header="Еще один обычный" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quis repellendus ipsa unde, ab eos possimus tenetur quod totam tempore repellat, aliquam, neque laudantium est mollitia voluptates dolorem. Illo, explicabo." shadow={10}/>
+      <ListItem description="asegdfhn" header="Еще один обычный" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quis repellendus ipsa unde, ab eos possimus tenetur quod totam tempore repellat, aliquam, neque laudantium est mollitia voluptates dolorem. Illo, explicabo." shadow={10}/>
+    </ListContainer>
+  ),
+};
+

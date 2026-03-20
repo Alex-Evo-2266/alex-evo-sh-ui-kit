@@ -6,8 +6,8 @@ const meta: Meta<typeof Panel> = {
   component: Panel,
   tags: ['autodocs'],
   argTypes: {
-    elevation: {
-      control: { type: 'range', min: 0, max: 24, step: 1 },
+    shadow: {
+      control: { type: 'range', min: 0, max: 28, step: 1 },
     },
     borderRadius: {
       control: { type: 'number', min: 0, max: 50, step: 1 },
@@ -25,7 +25,7 @@ type Story = StoryObj<typeof Panel>;
 export const Default: Story = {
   args: {
     children: 'This is a default panel',
-    elevation: 1,
+    shadow: 1,
     padded: true,
     borderRadius: 12,
   },
@@ -34,7 +34,7 @@ export const Default: Story = {
 export const HighElevation: Story = {
   args: {
     ...Default.args,
-    elevation: 8,
+    shadow: 8,
     children: 'Panel with high elevation',
   },
 };
