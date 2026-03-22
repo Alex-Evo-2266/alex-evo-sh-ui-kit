@@ -1,8 +1,7 @@
 // List.tsx
-import React, { forwardRef, HTMLAttributes, LiHTMLAttributes, useEffect } from "react";
+import React, { forwardRef, HTMLAttributes, LiHTMLAttributes, useEffect, useRef } from "react";
 import { Typography } from "../Text/Text/Typography";
 import "./List.scss";
-import { useRef } from "storybook/internal/preview-api";
 
 /**
  * Пропсы для контейнера списка
