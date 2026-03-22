@@ -1,7 +1,8 @@
 // List.tsx
-import React, { forwardRef, HTMLAttributes, LiHTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, LiHTMLAttributes, useEffect } from "react";
 import { Typography } from "../Text/Text/Typography";
 import "./List.scss";
+import { useRef } from "storybook/internal/preview-api";
 
 /**
  * Пропсы для контейнера списка
@@ -25,6 +26,7 @@ export interface ListContainerProps extends HTMLAttributes<HTMLUListElement> {
   margin?: string;
   gap?: number
   flex?: boolean
+  onObserv?: IntersectionObserverCallback
 }
 
 /**
@@ -41,8 +43,11 @@ export const ListContainer = forwardRef<HTMLUListElement, ListContainerProps>(({
   margin,
   flex,
   gap = 0,
+  onObserv,
   ...rest
 }, ref) => {
+  const loadMoreRef = useRef<HTMLDivElement | null>(null)
+
   const styles:React.CSSProperties = {
     overflowY: maxHeight ? (scroll ? "scroll" : "hidden") : undefined,
     maxHeight,
@@ -61,6 +66,16 @@ export const ListContainer = forwardRef<HTMLUListElement, ListContainerProps>(({
     }
   }
 
+  useEffect(() => {
+      if (!loadMoreRef.current || !onObserv) return
+
+      const observer = new IntersectionObserver(onObserv)
+
+      observer.observe(loadMoreRef.current)
+
+      return () => observer.disconnect()
+  }, [onObserv])
+
   const classes = [
     "list-container",
     className,
@@ -73,6 +88,7 @@ export const ListContainer = forwardRef<HTMLUListElement, ListContainerProps>(({
   return (
     <ul ref={ref} style={styles} className={classes} {...rest}>
       {children}
+      <div ref={loadMoreRef} />
     </ul>
   );
 })
