@@ -66,7 +66,7 @@ export const ListContainer = forwardRef<HTMLUListElement, ListContainerProps>(({
   }
 
   useEffect(() => {
-      if (!loadMoreRef.current || !onObserv) return
+      if (!loadMoreRef.current || !onObserv) return;
 
       const observer = new IntersectionObserver(onObserv)
 
