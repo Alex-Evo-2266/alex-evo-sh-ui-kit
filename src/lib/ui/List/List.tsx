@@ -121,6 +121,8 @@ export interface ListItemContainerProps extends LiHTMLAttributes<HTMLLIElement> 
     active?: boolean;
 
     shadow?: number;
+
+    noTransformTransition?: boolean
   }
   
   export const ListItem = forwardRef<HTMLLIElement, ListItemContainerProps>(({
@@ -136,6 +138,7 @@ export interface ListItemContainerProps extends LiHTMLAttributes<HTMLLIElement> 
     disabled = false,
     active = false,
     shadow = 0,
+    noTransformTransition,
     ...rest
   }, ref) => {
     const handleClick = (event: React.MouseEvent<HTMLLIElement>) => {
@@ -151,6 +154,7 @@ export interface ListItemContainerProps extends LiHTMLAttributes<HTMLLIElement> 
       hovered && !disabled ? "list-item-container_hovered" : "",
       disabled ? "list-item-container_disabled" : "",
       active ? "list-item-container_active" : "",
+      noTransformTransition ? "no-transform-transition" : ""
     ]
       .filter(Boolean)
       .join(" ");
