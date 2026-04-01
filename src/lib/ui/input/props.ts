@@ -139,6 +139,7 @@ export interface IBaseFieldProps {
 export interface IDateFieldProps extends IBaseFieldProps{
   validEmptyValue?: boolean
   container: HTMLElement | null
+  onClear?: ()=>void
 }
 
 export interface ITextAreaProps extends Omit<IBaseFieldProps, "value" | "inputRef" | "onClick" | "onKeyDown" | "onChange" | "onFocus" | "onBlur"> {

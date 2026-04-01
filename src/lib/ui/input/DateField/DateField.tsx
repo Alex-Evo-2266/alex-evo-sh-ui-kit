@@ -2,7 +2,7 @@ import { useCallback, useEffect, useId, useState } from "react"
 import "./DateField.scss"
 import { ModalPortal } from "../../../portal/dialog"
 import {СalendarPickers} from './DatePickers'
-import { Calendar } from "../../Icons"
+import { Calendar, X } from "../../Icons"
 import { IDateFieldProps } from "../props"
 import { Typography } from "../../Text/Text/Typography"
 
@@ -22,6 +22,7 @@ export const DateField:React.FC<IDateFieldProps> = (
         placeholder,
         onBlur,
         onFocus,
+        onClear,
         ...props
     }) => {
 
@@ -114,6 +115,15 @@ export const DateField:React.FC<IDateFieldProps> = (
                     </label>
                 )}
             </div>
+
+        {onClear && value && !disabled && (
+            <div className="
+            input-field__icon-container 
+            input-field__icon-container_clear-btn
+            " onClick={onClear}>
+            <X aria-label="Clear input" />
+            </div>
+        )}
 		</div>
         {
             (datePickerVisible)?

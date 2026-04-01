@@ -91,7 +91,7 @@ import type { ICell, IColumn, IDataItem, ITable, ITableAction, celData } from '.
 import type { JsonData, JsonDataArray, JsonDataBaseTypes, JsonDataObject, JsonFormat, JsonFormatArray, JsonFormatBaseTypes, JsonFormatObject } from './model/jsonComponentModel';
 import type { ChangeColor, ColorState, BaseColor, NightColor } from './model/color';
 import type { IContainerData, IOptionModalWindowCord } from './helpers/getContainerPozAndSize';
-import type { IOption } from './ui/input/props';
+import type { IOption, IDateFieldProps, ITimeFieldProps } from './ui/input/props';
 import type { ButtonSearch } from './ui/Other/Search/Search'
 import type { FilterGroup, SelectedFilters } from './ui/Other/Filter/Filter'
 import type { IconOption, IconSelectFieldProps, IconsSelectProps } from './ui/Base/IconPicker/IconPicker'
@@ -248,7 +248,9 @@ export type {
   NavigationLink,
   IContainerData,
   IOptionModalWindowCord,
-  IOption
+  IOption,
+  IDateFieldProps,
+  ITimeFieldProps
 };
 
 // Экспорты провайдеров
