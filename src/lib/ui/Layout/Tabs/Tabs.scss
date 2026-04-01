@@ -2,6 +2,13 @@
 .alex-evo-ui-kit-tabs-container {
     width: 100%;
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    .alex-evo-ui-kit-tab-content{
+      flex: 1;
+    }
   }
 
   .alex-evo-ui-kit-tabs-scroll-buttons {

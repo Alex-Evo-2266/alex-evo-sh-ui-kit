@@ -115,3 +115,41 @@ export const ManyTabs: Story = {
     scrollAmount: 100
   }
 };
+
+
+
+export const Size: Story = {
+  args: {
+    tabs: [
+      ...sampleTabs,
+      {
+        label: 'Tab 6',
+        content: <div style={{ padding: '20px' }}>Sixth tab content</div>
+      },
+      {
+        label: 'Tab 7',
+        content: <div style={{ padding: '20px' }}>Seventh tab content</div>
+      },
+      {
+        label: 'Tab 8',
+        content: <div style={{ padding: '20px' }}>Eighth tab content</div>
+      },
+      {
+        label: 'Tab 9',
+        content: <div style={{ padding: '20px' }}>Ninth tab content</div>
+      },
+      {
+        label: 'Tab 10',
+        content: <div style={{ padding: '20px' }}>Tenth tab content</div>
+      }
+    ],
+    scrollAmount: 100
+  },
+  render: (args)=>{
+    return(
+      <div style={{height: "calc(100vh - 40px)", border: "1px solid red"}}>
+        <Tabs {...args}/>
+      </div>
+    )
+  }
+};
