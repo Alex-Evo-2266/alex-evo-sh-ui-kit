@@ -65,3 +65,13 @@ export const Placeholder: Story = {
     placeholder: "test"
   },
 };
+
+export const Clear: Story = {
+  args: {
+    border: true,
+    placeholder: "test",
+    onClear() {
+      return
+    },
+  },
+};

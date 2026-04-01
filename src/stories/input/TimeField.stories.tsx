@@ -98,6 +98,16 @@ export const Placeholder: Story = {
   }
 }
 
+export const Clear: Story = {
+  args: {
+    border: true,
+    placeholder: "test",
+    onClear() {
+      return
+    },
+  },
+};
+
 export const InteractiveExample = () => {
   const [time, setTime] = useState("")
   return (

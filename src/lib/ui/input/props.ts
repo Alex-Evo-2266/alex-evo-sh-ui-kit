@@ -113,6 +113,7 @@ export interface IBaseFieldProps {
     validEmptyValue?: boolean;
     /** Контейнер для модального окна */
     container: HTMLElement | null;
+    onClear?: () => void
   }
   
 

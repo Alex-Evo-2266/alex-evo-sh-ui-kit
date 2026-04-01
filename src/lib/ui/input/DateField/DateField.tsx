@@ -63,6 +63,12 @@ export const DateField:React.FC<IDateFieldProps> = (
         setIsFilled(!!e.target.value);
     }
 
+    const clearhandler = useCallback(() => {
+        setDateValue("")
+        onClear?.()
+        onChange?.("")
+    },[onClear, onChange])
+
     useEffect(() => {
         setIsFilled(!!value);
     }, [value]);
@@ -116,11 +122,11 @@ export const DateField:React.FC<IDateFieldProps> = (
                 )}
             </div>
 
-        {onClear && value && !disabled && (
+        {onClear && dateValue && !disabled && (
             <div className="
             input-field__icon-container 
             input-field__icon-container_clear-btn
-            " onClick={onClear}>
+            " onClick={clearhandler}>
             <X aria-label="Clear input" />
             </div>
         )}

@@ -2,7 +2,7 @@ import { useCallback, useState, useEffect, useMemo, useId } from "react"
 import "./TimeField.scss"
 import { ModalPortal } from "../../../portal/dialog"
 import { TimePicker } from "./TimePickers"
-import { Clock } from "../../Icons"
+import { Clock, X } from "../../Icons"
 import { Typography } from "../../Text/Text/Typography"
 import { ITimeFieldProps } from "../props"
 
@@ -40,6 +40,7 @@ export const TimeField = ({
   placeholder,
   onBlur,
   onFocus,
+  onClear,
   style,
   ...props
 }: ITimeFieldProps) => {
@@ -87,6 +88,12 @@ export const TimeField = ({
       setFocused(false);
       setIsFilled(!!e.target.value);
   }
+
+  const clearhandler = useCallback(() => {
+        setTimeValue("")
+        onClear?.()
+        onChange?.("")
+  },[onClear, onChange])
 
   useEffect(() => {
       setIsFilled(!!value);
@@ -179,6 +186,14 @@ export const TimeField = ({
           )}
           <span className="input-field__input-container__text-field-line"></span>
         </div>
+        {onClear && timeValue && !disabled && (
+            <div className="
+            input-field__icon-container 
+            input-field__icon-container_clear-btn
+            " onClick={clearhandler}>
+            <X aria-label="Clear input" />
+            </div>
+        )}
       </div>
       
       {bottomText}
