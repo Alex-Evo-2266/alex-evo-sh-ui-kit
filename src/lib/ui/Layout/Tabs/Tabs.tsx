@@ -16,6 +16,8 @@ type TabsProps = {
   activeTabClassName?: string; // Класс для активной вкладки
   onTabClick?: (index: number) => void; // Событие нажатия на вкладку
   activeTabIndex?: number; // Управление активной вкладкой извне
+  style?: React.CSSProperties;
+  className?: string
 };
 
 export const Tabs: React.FC<TabsProps> = ({
@@ -25,7 +27,9 @@ export const Tabs: React.FC<TabsProps> = ({
   activeTabClassName = 'active',
   onTabClick,
   activeTabIndex,
-  tabContainerClassName = ''
+  tabContainerClassName = '',
+  className,
+  style
 }) => {
   const [internalActiveTab, setInternalActiveTab] = useState(0);
   const activeTab = activeTabIndex !== undefined ? activeTabIndex : internalActiveTab;
@@ -84,7 +88,7 @@ export const Tabs: React.FC<TabsProps> = ({
   };
 
   return (
-    <div className="alex-evo-ui-kit-tabs-container">
+    <div className={`alex-evo-ui-kit-tabs-container ${className ?? ""}`} style={style}>
       <div className={`alex-evo-ui-kit-tabs-scroll-buttons ${tabContainerClassName}`}>
         {showScrollButtons && (
           <button onClick={() => scroll('left')} className="alex-evo-ui-kit-scroll-button">◀</button>
