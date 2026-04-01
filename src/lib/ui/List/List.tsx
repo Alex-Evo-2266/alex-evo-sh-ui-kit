@@ -1,7 +1,7 @@
 // List.tsx
 import React, { forwardRef, HTMLAttributes, LiHTMLAttributes, useEffect, useRef } from "react";
-import { Typography } from "../Text/Text/Typography";
 import "./List.scss";
+import { RunningLine } from "../Text/RunningLine/RunningLine";
 
 /**
  * Пропсы для контейнера списка
@@ -163,26 +163,24 @@ export interface ListItemContainerProps extends LiHTMLAttributes<HTMLLIElement> 
       <li ref={ref} className={classes} onClick={handleClick} aria-disabled={disabled} {...rest}>
         {(icon || value) && (
           <div className="list-item-container__icon-container">
-            {icon || (value && <Typography type="body">{value}</Typography>)}
+            {icon || (value && <RunningLine type="body" text={value}/>)}
           </div>
         )}
         {(header || text || description) && (
           <div className="list-item-container__text-container">
             {header && (
               <div className="list-item-container__text-container__header">
-                <Typography type="title">{header}</Typography>
+                <RunningLine type="title" text={header}/>
               </div>
             )}
             {text && (
               <div className="list-item-container__text-container__text">
-                <Typography type="small">{text}</Typography>
+                <RunningLine type="small" text={text}/>
               </div>
             )}
             {description && (
               <div className="list-item-container__text-container__description">
-                <Typography type="small" color="variant">
-                  {description}
-                </Typography>
+                <RunningLine type="small" color="variant" text={description} />
               </div>
             )}
           </div>

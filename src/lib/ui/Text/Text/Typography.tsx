@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { forwardRef, HTMLAttributes, useContext } from "react";
 import { ScreenSize } from "../../../model/sizeScreen";
 import './Text.scss';
 import { getFontVar, getLineHeightVar, getWeightVar, TypographyDensity, TypographyType, TypographyWeight } from "../textProps";
 import { SizeContext } from "../../Provider/SizeProvider";
 
-export interface TypographyProps {
+export interface TypographyProps extends HTMLAttributes<HTMLElement> {
   /** Тип текстового элемента */
   type: TypographyType;
   /** Размер экрана для адаптации */
@@ -16,10 +16,10 @@ export interface TypographyProps {
   /** Дочерние элементы */
   children?: React.ReactNode;
   /** HTML-атрибуты для span/heading элементов */
-  [key: string]: any;
+
 }
 
-export const Typography: React.FC<TypographyProps> = ({
+export const Typography = forwardRef<HTMLHeadingElement, TypographyProps>(({
   type,
   screensize = ScreenSize.STANDART,
   weight = 'standart',
@@ -28,7 +28,7 @@ export const Typography: React.FC<TypographyProps> = ({
   style,
   className = '',
   ...props
-}) => {
+},ref) => {
   const size = useContext(SizeContext)
   const screen = size? size.screen: screensize
   const isHeading = type === "heading" || type === "title" || type === "title-2";
@@ -47,6 +47,7 @@ export const Typography: React.FC<TypographyProps> = ({
 
   return (
     <Component
+      ref={ref}
       {...props}
       style={typographyStyle}
       className={`${baseClass} ${className}`}
@@ -54,4 +55,4 @@ export const Typography: React.FC<TypographyProps> = ({
       {children}
     </Component>
   );
-};
+})

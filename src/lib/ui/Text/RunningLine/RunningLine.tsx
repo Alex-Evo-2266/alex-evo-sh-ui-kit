@@ -2,17 +2,13 @@ import React, { useEffect, useCallback, useRef, useState } from 'react';
 import "./runningLine.scss";
 import "../Text/Text.scss";
 import {
-  getFontVar,
-  getLineHeightVar,
-  getWeightVar,
   TypographyDensity,
-  TypographyType,
   TypographyWeight
 } from '../textProps';
 import { ScreenSize } from '../../../model/sizeScreen';
+import { Typography, TypographyProps } from '../Text/Typography';
 
-export interface RunningLineProps {
-  type: TypographyType;
+export interface RunningLineProps extends TypographyProps {
   screensize?: ScreenSize;
   weight?: TypographyWeight;
   density?: TypographyDensity;
@@ -38,18 +34,6 @@ export const RunningLine: React.FC<RunningLineProps> = ({
   const measurerRef = useRef<HTMLDivElement>(null);
   const [isAnimated, setIsAnimated] = useState(false);
 
-  const isHeading = type === "heading" || type === "title" || type === "title-2";
-  const Component = isHeading ? 'h3' : 'span';
-
-  const typographyStyle = {
-    fontSize: getFontVar(type, screensize),
-    fontWeight: getWeightVar(type, weight),
-    lineHeight: getLineHeightVar(type, density, screensize),
-    ...style,
-  };
-
-  const baseClass = isHeading ? 'typography-heading' : 'typography-text';
-
   const anim = useCallback(() => {
     if (!containerRef.current || !measurerRef.current) return;
 
@@ -61,12 +45,28 @@ export const RunningLine: React.FC<RunningLineProps> = ({
 
   useEffect(() => {
     anim();
+    
+    // Следим за изменением размеров окна
     window.addEventListener('resize', anim);
+    
+    // Следим за изменением размеров родителя
+    let resizeObserver: ResizeObserver | null = null;
+    
+    if (containerRef.current?.parentElement) {
+      resizeObserver = new ResizeObserver(() => {
+        anim();
+      });
+      resizeObserver.observe(containerRef.current.parentElement);
+    }
+    
     return () => {
       window.removeEventListener('resize', anim);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
     };
   }, [anim]);
-
+  
   return (
     <>
       {/* Видимая бегущая строка */}
@@ -76,29 +76,31 @@ export const RunningLine: React.FC<RunningLineProps> = ({
         onContextMenu={onContextMenu}
         className={`runing-text ${isAnimated ? 'runing' : ''}`}
       >
-        <Component
+        <Typography
           {...props}
-          style={typographyStyle}
-          className={`${baseClass} ${className}`}
+          type={type}
+          className={`${className}`}
         >
           {isAnimated ? `| ${text} | ${text}` : text}
-        </Component>
+        </Typography>
       </div>
 
       {/* Невидимый измеритель */}
-      <div
+      <Typography
         ref={measurerRef}
+        {...props}
+        type={type}
         style={{
+          ...props.style,
           position: 'absolute',
           visibility: 'hidden',
           height: 'auto',
           whiteSpace: 'nowrap',
-          ...typographyStyle,
         }}
-        className={`${baseClass} ${className}`}
+        className={className}
       >
         {text}
-      </div>
+      </Typography>
     </>
   );
 };

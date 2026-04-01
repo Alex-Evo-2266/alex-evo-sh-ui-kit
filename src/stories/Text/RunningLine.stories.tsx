@@ -30,7 +30,7 @@ type Story = StoryObj<typeof RunningLine>;
 
 export const Basic: Story = {
   args: {
-    type: 'heading',
+    type: 'body',
     text: 'Внимание! Объявление о срочном обновлении системы безопасности. Пожалуйста, перезапустите устройство.',
     screensize: ScreenSize.STANDART,
   },
@@ -62,7 +62,6 @@ export const ResponsiveBehavior: Story = () => {
           width: containerWidth,
           border: '1px solid #ccc',
           padding: 8,
-          resize: 'horizontal',
           overflow: 'auto',
         }}
       >
