@@ -23,6 +23,7 @@ export interface DialogProps {
     
     /** Custom styles */
     style?: React.CSSProperties;
+    styleContent?: React.CSSProperties;
     
     /** If true, removes default container styling */
     clearStyle?: boolean;
@@ -62,6 +63,7 @@ export const ModalDialogTemplate = ({
     action,
     onHide,
     style,
+    styleContent,
     clearStyle = false,
     disableBackplate,
     marginBottom,
@@ -105,7 +107,7 @@ export const ModalDialogTemplate = ({
                         }
                     </div>
                 )}
-                <div className="dialog-template__container__content">
+                <div className="dialog-template__container__content" style={styleContent}>
                     {children}
                 </div>
                 {action && (

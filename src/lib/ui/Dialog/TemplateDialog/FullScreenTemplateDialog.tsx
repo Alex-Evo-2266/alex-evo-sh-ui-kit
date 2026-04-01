@@ -30,6 +30,8 @@ export interface FullScreenDialogProps {
   
   /** Пользовательские стили */
   style?: React.CSSProperties;
+
+  styleContent?: React.CSSProperties;
   
   /** Отступ снизу (для контента) */
   marginBottom?: number;
@@ -63,6 +65,7 @@ export interface FullScreenDialogProps {
  */
 export const FullScreenTemplateDialog = ({
   style,
+  styleContent,
   className = "",
   header,
   children,
@@ -145,7 +148,7 @@ export const FullScreenTemplateDialog = ({
           )}
         </div>
       </div>
-      <div className="full-screen-dialog__content">
+      <div className="full-screen-dialog__content" style={styleContent}>
         {children}
         {btns && <DialogButton btns={btns.filter(btn=>!btn.hide && !btn.success)}/>}
       </div>
