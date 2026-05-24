@@ -13,7 +13,8 @@ yarn add alex-evo-sh-ui-kit
 ```
 
 ## Документация
-если информация по коипонентам не открывается откройте в [github](https://github.com/Alex-Evo-2266/alex-evo-sh-ui-kit/blob/main/README.md)
+storybook - [netlify](https://alex-evo-ui-kit.netlify.app/)
+если информация по компонентам не открывается откройте в [github](https://github.com/Alex-Evo-2266/alex-evo-sh-ui-kit/blob/main/README.md)
 
 ## Компоненты
 
