@@ -86,7 +86,7 @@ export const BasicTemplateDialog = ({
         className={`dialog-bottom ${props.className || ''}`}
       >
         {props.header && (
-          <div className="dialog-bottom__header">
+          <div className="dialog-bottom__header dialog-bottom__header_color_text-surface-color">
             <Typography type='heading'>{props.header}</Typography>
           </div>
         )}
