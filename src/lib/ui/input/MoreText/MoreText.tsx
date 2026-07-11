@@ -106,6 +106,7 @@ export const MoreText = ({
             <Chips
               key={`${item}-${index}`}
               text={item}
+              className='chips-container_chip'
               onDelete={() => deleteValue(index)}
               disabled={disabled}
               aria-label={`Элемент: ${item}`} // Описание элемента

@@ -2,6 +2,9 @@
     display: flex;
     .chips-container{
         flex: 100%;
+        &_chip{
+          margin: 0 0.5rem 0.5rem 0;
+        }
     }
     .more-text-btn{
         white-space: nowrap;
