@@ -5,6 +5,9 @@ import { NavigationBtn, NavigationButton } from '../../../model/navigation'
 import { MoreHorizontal } from '../../Icons'
 import { NavigationSubmenu } from './NavSub'
 import './style/navigation-drawer.scss'
+import { useContext } from "react"
+import { SizeContext } from "../../Provider/SizeProvider"
+import { ScreenSize } from "../../../model/sizeScreen"
 
 export interface NavigationDrawerProps{
 	visible?: boolean
@@ -18,6 +21,8 @@ export interface NavigationDrawerProps{
 
 export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, backBtn, openAlways}:NavigationDrawerProps) => {
 
+	const {screen} = useContext(SizeContext)
+
 	const renderButton = (item: NavigationButton, index: number) => {
 		if (item.type === "button")
 			return <NavButton key={index} active={item.active} onClick={item.onClick} title={item.text} icon={item.icon} />
@@ -30,7 +35,11 @@ export const NavigationDrawer = ({visible, firstBtn, mainBtn, onHide, otherBtn, 
 
 	return(
 		<>
-		<div className={`navigation-drawer ${(visible || openAlways)?"navigation-drawer_show":"navigation-drawer_hide"}`}>
+		<div className={`
+			navigation-drawer 
+			${(visible || openAlways)?"navigation-drawer_show":"navigation-drawer_hide"} 
+			${screen === ScreenSize.BIG_SCREEN ? "navigation-drawer_z500":"navigation-drawer_z1200"}
+		`}>
 			{
 				(firstBtn)?
 				<>

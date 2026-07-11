@@ -3,7 +3,6 @@
     overflow-y: auto;
 	top:0;
 	left: 0;
-	z-index: 1200;
 	width: 0;
 	max-width: 360px;
 	background-color: var(--Surface-container-low-color);
@@ -13,6 +12,12 @@
 	border-bottom-right-radius: 15px;
 	transition: .3s;
 	box-shadow: var(--Shadow-base);
+	&_z500{
+		z-index: 500;
+	}
+	&_z1200{
+		z-index: 1200;
+	}
     &_show{
         width: 100%;
     }
