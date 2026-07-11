@@ -24,6 +24,9 @@ const meta: Meta<typeof FullScreenTemplateDialog> = {
     cancelText: {
       control: 'text',
       description: 'Текст кнопки отмены'
+    },
+    maxWidth: {
+      control: 'number'
     }
   },
 };

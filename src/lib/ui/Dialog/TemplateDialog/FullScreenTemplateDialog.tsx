@@ -5,7 +5,7 @@ import { useScrollLock } from "../../../hooks/lockScroll.hook";
 import { ModalDialogTemplate } from "./ModalDialogTemplate";
 import { Typography } from "../../Text/Text/Typography";
 import { ScreenSize } from "../../../model/sizeScreen";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { SizeContext } from "../../Provider/SizeProvider";
 import './style/full-screen-dialog.scss'
 import type { DialogButtonType } from "../types";
@@ -48,6 +48,9 @@ export interface FullScreenDialogProps {
   forceFullScreen?: boolean;
 
   btns?: DialogButtonType[]
+
+  /** Maximum width of the dialog */
+  maxWidth?: number | string;
 }
 
 /**
@@ -76,24 +79,26 @@ export const FullScreenTemplateDialog = ({
   saveText,
   cancelText,
   forceFullScreen,
+  maxWidth,
   btns
 }: FullScreenDialogProps) => {
 	const {screen} = useContext(SizeContext)
 	useScrollLock(true, document.body);
 
-  const handleHide = () => {
+  const handleHide = useCallback(() => {
     onHide?.();
-  };
+  },[onHide])
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     onSave?.();
-  };
+  },[onSave])
 
   const screenMode = forceFullScreen || screen === ScreenSize.MOBILE
 
   if (!screenMode) {
     return (
       <ModalDialogTemplate 
+        maxWidth={maxWidth}
         disableBackplate={disableBackplate}
         style={style}
         header={header}
