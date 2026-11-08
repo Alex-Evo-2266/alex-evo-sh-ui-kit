@@ -1,4 +1,4 @@
-import { FormHTMLAttributes, forwardRef, useCallback, useImperativeHandle, useState } from "react"
+import { FormHTMLAttributes, forwardRef, useCallback, useImperativeHandle, useRef, useState } from "react"
 import { formContext } from "./FormContext"
 import { MoreTextField } from "./inputs/formMoreText"
 import { NumberField } from "./inputs/formNumberInput"
@@ -38,32 +38,38 @@ const BaseForm = forwardRef(
         ref: React.Ref<FormRef<T>>
     ){
 
-    const [values, setValues] = useState<T>(value)
+    const valuesRef = useRef(value)
+    const [renderValues, setRenderValues] = useState<T>(value)
+
+    const updateValues = useCallback((nextValues: T) => {
+        valuesRef.current = nextValues
+        setRenderValues(nextValues)
+    }, [])
 
     const submiteHandler = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        onFinish?.(values)
-    },[onFinish, values])
+        onFinish?.(valuesRef.current)
+    },[onFinish])
 
     const changeHandler = useCallback(<K extends keyof T>(name: K, data: T[K]) => {
-        setValues(prev=>({
-            ...prev, [name]: data
-        }))
+        updateValues({
+            ...valuesRef.current, [name]: data
+        })
         onChangeValue?.(name, data)
-    },[onChangeValue])
+    },[onChangeValue, updateValues])
 
     useImperativeHandle(ref, () => ({
-        submit: () => onFinish?.(values),
+        submit: () => onFinish?.(valuesRef.current),
         setFieldValue: (name, value) => {
-            setValues(prev=>({ ...prev, [name]: value }))
+            updateValues({ ...valuesRef.current, [name]: value })
         },
-        setValues: (v) => setValues(v),
-        getValues: () => values,
-        reset: () => setValues(value)
-    }),[onFinish, values, value])
+        setValues: updateValues,
+        getValues: () => valuesRef.current,
+        reset: () => updateValues(value)
+    }),[onFinish, updateValues, value])
 
     return(
-        <formContext.Provider value={{value: values, changeField: changeHandler, errors}}>
+        <formContext.Provider value={{value: renderValues, changeField: changeHandler, errors}}>
             <form name={name} onSubmit={submiteHandler} noValidate {...props}>
             {children}
             </form>

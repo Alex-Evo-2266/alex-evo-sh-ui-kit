@@ -9,7 +9,7 @@ export const useFieldForm = (name: string) => {
     
         const change = useCallback((value: unknown) => {
             changeField && changeField(name as never, value as never)
-        },[name])
+        },[changeField, name])
     
         const getValue = useCallback(()=>{
             const val = v?.[name]
@@ -24,7 +24,7 @@ export const useFieldForm = (name: string) => {
     
         const clearHandler = useCallback(() => {
             changeField && changeField(name, '')
-        },[name])
+        },[changeField, name])
     
         const getError = useCallback(() => {
             if (errors && Object.keys(errors).includes(name))
